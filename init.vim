@@ -102,6 +102,8 @@ else
     Plug 'roxma/nvim-yarp'
     Plug 'roxma/vim-hug-neovim-rpc'
 endif
+"   launch deoplete at startup
+let g:deoplete#enable_at_startup = 1
 
 ""  use denite
 if has('nvim')
@@ -142,8 +144,22 @@ Plug 'Shougo/neco-vim'
 """ auto pairs
 Plug 'jiangmiao/auto-pairs'
 
-"   launch deoplete at startup
-let g:deoplete#enable_at_startup = 1
+""" SNIPPETS
+""" using neosnippet
+
+Plug 'Shougo/neosnippet.vim'
+Plug 'Shougo/neosnippet-snippets'
+"   use C-k to select snippet
+imap <C-k>     <Plug>(neosnippet_expand_or_jump)
+smap <C-k>     <Plug>(neosnippet_expand_or_jump)
+xmap <C-k>     <Plug>(neosnippet_expand_target)
+"   supertab behavior
+smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
+\   "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
+"   conceal markers
+if has('conceal')
+    set conceallevel=2 concealcursor=niv
+endif
 
 """ LINTING
 """ using Asynchronous Lint Engine
