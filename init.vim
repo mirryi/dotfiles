@@ -241,6 +241,8 @@ aug end
 """ pandoc
 Plug 'vim-pandoc/vim-pandoc'
 Plug 'vim-pandoc/vim-pandoc-syntax'
+let g:pandoc#modules#disabled = ['folding']
+let g:pandoc#filetypes#pandoc_markdown = 0
 
 """ csv
 Plug 'mechatroner/rainbow_csv'
