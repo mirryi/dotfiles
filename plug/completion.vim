@@ -2,6 +2,22 @@
 """ using coc.nvim
 
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
+"   css, scss, less
+Plug 'neoclide/coc-css'
+"   html, handlebars, razor
+Plug 'neoclide/coc-html', {'do': 'yarn install --frozen-lockfile'}
+"   java (using eclipse.jdt.ls)
+Plug 'neoclide/coc-java', {'do': 'yarn install --frozen-lockfile'}
+"   json
+Plug 'neoclide/coc-json', {'do': 'yarn install --frozen-lockfile'}
+"   python
+Plug 'neoclide/coc-python', {'do': 'yarn install --frozen-lockfile'}
+"   rust (using rls)
+Plug 'neoclide/coc-rls', {'do': 'yarn install --frozen-lockfile'}
+"   typescript, javascript (using tsserver)
+Plug 'neoclide/coc-tsserver', {'do': 'yarn install --frozen-lockfile'}
+"   yaml
+Plug 'neoclide/coc-yaml', {'do': 'yarn install --frozen-lockfile'}
 
 """ vim-go with coc.vim
 Plug 'fatih/vim-go'
