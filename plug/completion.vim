@@ -16,6 +16,9 @@ Plug 'neoclide/coc-python', {'do': 'yarn install --frozen-lockfile'}
 Plug 'neoclide/coc-rls', {'do': 'yarn install --frozen-lockfile'}
 "   typescript, javascript (using tsserver)
 Plug 'neoclide/coc-tsserver', {'do': 'yarn install --frozen-lockfile'}
+"   vimscript (using viml)
+"   does not work, use :CocInstall coc-vimlsp
+" Plug 'iamcco/coc-vimlsp', {'do': 'yarn install --frozen-lockfile'}
 "   yaml
 Plug 'neoclide/coc-yaml', {'do': 'yarn install --frozen-lockfile'}
 
@@ -50,9 +53,6 @@ nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gy <Plug>(coc-type-definition)
 nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
-
-"   use U to show documentation in preview window
-nnoremap <silent> U :call <SID>show_documentation()<CR>
 
 """ using deoplete.nvim
 
