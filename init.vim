@@ -39,14 +39,15 @@ set expandtab
 "   better display for messages
 set cmdheight=2
 
-"   updatetime for CursorHold & CursorHoldI
-set updatetime=300
-
 "   avoid hit-enter messages
 set shortmess+=c
 
 "   always show signcolumns
 set signcolumn=yes
+
+"   maintain undo history between sessions
+set undofile
+let &undodir=stdpath("config") . "/undo"
 
 "   current working directory
 autocmd BufEnter * lcd %:p:h
