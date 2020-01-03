@@ -21,6 +21,8 @@ Plug 'neoclide/coc-tsserver', {'do': 'yarn install --frozen-lockfile'}
 " Plug 'iamcco/coc-vimlsp', {'do': 'yarn install --frozen-lockfile'}
 "   yaml
 Plug 'neoclide/coc-yaml', {'do': 'yarn install --frozen-lockfile'}
+"   xml
+Plug 'fannheyward/coc-xml', {'do': 'yarn install --frozen-lockfile'}
 
 """ vim-go with coc.vim
 Plug 'fatih/vim-go'
