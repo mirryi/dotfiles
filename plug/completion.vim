@@ -14,6 +14,9 @@ Plug 'neoclide/coc-json', {'do': 'yarn install --frozen-lockfile'}
 Plug 'neoclide/coc-python', {'do': 'yarn install --frozen-lockfile'}
 "   rust (using rls)
 Plug 'neoclide/coc-rls', {'do': 'yarn install --frozen-lockfile'}
+"   latex (with vimtex)
+"   does not work, use :CocInstall coc-vimtex
+" Plug 'neoclide/coc-vimtex', {'do': 'yarn install --frozen-lockfile'}
 "   typescript, javascript (using tsserver)
 Plug 'neoclide/coc-tsserver', {'do': 'yarn install --frozen-lockfile'}
 "   vimscript (using viml)
