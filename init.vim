@@ -181,6 +181,10 @@ let g:ale_linters = {
 "   show warnings in statusline
 let g:airline#extensions#ale#enabled = 1
 
+""" cSpell (using coc.nvim)
+"   does not work, use :CocInstall coc-spell-checker
+" Plug 'iamcco/coc-spell-checker', {'do': 'yarn install --frozen-lockfile'}
+
 """
 """ FORMATTING
 """
