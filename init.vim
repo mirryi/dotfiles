@@ -248,7 +248,7 @@ let g:go_def_mapping_enabled = 0
 """ pandoc
 Plug 'vim-pandoc/vim-pandoc'
 Plug 'vim-pandoc/vim-pandoc-syntax'
-let g:pandoc#modules#disabled = ['folding']
+let g:pandoc#modules#disabled = ['folding', 'spell']
 " let g:pandoc#filetypes#pandoc_markdown = 0
 
 """ vimtex
