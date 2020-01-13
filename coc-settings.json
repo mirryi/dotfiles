@@ -1,4 +1,19 @@
 {
+  "suggest.minTriggerInputLength": 2,
+  "python.linting.flake8Enabled": true,
+  "languageserver": {
+    "bash": {
+      "command": "bash-language-server",
+      "args": ["start"],
+      "filetypes": ["sh", "bash"],
+      "ignoredRootPaths": ["~"]
+    },
+    "golang": {
+      "command": "gopls",
+      "rootPatterns": ["go.mod", ".vim/", ".git/", ".hg/"],
+      "filetypes": ["go"]
+    }
+  },
   "cSpell.enabledLanguageIds": [
     "asciidoc",
     "c",
@@ -34,14 +49,5 @@
     "typescriptreact",
     "yaml",
     "yml"
-  ],
-  "suggest.minTriggerInputLength": 2,
-  "python.linting.flake8Enabled": true,
-  "languageserver": {
-    "golang": {
-      "command": "gopls",
-      "rootPatterns": ["go.mod", ".vim/", ".git/", ".hg/"],
-      "filetypes": ["go"]
-    }
-  }
+  ]
 }
