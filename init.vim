@@ -32,6 +32,9 @@ autocmd BufEnter * lcd %:p:h
 """ CUSTOM KEYBINDS
 """
 
+""" map leader
+let mapleader=","
+
 """ change tabs
 "   focus tab left
 nnoremap H gT
@@ -145,8 +148,11 @@ nmap <silent> gy <Plug>(coc-type-definition)
 nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
 
-""" delimitMate (autoclose parentheses, etc.)
-Plug 'Raimondi/delimitMate'
+""" Auto Pairs (autoclose parentheses, etc.)
+Plug 'jiangmiao/auto-pairs'
+
+""" import-js (import js dependencies)
+Plug 'galooshi/vim-import-js'
 
 """
 """ SNIPPETS
