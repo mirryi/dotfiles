@@ -4,6 +4,9 @@ call plug#begin('~/.config/nvim/plugged')
 """
 """ GLOBAL EDITOR OPTIONS
 """
+"   source local .vimrc files
+set exrc
+set secure
 
 "   hidden
 set hidden
@@ -234,6 +237,7 @@ endfunction
 
 """ polyglot (covers most languages)
 Plug 'sheerun/vim-polyglot'
+let g:polyglot_disabled = ['latex']
 
 """ csv
 Plug 'mechatroner/rainbow_csv'
