@@ -1,4 +1,4 @@
-HOME                  DEFAULT="/home/dophin2009"
+HOME                  DEFAULT=@{HOME}
 
 # XDG base directory specification
 XDG_CACHE_HOME        DEFAULT="${HOME}/.cache"
