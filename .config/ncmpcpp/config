@@ -1,0 +1,42 @@
+# Settings
+# mpd_host = "localhost"
+# mpd_port = 6600
+# mpd_connection_timeout = 5
+
+ncmpcpp_directory = "~/.local/share/ncmpcpp"
+lyrics_directory = "~/.local/share/lyrics"
+
+startup_screen = playlist
+
+autocenter_mode = yes
+cyclic_scrolling = yes
+display_bitrate = yes
+incremental_seeking = yes
+
+statusbar_visibility = no
+
+ignore_leading_the = yes
+allow_for_physical_item_deletion = yes
+
+playlist_display_mode = classic
+
+# Colors
+state_line_color = black
+progressbar_color = white
+progressbar_elapsed_color = magenta
+
+# Playlist
+song_window_title_format = {%t}|{%f} - {%b}
+song_list_format = "{$3[%l]$9} {$6%65t$9} %y $R {$5%65b$9} | %10g"
+
+current_item_prefix = "$b$8>>$9$/b "
+current_item_suffix = " $b$8<<$9$/b"
+
+current_item_inactive_column_prefix = "$b"
+current_item_inactive_column_suffix = "$/b"
+
+# Library
+media_library_primary_tag = genre
+
+# Progress Bar
+progressbar_look = "→→"

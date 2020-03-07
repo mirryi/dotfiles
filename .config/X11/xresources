@@ -1,0 +1,53 @@
+Xft.antialias:  true
+Xft.hinting:    true
+Xft.rgba:       rgb
+Xft.hintstyle:  hintfull
+
+rofi.terminal:      termite
+rofi.ssh-client:    ssh
+rofi.ssh-command:   termite -e "{ssh-client} {host}"
+
+rofi.width:             50
+rofi.lines:             15
+rofi.columns:           2
+rofi.font:              Inconsolata 11
+rofi.show-icons:		true
+
+rofi.lazy-filter-limit: 15000
+rofi.line-margin:       5
+rofi.separator-style:   dash
+rofi.hide-scrollbar:    true
+rofi.fullscreen:        false
+rofi.dpi:               100
+
+rofi.kb-row-up:         Up
+rofi.kb-row-down:       Down
+
+! hard contrast: *background: #1d2021
+*background: #282828
+! soft contrast: *background: #32302f
+*foreground: #ebdbb2
+! Black + DarkGrey
+*color0:  #282828
+*color8:  #928374
+! DarkRed + Red
+*color1:  #cc241d
+*color9:  #fb4934
+! DarkGreen + Green
+*color2:  #98971a
+*color10: #b8bb26
+! DarkYellow + Yellow
+*color3:  #d79921
+*color11: #fabd2f
+! DarkBlue + Blue
+*color4:  #458588
+*color12: #83a598
+! DarkMagenta + Magenta
+*color5:  #b16286
+*color13: #d3869b
+! DarkCyan + Cyan
+*color6:  #689d6a
+*color14: #8ec07c
+! LightGrey + White
+*color7:  #a89984
+*color15: #ebdbb2
