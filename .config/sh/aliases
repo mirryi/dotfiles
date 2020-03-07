@@ -1,8 +1,8 @@
 #!/bin/sh
 
 ### GOTO
-# shellcheck source=../../.local/bin/goto
-. "$HOME/.local/bin/goto"
+# shellcheck source=../../.local/bin/goto.sh
+. "$HOME/.local/bin/goto.sh"
 
 ### BASIC COMMANDS
 alias ls="ls -a --color"

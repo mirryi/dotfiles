@@ -1,3 +1,4 @@
+#!/usr/bin/sh
 # shellcheck shell=bash
 # shellcheck disable=SC2039
 # MIT License
@@ -233,14 +234,14 @@ _goto_directory_push()
 
   { pushd . || return; } 1>/dev/null 2>&1
 
-  _goto_directory "$@"
-}
+    _goto_directory "$@"
+  }
 
 # Pops the top directory from the stack, then goto
 _goto_directory_pop()
 {
   { popd || return; } 1>/dev/null 2>&1
-}
+  }
 
 # Unregisters aliases whose directories no longer exist.
 _goto_cleanup()
@@ -253,7 +254,7 @@ _goto_cleanup()
     echo "Cleaning up: $i"
     _goto_unregister_alias "$i"
   done <<< "$(awk '{al=$1; $1=""; dir=substr($0,2);
-                    system("[ ! -d \"" dir "\" ] && echo " al)}' "$GOTO_DB")"
+  system("[ ! -d \"" dir "\" ] && echo " al)}' "$GOTO_DB")"
 }
 
 # Changes to the given alias' directory
@@ -265,7 +266,7 @@ _goto_directory()
 
   builtin cd "$target" 2> /dev/null || \
     { _goto_error "Failed to goto '$target'" && return 1; }
-}
+  }
 
 # Fetches the alias directory.
 _goto_find_alias_directory()
@@ -410,50 +411,50 @@ _complete_goto_zsh()
 
   local state
   local -a options=(
-    '(1)'{-r,--register}'[registers an alias]:register:->register'
-    '(- 1 2)'{-u,--unregister}'[unregisters an alias]:unregister:->unregister'
-    '(: -)'{-l,--list}'[lists aliases]'
-    '(*)'{-c,--cleanup}'[cleans up non existent directory aliases]'
-    '(1 2)'{-x,--expand}'[expands an alias]:expand:->aliases'
-    '(1 2)'{-p,--push}'[pushes the current directory onto the stack, then performs goto]:push:->aliases'
-    '(*)'{-o,--pop}'[pops the top directory from stack, then changes to that directory]'
-    '(: -)'{-h,--help}'[prints this help]'
-    '(* -)'{-v,--version}'[displays the version of the goto script]'
-  )
+  '(1)'{-r,--register}'[registers an alias]:register:->register'
+  '(- 1 2)'{-u,--unregister}'[unregisters an alias]:unregister:->unregister'
+  '(: -)'{-l,--list}'[lists aliases]'
+  '(*)'{-c,--cleanup}'[cleans up non existent directory aliases]'
+  '(1 2)'{-x,--expand}'[expands an alias]:expand:->aliases'
+  '(1 2)'{-p,--push}'[pushes the current directory onto the stack, then performs goto]:push:->aliases'
+  '(*)'{-o,--pop}'[pops the top directory from stack, then changes to that directory]'
+  '(: -)'{-h,--help}'[prints this help]'
+  '(* -)'{-v,--version}'[displays the version of the goto script]'
+)
 
-  _arguments -C \
-    "${options[@]}" \
-    '1:alias:->aliases' \
-    '2:dir:_files' \
+_arguments -C \
+  "${options[@]}" \
+  '1:alias:->aliases' \
+  '2:dir:_files' \
   && ret=0
 
-  case ${state} in
-    (aliases)
-      _describe -t aliases 'goto aliases:' all_aliases && ret=0
+case ${state} in
+  (aliases)
+    _describe -t aliases 'goto aliases:' all_aliases && ret=0
     ;;
-    (unregister)
-      _describe -t aliases 'unregister alias:' all_aliases && ret=0
+  (unregister)
+    _describe -t aliases 'unregister alias:' all_aliases && ret=0
     ;;
-  esac
-  return $ret
+esac
+return $ret
 }
 
 goto_aliases=($(alias | sed -n "s/.*\s\(.*\)='goto'/\1/p"))
 goto_aliases+=("goto")
 
 for i in "${goto_aliases[@]}"
-	do
-		# Register the goto completions.
-	if [ -n "${BASH_VERSION}" ]; then
-	  if ! [[ $(uname -s) =~ Darwin* ]]; then
-	    complete -o filenames -F _complete_goto_bash $i
-	  else
-	    complete -F _complete_goto_bash $i
-	  fi
-	elif [ -n "${ZSH_VERSION}" ]; then
-	  compdef _complete_goto_zsh $i
-	else
-	  echo "Unsupported shell."
-	  exit 1
-	fi
+do
+  # Register the goto completions.
+  if [ -n "${BASH_VERSION}" ]; then
+    if ! [[ $(uname -s) =~ Darwin* ]]; then
+      complete -o filenames -F _complete_goto_bash $i
+    else
+      complete -F _complete_goto_bash $i
+    fi
+  elif [ -n "${ZSH_VERSION}" ]; then
+    compdef _complete_goto_zsh $i
+  else
+    echo "Unsupported shell."
+    exit 1
+  fi
 done
