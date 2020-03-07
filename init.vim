@@ -179,6 +179,8 @@ nmap <silent> gr <Plug>(coc-references)
 
 """ Auto Pairs (autoclose parentheses, etc.)
 Plug 'jiangmiao/auto-pairs'
+""" vim-closetag (autoclose XHTML tags)
+Plug 'alvan/vim-closetag'
 
 """ import-js (import js dependencies)
 Plug 'galooshi/vim-import-js'
