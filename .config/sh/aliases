@@ -1,0 +1,40 @@
+#!/bin/sh
+
+### GOTO
+# shellcheck source=../../.local/bin/goto
+. "$HOME/.local/bin/goto"
+
+### BASIC COMMANDS
+alias ls="ls -a --color"
+
+### SHORTCUTS
+alias rn="ranger"
+
+### REDEFINITIONS
+alias slack-term='slack-term -config "${XDG_CONFIG_HOME}/slack-term/config"'
+
+### MACROS
+
+##  pacman
+#   browse packages
+alias pacman-browse-pkgs="pacman -Qq | fzf --preview 'pacman -Qil {}' --layout=reverse --bind 'enter:execute(pacman -Qil {} | less)'"
+
+##  copy to clipboard
+#   copy text
+alias cclip="xclip -selection clipboard"
+#   copy image
+alias iclip="xclip -selection clipboard -t image/png -i"
+
+##  music
+#   beet
+alias beetup="beet update && beet splupdate"
+alias beetrmd="beet rm -d"
+#   mpd
+alias mpcup="mpc update"
+alias mpcdef="mpc clear && mpc random true && mpc repeat true && mpc load japanese && mpc play"
+#   youtube-dl
+alias ydlmp3="youtube-dl --extract-audio --audio-format mp3"
+
+##  mullvad
+#   set relay location
+alias mullvadsrl="mullvad relay set location"

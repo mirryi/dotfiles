@@ -1,0 +1,18 @@
+# Set library paths
+r_lib <- paste(Sys.getenv("XDG_DATA_HOME"), "/R/library")
+.libPaths(c(r_lib, .libPaths()))
+
+# Set CRAN mirror
+local({
+  r <- getOption("repos")
+  r["CRAN"] <- "https://cloud.r-project.org/"
+  options(repos = r)
+})
+
+# Disable save workspace prompt
+utils::assignInNamespace("q",
+  function(save = "no", status = 0, run_last = TRUE) {
+    .Internal(quit(save, status, run_last))
+  },
+  "base"
+)
