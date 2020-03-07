@@ -14,6 +14,9 @@ call plug#begin(nvim_data . '/plugged')
 """
 """ GLOBAL EDITOR OPTIONS
 """
+"   source local .vimrc files
+set exrc
+set secure
 
 "   hidden
 set hidden
@@ -42,6 +45,9 @@ autocmd BufEnter * lcd %:p:h
 """ CUSTOM KEYBINDS
 """
 
+""" map leader
+let mapleader=","
+
 """ change tabs
 "   focus tab left
 nnoremap H gT
@@ -68,43 +74,43 @@ let g:NERDTreeWinSize = 40
 let g:NERDTreeShowHidden = 1
 "   git indicator symbols
 let g:NERDTreeIndicatorMapCustom = {
-  \ "Modified"  : "~",
-  \ "Staged"    : "+",
-  \ "Untracked" : "_",
-  \ "Renamed"   : "➜",
-  \ "Unmerged"  : "═",
-  \ "Deleted"   : "✖",
-  \ "Dirty"     : "✗",
-  \ "Clean"     : "✔︎",
-  \ 'Ignored'   : '☒',
-  \ "Unknown"   : "?"
-  \ }
+      \ "Modified"  : "~",
+      \ "Staged"    : "+",
+      \ "Untracked" : "_",
+      \ "Renamed"   : "➜",
+      \ "Unmerged"  : "═",
+      \ "Deleted"   : "✖",
+      \ "Dirty"     : "✗",
+      \ "Clean"     : "✔︎",
+      \ 'Ignored'   : '☒',
+      \ "Unknown"   : "?"
+      \ }
 "   open NERDTree with key bind
 map <C-n> :NERDTreeToggle<CR>
 "   start automatically if no files are specified
-" autocmd VimEnter * NERDTree 
+" autocmd VimEnter * NERDTree
 autocmd StdinReadPre * let s:std_in = 1
 autocmd VimEnter *
-\   if (argc() == 0 && !exists("s:std_in")) |
-\     NERDTree |
-\   endif
+      \   if (argc() == 0 && !exists("s:std_in")) |
+      \     NERDTree |
+      \   endif
 "   start automatically when opening a directory
 autocmd VimEnter *
-\   if (argc() == 1 && isdirectory(argv()[0]) &&
-\     !exists("s:std_in")) |
-\     exe 'NERDTree' argv()[0] |
-\     wincmd p |
-\     ene |
-\     exe 'cd '.argv()[0] |
-\     wincmd p |
-\   endif
+      \   if (argc() == 1 && isdirectory(argv()[0]) &&
+      \     !exists("s:std_in")) |
+      \     exe 'NERDTree' argv()[0] |
+      \     wincmd p |
+      \     ene |
+      \     exe 'cd '.argv()[0] |
+      \     wincmd p |
+      \   endif
 "   close vim if only tree is left open
 autocmd bufenter *
-\   if (winnr("$") == 1 &&
-\     exists("b:NERDTree") &&
-\     b:NERDTree.isTabTree()) |
-\     q |
-\   endif
+      \   if (winnr("$") == 1 &&
+      \     exists("b:NERDTree") &&
+      \     b:NERDTree.isTabTree()) |
+      \     q |
+      \   endif
 
 """
 """ WINDOW
@@ -155,13 +161,13 @@ Plug 'fannheyward/coc-xml', {'do': 'yarn install --frozen-lockfile'}
 
 "   tab trigger for completion with characters ahead and navigate
 inoremap <silent><expr> <TAB>
-    \ pumvisible() ? "\<C-n>" :
-    \ <SID>check_back_space() ? "\<TAB>" :
-    \ coc#refresh()
+      \ pumvisible() ? "\<C-n>" :
+      \ <SID>check_back_space() ? "\<TAB>" :
+      \ coc#refresh()
 inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
 function! s:check_back_space() abort
-    let col = col('.') - 1
-    return !col || getline('.')[col - 1]  =~# '\s'
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
 endfunction
 "   use <c-space> to trigger completion
 inoremap <silent><expr> <c-space> coc#refresh()
@@ -171,8 +177,11 @@ nmap <silent> gy <Plug>(coc-type-definition)
 nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
 
-""" auto pairs (autoclose parentheses, etc.)
+""" Auto Pairs (autoclose parentheses, etc.)
 Plug 'jiangmiao/auto-pairs'
+
+""" import-js (import js dependencies)
+Plug 'galooshi/vim-import-js'
 
 """
 """ SNIPPETS
@@ -181,14 +190,14 @@ Plug 'jiangmiao/auto-pairs'
 """ neosnippet
 Plug 'Shougo/neosnippet.vim'
 Plug 'Shougo/neosnippet-snippets'
-"   use :CocInstall coc-neosnippet 
+"   use :CocInstall coc-neosnippet
 "   use C-k to select snippet
 imap <C-k>     <Plug>(neosnippet_expand_or_jump)
 smap <C-k>     <Plug>(neosnippet_expand_or_jump)
 xmap <C-k>     <Plug>(neosnippet_expand_target)
 "   supertab behavior
 smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
-\   "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
+      \   "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
 
 """
 """ LINTING
@@ -198,12 +207,12 @@ smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
 Plug 'dense-analysis/ale'
 ""  define linters
 let g:ale_linters = {
-\   '*': ['remove_trailing_lines', 'trim_whitespace'],
-\   'go': ['golint'],
-\   'typescript': ['prettier', 'tslint'],
-\   'markdown': ['proselint', 'textlint'],
-\   'rust': ['rls'],
-\}
+      \   '*': ['remove_trailing_lines', 'trim_whitespace'],
+      \   'go': ['golint'],
+      \   'typescript': ['prettier', 'tslint'],
+      \   'markdown': ['proselint', 'textlint'],
+      \   'rust': ['rls'],
+      \}
 "   show warnings in statusline
 let g:airline#extensions#ale#enabled = 1
 
@@ -215,12 +224,15 @@ let g:airline#extensions#ale#enabled = 1
 """ FORMATTING
 """
 
+"   remove whitespace
+autocmd BufWritePre * %s/\s\+$//e
+
 """ neoformat
 Plug 'sbdchd/neoformat'
 "   auto-format on save
 augroup fmt
-    autocmd!
-    autocmd BufWritePre * undojoin | Neoformat
+  autocmd!
+  autocmd BufWritePre * undojoin | Neoformat
 augroup END
 "   define formatters
 let g:neoformat_enabled_javascript = ['prettier']
