@@ -6,4 +6,4 @@ echo "Initializing submodules"
 yadm submodule update --recursive --init
 
 echo "Bootstrapping neovim"
-nvim '+PlugUpdate' '+PlugClean!' '+PlugUpdate' '+qall'
+nvim -c ":source stdpath('config')/init.vim"
