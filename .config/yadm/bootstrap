@@ -1,0 +1,9 @@
+#!/bin/bash
+
+cd "$HOME" || exit
+
+echo "Initializing submodules"
+yadm submodule update --recursive --init
+
+echo "Bootstrapping neovim"
+nvim '+PlugUpdate' '+PlugClean!' '+PlugUpdate' '+qall'
