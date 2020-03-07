@@ -1,5 +1,15 @@
+let nvim_data = $XDG_DATA_HOME . "/nvim"
+let nvim_cache = $XDG_CACHE_HOME . "/nvim"
+
+"   download vim-plug if not installed
+let vimplugf = nvim_data . "/site/autoload/plug.vim"
+if empty(glob(vimplugf))
+  silent! execute '!curl -fLo ' . vimplugf . ' --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
+  autocmd VimEnter * silent! PlugInstall
+endif
+
 "   begin plugin check/installation
-call plug#begin('~/.config/nvim/plugged')
+call plug#begin(nvim_data . '/plugged')
 
 """
 """ GLOBAL EDITOR OPTIONS
@@ -24,7 +34,7 @@ set shortmess+=c
 set signcolumn=yes
 "   maintain undo history between sessions
 set undofile
-let &undodir=stdpath("config") . "/undo"
+let &undodir=nvim_cache . "/undo"
 "   current working directory
 autocmd BufEnter * lcd %:p:h
 
@@ -46,6 +56,9 @@ nnoremap L gt
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 
+""" netwr
+let g:netrw_home = nvim_cache
+
 """ NERDTree
 Plug 'scrooloose/nerdtree'
 "   git flags support
@@ -53,6 +66,19 @@ Plug 'Xuyuanp/nerdtree-git-plugin'
 "   basic options
 let g:NERDTreeWinSize = 40
 let g:NERDTreeShowHidden = 1
+"   git indicator symbols
+let g:NERDTreeIndicatorMapCustom = {
+  \ "Modified"  : "~",
+  \ "Staged"    : "+",
+  \ "Untracked" : "_",
+  \ "Renamed"   : "➜",
+  \ "Unmerged"  : "═",
+  \ "Deleted"   : "✖",
+  \ "Dirty"     : "✗",
+  \ "Clean"     : "✔︎",
+  \ 'Ignored'   : '☒',
+  \ "Unknown"   : "?"
+  \ }
 "   open NERDTree with key bind
 map <C-n> :NERDTreeToggle<CR>
 "   start automatically if no files are specified
@@ -109,7 +135,7 @@ Plug 'neoclide/coc-java', {'do': 'yarn install --frozen-lockfile'}
 "   json
 Plug 'neoclide/coc-json', {'do': 'yarn install --frozen-lockfile'}
 "   python
-Plug 'neoclide/coc-python', {'do': 'yarn install --frozen-lockfile'}
+" Plug 'neoclide/coc-python', {'do': 'yarn install --frozen-lockfile'}
 "   rust (using rls)
 Plug 'neoclide/coc-rls', {'do': 'yarn install --frozen-lockfile'}
 "   R
@@ -145,8 +171,8 @@ nmap <silent> gy <Plug>(coc-type-definition)
 nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
 
-""" delimitMate (autoclose parentheses, etc.)
-Plug 'Raimondi/delimitMate'
+""" auto pairs (autoclose parentheses, etc.)
+Plug 'jiangmiao/auto-pairs'
 
 """
 """ SNIPPETS
@@ -228,6 +254,10 @@ endfunction
 
 """ polyglot (covers most languages)
 Plug 'sheerun/vim-polyglot'
+let g:polyglot_disabled = ['latex']
+
+""" arduino
+Plug 'stevearc/vim-arduino'
 
 """ csv
 Plug 'mechatroner/rainbow_csv'
@@ -248,6 +278,9 @@ let g:go_gocode_propose_source = 1
 "   disable vim-go :GoDef short cut (gd)
 "   this is handled by LanguageClient [LC]
 let g:go_def_mapping_enabled = 0
+
+""" jsonc
+Plug 'kevinoid/vim-jsonc'
 
 """ pandoc
 Plug 'vim-pandoc/vim-pandoc'
@@ -272,8 +305,6 @@ Plug 'mhartington/oceanic-next'
 Plug 'kamwitsta/nordisk'
 "   forest-night
 Plug 'sainnhe/vim-color-forest-night'
-"   desert-night
-Plug 'sainnhe/vim-color-desert-night'
 "   seiya transparency
 Plug 'miyakogi/seiya.vim'
 
