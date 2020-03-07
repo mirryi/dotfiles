@@ -2,8 +2,15 @@
 
 cd "$HOME" || exit
 
+# Update submodules
 echo "Initializing submodules"
 yadm submodule update --recursive --init
 
+# Initialize neovim with vim-plug
 echo "Bootstrapping neovim"
-nvim -c ":source stdpath('config')/init.vim"
+nvim -c ":source stdpath('config')/init.vim" -c ":qall"
+
+# Download qutebrowser greasemonkey scripts
+echo "Bootstrapping qutebrowser"
+mkdir -p "$XDG_DATA_HOME/qutebrowser"
+ln -s "$XDG_CONFIG_HOME/qutebrowser/greasemonkey" "$XDG_DATA_HOME/qutebrowser/greasemonkey"
