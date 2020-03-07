@@ -1,9 +1,9 @@
 [submodule ".config/nvim"]
-	path = .config/nvim
-	url = https://github.com/Dophin2009/nvimrc.git
+  path = .config/nvim
+  url = https://github.com/Dophin2009/nvimrc.git
 [submodule ".config/qutebrowser/jmatrix"]
   path = .config/qutebrowser/jmatrix
   url = https://gitlab.com/jgkamat/jmatrix.git
 [submodule ".config/qutebrowser/greasemonkey"]
-	path = .config/qutebrowser/greasemonkey
-	url = https://github.com/Dophin2009/dotfiles-userscripts.git
+  path = .config/qutebrowser/greasemonkey
+  url = https://github.com/Dophin2009/dotfiles-userscripts.git
