@@ -48,6 +48,7 @@ bindsym $mod+y exec termite -t "task manager" -e htop
 bindsym $mod+Shift+y exec termite -t "music player" -e ncmpcpp
 
 # control audio
+bindsym $mod+Shift+m exec pactl set-sink-mute $(pactl info | grep "Default Sink" | cut -d: -f2) toggle
 bindsym $mod+Shift+v exec pactl set-sink-volume $(pactl info | grep "Default Sink" | cut -d: -f2) -2%
 bindsym $mod+v exec pactl set-sink-volume $(pactl info | grep "Default Sink" | cut -d: -f2) +2%
 bindsym $mod+n exec mpc next
@@ -113,7 +114,7 @@ bindsym $mod+minus scratchpad show
 
 ######### WORKSPACES #########
 
-set $primary HDMI-0 
+set $primary HDMI-0
 set $secondary HDMI-1
 
 workspace 1 output $primary
