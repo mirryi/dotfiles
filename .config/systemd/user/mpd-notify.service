@@ -1,0 +1,8 @@
+[Unit]
+Description=Notification daemon for MPD
+
+[Service]
+ExecStart=/home/dophin2009/.local/bin/mpd-notify
+
+[Install]
+WantedBy=default.target
