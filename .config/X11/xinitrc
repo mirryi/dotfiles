@@ -1,13 +1,19 @@
 #!/bin/sh
-xrdb -merge "${XDG_CONFIG_HOME}/X11/xresources"
+xrdb -load "$HOME/.config/X11/xresources"
 
-xss-lock -- "${XDG_CONFIG_HOME}/i3/lock.sh" &
-picom -b
-dunst &
+xss-lock -- "$HOME/.local/bin/lock-screen" &
+
+mkdir -p "$HOME/.local/var/log/picom"
+picom -b > "$HOME/.local/var/log/picom/picom.log"
+
+mkdir -p "$HOME/.local/var/log/dunst"
+dunst > "$HOME/.local/var/log/dunst/dunst.log" &
 
 export GTK_IM_MODULE=ibus
 export XMODIFIERS=@im=ibus
 export QT_IM_MODULE=ibus
-ibus-daemon --xim &
+mkdir -p "$HOME/.local/var/log/ibus"
+ibus-daemon --xim > "$HOME/.local/var/ibus/ibus-daemon.log" &
 
-exec i3
+mkdir -p "$HOME/.local/var/log/i3"
+exec i3 > "$HOME/.local/var/log/i3/i3.log"
