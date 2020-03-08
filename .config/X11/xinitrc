@@ -6,9 +6,6 @@ xss-lock -- "$HOME/.local/bin/lock-screen" &
 mkdir -p "$HOME/.local/var/log/picom"
 picom -b > "$HOME/.local/var/log/picom/picom.log"
 
-mkdir -p "$HOME/.local/var/log/dunst"
-dunst > "$HOME/.local/var/log/dunst/dunst.log" &
-
 export GTK_IM_MODULE=ibus
 export XMODIFIERS=@im=ibus
 export QT_IM_MODULE=ibus
