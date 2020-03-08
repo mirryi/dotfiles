@@ -1,238 +1,183 @@
-#!/usr/bin/python3
-import configparser
-import json
-import os
-import sys
-import time
-import re
+#!/usr/bin/env gorun
 
-import gi
-import requests
+package main
 
-gi.require_version('Notify', '0.7')
+import (
+	"fmt"
+	"html"
+	"log"
+	"os"
+	"os/exec"
+	"path/filepath"
+	"strconv"
+	"time"
 
-from gi.repository import Notify
-from gi.repository.Gio import File
-from gi.repository.GdkPixbuf import Pixbuf
-from mpd import MPDClient
-from xdg.BaseDirectory import xdg_config_home
+	"github.com/fhs/gompd/mpd"
+)
 
-configFile = os.path.expanduser(xdg_config_home + "/musnify-mpd/config")
-config = configparser.ConfigParser()
-config.read(configFile)
+func main() {
+	mpdClient, err := mpd.DialAuthenticated("tcp", ":6600", "")
+	if err != nil {
+		log.Fatal("Could not connect to MPD: ", err)
+		os.Exit(1)
+	}
 
-host = config.get("mpd", "host")
-port = config.get("mpd", "port")
-if config.has_option("apiKey", "lastfm"):
-    apiKey = config.get("apiKey", "lastfm")
-musicLibrary = os.path.expanduser(config.get("mpd", "musiclibrary")) + "/"
+	service := &MPDNotify{mpdClient, "/home/dophin2009/files/music/library", nil, nil}
+	service.Start()
+}
 
-debug = False
+type NotificationUrgency int
 
+const (
+	UrgencyLow = iota
+	UrgencyNormal
+	UrgencyCritical
+)
 
-class MPDWrapper:
-    def __init__(self, host="localhost", port="6600"):
-        self.client = MPDClient()
-        self.client.timeout = 1
-        self.client.idletimeout = None
-        self.client.connect(host, port)
+func (nu NotificationUrgency) String() string {
+	switch nu {
+	case UrgencyLow:
+		return "low"
+	case UrgencyNormal:
+		return "normal"
+	case UrgencyCritical:
+		return "critical"
+	default:
+		return "normal"
+	}
+}
 
-    def getCurrentSong(self):
-        song = self.client.currentsong()
+type MPDNotify struct {
+	client      *mpd.Client
+	libraryPath string
 
-        try:
-            _ = song["artist"]
-        except KeyError:
-            song["artist"] = "Unknown Artist"
+	song   map[string]string
+	status map[string]string
+}
 
-        try:
-            _ = song["album"]
-        except KeyError:
-            song["album"] = "Unknown Album"
+func (n *MPDNotify) Start() {
 
-        try:
-            _ = song["title"]
-        except KeyError:
-            try:
-                song["title"] = song["file"].split("/")[-1]
-            except KeyError:
-                song["title"] = "Unknown Title"
+	song, err := n.client.CurrentSong()
+	if err == nil {
+		n.song = song
+	}
 
-        return song
+	for {
+		status, err := n.client.Status()
+		if err != nil {
+			continue
+		}
 
-    def getStatus(self):
-        return self.client.status()["state"]
+		state, ok := status["state"]
+		if !ok {
+			continue
+		}
 
+		song, err := n.client.CurrentSong()
+		if err != nil {
+			continue
+		}
 
-class NotificationWrapper:
-    def __init__(self):
-        Notify.init("mpd")
-        self.notification = Notify.Notification.new("")
+		id, ok := song["Id"]
+		if !ok {
+			continue
+		}
 
-    def notify(self, artist, album, title, cover):
-        self.notification.clear_hints()
-        if cover is None:
-            self.notification.update(
-                title,
-                (album).replace("&", "&amp;"), "music")
-        else:
-            self.notification.update(
-                title,
-                (album).replace("&", "&amp;"))
-            self.notification.set_icon_from_pixbuf(cover)
-        self.notification.show()
+		if (n.status == nil || state != n.status["state"]) ||
+			(n.song == nil || id != n.song["Id"]) {
 
-    def notifyStatus(self, status):
-        self.notification.clear_hints()
-        if status == "pause":
-            self.notification.update("mpd paused", icon="music")
-        elif status == "stop":
-            self.notification.update("mpd stopped", icon="music")
-        self.notification.show()
+			title, ok := song["Title"]
+			if !ok {
+				title = "Title?"
+			}
+			title = html.EscapeString(title)
 
+			album, ok := song["Album"]
+			if !ok {
+				album = "Album?"
+			}
+			album = html.EscapeString(album)
 
-class CoverArt:
-    @staticmethod
-    def fetchAlbumCoverURL(artist, album, size=1):
-        apiUrl = 'http://ws.audioscrobbler.com/2.0/?method=album.getinfo'
+			duration, ok := song["duration"]
+			if !ok {
+				duration = "0.0"
+			}
+			duration = secondsToTimeString(duration)
 
-        if 'apiKey' not in globals():
-            return False
+			iconPath := ""
+			if path, ok := song["file"]; ok {
+				dir := filepath.Dir(filepath.Join(n.libraryPath, path))
+				for _, cover := range []string{"cover.jpg", "cover.png"} {
+					coverPath := filepath.Join(dir, cover)
+					if _, err := os.Stat(coverPath); !os.IsNotExist(err) {
+						iconPath = coverPath
+						break
+					}
+				}
+			}
 
-        apiReqUrl = apiUrl + '&artist=' + artist + '&album=' + \
-            album + '&api_key=' + apiKey + '&format=json'
-        r = requests.get(apiReqUrl)
+			if (n.song == nil || id != n.song["Id"]) &&
+				!(n.status == nil || state != n.status["state"]) {
+				n.song = song
 
-        dataInfo = json.loads(r.content)
+				n.Notify(title, fmt.Sprintf("<i>%s</i>\n%s", album, duration), UrgencyNormal, iconPath)
+			} else {
+				n.song = song
+			}
 
-        try:
-            assert dataInfo["error"] > 0
-            if debug:
-                print("Nothing found on last fm")
-            return False
-        except(AssertionError):
-            url = dataInfo["album"]["image"][size]["#text"]
-            if url == "":
-                if debug:
-                    print("Nothing found on last fm")
-                return False
-            return url
+			if n.status == nil || state != n.status["state"] {
+				n.status = status
 
-    @staticmethod
-    def downloadPixbufAlbumCover(url):
-        if debug:
-            print("downloading album cover from " + url)
+				elapsed, ok := status["elapsed"]
+				if !ok {
+					elapsed = "??:??"
+				} else {
+					elapsed = secondsToTimeString(elapsed)
+				}
 
-        f = File.new_for_uri(url)
-        stream = f.read()
+				if state == "play" {
+					mode := ""
+					if repeat, ok := status["repeat"]; ok && repeat == "1" {
+						mode += "r"
+					}
+					if random, ok := status["random"]; ok && random == "1" {
+						mode += "z"
+					}
+					if single, ok := status["single"]; ok && single == "1" {
+						mode += "s"
+					}
 
-        cover = Pixbuf.new_from_stream(stream)
-        stream.close()
-        return cover
+					n.Notify(fmt.Sprintf("Playing [%s] - %s", mode, title),
+						fmt.Sprintf("<i>%s</i>\n%s / %s", album, elapsed, duration),
+						UrgencyNormal, iconPath)
+				}
 
-    @staticmethod
-    def fetchLocalCover(path):
-        regex = re.compile(
-            r'(album|cover|\.?folder|front).*\.(gif|jpeg|jpg|png)$',
-            re.I | re.X)
-        for e in os.listdir(path):
-            if regex.match(e) is not None:
-                if debug:
-                    print("local cover found at " + path + e)
-                try:
-                    return Pixbuf.new_from_file(path + e)
-                except:
-                    return False
-        if debug:
-            print("Nothing found on local directory")
-        return False
+				if state == "pause" {
+					n.Notify(fmt.Sprintf("Paused - %s", title),
+						fmt.Sprintf("<i>%s</i>\n%s / %s", album, elapsed, duration),
+						UrgencyNormal, iconPath)
+				}
+			}
+		}
 
+		time.Sleep(500 * time.Millisecond)
+	}
+}
 
-class Musnify(object):
-    def __init__(self):
-        self.nw = NotificationWrapper()
-        self.lastfmCoverPath = "/tmp/musnifyCurrentCover.png"
+func (n *MPDNotify) Notify(summary string, details string, urgency NotificationUrgency, iconPath string) {
+	args := []string{summary, details, "-u", urgency.String(), "-i", iconPath, "-a", "mpd"}
+	exec.Command("notify-send", args...).Run()
+}
 
-    def start(self):
-        mpd = MPDWrapper(host, port)
+func secondsToTimeString(seconds string) string {
+	duration, err := strconv.ParseFloat(seconds, 64)
+	if err != nil {
+		seconds = "00:00"
+	}
+	return fmtDuration(time.Duration(duration) * time.Second)
+}
 
-        status = ""
-        song = ""
-
-        while True:
-            time.sleep(0.5)
-            actualStatus = mpd.getStatus()
-            actualSong = mpd.getCurrentSong()
-
-            if status != actualStatus:
-                status = mpd.getStatus()
-
-                if actualStatus == "play":
-                    song = mpd.getCurrentSong()
-                    self.handle(song)
-                else:
-                    self.nw.notifyStatus(status)
-
-            if (song != actualSong) and status != "stop":
-                song = mpd.getCurrentSong()
-                self.handle(song)
-                if debug:
-                    print(song)
-
-    def handle(self, song):
-        localCoverPath = \
-            CoverArt.fetchLocalCover(musicLibrary + self._separa(song["file"]))
-
-        artist = song["artist"]
-        album = song["album"]
-        title = song["title"]
-
-        coverUrl = CoverArt.fetchAlbumCoverURL(artist, album)
-
-        if coverUrl is not False:
-            path = CoverArt.downloadPixbufAlbumCover(coverUrl)
-        elif localCoverPath is not False:
-            path = localCoverPath
-        else:
-            path = None
-        self.nw.notify(artist, album, title, path)
-
-    @staticmethod
-    def _separa(url):
-        url0 = url.split("/")
-        url1 = ""
-        for i in range(len(url0) - 1):
-            url1 += url0[i] + "/"
-        return url1
-
-    def stop(self):
-        Notify.uninit()
-
-
-def help():
-    print("""musnify-mpd\n\nOptions:
-  --help\tShow this help and exit
-  -h\t\tSpecify your MPD host (default: localhost)
-  -p\t\tSpecify your MPD port (default: 6600)
-  -d\t\tRun with debug mode enabled
-         """)
-
-
-for i in range(len(sys.argv)):
-    if sys.argv[i] == "-h":
-        host = sys.argv[i + 1]
-    if sys.argv[i] == "-p":
-        port = sys.argv[i + 1]
-    if sys.argv[i] == "-d":
-        debug = True
-    if sys.argv[i] == "--help":
-        help()
-        exit()
-
-if __name__ == "__main__":
-    musnify = Musnify()
-
-    try:
-        musnify.start()
-    finally:
-        musnify.stop()
+func fmtDuration(d time.Duration) string {
+	d = d.Round(time.Second)
+	return fmt.Sprintf("%02d:%02d", int(d.Minutes()), int(d.Seconds())%60)
+}
