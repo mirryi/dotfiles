@@ -16,11 +16,9 @@ client.unfocused        #282828 #282828 #ebdbb2 #282828 #282828
 client.urgent           #cc241d #cc241d #ebdbb2 #282828 #282828
 client.placeholder      #282828 #282828 #ebdbb2 #282828 #282828
 
-# gap sizes
 # gaps inner 15
 # gaps outer 0
 
-# border styles
 default_border none
 
 focus_follows_mouse no
@@ -33,7 +31,7 @@ bindsym $mod+Shift+q kill
 bindsym $mod+Shift+w exec xkill
 
 # lock screen
-bindsym $mod+Shift+x exec ~/.config/i3/lock.sh
+bindsym $mod+Shift+x exec "~/.local/bin/lock-screen"
 
 # rofi menu
 bindsym $mod+d exec rofi -show run
@@ -196,7 +194,7 @@ bindsym Mod4+Escape mode "passthrough"
 ######### STARTUP #########
 
 # set wallpaper
-exec --no-startup-id exec "$XDG_CONFIG_HOME/i3/bg.sh"
+exec --no-startup-id exec "~/.local/bin/set-bg"
 
 # start polybar
-exec --no-startup-id exec "$XDG_CONFIG_HOME/polybar/launch.sh"
+exec --no-startup-id exec "~/.local/bin/launch-polybar"

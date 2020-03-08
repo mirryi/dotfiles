@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/bash
 engine=$(ibus engine)
 case "$engine" in
   "xkb:us::eng")
