@@ -1,16 +1,16 @@
 [global]
   monitor = 0
   follow = keyboard
-  geometry = "350x5-0+24"
+  geometry = "350x5-10+34"
   indicate_hidden = yes
   shrink = yes
   transparency = 0
   notification_height = 0
-  separator_height = 2
-  padding = 0
-  horizontal_padding = 8
+  separator_height = 0
+  padding = 8
+  horizontal_padding = 15
   frame_width = 3
-  frame_color = "#282828"
+  frame_color = "#1d2021"
 
   # Define a color for the separator.
   # possible values are:
@@ -24,7 +24,7 @@
   sort = yes
 
   idle_threshold = 120
-  font = Monospace 14
+  font = Fira Code 9
   line_height = 0
   markup = full
 
@@ -38,7 +38,7 @@
   #   %n  progress value if set without any extra characters
   #   %%  Literal %
   # Markup is allowed
-  format = "<b>%s</b>\n%b"
+  format = "<b>%a:</b> %s\n%b"
 
   alignment = left
   show_age_threshold = 60
@@ -55,30 +55,26 @@
   history_length = 20
   browser = /usr/bin/qutebrowser -R
 
-  # Always run rule-defined scripts, even if the notification is suppressed
   always_run_script = true
 
   title = Dunst
   class = Dunst
   startup_notification = false
   force_xinerama = false
+
 [experimental]
   per_monitor_dpi = false
 
 [shortcuts]
-  close = mod1+ctrl+space
-  close_all = mod1+ctrl+shift+space
-  history = mod1+ctrl+grave
-  context = mod1+ctrl+shift+period
+  close = mod1+b
+  close_all = mod1+shift+b
+  history = mod1+shift+backslash
+  context = mod1+ctrl+shift+backslash
 
 [urgency_low]
-  # IMPORTANT: colors have to be defined in quotation marks.
-  # Otherwise the "#" and following would be interpreted as a comment.
-  background = "#282828"
-  foreground = "#928374"
+  background = "#32302f"
+  foreground = "#ebdbb2"
   timeout = 5
-  # Icon for notifications with low urgency, uncomment to enable
-  #icon = /path/to/icon
 
 [urgency_normal]
   background = "#458588"
@@ -88,5 +84,4 @@
 [urgency_critical]
   background = "#cc2421"
   foreground = "#ebdbb2"
-  frame_color = "#fabd2f"
-  timeout = 0
+  timeout = 5
