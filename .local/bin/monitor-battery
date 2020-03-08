@@ -1,0 +1,6 @@
+#!/usr/bin/bash
+notify-battery -f
+while true; do
+  notify-battery -i
+  sleep 0.5
+done
