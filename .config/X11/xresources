@@ -1,17 +1,18 @@
-Xft.antialias:  true
-Xft.hinting:    true
-Xft.rgba:       rgb
-Xft.hintstyle:  hintfull
+Xft.antialias:          true
+Xft.hinting:            true
+Xft.rgba:               rgb
+Xft.hintstyle:          hintfull
 
-rofi.terminal:      termite
-rofi.ssh-client:    ssh
-rofi.ssh-command:   termite -e "{ssh-client} {host}"
+
+rofi.terminal:          termite
+rofi.ssh-client:        ssh
+rofi.ssh-command:       termite -e "{ssh-client} {host}"
 
 rofi.width:             50
 rofi.lines:             15
 rofi.columns:           2
 rofi.font:              Inconsolata 11
-rofi.show-icons:		true
+rofi.show-icons:		    true
 
 rofi.lazy-filter-limit: 15000
 rofi.line-margin:       5
@@ -23,31 +24,36 @@ rofi.dpi:               100
 rofi.kb-row-up:         Up
 rofi.kb-row-down:       Down
 
-! hard contrast: *background: #1d2021
-*background: #282828
-! soft contrast: *background: #32302f
-*foreground: #ebdbb2
-! Black + DarkGrey
-*color0:  #282828
-*color8:  #928374
-! DarkRed + Red
-*color1:  #cc241d
-*color9:  #fb4934
-! DarkGreen + Green
-*color2:  #98971a
-*color10: #b8bb26
-! DarkYellow + Yellow
-*color3:  #d79921
-*color11: #fabd2f
-! DarkBlue + Blue
-*color4:  #458588
-*color12: #83a598
-! DarkMagenta + Magenta
-*color5:  #b16286
-*color13: #d3869b
-! DarkCyan + Cyan
-*color6:  #689d6a
-*color14: #8ec07c
-! LightGrey + White
-*color7:  #a89984
-*color15: #ebdbb2
+
+*background:    #282828 ! black
+*background-h:  #1d2021 ! hard contrast
+*background-s:  #32302f ! soft contrast
+*background-1:  #3c3836
+*background-2:  #504945
+*background-3:  #665c54
+*background-4:  #7c6f64
+*foreground:    #ebdbb2 ! off-white
+*foreground-0:  #fbf1c7
+*foreground-2:  #d5c4a1
+*foreground-3:  #bdae93
+*foreground-4:  #a89984
+
+*color0:        #282828 ! black
+*color8:        #928374 ! dark grey
+*color1:        #cc241d ! dark red
+*color9:        #fb4934 ! red
+*color2:        #98971a ! dark green
+*color10:       #b8bb26 ! green
+*color3:        #d79921 ! dark yellow
+*color11:       #fabd2f ! yellow
+*color4:        #458588 ! dark blue
+*color12:       #83a598 ! blue
+*color5:        #b16286 ! dark magenta
+*color13:       #d3869b ! magent
+*color6:        #689d6a ! dark cyan
+*color14:       #8ec07c ! cyan
+*color7:        #a89984 ! light grey
+*color15:       #ebdbb2 ! white
+
+*darkorange:    #d65d0e ! dark orange
+*orange:        #fe8019 ! orange
