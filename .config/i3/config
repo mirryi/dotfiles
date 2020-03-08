@@ -26,32 +26,49 @@ mouse_warping none
 
 ######### PROGRAMS #########
 
-# exit program
+##  exit program
 bindsym $mod+Shift+q kill
 bindsym $mod+Shift+w exec xkill
 
-# lock screen
-bindsym $mod+Shift+x exec "~/.local/bin/lock-screen"
+##  lock screen
+bindsym $mod+Shift+x exec lock-screen
 
-# rofi menu
+##  rofi menu
+#   application runner
 bindsym $mod+d exec rofi -show run
+#   window switcher
 bindsym $mod+Shift+d exec rofi -show window
+#   ssh menu
 bindsym $mod+g exec rofi -show ssh
+#   network manager dmenu
 bindsym $mod+Shift+g exec networkmanager_dmenu
 
-# termite
+##  termite
+#   open termite
 bindsym $mod+t exec termite
+#   file explorer
 bindsym $mod+Shift+t exec termite -t "file browser" -e ranger
+#   task manager
 bindsym $mod+y exec termite -t "task manager" -e htop
+#   music player
 bindsym $mod+Shift+y exec termite -t "music player" -e ncmpcpp
 
-# control audio
+##  control audio
+#   mute
 bindsym $mod+Shift+m exec pactl set-sink-mute $(pactl info | grep "Default Sink" | cut -d: -f2) toggle
+#   decrease volume
 bindsym $mod+Shift+v exec pactl set-sink-volume $(pactl info | grep "Default Sink" | cut -d: -f2) -2%
+#   increase volume
 bindsym $mod+v exec pactl set-sink-volume $(pactl info | grep "Default Sink" | cut -d: -f2) +2%
+#   next track
 bindsym $mod+n exec mpc next
+#   previous track
 bindsym $mod+Shift+n exec mpc prev
+#   toggle mpd
 bindsym $mod+p exec mpc toggle
+
+# battery
+bindsym $mod+b exec notify-battery -f
 
 ######### MOVEMENT #########
 # change focus
@@ -194,7 +211,10 @@ bindsym Mod4+Escape mode "passthrough"
 ######### STARTUP #########
 
 # set wallpaper
-exec --no-startup-id exec "~/.local/bin/set-bg"
+exec --no-startup-id exec set-bg
 
 # start polybar
-exec --no-startup-id exec "~/.local/bin/launch-polybar"
+exec --no-startup-id exec launch-polybar
+
+# battery notification monitor
+exec --no-startup-id exec monitor-battery &
