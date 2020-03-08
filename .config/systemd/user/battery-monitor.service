@@ -1,0 +1,8 @@
+[Unit]
+Description=Monitor battery status
+
+[Service]
+ExecStart=/home/dophin2009/.local/bin/monitor-battery
+
+[Install]
+WantedBy=default.target

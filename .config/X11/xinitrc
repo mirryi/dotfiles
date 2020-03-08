@@ -1,6 +1,8 @@
 #!/bin/sh
 xrdb -load "$HOME/.config/X11/xresources"
 
+systemctl --user import-environment DISPLAY
+
 xss-lock -- "$HOME/.local/bin/lock-screen" &
 
 mkdir -p "$HOME/.local/var/log/picom"
