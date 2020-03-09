@@ -4,6 +4,7 @@
 
 ZSH_PLUGINS="/usr/share/zsh/plugins"
 source "$ZSH_PLUGINS/zsh-autosuggestions/zsh-autosuggestions.zsh"
+source "$ZSH_PLUGINS/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
 
 ##  Path to oh-my-zsh installation.
 export ZSH="/usr/share/oh-my-zsh"
