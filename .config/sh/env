@@ -1,0 +1,11 @@
+#!/bin/sh
+
+# define PATH from shared PATH file
+. "path"
+# define aliases from shared aliases files
+. "aliases"
+
+# default terminal
+export TERM=xterm-termite
+# default editor
+export EDITOR=nvim
