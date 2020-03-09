@@ -31,7 +31,7 @@ bindsym $mod+Shift+q kill
 bindsym $mod+Shift+w exec xkill
 
 ##  lock screen
-bindsym $mod+Shift+x exec lock-screen
+bindsym $mod+Shift+x exec xset s activate
 
 ##  rofi menu
 #   application runner
