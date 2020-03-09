@@ -1,4 +1,6 @@
 #!/usr/bin/bash
+pkill -xu $EUID -USR1 dunst
+
 tmpbg="/tmp/screen.png"
 scrot "$tmpbg"
 convert "$tmpbg" -scale 10% -scale 1000% "$tmpbg"
@@ -10,3 +12,5 @@ i3lock -n -i "$tmpbg" \
   --ringvercolor=ffffffff --ringwrongcolor=ffffffff --indpos="x+86:y+1003" \
   --radius=15 --veriftext="" --wrongtext=""
 rm "$tmpbg"
+
+pkill -xu $EUID -USR2 dunst
