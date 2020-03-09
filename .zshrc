@@ -1,95 +1,102 @@
-##
-##  BASE OH-MY-ZSH SETTINGS
-##
+# enable p10k instant prompt
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
 
-ZSH_PLUGINS="/usr/share/zsh/plugins"
-source "$ZSH_PLUGINS/zsh-autosuggestions/zsh-autosuggestions.zsh"
-source "$ZSH_PLUGINS/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
+### zsh configuration home
+ZSH_CONFIG="$XDG_CONFIG_HOME/zsh"
 
-##  Path to oh-my-zsh installation.
-export ZSH="/usr/share/oh-my-zsh"
-#   Define custom $ZSH/custom folder.
-#   ZSH_CUSTOM=/path/to/new-custom-folder
+ZSH_DATA="$XDG_DATA_HOME/zsh"
+if [[ ! -d "$ZSH_DATA" ]]; then
+  command mkdir -p "$ZSH_DATA"
+fi
 
-##  ZSH theme settings
-#   zsh theme, see https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
-#   for themes. "random" will choose from candidates.
-ZSH_THEME="dieter"
-ZSH_THEME_RANDOM_CANDIDATES=( "dieter" )
+ZSH_CACHE="$XDG_CACHE_HOME/zsh"
+if [[ ! -d "$ZSH_CACHE" ]]; then
+  command mkdir -p "$ZSH_CACHE"
+fi
 
-##  Auto-update settings
-#   Enable biweekly auto-updates.
-DISABLE_AUTO_UPDATE="false"
-#   No automatic updates without prompting.
-DISABLE_UPDATE_PROMPT="false"
-#   Define auto-update interval
-export UPDATE_ZSH_DAYS=13
+# save history in cache
+export HISTSIZE=290000
+export SAVEHIST=290000
+export HISTFILE="$ZSH_CACHE/history"
 
-##  Completion settings
-#   Case-insensitive completion.
-CASE_SENSITIVE="false"
-#   Hyphen-sensitive completion; case-sensitive completion must be off.
-#   _ and - will be interchangeable.
-HYPHEN_INSENSITIVE="false"
-#   Enable magic functions for pasting urls and other things.
-DISABLE_MAGIC_FUNCTIONS="false"
-#   Enable command auto-correction.
-ENABLE_CORRECTION="true"
+### setopts
+setopt interactivecomments nopromptcr
 
-##  Appearance settings
-#   Enable colors in ls.
-DISABLE_LS_COLORS="false"
+### autoloads
+autoload -Uz colors
+colors
 
-#   Auto-set terminal title to process.
-DISABLE_AUTO_TITLE="false"
+autoload -Uz url-quote-magic
+zle -N self-insert url-quote-magic
 
-#   Display red dots whilst waiting for completion.
-COMPLETION_WAITING_DOTS="true"
-zstyle ':completion:*:functions' ignored-patterns '_*'
+### zstyles
+zstyle ':completion:*:*:kill:*' menu yes select
+zstyle ':completion:*:kill:*'   force-list always
+zstyle ":completion:*:descriptions" format "%B%d%b"
+zstyle ':completion:*:*:*:default' menu yes select search
 
-#   Mark untracked files under VCS as dirty. Disable to make repository
-#   status checks for large repositories much faster.
-DISABLE_UNTRACKED_FILES_DIRTY="false"
+### zinit
+declare -A ZINIT
+ZINIT_HOME="$ZSH_DATA/zinit"
+ZINIT[HOME_DIR]="$ZINIT_HOME"
+ZINIT[BIN_DIR]="$ZINIT_HOME/bin"
+ZINIT[ZCOMPDUMP_PATH]="$ZSH_CACHE/zcompdump-$ZSH_VERSION"
 
-#   Define the command execution time stamp shown in the history
-#   command output. Optional three formats:
-#   "mm/dd/yyyy"|"dd.mm.yyyy"|"yyyy-mm-dd"
-#   See 'man strftime' for details on custom formats.
-HIST_STAMPS="yyyy-mm-dd"
+if [[ ! -f "$ZINIT_HOME/bin/zinit.zsh" ]]; then
+  command mkdir -p "$ZINIT_HOME"
+  command git clone "https://github.com/zdharma/zinit" "$ZINIT_HOME/bin"
+  zcompile "$ZINIT_HOME/bin/zinit.zsh"
+fi
 
-# Standard plugins can be found in ~/.oh-my-zsh/plugins/*
-# Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
-plugins=(
-  command-not-found
-  git
-  pip
-  yarn
-)
+# source zinit
+source "$ZINIT_HOME/bin/zinit.zsh"
 
-##  Enable oh-my-zsh.
-source $ZSH/oh-my-zsh.sh
+### theme
+# OMZ git library
+zinit snippet OMZ::lib/git.zsh
+zinit snippet OMZ::plugins/git/git.plugin.zsh
+# load theme from OMZ
+setopt promptsubst
+# zinit snippet OMZ::themes/dieter.zsh-theme
 
-##
-##  ENVIRONMENT VARIABLES
-##
+# powerlevel10k theme
+zinit ice depth=1
+zinit light romkatv/powerlevel10k
 
-##  Define aliases from shared aliases file.
-source $XDG_CONFIG_HOME/sh/aliases
-##  Define path from shared path file.
-source $XDG_CONFIG_HOME/sh/path
+### load plugins
+# goto
+if [[ ! -f "$ZINIT_HOME/plugins/_local---goto/goto.plugin.zsh" ]]; then
+  command ln -s "$ZSH_CONFIG/plugins/goto" "$ZINIT_HOME/plugins/_local---goto"
+fi
+zinit load _local/goto
 
-##  Default terminal is termite.
+# enchancd
+export ENHANCD_DIR="$XDG_DATA_HOME/zsh/enhancd"
+zinit wait lucid for \
+  atinit'ZINIT[COMPINIT_OPTS]=-C; zicompinit; zicdreplay' \
+    zdharma/fast-syntax-highlighting \
+  atload'!_zsh_autosuggest_start' \
+    zsh-users/zsh-autosuggestions \
+  proto'git' pick'init.sh' atclone'rm $ZINIT_HOME/completions/_enhancd_*.fish' \
+    b4b4r07/enhancd \
+  blockf \
+    zsh-users/zsh-completions
+
+### environment
+# define PATH from shared PATH file
+source "$XDG_CONFIG_HOME/sh/path"
+# define aliases from shared aliases files
+source "$XDG_CONFIG_HOME/sh/aliases"
+
+# default terminal
 export TERM=xterm-termite
+# default editor
+export EDITOR=nvim
 
-##  Use neovim as preferred editor for local and remote
-##  sessions.
-export EDITOR='nvim'
-
-##
-##  CUSTOM FUNCTIONS / ALIASES
-##
-
-# Change directory on demand after exiting ranger
+### macros / aliases
+# change directory on demand after exiting ranger
 function ranger {
   local IFS=$'\t\n'
   local tempfile="$(mktemp -t tmp.XXXXXX)"
@@ -106,3 +113,7 @@ function ranger {
   command rm -f -- "$tempfile" 2>/dev/null
 }
 
+# source p10k
+if [[ -f "$ZSH_CONFIG/p10k.zsh" ]]; then
+  source "$ZSH_CONFIG/p10k.zsh"
+fi
