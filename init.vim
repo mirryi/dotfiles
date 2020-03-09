@@ -157,6 +157,8 @@ Plug 'neoclide/coc-tsserver', {'do': 'yarn install --frozen-lockfile'}
 Plug 'neoclide/coc-yaml', {'do': 'yarn install --frozen-lockfile'}
 "   xml
 Plug 'fannheyward/coc-xml', {'do': 'yarn install --frozen-lockfile'}
+"   zsh
+Plug 'tjdevries/coc-zsh'
 
 "   tab trigger for completion with characters ahead and navigate
 inoremap <silent><expr> <TAB>
