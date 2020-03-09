@@ -48,8 +48,9 @@ if [ "$1" == "-f" ]; then
     urgency="low"
   fi
 
+  time_left=$([[ "$battery_state" == "Discharging" ]] && echo "(${battery_remaining})")
   notify-send "$summary / $state" \
-    "$battery_level% remaining (${battery_remaining})" \
+    "$battery_level% remaining $time_left" \
     -a "Battery" -u "$urgency"
 fi
 
@@ -57,9 +58,12 @@ if [ "$battery_level" -ne "$previous_battery_level" ]; then
   if [ "$1" == "-i" ]; then
     if [ "$battery_level" -eq 5 ]; then
       critical
-    elif [ "$battery_level" -eq 15 ]; then
+    elif [ "$battery_level" -eq 10 ] \
+      || [ "$battery_level" -eq 15 ] \
+      || [ "$battery_level" -eq 20 ]; then
       very_low
-    elif [ "$battery_level" -eq 30 ]; then
+    elif [ "$battery_level" -eq 30 ] \
+      || [ "$battery_level" -eq 40 ]; then
       low
     elif [ "$battery_level" -eq 50 ]; then
       moderate
@@ -79,7 +83,7 @@ if [ "$battery_level" -ne "$previous_battery_level" ]; then
     fi
 
     notify-send "$summary / $state" \
-      "$battery_level% of full" \
+      "$battery_level% remaining (${battery_remaining})" \
       -a "Battery" -u "$urgency"
   fi
 fi
