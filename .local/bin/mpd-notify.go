@@ -1,3 +1,5 @@
+#!/usr/bin/gorun
+
 package main
 
 import (
@@ -158,7 +160,7 @@ func (n *MPDNotify) Start() {
 			}
 		}
 
-		time.Sleep(500 * time.Millisecond)
+		time.Sleep(1000 * time.Millisecond)
 	}
 }
 
