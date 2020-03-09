@@ -75,6 +75,10 @@ zinit load _local/goto
 # enchancd
 export ENHANCD_DIR="$XDG_DATA_HOME/zsh/enhancd"
 zinit wait lucid for \
+    hlissner/zsh-autopair \
+    zsh-users/zsh-history-substring-search \
+  atload'zsh-startify' \
+    zdharma/zsh-startify \
   atinit'ZINIT[COMPINIT_OPTS]=-C; zicompinit; zicdreplay' \
     zdharma/fast-syntax-highlighting \
   atload'!_zsh_autosuggest_start' \
@@ -85,15 +89,7 @@ zinit wait lucid for \
     zsh-users/zsh-completions
 
 ### environment
-# define PATH from shared PATH file
-source "$XDG_CONFIG_HOME/sh/path"
-# define aliases from shared aliases files
-source "$XDG_CONFIG_HOME/sh/aliases"
-
-# default terminal
-export TERM=xterm-termite
-# default editor
-export EDITOR=nvim
+source "$XDG_CONFIG_HOME/sh/env"
 
 ### macros / aliases
 # change directory on demand after exiting ranger
