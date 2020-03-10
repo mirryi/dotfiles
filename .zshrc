@@ -22,8 +22,16 @@ export SAVEHIST=290000
 export HISTFILE="$ZSH_CACHE/history"
 
 ### setopts
-setopt interactivecomments nopromptcr
-setopt menucomplete
+# comments in interactive code
+setopt interactivecomments
+# no c-s/c-q output freezing
+setopt noflowcontrol
+# save each command's beginning timestamp and the duration to the history file
+setopt extendedhistory
+# share new history across active zsh sessions
+# setopt sharehistory
+# completion within words
+setopt completeinword
 
 ### autoloads
 autoload -Uz colors
@@ -74,6 +82,7 @@ fi
 zinit wait lucid for _local/goto
 
 # auto-notify
+AUTO_NOTIFY_IGNORE+=("ranger")
 zinit light MichaelAquilina/zsh-auto-notify
 
 # command not found
