@@ -1,9 +1,10 @@
 #!/bin/sh
 
 # define PATH from shared PATH file
-. "path"
+# shellcheck source=path
+. "$XDG_CONFIG_HOME/sh/path"
 # define aliases from shared aliases files
-. "aliases"
+. "$XDG_CONFIG_HOME/sh/aliases"
 
 # default terminal
 export TERM=xterm-termite
