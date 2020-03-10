@@ -4,20 +4,19 @@ import pathlib
 import urllib.request
 
 # pylint: disable=C0111
-c = c  # noqa: F821 pylint: disable=E0602,C0103
-config = config  # noqa: F821 pylint: disable=E0602,C0103
+from qutebrowser.config.configfiles import ConfigAPI  # noqa: F401
+from qutebrowser.config.config import ConfigContainer  # noqa: F401
+c = c  # type: ConfigContainer # noqa: F821 pylint: disable=E0602,C0103
+config = config  # type: ConfigAPI # noqa: F821 pylint: disable=E0602,C0103
 
 # download greasemonkey scripts
 try:
-    src_path = os.path.dirname(os.path.abspath(__file__))
-    greasemonkey_path = os.path.join(src_path, "greasemonkey")
+    greasemonkey_path = os.path.join(config.datadir, "greasemonkey")
     pathlib.Path(greasemonkey_path).mkdir(parents=True, exist_ok=True)
-    with open(os.path.join(src_path, "greasemonkey-list")) as f:
+    with open(os.path.join(config.configdir, "greasemonkey-list")) as f:
         script_urls = [line.rstrip('\n') for line in f]
     for url in script_urls:
         split = url.split(",", 1)
-
-        print(split)
         url = split[0].strip()
         filename = split[1].strip()
         file = pathlib.Path(os.path.join(greasemonkey_path, filename))
