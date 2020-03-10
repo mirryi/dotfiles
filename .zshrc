@@ -77,8 +77,6 @@ export ENHANCD_DIR="$XDG_DATA_HOME/zsh/enhancd"
 zinit wait lucid for \
     hlissner/zsh-autopair \
     zsh-users/zsh-history-substring-search \
-  atload'zsh-startify' \
-    zdharma/zsh-startify \
   atinit'ZINIT[COMPINIT_OPTS]=-C; zicompinit; zicdreplay' \
     zdharma/fast-syntax-highlighting \
   atload'!_zsh_autosuggest_start' \
