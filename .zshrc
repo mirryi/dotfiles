@@ -23,6 +23,7 @@ export HISTFILE="$ZSH_CACHE/history"
 
 ### setopts
 setopt interactivecomments nopromptcr
+setopt menucomplete
 
 ### autoloads
 autoload -Uz colors
@@ -70,19 +71,43 @@ zinit light romkatv/powerlevel10k
 if [[ ! -f "$ZINIT_HOME/plugins/_local---goto/goto.plugin.zsh" ]]; then
   command ln -s "$ZSH_CONFIG/plugins/goto" "$ZINIT_HOME/plugins/_local---goto"
 fi
-zinit load _local/goto
+zinit wait lucid for _local/goto
 
-# enchancd
-export ENHANCD_DIR="$XDG_DATA_HOME/zsh/enhancd"
+# auto-notify
+zinit light MichaelAquilina/zsh-auto-notify
+
+# command not found
+zinit light Tarrasch/zsh-command-not-found
+
+# fast alias tips
+zinit ice from'gh-r' as'program'
+zinit light sei40kr/fast-alias-tips-bin
+zinit light sei40kr/zsh-fast-alias-tips
+
+# auto pairs
+zinit light hlissner/zsh-autopair
+
+# z jump
+export _Z_DATA="$ZSH_DATA/z/data"
+if [[ ! -f "$ZSH_DATA/z/data" ]]; then
+  command mkdir -p "$ZSH_DATA/z"
+  command touch "$ZSH_DATA/z/data"
+fi
+zinit ice pick'z.sh'
+zinit light rupa/z
+zinit light changyuheng/fz
+
+# completions
+# export ENHANCD_DIR="$XDG_DATA_HOME/zsh/enhancd"
+# zinit wait lucid for \
+  # proto'git' pick'init.sh' atclone'rm $ZINIT_HOME/completions/_enhancd_*.fish' \
+    # b4b4r07/enhancd
 zinit wait lucid for \
-    hlissner/zsh-autopair \
     zsh-users/zsh-history-substring-search \
   atinit'ZINIT[COMPINIT_OPTS]=-C; zicompinit; zicdreplay' \
     zdharma/fast-syntax-highlighting \
   atload'!_zsh_autosuggest_start' \
     zsh-users/zsh-autosuggestions \
-  proto'git' pick'init.sh' atclone'rm $ZINIT_HOME/completions/_enhancd_*.fish' \
-    b4b4r07/enhancd \
   blockf \
     zsh-users/zsh-completions
 
