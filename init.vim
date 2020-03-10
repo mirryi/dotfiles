@@ -212,6 +212,7 @@ Plug 'dense-analysis/ale'
 let g:ale_linters = {
       \   '*': ['remove_trailing_lines', 'trim_whitespace'],
       \   'go': ['golint'],
+      \   'html': ['prettier'],
       \   'typescript': ['prettier', 'tslint'],
       \   'markdown': ['proselint', 'textlint'],
       \   'rust': ['rls'],
