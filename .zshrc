@@ -107,10 +107,11 @@ zinit light rupa/z
 zinit light changyuheng/fz
 
 # completions
-# export ENHANCD_DIR="$XDG_DATA_HOME/zsh/enhancd"
-# zinit wait lucid for \
-  # proto'git' pick'init.sh' atclone'rm $ZINIT_HOME/completions/_enhancd_*.fish' \
-    # b4b4r07/enhancd
+export ENHANCD_DIR="$XDG_DATA_HOME/zsh/enhancd"
+export ENHANCD_COMMAND=ecd
+zinit wait lucid for \
+  proto'git' pick'init.sh' atclone'rm $ZINIT_HOME/completions/_enhancd_*.fish' \
+    b4b4r07/enhancd
 zinit wait lucid for \
     zsh-users/zsh-history-substring-search \
   atinit'ZINIT[COMPINIT_OPTS]=-C; zicompinit; zicdreplay' \
