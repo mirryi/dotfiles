@@ -2,7 +2,7 @@
 Description=Notification daemon for MPD
 
 [Service]
-ExecStart=/home/dophin2009/.local/bin/mpd-notify.go
+ExecStart=/home/dophin2009/.local/bin/mpdnotify -d
 
 [Install]
 WantedBy=default.target
