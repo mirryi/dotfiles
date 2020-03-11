@@ -64,8 +64,10 @@ bindsym $mod+v exec pactl set-sink-volume $(pactl info | grep "Default Sink" | c
 bindsym $mod+n exec mpc next
 #   previous track
 bindsym $mod+Shift+n exec mpc prev
-#   toggle mpd
+#   play/pause mpd
 bindsym $mod+p exec mpc toggle
+#   notify mpd status
+bindsym $mod+m exec mpd-notify.go -n
 
 # battery
 bindsym $mod+b exec notify-battery -f
