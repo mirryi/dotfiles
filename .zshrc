@@ -115,7 +115,7 @@ export HISTORY_SUBSTRING_SEARCH_ENSURE_UNIQUE=true
 
 # completions
 export ENHANCD_DIR="$XDG_DATA_HOME/zsh/enhancd"
-export ENHANCD_COMMAND=ecd
+export ENHANCD_COMMAND="cd"
 zinit wait lucid for \
   proto'git' pick'init.sh' atclone'rm $ZINIT_HOME/completions/_enhancd_*.fish' \
     b4b4r07/enhancd
