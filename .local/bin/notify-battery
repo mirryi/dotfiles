@@ -65,9 +65,12 @@ if [ "$battery_level" -ne "$previous_battery_level" ]; then
     elif [ "$battery_level" -eq 30 ] \
       || [ "$battery_level" -eq 40 ]; then
       low
-    elif [ "$battery_level" -eq 50 ]; then
+    elif [ "$battery_level" -eq 50 ] \
+      || [ "$battery_level" -eq 60 ] \
+      || [ "$battery_level" -eq 70 ]; then
       moderate
-    elif [ "$battery_level" -eq 80 ]; then
+    elif [ "$battery_level" -eq 80 ] \
+      || [ "$battery_level" -eq 90 ]; then
       high
     elif [ "$battery_level" -eq 100 ]; then
       full
