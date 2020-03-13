@@ -1,6 +1,6 @@
 [Unit]
 Description=Notification daemon for MPD
-After=mpd@Dophin2009.service
+After=mpd.service
 
 [Service]
 ExecStart=/home/dophin2009/.local/bin/mpdnotify monitor
