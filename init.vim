@@ -41,6 +41,10 @@ let &undodir=nvim_cache . "/undo"
 "   current working directory
 autocmd BufEnter * lcd %:p:h
 
+" set vim-specific sequences for RGB colors
+let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
+let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
+
 """
 """ CUSTOM KEYBINDS
 """
