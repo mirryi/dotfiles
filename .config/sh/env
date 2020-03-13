@@ -7,6 +7,6 @@
 . "$XDG_CONFIG_HOME/sh/aliases"
 
 # default terminal
-export TERM=xterm-termite
+export TERM=screen-256color
 # default editor
 export EDITOR=nvim
