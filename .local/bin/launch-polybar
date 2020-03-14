@@ -1,21 +1,26 @@
 #!/usr/bin/bash
 
 # Terminate already running bar instances
-killall -q polybar
+killall -q "polybar"
 
 # Wait until the processes have been shut down
 while pgrep -u $UID -x polybar >/dev/null; do sleep 1; done
 
-top="$XDG_CONFIG_HOME/polybar/top.ini"
-bottom="$XDG_CONFIG_HOME/polybar/bottom.ini"
+polybar_cfg="$XDG_CONFIG_HOME/polybar"
+top="$polybar_cfg/top.ini"
+bottom="$polybar_cfg/bottom.ini"
 
-mkdir -p "$XDG_LOG_HOME/polybar"
+polybar_log="$XDG_LOG_HOME/polybar"
+if [ ! -d "$polybar_log" ]; then
+  mkdir -p "$polybar_log"
+fi
+
 if type "xrandr"; then
   for m in $(xrandr --query | grep " connected" | cut -d" " -f1); do
-    MONITOR=$m polybar top -c "$top" --reload -l info 2> "$XDG_LOG_HOME/polybar/$m-top.log" &
-    MONITOR=$m polybar bottom -c "$bottom" --reload -l info 2> "$XDG_LOG_HOME/polybar/$m-bottom.log" &
+    MONITOR=$m polybar top -c "$top" --reload -l info 2> "$polybar_log/$m-top.log" &
+    MONITOR=$m polybar bottom -c "$bottom" --reload -l info 2> "$polybar_log/$m-bottom.log" &
   done
 else
-  polybar top -c "$top" --reload 2> "$XDG_LOG_HOME/polybar/top.log" &
-  polybar bottom -c "$bottom" --reload 2> "$XDG_LOG_HOME/polybar/top/log" &
+  polybar top -c "$top" --reload 2> "$polybar_log/top.log" &
+  polybar bottom -c "$bottom" --reload 2> "$polybar_log/bottom.log" &
 fi
