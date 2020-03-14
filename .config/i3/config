@@ -10,16 +10,17 @@ set $right l
 font pango:Inconsolata 10
 
 # colors                border  backgr  text    indic   child_border
-client.focused          #282828 #282828 #ebdbb2 #282828 #282828
-client.focused_inactive #282828 #282828 #ebdbb2 #282828 #282828
-client.unfocused        #282828 #282828 #ebdbb2 #282828 #282828
-client.urgent           #cc241d #cc241d #ebdbb2 #282828 #282828
-client.placeholder      #282828 #282828 #ebdbb2 #282828 #282828
+client.focused          #282828 #282828 #ebdbb2 #282828 #a89984
+client.focused_inactive #282828 #282828 #ebdbb2 #282828 #1d2021
+client.unfocused        #282828 #282828 #ebdbb2 #282828 #1d2021
+client.urgent           #282828 #282828 #ebdbb2 #282828 #1d2021
+client.placeholder      #282828 #282828 #ebdbb2 #282828 #1d2021
 
 # gaps inner 15
 # gaps outer 0
 
-default_border none
+default_border pixel 2
+hide_edge_borders none
 
 focus_follows_mouse no
 mouse_warping none
