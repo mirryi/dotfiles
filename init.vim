@@ -126,7 +126,6 @@ Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 let g:airline#extensions#tabline#enabled = 1
 let g:airline_powerline_fonts = 1
-" set guifont=Fira_Mono_for_Powerline:h12:cANSI:qDRAFT
 
 """ gitgutter
 Plug 'airblade/vim-gitgutter'
@@ -339,6 +338,7 @@ set termguicolors
 "   use gruvbox theme
 set background=dark
 let g:gruvbox_material_background = "medium"
-let g:airline_theme = 'base16_gruvbox_dark_hard'
+" let g:airline_theme = 'base16_gruvbox_dark_hard'
+let g:airline_theme = 'zenburn'
 colorscheme gruvbox-material
 
