@@ -124,6 +124,9 @@ autocmd bufenter *
 Plug 'vim-airline/vim-airline'
 "   themes
 Plug 'vim-airline/vim-airline-themes'
+let g:airline#extensions#tabline#enabled = 1
+let g:airline_powerline_fonts = 1
+" set guifont=Fira_Mono_for_Powerline:h12:cANSI:qDRAFT
 
 """ gitgutter
 Plug 'airblade/vim-gitgutter'
