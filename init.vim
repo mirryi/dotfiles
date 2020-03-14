@@ -119,11 +119,11 @@ autocmd bufenter *
 """ WINDOW
 """
 
+
 """ airline
 Plug 'vim-airline/vim-airline'
 "   themes
 Plug 'vim-airline/vim-airline-themes'
-" let g:airline_theme = 'minimalist'
 
 """ gitgutter
 Plug 'airblade/vim-gitgutter'
@@ -336,6 +336,6 @@ set termguicolors
 "   use gruvbox theme
 set background=dark
 let g:gruvbox_material_background = "medium"
-let g:airline_theme = 'gruvbox_material'
+let g:airline_theme = 'base16_gruvbox_dark_hard'
 colorscheme gruvbox-material
 
