@@ -1,2 +1,2 @@
-#!//bin/bash
-/usr/bin/termite -e hangups
+#!/usr/bin/bash
+termite -e hangups

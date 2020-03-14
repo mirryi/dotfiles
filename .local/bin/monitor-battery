@@ -1,6 +1,9 @@
 #!/usr/bin/bash
-notify-battery -f
+dirpath=$(dirname "$(readlink -f "$0")")
+notify_battery="$dirpath/notify-battery"
+
+"$notify_battery" -f
 while true; do
-  notify-battery -i
+  "$notify_battery" -i
   sleep 0.5
 done
