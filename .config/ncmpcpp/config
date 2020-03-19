@@ -1,11 +1,8 @@
-# Settings
-# mpd_host = "localhost"
-# mpd_port = 6600
-# mpd_connection_timeout = 5
-
+# directories
 ncmpcpp_directory = "~/.local/share/ncmpcpp"
 lyrics_directory = "~/.local/share/lyrics"
 
+# general settings
 startup_screen = playlist
 
 autocenter_mode = yes
@@ -20,12 +17,12 @@ allow_for_physical_item_deletion = yes
 
 playlist_display_mode = classic
 
-# Colors
+# colors
 state_line_color = black
 progressbar_color = white
 progressbar_elapsed_color = magenta
 
-# Playlist
+# playlist view
 song_window_title_format = {%t}|{%f} - {%b}
 song_list_format = "{$3[%l]$9} {$6%65t$9} %y $R {$5%65b$9} | %10g"
 
@@ -35,8 +32,16 @@ current_item_suffix = " $b$8<<$9$/b"
 current_item_inactive_column_prefix = "$b"
 current_item_inactive_column_suffix = "$/b"
 
-# Library
+# library view
 media_library_primary_tag = genre
 
-# Progress Bar
+# progress bar
 progressbar_look = "→→"
+
+# visualization
+visualizer_fifo_path = "/tmp/mpd.fifo"
+visualizer_output_name = "my_fifo"
+visualizer_sync_interval = "30"
+visualizer_in_stereo = "yes"
+visualizer_type = "spectrum"
+visualizer_look = "+|"
