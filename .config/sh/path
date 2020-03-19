@@ -13,8 +13,8 @@ if [ -d "$_cargo_home/bin" ]; then
 fi
 
 # Yarn installed binaries
-if [ -d "$HOME/.yarn/bin" ]; then
-  export PATH="$PATH:$HOME/.yarn/bin";
+if [ -d "$HOME/.local/share/npm/bin" ]; then
+  export PATH="$PATH:$HOME/.local/share/npm/bin";
 fi
 
 # Ruby gems installed binaries
