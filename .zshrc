@@ -40,11 +40,30 @@ colors
 autoload -Uz url-quote-magic
 zle -N self-insert url-quote-magic
 
+autoload -Uz vcs_info
+
 ### zstyles
+zstyle ":completion:*:descriptions" format "%B%d%b"
+
 zstyle ':completion:*:*:kill:*' menu yes select
 zstyle ':completion:*:kill:*'   force-list always
-zstyle ":completion:*:descriptions" format "%B%d%b"
+zstyle ':completion:*:*:killall:*' menu yes select
+zstyle ':completion:*:killall:*'   force-list always
+
+zstyle ':completion:*:pacman:*' force-list always
+zstyle ':completion:*:*:pacman:*' menu yes select
+
 zstyle ':completion:*:*:*:default' menu yes select search
+zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
+
+### window title
+precmd () {
+  vcs_info
+  print -Pn "\e]0; %~\a"
+}
+preexec () {
+  print -Pn "\e]0; %~ $1\a"
+}
 
 ### zinit
 declare -A ZINIT
