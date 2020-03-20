@@ -7,6 +7,6 @@ files /home/dophin2009/files
 share /home/dophin2009/files/share
 tmp /home/dophin2009/files/tmp
 media /home/dophin2009/files/media
-mnt /home/dophin2009/.mount
+lfs /home/dophin2009/files/lfs
 cfg /home/dophin2009/.config
 books /home/dophin2009/files/books
