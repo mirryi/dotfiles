@@ -21,6 +21,27 @@ export HISTSIZE=290000
 export SAVEHIST=290000
 export HISTFILE="$ZSH_CACHE/history"
 
+### environment
+source "$XDG_CONFIG_HOME/sh/env"
+
+### macros / aliases
+# change directory on demand after exiting ranger
+function ranger {
+  local IFS=$'\t\n'
+  local tempfile="$(mktemp -t tmp.XXXXXX)"
+  local ranger_cmd=(
+    command
+    ranger
+    --cmd="map Q chain shell echo %d > "$tempfile"; quitall"
+  )
+
+  ${ranger_cmd[@]} "$@"
+  if [[ -f "$tempfile" ]] && [[ "$(cat -- "$tempfile")" != "$(echo -n `pwd`)" ]]; then
+    cd -- "$(cat "$tempfile")" || return
+  fi
+  command rm -f -- "$tempfile" 2>/dev/null
+}
+
 ### setopts
 # comments in interactive code
 setopt interactivecomments
@@ -43,6 +64,10 @@ zle -N self-insert url-quote-magic
 autoload -Uz vcs_info
 
 ### zstyles
+# case-insensitive completion
+zstyle ':completion:*' matcher-list 'm:{a-zA-Z-_}={A-Za-z_-}' 'r:|=*' 'l:|=* r:|=*'
+
+# various completions
 zstyle ":completion:*:descriptions" format "%B%d%b"
 
 zstyle ':completion:*:*:kill:*' menu yes select
@@ -56,13 +81,30 @@ zstyle ':completion:*:*:pacman:*' menu yes select
 zstyle ':completion:*:*:*:default' menu yes select search
 zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
 
+### keybinds
+typeset -g -A key
+
+key[Home]="${terminfo[khome]}"
+key[End]="${terminfo[kend]}"
+
+[[ -n "${key[Home]}"      ]] && bindkey -- "${key[Home]}"      beginning-of-line
+[[ -n "${key[End]}"       ]] && bindkey -- "${key[End]}"       end-of-line
+
+if (( ${+terminfo[smkx]} && ${+terminfo[rmkx]} )); then
+  autoload -Uz add-zle-hook-widget
+  function zle_application_mode_start { echoti smkx }
+  function zle_application_mode_stop { echoti rmkx }
+  add-zle-hook-widget -Uz zle-line-init zle_application_mode_start
+  add-zle-hook-widget -Uz zle-line-finish zle_application_mode_stop
+fi
+
 ### window title
 precmd () {
   vcs_info
   print -Pn "\e]0; %~\a"
 }
 preexec () {
-  print -Pn "\e]0; %~ $1\a"
+  print -Pn "\e]0;%~ $1\a"
 }
 
 ### zinit
@@ -127,8 +169,8 @@ zinit light changyuheng/fz
 
 # history-substring-search
 zinit light zsh-users/zsh-history-substring-search
-bindkey '^[[A' history-substring-search-up
-bindkey '^[[B' history-substring-search-down
+bindkey "$terminfo[kcuu1]" history-substring-search-up
+bindkey "$terminfo[kcud1]" history-substring-search-down
 export HISTORY_SUBSTRING_SEARCH_HIGHLIGHT_FOUND="fg=white,bold,underline"
 export HISTORY_SUBSTRING_SEARCH_ENSURE_UNIQUE=true
 
@@ -145,27 +187,6 @@ zinit wait lucid for \
     zsh-users/zsh-autosuggestions \
   blockf \
     zsh-users/zsh-completions
-
-### environment
-source "$XDG_CONFIG_HOME/sh/env"
-
-### macros / aliases
-# change directory on demand after exiting ranger
-function ranger {
-  local IFS=$'\t\n'
-  local tempfile="$(mktemp -t tmp.XXXXXX)"
-  local ranger_cmd=(
-    command
-    ranger
-    --cmd="map Q chain shell echo %d > "$tempfile"; quitall"
-  )
-
-  ${ranger_cmd[@]} "$@"
-  if [[ -f "$tempfile" ]] && [[ "$(cat -- "$tempfile")" != "$(echo -n `pwd`)" ]]; then
-    cd -- "$(cat "$tempfile")" || return
-  fi
-  command rm -f -- "$tempfile" 2>/dev/null
-}
 
 # source p10k
 if [[ -f "$ZSH_CONFIG/p10k.zsh" ]]; then
