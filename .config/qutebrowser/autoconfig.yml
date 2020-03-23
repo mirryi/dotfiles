@@ -21,12 +21,12 @@ settings:
   bindings.commands:
     global:
       normal:
-        ",n": open -t ;; messages
+        ',n': open -t ;; messages
         n: search-next
   colors.statusbar.normal.bg:
     global: black
   colors.webpage.bg:
-    global: "#282828"
+    global: '#282828'
   colors.webpage.prefers_color_scheme_dark:
     global: true
   completion.cmd_history_max_items:
@@ -35,7 +35,7 @@ settings:
     global: 0
   confirm_quit:
     global:
-      - downloads
+    - downloads
   content.autoplay:
     global: false
   content.canvas_reading:
@@ -43,9 +43,10 @@ settings:
   content.geolocation:
     global: false
   content.headers.user_agent:
-    global:
-      Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like
+    global: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like
       Gecko) Chrome/79.0.3945.117 Safari/537.36
+  content.javascript.can_access_clipboard:
+    global: true
   content.pdfjs:
     global: true
   content.register_protocol_handler:
@@ -56,19 +57,19 @@ settings:
     global: ~/files/downloads
   fonts.default_family:
     global:
-      - Inconsolata 11
-      - Fira Code
-      - DejaVu Sans Mono
-      - Monaco
-      - Bitstream Vera Sans Mono
-      - Andale Mono
-      - Courier New
-      - Courier
-      - Liberation Mono
-      - monospace
-      - Fixed
-      - Consolas
-      - Terminal
+    - Inconsolata 11
+    - Fira Code
+    - DejaVu Sans Mono
+    - Monaco
+    - Bitstream Vera Sans Mono
+    - Andale Mono
+    - Courier New
+    - Courier
+    - Liberation Mono
+    - monospace
+    - Fixed
+    - Consolas
+    - Terminal
   scrolling.smooth:
     global: true
   tabs.pinned.frozen:
