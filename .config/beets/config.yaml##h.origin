@@ -1,0 +1,42 @@
+directory: ~/files/lfs/music/library
+library: ~/.local/share/beets/library.db
+
+import:
+  move: no
+  copy: no
+  write: no
+
+aunique:
+  keys: album year
+  bracket: "[]"
+
+format_item: $album - $title
+format_album: $album ($year)
+
+sort_item: album+ disc+ track+
+sort_album: album+
+
+plugins: smartplaylist mpdupdate edit info
+
+smartplaylist:
+  playlist_dir: ~/files/lfs/music/playlists
+  relative_to: ~/files/lfs/music/library
+  playlists:
+    - name: "all.m3u"
+      query: ""
+    - name: "japanese.m3u"
+      query: "genre:japanese"
+    - name: "city-pop.m3u"
+      query: 'genre:"city pop"'
+    - name: "soundtrack.m3u"
+      query: "genre:soundtrack"
+    - name: "k-on.m3u"
+      query: "grouping:k-on"
+    - name: "pokemon-diamond-pearl.m3u"
+      query: "grouping:pokémon diamond"
+    - name: "the-elder-scrolls.m3u"
+      query: "grouping:elder scrolls"
+
+edit:
+  itemfields: title album track year composer grouping genre artist
+  albumfields: album year

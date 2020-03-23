@@ -16,10 +16,7 @@ format_album: $album ($year)
 sort_item: album+ disc+ track+
 sort_album: album+
 
-plugins: smartplaylist mpdupdate mpdstats edit info
-
-mpd:
-  rating: no
+plugins: smartplaylist mpdupdate edit info
 
 smartplaylist:
   playlist_dir: ~/files/music/playlists
