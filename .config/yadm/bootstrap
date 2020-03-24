@@ -1,12 +1,26 @@
-#!/bin/bash
+#!/usr/bin/bash
+if [ -z ${XDG_DATA_HOME} ]; then
+  echo "Required environment variables unset. Relogin"
+  exit 1
+fi
 
 cd "$HOME" || exit
 
 # Update submodules
-echo "Initializing submodules"
+echo "Initializing submodules..."
 yadm submodule update --recursive --init
 
-# Initialize neovim with vim-plug
-echo "Bootstrapping neovim"
-nvim -c ":source stdpath('config')/init.vim" -c ":qall"
+# Make file directories
+echo "Creating file directories..."
+FILES_DIRS=(documents downloads games images lfs music programming share tmp)
+mkdir -p "$HOME/files"
+for DIR in FILES_DIRS
+do
+  mkdir "$HOME/files/$DIR"
+done
 
+# Initialize neovim with vim-plug
+if [ -x "$(command -v nvim)" ]; then
+  echo "Bootstrapping neovim..."
+  nvim -c ":source stdpath('config')/init.vim" -c ":qall"
+fi
