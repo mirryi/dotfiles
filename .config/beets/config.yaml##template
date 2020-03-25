@@ -33,12 +33,9 @@ plugins: smartplaylist mpdupdate edit info
 smartplaylist:
 {% if yadm.hostname == "origin" }
   playlist_dir: ~/files/lfs/music/playlists
-{% else %}
-  playlist_dir: ~/files/music/playlists
-{% endif %}
-{% if yadm.hostname == "origin" }
   relative_to: ~/files/lfs/music/library
 {% else %}
+  playlist_dir: ~/files/music/playlists
   relative_to: ~/files/music/library
 {% endif %}
   playlists:
