@@ -129,7 +129,7 @@ let g:gitgutter_max_signs = 1000
 """
 
 """ coc.nvim
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'neoclide/coc.nvim', {'branch': 'release', 'do': { -> coc#util#install() }}
 "   css, scss, less
 Plug 'neoclide/coc-css', {'do': 'yarn install --frozen-lockfile'}
 "   html, handlebars, razor
@@ -169,8 +169,22 @@ function! s:check_back_space() abort
   let col = col('.') - 1
   return !col || getline('.')[col - 1]  =~# '\s'
 endfunction
+
 "   use <c-space> to trigger completion
 inoremap <silent><expr> <c-space> coc#refresh()
+
+"   use `[c` and `]c` to navigate diagnostics
+nmap <silent> [c <Plug>(coc-diagnostic-prev)
+nmap <silent> ]c <Plug>(coc-diagnostic-next)
+
+"   highlight symbol under cursor on CursorHold
+set updatetime=300
+autocmd CursorHold * silent call CocActionAsync('highlight')
+autocmd CursorHoldI * silent call CocActionAsync('showSignatureHelp')
+
+"   use `rn` to rename current symbol
+nmap <leader>rn <Plug>(coc-rename)
+
 "   remap keys for gotos
 nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gy <Plug>(coc-type-definition)
@@ -210,6 +224,7 @@ Plug 'dense-analysis/ale'
 ""  define linters
 let g:ale_linters = {
       \   '*': ['remove_trailing_lines', 'trim_whitespace'],
+      \   'cpp': ['ccls'],
       \   'go': ['golint'],
       \   'html': ['prettier'],
       \   'typescript': ['prettier', 'tslint'],
@@ -227,15 +242,14 @@ let g:airline#extensions#ale#enabled = 1
 """ FORMATTING
 """
 
-"   remove whitespace
-autocmd BufWritePre * %s/\s\+$//e
-
 """ neoformat
 Plug 'sbdchd/neoformat'
 "   auto-format on save
 augroup fmt
   autocmd!
   autocmd BufWritePre * undojoin | Neoformat
+  "   remove whitespace
+  autocmd BufWritePre * %s/\s\+$//e
 augroup END
 "   define formatters
 let g:neoformat_enabled_javascript = ['prettier']
@@ -305,6 +319,9 @@ let g:pandoc#modules#disabled = ['folding', 'spell']
 
 """ vimtex
 Plug 'lervag/vimtex'
+
+""" cxx semantic highlighting
+Plug 'jackguo380/vim-lsp-cxx-highlight'
 
 """
 """ THEME

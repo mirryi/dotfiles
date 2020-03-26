@@ -8,16 +8,27 @@
       "args": ["start"],
       "filetypes": ["sh", "bash"]
     },
-    "clangd": {
-      "command": "clangd",
-      "args": ["--background-index"],
+    "ccls": {
+      "command": "ccls",
+      "filetypes": ["c", "cpp", "objc", "objcpp"],
       "rootPatterns": [
-        "compile_flags.txt",
+        ".ccls",
         "compile_commands.json",
+        ".vim/",
         ".git/",
         ".hg/"
       ],
-      "filetypes": ["c", "cpp", "objc", "objcpp"]
+      "initializationOptions": {
+        "cache": {
+          "directory": "/tmp/ccls"
+        },
+        "client": {
+          "snippetSupport": true
+        },
+        "highlight": {
+          "lsRanges": true
+        }
+      }
     },
     "golang": {
       "command": "gopls",
