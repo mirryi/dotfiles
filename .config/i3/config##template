@@ -43,9 +43,9 @@ bindsym $mod+Shift+w exec xkill
 
 ##  lock screen
 {% if yadm.class == "tower" %}
-bindsym $mod+Shift+x exec xset s activate
-{% else %}
 bindsym $mod+Shift+x exec lock-screen
+{% else %}
+bindsym $mod+Shift+x exec xset s activate
 {% endif %}
 
 ##  rofi menu
