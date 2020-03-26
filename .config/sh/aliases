@@ -2,6 +2,7 @@
 
 ### BASIC COMMANDS
 alias ls="ls -a --color"
+alias la="ls -al --color"
 
 ### SHORTCUTS
 alias rn="ranger"
