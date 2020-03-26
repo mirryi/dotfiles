@@ -1,0 +1,48 @@
+#!/usr/bin/bash
+checkcmd() {
+  local arr=("$@")
+  for cmd in "${arr[@]}"; do
+    printf "Checking for command $cmd..."
+    command -v "$cmd" >/dev/null 2>&1 || { printf " but not found\n" >&2; return 1; }
+    printf " found!\n"
+  done
+}
+
+# Check that required commands exist
+cmds=(nvim yarn curl)
+checkcmd "${cmds[@]}" || { echo "Exiting..."; exit 1; }
+
+# Install nodejs support
+if ! checkcmd neovim-node-host; then
+  echo "Installing neovim package with yarn..."
+  yarn global add neovim --silent
+  if ! checkcmd neovim-node-host; then
+    echo "Consider adding the global yarn bin $(yarn global bin) to PATH..."
+  fi
+fi
+# Install python support
+if checkcmd pip3; then
+  echo "Installing pynvim package with pip3...";
+  if ! (pip3 list | grep -F pynvim); then
+    pip3 install --user pynvim
+  fi
+else
+  echo "Skipping pynvim package installation..."
+fi
+
+# Install vim-plug
+plugvim="$XDG_DATA_HOME/nvim/site/autoload/plug.vim"
+if [ ! -f "$plugvim" ]; then
+  curl -fLo "$plugvim" --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+fi
+
+# Call init script
+echo "Sourcing nvim init.vim..."
+nvim +PlugInstall "+source ~/.config/nvim/init.vim" +qall
+# Install some coc.nvim extensions
+echo "Installing coc.nvim extensions..."
+nvim "+CocInstall coc-neosnippet coc-vimtex coc-vimlsp" +qall
+echo "Install Go binaries..."
+nvim +GoInstallBinaries +qall
+
+echo "Finished bootstrapping neovim."

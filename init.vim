@@ -1,13 +1,6 @@
 let nvim_data = $XDG_DATA_HOME . "/nvim"
 let nvim_cache = $XDG_CACHE_HOME . "/nvim"
 
-"   download vim-plug if not installed
-let vimplugf = nvim_data . "/site/autoload/plug.vim"
-if empty(glob(vimplugf))
-  silent! execute '!curl -fLo ' . vimplugf . ' --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
-  autocmd VimEnter * silent! PlugInstall
-endif
-
 "   begin plugin check/installation
 call plug#begin(nvim_data . '/plugged')
 
