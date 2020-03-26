@@ -8,6 +8,6 @@
 
 # default terminal
 # export TERM=screen-256color
-export TERM=xterm-termite
+# export TERM=xterm-termite
 # default editor
 export EDITOR=nvim
