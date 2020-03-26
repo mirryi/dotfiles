@@ -11,6 +11,9 @@
 # load xresources
 xrdb -load "$HOME/.config/X11/xresources"
 
+# disable pc speaker
+xset -b
+
 # pass DISPLAY variable to systemctl
 systemctl --user import-environment DISPLAY
 
