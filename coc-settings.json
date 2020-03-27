@@ -1,6 +1,8 @@
 {
   "suggest.minTriggerInputLength": 2,
-  "python.linting.flake8Enabled": true,
+
+  "java.configuration.maven.userSettings": "~/.config/maven/settings.xml",
+  "java.import.maven.enabled": true,
   "xml.server.workDir": "~/.local/share/lsp4xml",
   "languageserver": {
     "bash": {
