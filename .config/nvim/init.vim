@@ -248,14 +248,21 @@ Plug 'sbdchd/neoformat'
 augroup fmt
   autocmd!
   autocmd BufWritePre * undojoin | Neoformat
-  "   remove whitespace
-  autocmd BufWritePre * %s/\s\+$//e
 augroup END
+"   default formatting
+let g:neoformat_basic_format_retab = 1
+let g:neoformat_basic_format_trim = 1
 "   define formatters
 let g:neoformat_enabled_javascript = ['prettier']
 let g:neoformat_enabled_typescript = ['prettier']
 let g:neofromat_enabled_rust = ['rustfmt']
 let g:neoformat_enabled_markdown = ['']
+
+let g:neofromat_sql_pg_format = {
+  \ 'exe': 'pg_format',
+  \ 'args': ['-m 90', '-s 2'],
+  \ }
+let g:neoformat_enabled_sql = ['pg_format']
 
 """ nerdcommenter
 "   comment/uncomment with keybindings (\ + c + <space>)
@@ -316,6 +323,10 @@ Plug 'vim-pandoc/vim-pandoc'
 Plug 'vim-pandoc/vim-pandoc-syntax'
 let g:pandoc#modules#disabled = ['folding', 'spell']
 " let g:pandoc#filetypes#pandoc_markdown = 0
+
+""" postgresql
+Plug 'lifepillar/pgsql.vim'
+let g:sql_type_default = 'pgsql'
 
 """ vimtex
 Plug 'lervag/vimtex'
