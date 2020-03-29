@@ -193,6 +193,7 @@ nmap <silent> gr <Plug>(coc-references)
 
 """ delimitMate (autoclose parentheses, etc.)
 Plug 'Raimondi/delimitMate'
+let g:delimitMate_expand_cr = 2
 """ vim-closetag (autoclose XHTML tags)
 Plug 'alvan/vim-closetag'
 
