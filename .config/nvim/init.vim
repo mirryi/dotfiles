@@ -66,7 +66,7 @@ Plug 'scrooloose/nerdtree'
 "   git flags support
 Plug 'Xuyuanp/nerdtree-git-plugin'
 "   basic options
-let g:NERDTreeWinSize = 40
+let g:NERDTreeWinSize = 36
 let g:NERDTreeShowHidden = 1
 "   git indicator symbols
 let g:NERDTreeIndicatorMapCustom = {
