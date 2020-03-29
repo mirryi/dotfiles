@@ -9,6 +9,7 @@ alias rn="ranger"
 
 ### REDEFINITIONS
 alias slack-term='slack-term -config "${XDG_CONFIG_HOME}/slack-term/config"'
+alias wget='wget --hsts-file="$XDG_CACHE_HOME/wget-hsts"'
 
 ### MACROS
 
