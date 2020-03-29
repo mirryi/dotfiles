@@ -191,8 +191,8 @@ nmap <silent> gy <Plug>(coc-type-definition)
 nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
 
-""" Auto Pairs (autoclose parentheses, etc.)
-Plug 'jiangmiao/auto-pairs'
+""" delimitMate (autoclose parentheses, etc.)
+Plug 'Raimondi/delimitMate'
 """ vim-closetag (autoclose XHTML tags)
 Plug 'alvan/vim-closetag'
 
