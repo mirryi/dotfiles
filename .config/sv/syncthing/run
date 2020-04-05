@@ -1,0 +1,4 @@
+#!/bin/sh
+export HOME=/home/dophin2009
+exec 2>&1
+exec syncthing 
