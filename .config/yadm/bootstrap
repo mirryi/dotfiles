@@ -25,7 +25,7 @@ yadm checkout --quiet
 echo "Creating file directories..."
 files_dirs=(documents downloads games images lfs music programming share tmp)
 mkdir -p "$HOME/files"
-for dir in files_dirs; do
+for dir in "${file_dirs[@]}"; do
   mkdir "$HOME/files/$dir"
 done
 
