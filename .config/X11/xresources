@@ -83,25 +83,3 @@ URxvt*scrollTtyKeypress:    true
 URxvt.secondaryScreen:      1
 URxvt.secondaryScroll:      0
 
-
-rofi.terminal:          termite
-rofi.ssh-client:        ssh
-rofi.ssh-command:       termite -e "{ssh-client} {host}"
-
-rofi.width:             50
-rofi.lines:             15
-rofi.columns:           2
-rofi.font:              Inconsolata 11
-rofi.show-icons:		    true
-
-rofi.lazy-filter-limit: 15000
-rofi.line-margin:       5
-rofi.separator-style:   dash
-rofi.hide-scrollbar:    true
-rofi.fullscreen:        false
-rofi.dpi:               100
-
-rofi.kb-row-up:         Up
-rofi.kb-row-down:       Down
-
-
