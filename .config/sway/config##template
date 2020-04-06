@@ -18,7 +18,6 @@ set $right l
 
 ######### STYLES #########
 font pango:Inconsolata 10
-
 # colors                border  backgr  text    indic   child_border
 client.focused          #282828 #282828 #ebdbb2 #282828 #a89984
 client.focused_inactive #282828 #282828 #ebdbb2 #282828 #1d2021
@@ -69,6 +68,7 @@ bindsym $mod+y exec alacritty -t "task manager" -e htop
 bindsym $mod+Shift+y exec alacritty -t "music player" -e ncmpcpp
 
 ##  control audio
+set $audio_channel Master
 #   mute
 bindsym $mod+Shift+m exec pactl set-sink-mute $(pactl info | grep "Default Sink" | cut -d: -f2) toggle
 #   decrease volume
@@ -225,10 +225,15 @@ mode "passthrough" {
 
 bindsym Mod4+Escape mode "passthrough"
 
+######### INPUTS #########
+input "1739:32551:MSFT0001:01_06CB:7F27_Touchpad" {
+  tap enabled
+}
+
 ######### STARTUP #########
 
 # set wallpaper
-# exec --no-startup-id exec set-bg
+exec --no-startup-id exec set-bg-sway
 
 # start polybar
 # exec --no-startup-id exec launch-polybar
