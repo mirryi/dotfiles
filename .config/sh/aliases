@@ -29,7 +29,7 @@ alias beetup="beet update && beet splupdate"
 alias beetrmd="beet rm -d"
 #   mpd
 alias mpcup="mpc update"
-alias mpcdef="mpc clear && mpc random true && mpc repeat true && mpc load japanese && mpc play"
+alias mpcdef="mpc clear && mpc random true && mpc repeat true && mpc load _japanese && mpc play"
 #   youtube-dl
 alias ydlmp3="youtube-dl --extract-audio --audio-format mp3"
 
