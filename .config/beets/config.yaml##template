@@ -43,20 +43,10 @@ smartplaylist:
   relative_to: ~/files/music/library
 {% endif %}
   playlists:
-    - name: "all.m3u"
+    - name: "_all.m3u"
       query: ""
-    - name: "japanese.m3u"
-      query: "genre:japanese"
-    - name: "city-pop.m3u"
-      query: 'genre:"city pop"'
-    - name: "soundtrack.m3u"
-      query: "genre:soundtrack"
-    - name: "k-on.m3u"
-      query: "grouping:k-on"
-    - name: "pokemon-diamond-pearl.m3u"
-      query: "grouping:pokémon diamond"
-    - name: "the-elder-scrolls.m3u"
-      query: "grouping:elder scrolls"
+    - name: "_%lower{$genre}.m3u"
+      query: ""
 
 edit:
   itemfields: title album track year composer grouping genre artist
