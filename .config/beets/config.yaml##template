@@ -30,6 +30,10 @@ sort_album: album+
 
 plugins: smartplaylist mpdupdate edit info
 
+replaygain:
+  auto: no
+  overwrite: no
+
 smartplaylist:
 {% if yadm.hostname == "origin" }
   playlist_dir: ~/files/lfs/music/playlists
