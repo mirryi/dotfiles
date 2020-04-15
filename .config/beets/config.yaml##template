@@ -28,11 +28,16 @@ format_album: $album ($year)
 sort_item: album+ disc+ track+
 sort_album: album+
 
-plugins: smartplaylist mpdupdate edit info
+plugins: edit info fetchart mpdupdate smartplaylist scrub
 
-replaygain:
-  auto: no
-  overwrite: no
+edit:
+  itemfields: title album track year composer grouping genre artist albumartist
+  albumfields: album year albumartist
+
+fetchart:
+  enforce_ratio: 0.5%
+  cautious: yes
+  sources: filesystem coverart itunes amazon albumart
 
 smartplaylist:
 {% if yadm.hostname == "origin" }
@@ -47,7 +52,3 @@ smartplaylist:
       query: ""
     - name: "_%lower{$genre}.m3u"
       query: ""
-
-edit:
-  itemfields: title album track year composer grouping genre artist
-  albumfields: album year
