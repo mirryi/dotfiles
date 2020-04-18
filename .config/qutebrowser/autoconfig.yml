@@ -53,6 +53,8 @@ settings:
     https://mail.google.com?extsrc=mailto&url=%25s: false
   content.webgl:
     global: false
+  content.webrtc_ip_handling_policy:
+    global: default-public-interface-only
   downloads.location.directory:
     global: ~/files/downloads
   fonts.default_family:
