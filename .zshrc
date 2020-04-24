@@ -167,6 +167,9 @@ zinit wait lucid for _local/goto
 AUTO_NOTIFY_IGNORE+=("ranger")
 zinit light MichaelAquilina/zsh-auto-notify
 
+# autoswitch-virtualenv
+zinit light MichaelAquilina/zsh-autoswitch-virtualenv
+
 # command not found
 zinit light Tarrasch/zsh-command-not-found
 
