@@ -196,6 +196,7 @@ Plug 'Raimondi/delimitMate'
 let g:delimitMate_expand_cr = 2
 """ vim-closetag (autoclose XHTML tags)
 Plug 'alvan/vim-closetag'
+let g:closetag_filetypes = 'html,xhtml,phtml,javascriptreact,typescriptreact'
 
 """ import-js (import js dependencies)
 Plug 'galooshi/vim-import-js'
