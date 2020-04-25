@@ -28,7 +28,9 @@ format_album: $album ($year)
 sort_item: album+ disc+ track+
 sort_album: album+
 
-plugins: edit info fetchart mpdupdate smartplaylist scrub
+plugins: edit info fetchart mpdupdate smartplaylist scrub playlistc
+pluginpath:
+  - ~/.local/share/beets/plugins
 
 edit:
   itemfields: title album track year composer grouping genre artist albumartist
@@ -38,6 +40,10 @@ fetchart:
   enforce_ratio: 0.5%
   cautious: yes
   sources: filesystem coverart itunes amazon albumart
+
+playlistc:
+  playlist_dir: ~/files/music/playlists
+  relative_to: ~/files/music/library
 
 smartplaylist:
 {% if yadm.hostname == "origin" }
