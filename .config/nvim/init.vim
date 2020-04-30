@@ -43,7 +43,7 @@ let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
 """
 
 """ map leader
-let mapleader=","
+" let mapleader=","
 
 """ change tabs
 "   focus tab left
@@ -197,6 +197,11 @@ let g:delimitMate_expand_cr = 2
 """ vim-closetag (autoclose XHTML tags)
 Plug 'alvan/vim-closetag'
 let g:closetag_filetypes = 'html,xhtml,phtml,javascriptreact,typescriptreact'
+let g:closetag_regions = {
+    \ 'typescript.tsx': 'jsxRegion,tsxRegion',
+    \ 'javascript.jsx': 'jsxRegion',
+    \ }
+let g:closetag_close_shortcut = '<leader>>'
 
 """ import-js (import js dependencies)
 Plug 'galooshi/vim-import-js'
@@ -225,14 +230,22 @@ smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
 Plug 'dense-analysis/ale'
 ""  define linters
 let g:ale_linters = {
-      \   '*': ['remove_trailing_lines', 'trim_whitespace'],
-      \   'cpp': ['ccls'],
-      \   'go': ['golint'],
-      \   'html': ['prettier'],
-      \   'typescript': ['prettier', 'tslint'],
-      \   'markdown': ['proselint', 'textlint'],
-      \   'rust': ['rls'],
-      \}
+  \   '*': ['remove_trailing_lines', 'trim_whitespace'],
+  \   'cpp': ['ccls'],
+  \   'go': ['golint'],
+  \   'html': ['prettier'],
+  \   'typescript': ['prettier', 'eslint'],
+  \   'typescriptreact': ['prettier', 'eslint'],
+  \   'markdown': ['proselint', 'textlint'],
+  \   'rust': ['rls'],
+  \}
+let g:ale_fixers = {
+  \   '*': ['remove_trailing_lines', 'trim_whitespace'],
+  \   'typescript': ['prettier', 'eslint'],
+  \   'typescriptreact': ['prettier', 'eslint'],
+  \   'scss': ['stylelint'],
+  \}
+let g:ale_fix_on_save = 1
 "   show warnings in statusline
 let g:airline#extensions#ale#enabled = 1
 
@@ -257,7 +270,13 @@ let g:neoformat_basic_format_trim = 1
 "   define formatters
 let g:neoformat_enabled_javascript = ['prettier']
 let g:neoformat_enabled_typescript = ['prettier']
-let g:neofromat_enabled_rust = ['rustfmt']
+let g:neoformat_enabled_typescriptreact = ['prettier']
+let g:neoformat_typescriptreact_prettier = {
+  \ 'exe': 'prettier',
+  \ 'args': ['--stdin', '--stdin-filepath', '"%:p"'],
+  \ 'stdin': 1,
+  \ }
+let g:neoformat_enabled_rust = ['rustfmt']
 let g:neoformat_enabled_markdown = ['']
 
 let g:neofromat_sql_pg_format = {
