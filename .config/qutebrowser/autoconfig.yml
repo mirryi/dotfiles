@@ -9,6 +9,7 @@ settings:
   aliases:
     global:
       bw: spawn --userscript qute-bitwarden
+      gr: greasemonkey-reload
       json: spawn --userscript format_json
       mpv: spawn --userscript view_in_mpv
       q: close
@@ -26,9 +27,9 @@ settings:
   colors.statusbar.normal.bg:
     global: black
   colors.webpage.bg:
-    global: '#282828'
+    global: white
   colors.webpage.prefers_color_scheme_dark:
-    global: true
+    global: false
   completion.cmd_history_max_items:
     global: 0
   completion.web_history.max_items:
@@ -72,6 +73,10 @@ settings:
     - Fixed
     - Consolas
     - Terminal
+  fonts.default_size:
+    global: 10pt
+  qt.highdpi:
+    global: true
   scrolling.smooth:
     global: true
   tabs.pinned.frozen:
