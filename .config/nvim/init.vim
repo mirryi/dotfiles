@@ -350,7 +350,7 @@ Plug 'lifepillar/pgsql.vim'
 let g:sql_type_default = 'pgsql'
 
 """ vimtex
-Plug 'lervag/vimtex'
+" Plug 'lervag/vimtex'
 
 """ cxx semantic highlighting
 Plug 'jackguo380/vim-lsp-cxx-highlight'
@@ -383,4 +383,3 @@ let g:gruvbox_material_background = "medium"
 " let g:airline_theme = 'base16_gruvbox_dark_hard'
 let g:airline_theme = 'zenburn'
 colorscheme gruvbox-material
-
