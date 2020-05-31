@@ -11,13 +11,18 @@
 # load xresources
 xrdb -load "$HOME/.config/X11/xresources"
 
+{% if yadm.hostname == "origin" %}
+xrandr --output HDMI-0 --brightness 0.85
+xrandr --output HDMI-1 --brightness 0.85
+{% endif % }
+
 # disable pc speaker
 xset -b
 
 # pass DISPLAY variable to systemctl
 systemctl --user import-environment DISPLAY
 
-{% if yadm.class ==  "laptop" %}
+{% if yadm.class == "laptop" %}
 # enable lockscreen
 xss-lock -- "$HOME/.local/bin/lock-screen" &
 {% endif %}
@@ -29,7 +34,7 @@ PICOM_FLAGS="-Cb"
 {% else %}
 PICOM_FLAGS="-fCb -D8"
 {% endif %}
-picom $PICOM_FLAGS > "$HOME/.local/var/log/picom/picom.log"
+picom $PICOM_FLAGS >"$HOME/.local/var/log/picom/picom.log"
 
 # start ibus
 export GTK_IM_MODULE=ibus
@@ -40,4 +45,4 @@ ibus-daemon --xim &
 
 # start wm
 mkdir -p "$HOME/.local/var/log/i3"
-exec i3 > "$HOME/.local/var/log/i3/i3.log"
+exec i3 >"$HOME/.local/var/log/i3/i3.log"
