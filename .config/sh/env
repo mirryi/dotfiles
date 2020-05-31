@@ -14,3 +14,6 @@ export EDITOR=nvim
 
 # fix QT display bugs
 export QT_AUTO_SCREEN_SCALE_FACTOR=0
+
+# GTK theme
+export GTK_THEME=gruvbox-gtk
