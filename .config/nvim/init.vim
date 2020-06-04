@@ -129,7 +129,7 @@ let g:gitgutter_max_signs = 1000
 """
 
 """ coc.nvim
-Plug 'neoclide/coc.nvim', {'branch': 'release', 'do': { -> coc#util#install() }}
+Plug 'neoclide/coc.nvim', {'branch': 'release' }
 "   css, scss, less
 Plug 'neoclide/coc-css', {'do': 'yarn install --frozen-lockfile'}
 "   html, handlebars, razor
