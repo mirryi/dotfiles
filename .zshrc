@@ -199,11 +199,11 @@ export HISTORY_SUBSTRING_SEARCH_HIGHLIGHT_FOUND="fg=white,bold,underline"
 export HISTORY_SUBSTRING_SEARCH_ENSURE_UNIQUE=true
 
 # completions
-export ENHANCD_DIR="$XDG_DATA_HOME/zsh/enhancd"
-export ENHANCD_COMMAND="cd"
-zinit wait lucid for \
-  proto'git' pick'init.sh' atclone'rm $ZINIT_HOME/completions/_enhancd_*.fish' \
-    b4b4r07/enhancd
+# export ENHANCD_DIR="$XDG_DATA_HOME/zsh/enhancd"
+# export ENHANCD_COMMAND="cd"
+# zinit wait lucid for \
+  # proto'git' pick'init.sh' atclone'rm $ZINIT_HOME/completions/_enhancd_*.fish' \
+    # b4b4r07/enhancd
 zinit wait lucid for \
   atinit'ZINIT[COMPINIT_OPTS]=-C; zicompinit; zicdreplay' \
     zdharma/fast-syntax-highlighting \
