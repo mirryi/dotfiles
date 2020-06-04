@@ -3,3 +3,5 @@
 	email = 21zhaoe@protonmail.com
 [push]
 	followTags = true
+[pull]
+	rebase = false
