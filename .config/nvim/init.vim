@@ -349,6 +349,9 @@ let g:pandoc#modules#disabled = ['folding', 'spell']
 Plug 'lifepillar/pgsql.vim'
 let g:sql_type_default = 'pgsql'
 
+""" rmarkdown
+Plug 'vim-pandoc/vim-rmarkdown'
+
 """ vimtex
 " Plug 'lervag/vimtex'
 
