@@ -1,17 +1,24 @@
 #!/bin/sh
 
-### BASIC COMMANDS
-alias ls="ls -a --color"
-alias la="ls -al --color"
-
-### SHORTCUTS
-alias rn="ranger"
+eval "$(fasd --init auto)"
+alias v='f -e nvim'
 
 ### REDEFINITIONS
+alias ls="ls -a --color"
 alias slack-term='slack-term -config "${XDG_CONFIG_HOME}/slack-term/config"'
 alias wget='wget --hsts-file="$XDG_CACHE_HOME/wget-hsts"'
 
-### MACROS
+### SHORTCUTS
+alias la="ls -al --color"
+alias rn="ranger"
+
+alias y="yadm"
+alias yst="yadm status"
+alias ya="yadm add"
+alias yc="yadm commit"
+alias yp="yadm push"
+alias yl="yadm pull"
+alias yf="yadm fetch"
 
 ##  pacman
 #   browse packages
