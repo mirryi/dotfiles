@@ -191,10 +191,6 @@ zinit ice pick'z.sh'
 zinit light rupa/z
 zinit light changyuheng/fz
 
-# fasd
-eval "$(fasd --init auto)"
-alias v='f -e nvim'
-
 # history-substring-search
 zinit light zsh-users/zsh-history-substring-search
 bindkey "$terminfo[kcuu1]" history-substring-search-up
