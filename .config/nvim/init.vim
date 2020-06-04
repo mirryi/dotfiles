@@ -61,52 +61,64 @@ Plug 'junegunn/fzf.vim'
 """ netwr
 let g:netrw_home = nvim_cache
 
+""" ranger
+Plug 'rafaqz/ranger.vim'
+map <leader>rr :RangerEdit<cr>
+map <leader>rv :RangerVSplit<cr>
+map <leader>rs :RangerSplit<cr>
+map <leader>rt :RangerTab<cr>
+map <leader>ri :RangerInsert<cr>
+map <leader>ra :RangerAppend<cr>
+map <leader>rc :set operatorfunc=RangerChangeOperator<cr>g@
+map <leader>rd :RangerCD<cr>
+map <leader>rld :RangerLCD<cr>
+
 """ NERDTree
-Plug 'scrooloose/nerdtree'
-"   git flags support
-Plug 'Xuyuanp/nerdtree-git-plugin'
-"   basic options
-let g:NERDTreeWinSize = 36
-let g:NERDTreeShowHidden = 1
-"   git indicator symbols
-let g:NERDTreeIndicatorMapCustom = {
-      \ "Modified"  : "~",
-      \ "Staged"    : "+",
-      \ "Untracked" : "_",
-      \ "Renamed"   : "➜",
-      \ "Unmerged"  : "═",
-      \ "Deleted"   : "✖",
-      \ "Dirty"     : "✗",
-      \ "Clean"     : "✔︎",
-      \ 'Ignored'   : '☒',
-      \ "Unknown"   : "?"
-      \ }
-"   open NERDTree with key bind
-map <C-n> :NERDTreeToggle<CR>
-"   start automatically if no files are specified
-" autocmd VimEnter * NERDTree
-autocmd StdinReadPre * let s:std_in = 1
-autocmd VimEnter *
-      \   if (argc() == 0 && !exists("s:std_in")) |
-      \     NERDTree |
-      \   endif
-"   start automatically when opening a directory
-autocmd VimEnter *
-      \   if (argc() == 1 && isdirectory(argv()[0]) &&
-      \     !exists("s:std_in")) |
-      \     exe 'NERDTree' argv()[0] |
-      \     wincmd p |
-      \     ene |
-      \     exe 'cd '.argv()[0] |
-      \     wincmd p |
-      \   endif
-"   close vim if only tree is left open
-autocmd bufenter *
-      \   if (winnr("$") == 1 &&
-      \     exists("b:NERDTree") &&
-      \     b:NERDTree.isTabTree()) |
-      \     q |
-      \   endif
+" Plug 'scrooloose/nerdtree'
+" "   git flags support
+" Plug 'Xuyuanp/nerdtree-git-plugin'
+" "   basic options
+" let g:NERDTreeWinSize = 36
+" let g:NERDTreeShowHidden = 1
+" "   git indicator symbols
+" let g:NERDTreeIndicatorMapCustom = {
+      " \ "Modified"  : "~",
+      " \ "Staged"    : "+",
+      " \ "Untracked" : "_",
+      " \ "Renamed"   : "➜",
+      " \ "Unmerged"  : "═",
+      " \ "Deleted"   : "✖",
+      " \ "Dirty"     : "✗",
+      " \ "Clean"     : "✔︎",
+      " \ 'Ignored'   : '☒',
+      " \ "Unknown"   : "?"
+      " \ }
+" "   open NERDTree with key bind
+" map <C-n> :NERDTreeToggle<CR>
+" "   start automatically if no files are specified
+" " autocmd VimEnter * NERDTree
+" autocmd StdinReadPre * let s:std_in = 1
+" autocmd VimEnter *
+      " \   if (argc() == 0 && !exists("s:std_in")) |
+      " \     NERDTree |
+      " \   endif
+" "   start automatically when opening a directory
+" autocmd VimEnter *
+      " \   if (argc() == 1 && isdirectory(argv()[0]) &&
+      " \     !exists("s:std_in")) |
+      " \     exe 'NERDTree' argv()[0] |
+      " \     wincmd p |
+      " \     ene |
+      " \     exe 'cd '.argv()[0] |
+      " \     wincmd p |
+      " \   endif
+" "   close vim if only tree is left open
+" autocmd bufenter *
+      " \   if (winnr("$") == 1 &&
+      " \     exists("b:NERDTree") &&
+      " \     b:NERDTree.isTabTree()) |
+      " \     q |
+      " \   endif
 
 """
 """ WINDOW
