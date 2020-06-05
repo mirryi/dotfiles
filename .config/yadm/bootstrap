@@ -91,7 +91,7 @@ if [ "$os" == "Arch" ]; then
   install_pkgs ${core_pkgs[@]}
 
   echo "Installing some terminal utils..."
-  util_pkgs=(bc beets croc elinks fasd ffmpeg mpc mpd ncdu ncmpcpp
+  util_pkgs=(bc beets croc elinks fasd ffmpeg fzf mpc mpd ncdu ncmpcpp
              neofetch neovim pandoc pandoc-citeproc pandoc-crossref
              pulsemixer ranger syncthing task youtube-dl)
   install_pkgs ${util_pkgs[@]}
