@@ -12,6 +12,12 @@ alias wget='wget --hsts-file="$XDG_CACHE_HOME/wget-hsts"'
 alias la="ls -al --color"
 alias rn="ranger"
 
+##  misc
+wtm() {
+  echo "scale=2; $(wc -w $1 | awk '{print $1}') / 130" | bc
+}
+
+##  yadm
 alias y="yadm"
 alias yst="yadm status"
 alias ya="yadm add"
@@ -19,10 +25,6 @@ alias yc="yadm commit"
 alias yp="yadm push"
 alias yl="yadm pull"
 alias yf="yadm fetch"
-
-##  pacman
-#   browse packages
-alias pacman-browse-pkgs="pacman -Qq | fzf --preview 'pacman -Qil {}' --layout=reverse --bind 'enter:execute(pacman -Qil {} | less)'"
 
 ##  copy to clipboard
 #   copy text
@@ -43,3 +45,7 @@ alias ydlmp3="youtube-dl --extract-audio --audio-format mp3"
 ##  mullvad
 #   set relay location
 alias mullvadsrl="mullvad relay set location"
+
+##  pacman
+#   browse packages
+alias pacman-browse-pkgs="pacman -Qq | fzf --preview 'pacman -Qil {}' --layout=reverse --bind 'enter:execute(pacman -Qil {} | less)'"
