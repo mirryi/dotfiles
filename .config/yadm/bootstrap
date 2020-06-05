@@ -36,7 +36,10 @@ function create_dir() {
 }
 
 create_dir "$XDG_CACHE_HOME/less"
+create_dir "$XDG_DATA_HOME/beets"
+create_dir "$XDG_DATA_HOME/mpd"
 create_dir "$XDG_DATA_HOME/wine/pfx/default"
+create_dir "$XDG_LOG_HOME/X11"
 
 # Bootstrap neovim
 echo "Bootstrapping neovim..."
