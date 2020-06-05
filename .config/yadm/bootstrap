@@ -96,7 +96,7 @@ if [ "$os" == "Arch" ]; then
              pulsemixer ranger syncthing task youtube-dl)
   install_pkgs ${util_pkgs[@]}
   install_aur_pkgs pandoc-include-code
-  sudo pip3 install pandoc-include
+  sudo pip3 install beets-playlistc pandoc-include
 
   echo "Installing some desktop application packages..."
   desktop_pkgs=(anki dunst feh i3-gaps ibus mpv picom qutebrowser rofi
