@@ -1,4 +1,4 @@
-#!/usr/bin/bash
+#!/bin/bash
 if [ -z ${XDG_DATA_HOME} ]; then
   echo "Required environment variables unset -- re-login to load pam env"
   exit 1
@@ -6,7 +6,24 @@ fi
 
 cd "$HOME" || exit
 
+checkcmd() {
+  local arr=("$@")
+  for cmd in "${arr[@]}"; do
+    printf "Checking for command $cmd..."
+    command -v "$cmd" >/dev/null 2>&1 || { printf " but not found\n" >&2; return 1; }
+    printf " found!\n"
+  done
+}
+
+exit1() {
+  echo "Exiting..."
+  exit 1
+}
+
+sudo true
+
 # Update submodules
+checkcmd yadm || exit1
 echo "Initializing submodules..."
 yadm submodule update --recursive --init
 
@@ -41,6 +58,85 @@ create_dir "$XDG_DATA_HOME/mpd"
 create_dir "$XDG_DATA_HOME/wine/pfx/default"
 create_dir "$XDG_LOG_HOME/X11"
 
+# Install packages?
+os=`lsb_release -si`
+if [ "$os" == "Arch" ]; then
+  echo "Installing packages for Arch..."
+  checkcmd pacman makepkg
+
+  install_pkgs() {
+    pkgs=("$@")
+    sudo pacman -Syq --needed --noconfirm ${pkgs[@]}
+  }
+
+  install_aur_pkgs() {
+    pkgs=("$@")
+    for pkg in "${pkgs[@]}"; do
+      if ! pacman -Qeq $pkg; then
+        echo "Installing '$pkg' from AUR..."
+        local tmp_dir="$HOME/files/tmp/$pkg"
+        git clone "https://aur.archlinux.org/$pkg" "$tmp_dir"
+        cd "$tmp_dir" || exit1
+        makepkg -si --noconfirm
+        cd - || exit1
+        rm -rf "$tmp_dir"
+      fi
+    done
+  }
+
+  echo "Installing some essential packages..."
+  core_pkgs=(base-devel acpi git go imagemagick jdk-openjdk jre-openjdk
+              libnotify maven openssh pulseaudio python r rsync ruby
+              rustup unzip wget yarn zsh)
+  install_pkgs ${core_pkgs[@]}
+
+  echo "Installing some terminal utils..."
+  util_pkgs=(bc beets croc elinks fasd ffmpeg mpc mpd ncdu ncmpcpp
+             neofetch neovim pandoc pandoc-citeproc pandoc-crossref
+             pulsemixer ranger syncthing task youtube-dl)
+  install_pkgs ${util_pkgs[@]}
+  install_aur_pkgs pandoc-include-code
+  sudo pip3 install pandoc-include
+
+  echo "Installing some desktop application packages..."
+  desktop_pkgs=(anki dunst feh i3-gaps ibus mpv picom qutebrowser rofi
+                sxiv termite xorg-server xorg-xinit xss-lock zathura
+                zathura-cb zathura-djvu zathura-pdf-mupdf zathura-ps)
+  install_pkgs ${util_pkgs[@]}
+  install_aur_pkgs ibus-mozc polybar
+
+  echo "Installing some fonts..."
+  font_pkgs=(adobe-source-code-pro-fonts adobe-source-han-sans-cn-fonts
+             adobe-source-han-sans-jp-fonts otf-ipafont otf-ipaexfont
+             otf-ipamjfont otf-latin-modern otf-latinmodern-math
+             noto-fonts-cjk ttf-hack ttf-hanazono ttf-sazanami
+             ttf-fira-code ttf-liberation ttf-inconsolata ttf-font-awesome
+             ttf-ubuntu-font-family)
+  install_pkgs ${font_pkgs[@]}
+
+  font_aur_pkgs=(ttf-mplus ttf-kanjistrokeorders ttf-koruri
+                 ttf-sawarabi-gothic ttf-sawarabi-mincho ttf-vlgothic
+                 ttf-monapo)
+  install_aur_pkgs ${font_pkgs[@]}
+
+  # Enable user services
+  echo "Enabling user systemd services..."
+  user=`id -u -n`
+  sudo systemctl enable --now syncthing@"$user"
+  systemctl --user enable --now mpd
+  systemctl --user enable --now dunst
+  systemctl --user enable --now mpdnotify
+
+  yadm_class=`yadm config local.class`
+  if [ "$yadm_class" == "laptop" ]; then
+    systemctl --user enable --now battery-monitor
+  fi
+fi
+
+# Bootstrap rust
+echo "Bootstrapping rust..."
+rustup default stable
+
 # Bootstrap neovim
 echo "Bootstrapping neovim..."
 nvim_bootstrap="$XDG_CONFIG_HOME/nvim/bootstrap"
@@ -48,21 +144,24 @@ if [ -f "$nvim_bootstrap" ]; then
   $nvim_bootstrap
 fi
 
-# Bootstrap steam
-echo "Bootstrapping Steam..."
+# Bootstrap steam skins
 steam_skins_dir="$XDG_DATA_HOME/Steam/skins"
-create_dir "$steam_skins_dir"
-steam_skins_metro_zip="$steam_skins_dir/metro-for-steam-4.4.zip"
 steam_skins_metro_dir="$steam_skins_dir/metro-for-steam-4.4"
-echo "Downloading metro-for-steam..."
-wget -O "$steam_skins_metro_zip" "https://github.com/minischetti/metro-for-steam/archive/v4.4.zip"
-echo "Decompressing metro-for-steam"
-unzip -o "$steam_skins_metro_zip" -d "$steam_skins_dir"
-rm "$steam_skins_metro_zip"
+if [ ! -d "$steam_skins_metro_dir" ]; then
+  echo "Bootstrapping Steam..."
+  steam_skins_metro_zip="$steam_skins_dir/metro-for-steam-4.4.zip"
 
-steam_skins_metro_patch="$XDG_DATA_HOME/Steam/skins/metro-for-steam-4.4-patch"
-echo "Downloading patch for metro-for-steam..."
-git clone "https://github.com/redsigma/UPMetroSkin.git" "$steam_skins_metro_patch"
-echo "Patching metro-for-steam..."
-cp -r "$steam_skins_metro_patch/Unofficial 4.x Patch/Main Files [Install First]"/* "$steam_skins_metro_dir/"
-rm -rf "$steam_skins_metro_patch"
+  create_dir "$steam_skins_dir"
+  echo "Downloading metro-for-steam..."
+  wget -O "$steam_skins_metro_zip" "https://github.com/minischetti/metro-for-steam/archive/v4.4.zip"
+  echo "Decompressing metro-for-steam"
+  unzip -o "$steam_skins_metro_zip" -d "$steam_skins_dir"
+  rm "$steam_skins_metro_zip"
+
+  steam_skins_metro_patch="$XDG_DATA_HOME/Steam/skins/metro-for-steam-4.4-patch"
+  echo "Downloading patch for metro-for-steam..."
+  git clone "https://github.com/redsigma/UPMetroSkin.git" "$steam_skins_metro_patch"
+  echo "Patching metro-for-steam..."
+  cp -r "$steam_skins_metro_patch/Unofficial 4.x Patch/Main Files [Install First]"/* "$steam_skins_metro_dir/"
+  rm -rf "$steam_skins_metro_patch"
+fi
