@@ -182,14 +182,14 @@ zinit light sei40kr/zsh-fast-alias-tips
 zinit light hlissner/zsh-autopair
 
 # z jump
-export _Z_DATA="$ZSH_DATA/z/data"
-if [[ ! -f "$ZSH_DATA/z/data" ]]; then
-  command mkdir -p "$ZSH_DATA/z"
-  command touch "$ZSH_DATA/z/data"
-fi
-zinit ice pick'z.sh'
-zinit light rupa/z
-zinit light changyuheng/fz
+# export _Z_DATA="$ZSH_DATA/z/data"
+# if [[ ! -f "$ZSH_DATA/z/data" ]]; then
+  # command mkdir -p "$ZSH_DATA/z"
+  # command touch "$ZSH_DATA/z/data"
+# fi
+# zinit ice pick'z.sh'
+# zinit light rupa/z
+# zinit light changyuheng/fz
 
 # history-substring-search
 zinit light zsh-users/zsh-history-substring-search
