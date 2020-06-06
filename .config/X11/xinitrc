@@ -5,6 +5,7 @@ class=`yadm config local.class`
 
 # load xresources
 xrdb -load "$HOME/.config/X11/xresources"
+xrdb -merge "$HOME/.config/X11/xresources.theme"
 
 # disable pc speaker
 xset -b
