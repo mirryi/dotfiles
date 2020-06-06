@@ -47,7 +47,7 @@ nvim +PlugInstall "+source ~/.config/nvim/init.vim" +qall
 
 # Install some coc.nvim extensions
 echo "Installing coc.nvim extensions..."
-nvim "+CocInstall coc-neosnippet coc-vimtex coc-vimlsp" +qall
+nvim "+CocInstall coc-neosnippet coc-python coc-vimtex coc-vimlsp" +qall
 
 if checkcmd go; then
   echo "Install Go binaries..."

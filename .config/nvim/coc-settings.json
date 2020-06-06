@@ -1,6 +1,14 @@
 {
   "suggest.minTriggerInputLength": 2,
 
+  "python.linting.mypyEnabled": false,
+  "python.linting.banditEnabled": false,
+  "python.linting.pylamaEnabled": false,
+  "python.linting.prospectorEnabled": false,
+  "python.linting.pydocstyleEnabled": false,
+  "python.linting.pep8Enabled": false,
+  "python.linting.flake8Enabled": true,
+
   "java.configuration.maven.userSettings": "~/.config/maven/settings.xml",
   "java.import.maven.enabled": true,
   "xml.server.workDir": "~/.local/share/lsp4xml",
