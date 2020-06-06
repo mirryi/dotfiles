@@ -11,17 +11,11 @@
 # load xresources
 xrdb -load "$HOME/.config/X11/xresources"
 
-{% if yadm.hostname == "origin" %}
-xrandr --output HDMI-0 --brightness 0.85
-xrandr --output HDMI-1 --brightness 0.85
-{% endif % }
-
 # disable pc speaker
 xset -b
 
 # pass DISPLAY variable to systemctl
 systemctl --user import-environment DISPLAY
-
 {% if yadm.class == "laptop" %}
 # enable lockscreen
 xss-lock -- "$HOME/.local/bin/lock-screen" &
@@ -42,6 +36,12 @@ export XMODIFIERS=@im=ibus
 export QT_IM_MODULE=ibus
 mkdir -p "$HOME/.local/var/log/ibus"
 ibus-daemon --xim &
+
+# adjust brightness
+{% if yadm.hostname == "origin" %}
+xrandr --output HDMI-0 --brightness 0.7
+xrandr --output HDMI-1 --brightness 0.7
+{% endif % }
 
 # start wm
 mkdir -p "$HOME/.local/var/log/i3"
