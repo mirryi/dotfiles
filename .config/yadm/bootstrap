@@ -106,12 +106,12 @@ if [ "$os" == "Arch" ]; then
   install_aur_pkgs ibus-mozc polybar
 
   echo "Installing some fonts..."
-  font_pkgs=(adobe-source-code-pro-fonts adobe-source-han-sans-cn-fonts
-             adobe-source-han-sans-jp-fonts otf-ipafont otf-ipaexfont
-             otf-ipamjfont otf-latin-modern otf-latinmodern-math
-             noto-fonts-cjk ttf-hack ttf-hanazono ttf-sazanami
-             ttf-fira-code ttf-liberation ttf-inconsolata ttf-font-awesome
-             ttf-ubuntu-font-family)
+  font_pkgs=(adobe-source-code-pro-fonts adobe-source-han-sans-otc-fonts
+             adobe-source-han-sans-cn-fonts adobe-source-han-sans-jp-fonts
+             otf-ipafont otf-ipaexfont otf-ipamjfont otf-latin-modern
+             otf-latinmodern-math noto-fonts-cjk ttf-hack ttf-hanazono
+             ttf-sazanami ttf-fira-code ttf-liberation ttf-inconsolata
+             ttf-font-awesome ttf-ubuntu-font-family)
   install_pkgs ${font_pkgs[@]}
 
   font_aur_pkgs=(ttf-mplus ttf-kanjistrokeorders ttf-koruri
