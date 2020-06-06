@@ -1,0 +1,23 @@
+configuration {
+  theme: "/usr/share/rofi/themes/gruvbox-dark-hard.rasi";
+
+  terminal:          "termite";
+  ssh-client:        "ssh";
+  ssh-command:       "termite -e {ssh-client} {host}";
+
+  width:             50;
+  lines:             15;
+  columns:           2;
+  font:              "Inconsolata 11";
+  show-icons:        true;
+
+  lazy-filter-limit: 15000;
+  line-margin:       5;
+  separator-style:   "dash";
+  hide-scrollbar:    true;
+  fullscreen:        false;
+  dpi:               100;
+
+  kb-row-up:         "Up";
+  kb-row-down:       "Down";
+}
