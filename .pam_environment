@@ -13,7 +13,7 @@ XDG_DATA_DIRS         DEFAULT="${XDG_DATA_HOME}:${XDG_DATA_DIRS}"
 
 PATH                  DEFAULT="${PATH}:${HOME}/.local/bin"
 
-XAUTHORITY            DEFAULT="${XDG_RUNTIME_DIR}/Xauthority"
+# XAUTHORITY            DEFAULT="${XDG_RUNTIME_DIR}/Xauthority"
 XINITRC               DEFAULT="${XDG_CONFIG_HOME}/X11/xinitrc"
 XSERVERRC             DEFAULT="${XDG_CONFIG_HOME}/X11/xserverrc"
 

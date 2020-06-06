@@ -37,11 +37,11 @@ export QT_IM_MODULE=ibus
 mkdir -p "$HOME/.local/var/log/ibus"
 ibus-daemon --xim &
 
-# adjust brightness
 {% if yadm.hostname == "origin" %}
+# adjust brightness
 xrandr --output HDMI-0 --brightness 0.7
 xrandr --output HDMI-1 --brightness 0.7
-{% endif % }
+{% endif %}
 
 # start wm
 mkdir -p "$HOME/.local/var/log/i3"
