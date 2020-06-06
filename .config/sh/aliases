@@ -22,9 +22,11 @@ alias y="yadm"
 alias yst="yadm status"
 alias ya="yadm add"
 alias yc="yadm commit"
+alias ycmsg="yadm commit -m"
 alias yp="yadm push"
 alias yl="yadm pull"
 alias yf="yadm fetch"
+alias yd="yadm diff"
 
 ##  copy to clipboard
 #   copy text
