@@ -1,3 +1,4 @@
+let nvim_config = $XDG_CONFIG_HOME . "/nvim"
 let nvim_data = $XDG_DATA_HOME . "/nvim"
 let nvim_cache = $XDG_CACHE_HOME . "/nvim"
 
@@ -382,19 +383,15 @@ Plug 'sainnhe/gruvbox-material'
 Plug 'mhartington/oceanic-next'
 "   nordisk
 Plug 'kamwitsta/nordisk'
-"   forest-night
-Plug 'sainnhe/vim-color-forest-night'
-"   seiya transparency
-Plug 'miyakogi/seiya.vim'
+"   rainglow
+Plug 'rainglow/vim'
+"   vim-colorschemes
+" Plug 'flazz/vim-colorschemes'
 
 "   end plugin check/installation
 call plug#end()
 
 "   enable termguicolors
 set termguicolors
-"   use gruvbox theme
-set background=dark
-let g:gruvbox_material_background = "medium"
-" let g:airline_theme = 'base16_gruvbox_dark_hard'
-let g:airline_theme = 'zenburn'
-colorscheme gruvbox-material
+
+exec "source " . nvim_config . '/theme.vim'

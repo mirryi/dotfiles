@@ -1,6 +1,7 @@
 {
   "suggest.minTriggerInputLength": 2,
 
+  "python.linting.mypyEnabled": true,
   "python.linting.flake8Enabled": true,
   "python.linting.flake8Args": [
     "--ignore=E501"
