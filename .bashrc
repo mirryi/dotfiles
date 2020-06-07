@@ -19,10 +19,6 @@ HISTFILESIZE=2000
 # update the values of LINES and COLUMNS.
 shopt -s checkwinsize
 
-# source path
-# shellcheck source=.config/sh/path
-[[ -f "$XDG_CONFIG_HOME/sh/path" ]] && source "$XDG_CONFIG_HOME/sh/path"
-
-# source aliases
-# shellcheck source=.config/sh/aliases
-[[ -f "$XDG_CONFIG_HOME/sh/aliases" ]] && source "$XDG_CONFIG_HOME/sh/aliases"
+# source universal env
+# shellcheck source=.config/sh/env
+[[ -f "$XDG_CONFIG_HOME/sh/env" ]] && source "$XDG_CONFIG_HOME/sh/env"
