@@ -1,6 +1,5 @@
 configuration {
-  theme: "/usr/share/rofi/themes/gruvbox-dark-hard.rasi";
-
+  theme:             "/usr/share/rofi/themes/gruvbox-dark.rasi";
   terminal:          "termite";
   ssh-client:        "ssh";
   ssh-command:       "termite -e {ssh-client} {host}";
