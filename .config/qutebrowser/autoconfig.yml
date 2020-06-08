@@ -40,7 +40,7 @@ settings:
   content.autoplay:
     global: false
   content.canvas_reading:
-    global: true
+    global: false
   content.geolocation:
     global: false
   content.headers.user_agent:
