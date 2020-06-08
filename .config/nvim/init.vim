@@ -153,8 +153,9 @@ Plug 'neoclide/coc-java', {'do': 'yarn install --frozen-lockfile'}
 Plug 'neoclide/coc-json', {'do': 'yarn install --frozen-lockfile'}
 "   python
 " Plug 'neoclide/coc-python', {'do': 'yarn install --frozen-lockfile'}
-"   rust (using rls)
-Plug 'neoclide/coc-rls', {'do': 'yarn install --frozen-lockfile'}
+"   rust (using rls or rust-analyzer)
+" Plug 'neoclide/coc-rls', {'do': 'yarn install --frozen-lockfile'}
+Plug 'fannheyward/coc-rust-analyzer', {'do': 'yarn install --frozen-lockfile'}
 "   R
 Plug 'neoclide/coc-r-lsp', {'do': 'yarn install --frozen-lockfile'}
 "   latex (with vimtex)
