@@ -89,13 +89,15 @@ if [ "$os" == "Arch" ]; then
               libnotify maven openssh pulseaudio python r rsync ruby
               rustup unzip wget yarn zsh)
   install_pkgs ${core_pkgs[@]}
+  rustup default stable
+  Rscript -e "install.packages(c('languageserver', 'lintr', 'rmarkdown'))"
 
   echo "Installing some terminal utils..."
   util_pkgs=(bc beets croc elinks fasd ffmpeg flake8 fzf mpc mpd ncdu
              ncmpcpp neofetch neovim pandoc pandoc-citeproc pandoc-crossref
              pulsemixer python-jedi ranger syncthing task youtube-dl)
   install_pkgs ${util_pkgs[@]}
-  install_aur_pkgs pandoc-include-code texlive-installer
+  install_aur_pkgs hangups pandoc-include-code texlive-installer
   sudo pip3 install beets-playlistc pandoc-include
 
   echo "Installing some desktop application packages..."
@@ -132,10 +134,6 @@ if [ "$os" == "Arch" ]; then
     systemctl --user enable --now battery-monitor
   fi
 fi
-
-# Bootstrap rust
-echo "Bootstrapping rust..."
-rustup default stable
 
 # Bootstrap neovim
 echo "Bootstrapping neovim..."
