@@ -92,6 +92,7 @@ settings:
       awiki: https://wiki.archlinux.org/index.php?search={}
       gdr: https://www.goodreads.com/search?q={}
       ghb: https://github.com/search?q={}
+      jpd: https://dictionary.goo.ne.jp/srch/all/{}/m0
       mal: https://myanimelist.net/search/all?q={}
       npmjs: https://www.npmjs.com/search?q={}
       prtdb: https://www.protondb.com/search?q={}
