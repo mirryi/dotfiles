@@ -1,0 +1,20 @@
+# Accounts
+source ~/.config/mutt/accounts
+
+# General settings
+# sort with most recent on top
+set sort=reverse-date-received
+
+# Mailcap
+set mailcap_path=~/.config/mutt/mailcap
+
+# automatically open HTML
+auto_view text/html
+alternative_order text/plain text/html
+
+# Macros
+# sync offlineimap
+macro index \cr '<enter-command>unset wait_key<enter><shell-escape>offlineimap -o<enter>' 'Sync offlineimap'
+
+# <ctrl>b to navigate and open urls
+macro pager \cb '<pipe-entry>urlview<enter>' 'Follow links with urlview'
