@@ -144,34 +144,34 @@ let g:gitgutter_max_signs = 1000
 """ coc.nvim
 Plug 'neoclide/coc.nvim', {'branch': 'release' }
 "   css, scss, less
-Plug 'neoclide/coc-css', {'do': 'yarn install --frozen-lockfile'}
+" Plug 'neoclide/coc-css', {'do': 'yarn install --frozen-lockfile'}
 "   html, handlebars, razor
-Plug 'neoclide/coc-html', {'do': 'yarn install --frozen-lockfile'}
+" Plug 'neoclide/coc-html', {'do': 'yarn install --frozen-lockfile'}
 "   java (using eclipse.jdt.ls)
-Plug 'neoclide/coc-java', {'do': 'yarn install --frozen-lockfile'}
+" Plug 'neoclide/coc-java', {'do': 'yarn install --frozen-lockfile'}
 "   json
-Plug 'neoclide/coc-json', {'do': 'yarn install --frozen-lockfile'}
+" Plug 'neoclide/coc-json', {'do': 'yarn install --frozen-lockfile'}
 "   python
 " Plug 'neoclide/coc-python', {'do': 'yarn install --frozen-lockfile'}
 "   rust (using rls or rust-analyzer)
 " Plug 'neoclide/coc-rls', {'do': 'yarn install --frozen-lockfile'}
-Plug 'fannheyward/coc-rust-analyzer', {'do': 'yarn install --frozen-lockfile'}
+" Plug 'fannheyward/coc-rust-analyzer', {'do': 'yarn install --frozen-lockfile'}
 "   R
-Plug 'neoclide/coc-r-lsp', {'do': 'yarn install --frozen-lockfile'}
+" Plug 'neoclide/coc-r-lsp', {'do': 'yarn install --frozen-lockfile'}
 "   latex (with vimtex)
 "   does not work, use :CocInstall coc-vimtex
 " Plug 'neoclide/coc-vimtex', {'do': 'yarn install --frozen-lockfile'}
 "   typescript, javascript (using tsserver)
-Plug 'neoclide/coc-tsserver', {'do': 'yarn install --frozen-lockfile'}
+" Plug 'neoclide/coc-tsserver', {'do': 'yarn install --frozen-lockfile'}
 "   vimscript (using viml)
 "   does not work, use :CocInstall coc-vimlsp
 " Plug 'iamcco/coc-vimlsp', {'do': 'yarn install --frozen-lockfile'}
 "   yaml
-Plug 'neoclide/coc-yaml', {'do': 'yarn install --frozen-lockfile'}
+" Plug 'neoclide/coc-yaml', {'do': 'yarn install --frozen-lockfile'}
 "   xml
-Plug 'fannheyward/coc-xml', {'do': 'yarn install --frozen-lockfile'}
+" Plug 'fannheyward/coc-xml', {'do': 'yarn install --frozen-lockfile'}
 "   zsh
-Plug 'tjdevries/coc-zsh'
+" Plug 'tjdevries/coc-zsh'
 
 "   tab trigger for completion with characters ahead and navigate
 inoremap <silent><expr> <TAB>
