@@ -372,6 +372,11 @@ Plug 'vim-pandoc/vim-rmarkdown'
 """ cxx semantic highlighting
 Plug 'jackguo380/vim-lsp-cxx-highlight'
 
+""" thesaurus
+Plug 'ron89/thesaurus_query.vim'
+let g:tq_map_keys = 0
+nnoremap <leader>t :ThesaurusQueryReplaceCurrentWord<CR>
+
 """
 """ THEME
 """
