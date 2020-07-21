@@ -18,8 +18,8 @@ if [ -d "$HOME/.local/share/npm/bin" ]; then
 fi
 
 # Ruby gems installed binaries
-if [ -d "$HOME/.gem/ruby/2.7.0/bin" ]; then
-  export PATH="$PATH:$HOME/.gem/ruby/2.7.0/bin"
+if [ -d "$HOME/.local/share/gem/bin" ]; then
+  export PATH="$PATH:$HOME/.local/share/gem/bin"
 fi
 
 # Go installed binaries
