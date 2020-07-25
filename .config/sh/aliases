@@ -28,6 +28,11 @@ alias yl="yadm pull"
 alias yf="yadm fetch"
 alias yd="yadm diff"
 
+##  delete neovim swap file
+rmnswap() {
+  rm "$HOME/.local/share/nvim/swap/$(echo $1 | tr '/' '%' ).swp"
+}
+
 ##  copy to clipboard
 #   copy text
 alias cclip="xclip -selection clipboard"
