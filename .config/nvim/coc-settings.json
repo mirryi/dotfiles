@@ -3,13 +3,14 @@
 
   "python.linting.mypyEnabled": true,
   "python.linting.flake8Enabled": true,
-  "python.linting.flake8Args": [
-    "--ignore=E501"
-  ],
+  "python.linting.flake8Args": ["--ignore=E501"],
 
   "java.configuration.maven.userSettings": "~/.config/maven/settings.xml",
   "java.import.maven.enabled": true,
   "xml.server.workDir": "~/.local/share/lsp4xml",
+
+  "rust-analyzer.serverPath": "/usr/bin/rust-analyzer",
+
   "languageserver": {
     "bash": {
       "command": "bash-language-server",
