@@ -40,7 +40,7 @@ settings:
   content.autoplay:
     global: false
   content.canvas_reading:
-    global: false
+    global: true
   content.geolocation:
     global: false
   content.headers.user_agent:
@@ -53,7 +53,7 @@ settings:
   content.register_protocol_handler:
     https://mail.google.com?extsrc=mailto&url=%25s: false
   content.webgl:
-    global: false
+    global: true
   content.webrtc_ip_handling_policy:
     global: default-public-interface-only
   downloads.location.directory:
