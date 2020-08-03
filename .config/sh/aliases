@@ -13,6 +13,11 @@ alias la="ls -al --color"
 alias rn="ranger"
 
 ##  misc
+gdiff() {
+  preview="git diff $@ --color=always -- {-1}"
+  git diff $@ --name-only | fzf -m --ansi --preview $preview
+}
+
 wtm() {
   echo "scale=2; $(wc -w $1 | awk '{print $1}') / 130" | bc
 }
@@ -28,9 +33,14 @@ alias yl="yadm pull"
 alias yf="yadm fetch"
 alias yd="yadm diff"
 
+ydiff() {
+  preview="yadm diff $@ --color=always -- {-1}"
+  yadm diff $@ --name-only | fzf -m --ansi --preview $preview
+}
+
 ##  delete neovim swap file
 rmnswap() {
-  rm "$HOME/.local/share/nvim/swap/$(echo $1 | tr '/' '%' ).swp"
+  rm "$HOME/.local/share/nvim/swap/$(echo $1 | tr '/' '%').swp"
 }
 
 ##  copy to clipboard
