@@ -10,7 +10,10 @@ checkcmd() {
   local arr=("$@")
   for cmd in "${arr[@]}"; do
     printf "Checking for command $cmd..."
-    command -v "$cmd" >/dev/null 2>&1 || { printf " but not found\n" >&2; return 1; }
+    command -v "$cmd" >/dev/null 2>&1 || {
+      printf " but not found\n" >&2
+      return 1
+    }
     printf " found!\n"
   done
 }
@@ -59,7 +62,7 @@ create_dir "$XDG_DATA_HOME/wine/pfx/default"
 create_dir "$XDG_LOG_HOME/X11"
 
 # Install packages?
-os=`lsb_release -si`
+os=$(lsb_release -si)
 if [ "$os" == "Arch" ]; then
   echo "Installing packages for Arch..."
   checkcmd pacman makepkg
@@ -86,50 +89,50 @@ if [ "$os" == "Arch" ]; then
 
   echo "Installing some essential packages..."
   core_pkgs=(base-devel acpi git go imagemagick jdk-openjdk jre-openjdk
-              libnotify maven openssh pulseaudio python r rsync ruby
-              rustup unzip wget yarn zsh)
+    libnotify maven openssh pulseaudio python r rsync ruby
+    rustup unzip wget yarn zsh)
   install_pkgs ${core_pkgs[@]}
   rustup default stable
   Rscript -e "install.packages(c('languageserver', 'lintr', 'rmarkdown'))"
 
   echo "Installing some terminal utils..."
   util_pkgs=(bc beets croc elinks fasd ffmpeg flake8 fzf mpc mpd ncdu
-             ncmpcpp neofetch neovim pandoc pandoc-citeproc pandoc-crossref
-             pulsemixer python-jedi ranger syncthing task youtube-dl)
+    ncmpcpp neofetch neovim pandoc pandoc-citeproc pandoc-crossref
+    pulsemixer python-jedi ranger syncthing task youtube-dl)
   install_pkgs ${util_pkgs[@]}
   install_aur_pkgs hangups pandoc-include-code texlive-installer
   sudo pip3 install beets-playlistc pandoc-include
 
   echo "Installing some desktop application packages..."
-  desktop_pkgs=(anki dunst feh i3-gaps ibus mpv picom qutebrowser rofi
-                sxiv termite xorg-server xorg-xinit xss-lock zathura
-                zathura-cb zathura-djvu zathura-pdf-mupdf zathura-ps)
+  desktop_pkgs=(alacritty anki dunst feh i3-gaps ibus mpv picom qutebrowser
+    rofi sxiv xorg-server xorg-xinit xss-lock zathura
+    zathura-cb zathura-djvu zathura-pdf-mupdf zathura-ps)
   install_pkgs ${util_pkgs[@]}
   install_aur_pkgs ibus-mozc polybar
 
   echo "Installing some fonts..."
   font_pkgs=(adobe-source-code-pro-fonts adobe-source-han-sans-otc-fonts
-             adobe-source-han-sans-cn-fonts adobe-source-han-sans-jp-fonts
-             otf-ipafont otf-ipaexfont otf-ipamjfont otf-latin-modern
-             otf-latinmodern-math noto-fonts-cjk ttf-hack ttf-hanazono
-             ttf-sazanami ttf-fira-code ttf-liberation ttf-inconsolata
-             ttf-font-awesome ttf-ubuntu-font-family)
+    adobe-source-han-sans-cn-fonts adobe-source-han-sans-jp-fonts
+    otf-ipafont otf-ipaexfont otf-ipamjfont otf-latin-modern
+    otf-latinmodern-math noto-fonts-cjk ttf-hack ttf-hanazono
+    ttf-sazanami ttf-fira-code ttf-liberation ttf-inconsolata
+    ttf-font-awesome ttf-ubuntu-font-family)
   install_pkgs ${font_pkgs[@]}
 
   font_aur_pkgs=(ttf-mplus ttf-kanjistrokeorders ttf-koruri
-                 ttf-sawarabi-gothic ttf-sawarabi-mincho ttf-vlgothic
-                 ttf-monapo)
+    ttf-sawarabi-gothic ttf-sawarabi-mincho ttf-vlgothic
+    ttf-monapo)
   install_aur_pkgs ${font_pkgs[@]}
 
   # Enable user services
   echo "Enabling user systemd services..."
-  user=`id -u -n`
+  user=$(id -u -n)
   sudo systemctl enable --now syncthing@"$user"
   systemctl --user enable --now mpd
   systemctl --user enable --now dunst
   systemctl --user enable --now mpdnotify
 
-  yadm_class=`yadm config local.class`
+  yadm_class=$(yadm config local.class)
   if [ "$yadm_class" == "laptop" ]; then
     systemctl --user enable --now battery-monitor
   fi
