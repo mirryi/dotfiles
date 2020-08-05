@@ -6,9 +6,6 @@
 # define aliases from shared aliases files
 . "$XDG_CONFIG_HOME/sh/aliases"
 
-# default terminal
-# export TERM=screen-256color
-# export TERM=xterm-termite
 # default editor
 export EDITOR=nvim
 export NVIM_LISTEN_ADDRESS=/tmp/nvim

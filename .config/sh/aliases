@@ -7,6 +7,7 @@ alias v='f -e nvim'
 alias ls="ls -a --color"
 alias slack-term='slack-term -config "${XDG_CONFIG_HOME}/slack-term/config"'
 alias wget='wget --hsts-file="$XDG_CACHE_HOME/wget-hsts"'
+alias tmux='tmux -f ~/.config/tmux/tmux.conf'
 
 ### SHORTCUTS
 alias la="ls -al --color"
