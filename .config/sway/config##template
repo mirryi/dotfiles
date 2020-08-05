@@ -57,8 +57,8 @@ bindsym $mod+g exec rofi -show ssh
 #   network manager dmenu
 bindsym $mod+Shift+g exec networkmanager_dmenu
 
-##  termite
-#   open termite
+##  terminal
+#   open alacritty
 bindsym $mod+t exec alacritty
 #   file explorer
 bindsym $mod+Shift+t exec alacritty -t "file browser" -e ranger

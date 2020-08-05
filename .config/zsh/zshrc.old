@@ -80,10 +80,6 @@ source $XDG_CONFIG_HOME/sh/aliases
 ##  Define path from shared path file.
 source $XDG_CONFIG_HOME/sh/path
 
-##  Default terminal is termite.
-export TERM=xterm-termite
-
 ##  Use neovim as preferred editor for local and remote
 ##  sessions.
 export EDITOR='nvim'
-

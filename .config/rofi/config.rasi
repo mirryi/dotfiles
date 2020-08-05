@@ -1,13 +1,13 @@
 configuration {
   theme:             "/usr/share/rofi/themes/gruvbox-dark.rasi";
-  terminal:          "termite";
+  terminal:          "alacritty";
   ssh-client:        "ssh";
-  ssh-command:       "termite -e {ssh-client} {host}";
+  ssh-command:       "alacritty -e {ssh-client} {host}";
 
   width:             50;
   lines:             15;
   columns:           2;
-  font:              "Inconsolata 11";
+  font:              "Iosevka Nerd Font 10";
   show-icons:        true;
 
   lazy-filter-limit: 15000;

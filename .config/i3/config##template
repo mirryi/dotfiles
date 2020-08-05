@@ -58,15 +58,15 @@ bindsym $mod+g exec rofi -show ssh
 #   network manager dmenu
 bindsym $mod+Shift+g exec networkmanager_dmenu
 
-##  termite
-#   open termite
-bindsym $mod+t exec termite
+##  terminal
+#   open alacritty
+bindsym $mod+t exec alacritty
 #   file explorer
-bindsym $mod+Shift+t exec termite -t "file browser" -e ranger
+bindsym $mod+Shift+t exec alacritty -t "file browser" -e ranger
 #   task manager
-bindsym $mod+y exec termite -t "task manager" -e htop
+bindsym $mod+y exec alacritty -t "task manager" -e htop
 #   music player
-bindsym $mod+Shift+y exec termite -t "music player" -e ncmpcpp
+bindsym $mod+Shift+y exec alacritty -t "music player" -e ncmpcpp
 
 ##  control audio
 #   mute
