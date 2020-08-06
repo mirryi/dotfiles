@@ -56,6 +56,9 @@ nnoremap L gt
 """ NAVIGATION
 """
 
+""" tmux-focus-events
+Plug 'tmux-plugins/vim-tmux-focus-events'
+
 """ fzf
 Plug 'junegunn/fzf.vim'
 
