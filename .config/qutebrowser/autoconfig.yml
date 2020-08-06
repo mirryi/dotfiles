@@ -46,6 +46,9 @@ settings:
   content.headers.user_agent:
     global: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like
       Gecko) Chrome/79.0.3945.117 Safari/537.36
+  content.host_blocking.whitelist:
+    global:
+    - park.above.com
   content.javascript.can_access_clipboard:
     global: true
   content.pdfjs:
@@ -92,7 +95,7 @@ settings:
       awiki: https://wiki.archlinux.org/index.php?search={}
       gdr: https://www.goodreads.com/search?q={}
       ghb: https://github.com/search?q={}
-      jpd: https://dictionary.goo.ne.jp/srch/all/{}/m0
+      jpd: https://dictionary.goo.ne.jp/srch/all/{}/m0u
       mal: https://myanimelist.net/search/all?q={}
       npmjs: https://www.npmjs.com/search?q={}
       prtdb: https://www.protondb.com/search?q={}
