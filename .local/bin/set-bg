@@ -1,2 +1,2 @@
-#!/usr/bin/sh
-feh --no-fehbg --bg-fill "$XDG_CONFIG_HOME/wallpapers/windmills.jpg"
+#!/bin/sh
+feh --no-fehbg --bg-fill "$XDG_CONFIG_HOME/wallpapers/still.jpg"
