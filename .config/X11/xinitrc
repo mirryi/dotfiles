@@ -1,5 +1,8 @@
 #!/bin/sh
 
+# alacritty scale factor
+export WINIT_X11_SCALE_FACTOR=1
+
 # yadm variables
 class=`yadm config local.class`
 
