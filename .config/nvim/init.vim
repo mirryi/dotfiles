@@ -450,7 +450,7 @@ endfunction
 function! WordFrequency() range
   " Words are separated by whitespace or punctuation characters
   let wordSeparators = '[[:blank:][:punct:]]\+'
-  let allWords = split(join(getline(a:firstline, a:lastline)), wordSeparators)
+  let allWords = map(split(join(getline(a:firstline, a:lastline)), wordSeparators), {_, val -> tolower(val)})
   let wordToCount = {}
   for word in allWords
     let wordToCount[word] = get(wordToCount, word, 0) + 1
