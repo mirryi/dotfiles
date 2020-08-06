@@ -31,11 +31,12 @@ env:
 font:
   bold:
     family: 'Iosevka Nerd Font'
-    stle: Bold
+    style: Bold
+    size: 10
   normal:
     family: 'Iosevka Nerd Font'
     style: Regular
-  size: 10
+    size: 10
 key_bindings:
   - action: Paste
     key: V
