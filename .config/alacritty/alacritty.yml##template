@@ -35,7 +35,11 @@ font:
   normal:
     family: 'Iosevka Nerd Font'
     style: Regular
+{% if yadm.hostname == "rice" %}
+  size: 11
+{% else %}
   size: 10
+{% endif %}
 key_bindings:
   - action: Paste
     key: V
