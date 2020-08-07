@@ -49,7 +49,7 @@ bindsym $mod+Shift+x exec xset s activate
 {% endif %}
 
 ##  wallpaper
-bindsym $mod+u exec animated-bg toggle
+bindsym $mod+u exec wallpaper-ctl toggle
 
 ##  rofi menu
 #   application runner
@@ -231,7 +231,7 @@ bindsym Mod4+Escape mode "passthrough"
 ######### STARTUP #########
 
 # set wallpaper
-exec --no-startup-id exec set-bg
+exec --no-startup-id exec wallpaper-ctl kill
 
 # start polybar
 exec --no-startup-id exec launch-polybar

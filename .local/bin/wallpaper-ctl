@@ -1,5 +1,6 @@
 #!/bin/bash
 
+wallpapers_config="$XDG_CONFIG_HOME/wallpapers"
 cache_dir="$XDG_CACHE_HOME/wallpaper"
 pid_file="$cache_dir/animated_pid"
 toggle_file="$cache_dir/toggled"
@@ -13,8 +14,12 @@ write_toggle() {
   echo $1 > "$toggle_file"
 }
 
+load_still() {
+  feh --no-fehbg --bg-fill "$wallpapers_config/still.jpg"
+}
+
 start_paperview() {
-  paperview "$XDG_CONFIG_HOME/wallpapers/animated" 40 &
+  paperview "$wallpapers_config/animated" 40 &
   pid=$!
 
   mkdir -p "$cache_dir"
@@ -48,7 +53,9 @@ suspend_paperview() {
     # suspend the process if it exists
     pid_exists $pid && kill -STOP $pid
   fi
+
   write_toggle 0
+  load_still
 }
 
 kill_paperview() {
@@ -60,6 +67,7 @@ kill_paperview() {
   fi
 
   write_toggle 0
+  load_still
 }
 
 # switch play/pause
