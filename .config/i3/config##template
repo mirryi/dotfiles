@@ -48,6 +48,9 @@ bindsym $mod+Shift+x exec lock-screen
 bindsym $mod+Shift+x exec xset s activate
 {% endif %}
 
+##  wallpaper
+bindsym $mod+u exec animated-bg toggle
+
 ##  rofi menu
 #   application runner
 bindsym $mod+d exec rofi -show run
