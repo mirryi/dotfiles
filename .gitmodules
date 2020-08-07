@@ -4,6 +4,6 @@
 [submodule ".local/share/themes/gruvbox-gtk"]
   path = .local/share/themes/gruvbox-gtk
   url = https://github.com/3ximus/gruvbox-gtk
-[submodule "/home/dophin2009/.tmux/plugins/tpm"]
-  path = /home/dophin2009/.tmux/plugins/tpm
+[submodule ".tmux/plugins/tpm"]
+  path = .tmux/plugins/tpm
   url = https://github.com/tmux-plugins/tpm
