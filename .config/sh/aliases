@@ -10,6 +10,7 @@ alias wget='wget --hsts-file="$XDG_CACHE_HOME/wget-hsts"'
 alias tmux='tmux -f ~/.config/tmux/tmux.conf'
 
 ### SHORTCUTS
+alias x="exit"
 alias la="ls -al --color"
 alias rn="ranger"
 
