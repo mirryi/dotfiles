@@ -51,6 +51,11 @@ alias cclip="xclip -selection clipboard"
 #   copy image
 alias iclip="xclip -selection clipboard -t image/png -i"
 
+##  dictd
+#   wordnet english dictionary search
+alias def="dict -d wn"
+alias th="dict -d moby-thesaurus"
+
 ##  music
 #   beet
 alias beetup="beet update && beet splupdate"
