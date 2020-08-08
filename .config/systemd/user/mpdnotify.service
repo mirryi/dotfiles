@@ -3,7 +3,7 @@ Description=Notification daemon for MPD
 After=mpd.service
 
 [Service]
-ExecStart=/home/dophin2009/.local/bin/mpdnotify monitor
+ExecStart=/usr/local/bin/mpdnotify monitor
 
 [Install]
 WantedBy=default.target
