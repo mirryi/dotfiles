@@ -159,12 +159,6 @@ zinit ice depth=1
 zinit light romkatv/powerlevel10k
 
 ### load plugins
-ZINIT_PLUGIN_DIR="$ZINIT_HOME/plugins"
-# goto
-if [[ ! -f "$ZINIT_PLUGIN_DIR/_local---goto/goto.plugin.zsh" ]]; then
-  command ln -s "$ZSH_CONFIG/plugins/goto" "$ZINIT_PLUGIN_DIR/_local---goto"
-fi
-zinit wait lucid for _local/goto
 
 # auto-notify
 AUTO_NOTIFY_IGNORE+=("ranger")
