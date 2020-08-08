@@ -60,3 +60,16 @@ fi
 ## R user libraries directory
 export R_PROFILE="$XDG_CONFIG_HOME/R/Rprofile"
 export R_LIBS_USER="$XDG_DATA_HOME/R/library"
+
+## Remove duplicates
+old_PATH=$PATH:; PATH=
+while [ -n "$old_PATH" ]; do
+  x=${old_PATH%%:*}
+  case $PATH: in
+    *:"$x":*) ;;
+    *) PATH=$PATH:$x;;
+  esac
+  old_PATH=${old_PATH#*:}
+done
+PATH=${PATH#:}
+unset old_PATH x
