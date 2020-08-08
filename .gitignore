@@ -21,7 +21,6 @@ files/
 
 !.local/bin/
 !.local/share/themes/
-!.local/var/services/
 
 # config
 !.config/
@@ -59,8 +58,6 @@ files/
 !.config/rofi/
 !.config/rtv/
 !.config/sh/
-!.config/sv/
-!.config/sway/
 !.config/systemd/
 !.config/task/
 !.config/termite/
