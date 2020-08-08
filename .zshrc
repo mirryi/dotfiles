@@ -25,7 +25,7 @@ export SAVEHIST=290000
 export HISTFILE="$ZSH_CACHE/history"
 
 ### environment
-source "$XDG_CONFIG_HOME/sh/env"
+source "$XDG_CONFIG_HOME/zsh/env"
 
 ### macros / aliases
 # change directory on demand after exiting ranger
