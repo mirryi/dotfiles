@@ -55,7 +55,7 @@ alias iclip="xclip -selection clipboard -t image/png -i"
 ##  dictd
 #   wordnet english dictionary search
 alias def="dict -d wn"
-alias th="dict -d moby-thesaurus"
+alias th="aiksaurus"
 
 ##  music
 #   beet
