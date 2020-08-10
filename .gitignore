@@ -30,7 +30,7 @@ files/
 !.config/bat/
 !.config/beets/
 !.config/cursedtag/
-!.config/dftctl/
+!.config/dftpl/
 !.config/dunst/
 !.config/elinks/
 !.config/goto/
