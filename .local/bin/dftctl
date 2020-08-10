@@ -1,0 +1,70 @@
+#!/bin/bash
+# Usage: dftctl <THEME>
+
+exit_f() {
+  echo "$1"
+  exit 1
+}
+
+applications=(alacritty)
+
+config_dir="$XDG_CONFIG_HOME/dftctl"
+templates_dir="$config_dir/templates"
+themes_dir="$config_dir/themes"
+
+data_dir="$XDG_DATA_HOME/dftctl"
+activated_dir="$data_dir/activated"
+activated_yaml="$data_dir/activated.yaml"
+
+if [[ -f "$config_dir/common.yaml" ]]; then
+  common_yaml="$config_dir/common.yaml"
+elif [[ -f "$config_dir/common.yml" ]]; then
+  common_yaml="$config_dir/common.yaml"
+fi
+
+theme="$1"
+if [[ -f "$themes_dir/$theme.yaml" ]]; then
+  theme_yaml="$themes_dir/$theme.yaml"
+elif [[ -f "$themes_dir/$theme.yml" ]]; then
+  theme_yaml="$themes_dir/$theme.yml"
+else
+  exit_f "activate: $themes_dir/$theme.y(a)?ml not found"
+fi
+
+gotpl_f() {
+  renderizer --settings="$theme_yaml" -C --hostname="$(hostname)" "$templates_dir/$1"
+}
+
+restore_file() {
+  file="$1"
+  bak="$file.bak"
+  if [[ -f "$bak" ]]; then
+    if [[ -f "$file" ]]; then
+      rm "$file"
+    fi
+    mv $bak $file
+  fi
+}
+
+backup_file() {
+  file="$1"
+  if [[ -f "$file" ]]; then
+    mv "$file" "$file.bak"
+  fi
+}
+
+link_from_activated() {
+  ln -sf "$activated_dir/$1" "$2"
+}
+
+# create activated dir if not exist
+mkdir -p "$activated_dir"
+
+# merge common and theme yaml files into one
+# echo $(yq m -a "$common_yaml" "$theme_yaml") >"$activated_yaml"
+
+# run activate scripts for applications
+for app in $applications; do
+  app_script="$config_dir/$app.sh"
+  source "$app_script"
+done
