@@ -9,11 +9,14 @@ alacritty_config_name="alacritty.yml"
 alacritty_config_dir="$XDG_CONFIG_HOME/alacritty"
 # path of the configuration file
 alacritty_config_yaml="$alacritty_config_dir/$alacritty_config_name"
+# path of the generated directory
+alacritty_activated_dir="$activated_dir/alacritty"
 # path of the generated configuration file
-alacritty_config_activated="$activated_dir/$alacritty_config_name"
+alacritty_config_activated="$alacritty_activated_dir/$alacritty_config_name"
 
 restore_file "$alacritty_config_yaml"
 backup_file "$alacritty_config_yaml"
 
-echo "$(gotpl_f "$alacritty_config_template" <"$theme_yaml")" >"$alacritty_config_activated"
+mkdir -p "$alacritty_activated_dir"
+gotpl_f "$alacritty_config_template" "$alacritty_config_activated"
 ln -sf "$alacritty_config_activated" "$alacritty_config_yaml"

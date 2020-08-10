@@ -6,7 +6,7 @@ exit_f() {
   exit 1
 }
 
-applications=(alacritty)
+applications=(alacritty bat dunst hangups i3)
 
 config_dir="$XDG_CONFIG_HOME/dftctl"
 templates_dir="$config_dir/templates"
@@ -16,23 +16,23 @@ data_dir="$XDG_DATA_HOME/dftctl"
 activated_dir="$data_dir/activated"
 activated_yaml="$data_dir/activated.yaml"
 
-if [[ -f "$config_dir/common.yaml" ]]; then
-  common_yaml="$config_dir/common.yaml"
-elif [[ -f "$config_dir/common.yml" ]]; then
-  common_yaml="$config_dir/common.yaml"
-fi
-
-theme="$1"
-if [[ -f "$themes_dir/$theme.yaml" ]]; then
-  theme_yaml="$themes_dir/$theme.yaml"
-elif [[ -f "$themes_dir/$theme.yml" ]]; then
-  theme_yaml="$themes_dir/$theme.yml"
-else
-  exit_f "activate: $themes_dir/$theme.y(a)?ml not found"
-fi
-
 gotpl_f() {
-  renderizer --settings="$theme_yaml" -C --hostname="$(hostname)" "$templates_dir/$1"
+  if [[ -n "$common_yaml" ]]; then
+    settings_flags=(--settings="$common_yaml")
+  else
+    settings_flags=()
+  fi
+
+  settings_flags+=(--settings="$theme_yaml")
+
+  if [[ -n "$local_yaml" ]]; then
+    settings_flags+=(--settings="$local_yaml")
+  fi
+
+  echo "$(renderizer --missing=zero \
+    ${settings_flags[@]} \
+    -C --hostname="$(hostname)" \
+    "$templates_dir/$1")" >"$2"
 }
 
 restore_file() {
@@ -57,14 +57,43 @@ link_from_activated() {
   ln -sf "$activated_dir/$1" "$2"
 }
 
-# create activated dir if not exist
-mkdir -p "$activated_dir"
+activate() {
+  if [[ -f "$config_dir/common.yaml" ]]; then
+    common_yaml="$config_dir/common.yaml"
+  elif [[ -f "$config_dir/common.yml" ]]; then
+    common_yaml="$config_dir/common.yaml"
+  fi
 
-# merge common and theme yaml files into one
-# echo $(yq m -a "$common_yaml" "$theme_yaml") >"$activated_yaml"
+  if [[ -f "$config_dir/local.yaml" ]]; then
+    local_yaml="$config_dir/local.yaml"
+  elif [[ -f "$config_dir/local.yml" ]]; then
+    local_yaml="$config_dir/local.yaml"
+  fi
 
-# run activate scripts for applications
-for app in $applications; do
-  app_script="$config_dir/$app.sh"
-  source "$app_script"
-done
+  theme="$1"
+  if [[ -f "$themes_dir/$theme.yaml" ]]; then
+    theme_yaml="$themes_dir/$theme.yaml"
+  elif [[ -f "$themes_dir/$theme.yml" ]]; then
+    theme_yaml="$themes_dir/$theme.yml"
+  else
+    exit_f "activate: $themes_dir/$theme.y(a)?ml not found"
+  fi
+
+  # create activated dir if not exist
+  mkdir -p "$activated_dir"
+
+  # run activate scripts for applications
+  for app in ${applications[*]}; do
+    echo "Reloading $app..."
+    app_script="$config_dir/$app"
+    if [[ -f "$app_script.sh" ]]; then
+      source "$app_script.sh"
+    fi
+  done
+}
+
+case "$1" in
+"activate")
+  activate $2
+  ;;
+esac

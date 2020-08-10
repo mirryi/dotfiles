@@ -20,5 +20,21 @@ colors:
   primary:
     background: "#282828"
     foreground: "#ebdbb2"
+    alarm: "#cc241d"
 
 font: Iosevka Nerd Font
+
+bat:
+  theme: "TwoDark"
+
+dunst:
+  low_bg: "#32302f"
+  normal_bg: "#32302f"
+
+hangups:
+  theme: "solarized-dark"
+
+i3:
+  gaps:
+    inner: 0
+    outer: 0
