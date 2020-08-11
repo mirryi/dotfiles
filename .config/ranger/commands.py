@@ -1,12 +1,13 @@
 from ranger.api.commands import Command
 
 
-class fasd(Command):
+class z(Command):
     """
-    :fasd
+    :z
 
     Jump to directory using fasd
     """
+
     def execute(self):
         args = self.rest(1).split()
         if args:
