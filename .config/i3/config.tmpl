@@ -40,11 +40,7 @@ bindsym $mod+Shift+q kill
 bindsym $mod+Shift+w exec xkill
 
 ##  lock screen
-{{ if eq .local.class `"tower"` }}
-bindsym $mod+Shift+x exec lock-screen
-{{ else }}
-bindsym $mod+Shift+x exec xset s activate
-{{ end }}
+bindsym $mod+Shift+x exec {{ .local.i3.lock_command }}
 
 ##  wallpaper
 bindsym $mod+u exec wallpaper-ctl toggle
