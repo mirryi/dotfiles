@@ -34,6 +34,9 @@ dunst:
   low_bg: "#4C566A"
   normal_bg: "#4C566A"
 
+gtk:
+  theme: nordic
+
 hangups:
   theme: solarized-dark
 

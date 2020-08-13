@@ -7,3 +7,6 @@
 [submodule ".local/share/tmux/plugins/tpm"]
   path = .local/share/tmux/plugins/tpm
   url = https://github.com/tmux-plugins/tpm
+[submodule ".local/share/themes/nordic"]
+  path = .local/share/themes/nordic
+  url = https://github.com/EliverLara/Nordic

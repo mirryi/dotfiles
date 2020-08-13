@@ -74,6 +74,9 @@ applications:
     dest: "{{ .config_home }}/dunst/dunstrc"
     run-after:
       - hooks/dunst-after.sh
+  - name: gtk
+    run-after:
+      - hooks/gtk-theme-switch.sh "{{ .gtk.theme }}"
   - name: hangups
     template: true
     src: "{{ .config_home }}/hangups/hangups.conf.tmpl"

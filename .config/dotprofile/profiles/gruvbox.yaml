@@ -32,6 +32,9 @@ dunst:
   low_bg: "#32302f"
   normal_bg: "#32302f"
 
+gtk:
+  theme: gruvbox-gtk
+
 hangups:
   theme: solarized-dark
 
