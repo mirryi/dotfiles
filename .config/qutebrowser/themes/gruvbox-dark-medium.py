@@ -1,6 +1,8 @@
 # pylint: disable=C0111
-c = c  # noqa: F821 pylint: disable=E0602,C0103
-config = config  # noqa: F821 pylint: disable=E0602,C0103
+from qutebrowser.config.configfiles import ConfigAPI  # noqa: F401
+from qutebrowser.config.config import ConfigContainer  # noqa: F401
+c = c  # type: ConfigContainer # noqa: F821 pylint: disable=E0602,C0103
+config = config  # type: ConfigAPI # noqa: F821 pylint: disable=E0602,C0103
 
 # base16-qutebrowser (https://github.com/theova/base16-qutebrowser)
 # Base16 qutebrowser template by theova

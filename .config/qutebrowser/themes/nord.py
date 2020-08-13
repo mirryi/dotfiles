@@ -1,3 +1,9 @@
+# pylint: disable=C0111
+from qutebrowser.config.configfiles import ConfigAPI  # noqa: F401
+from qutebrowser.config.config import ConfigContainer  # noqa: F401
+c = c  # type: ConfigContainer # noqa: F821 pylint: disable=E0602,C0103
+config = config  # type: ConfigAPI # noqa: F821 pylint: disable=E0602,C0103
+
 nord = {
     # Polar Night
     'nord0': '#2e3440',
@@ -334,3 +340,27 @@ c.colors.tabs.selected.odd.fg = nord['nord5']
 # color)
 ## Type: QtColor
 # c.colors.webpage.bg = 'white'
+
+# Background color of pinned unselected even tabs.
+c.colors.tabs.pinned.even.bg = nord['nord4']
+
+# Foreground color of pinned unselected even tabs.
+c.colors.tabs.pinned.even.fg = nord['nord0']
+
+# Background color of pinned unselected odd tabs.
+c.colors.tabs.pinned.odd.bg = nord['nord3']
+
+# Foreground color of pinned unselected odd tabs.
+c.colors.tabs.pinned.odd.fg = nord['nord5']
+
+# Background color of pinned selected even tabs.
+c.colors.tabs.pinned.selected.even.bg = nord['nord0']
+
+# Foreground color of pinned selected even tabs.
+c.colors.tabs.pinned.selected.even.fg = nord['nord5']
+
+# Background color of pinned selected odd tabs.
+c.colors.tabs.pinned.selected.odd.bg = nord['nord0']
+
+# Foreground color of pinned selected odd tabs.
+c.colors.tabs.pinned.selected.odd.fg = nord['nord5']
