@@ -43,11 +43,7 @@ font:
   normal:
     family: "{{ .font }}"
     style: Regular
-  {{ if eq .local.hostname "\"rice\"" }}
   size: 10
-  {{ else }}
-  size: 11
-  {{ end }}
 key_bindings:
   - action: Paste
     key: V
