@@ -40,7 +40,7 @@ hangups:
 
 i3:
   gaps:
-    inner: 0
+    inner: 15
     outer: 0
 
 neovim:
