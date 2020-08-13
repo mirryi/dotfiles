@@ -6,7 +6,7 @@
 #cell_width_scale = 1.0
 clickable_url = true
 dynamic_title = true
-font = Iosevka Nerd Font 9
+font = {{ .font }} 9
 fullscreen = false
 icon_name = terminal
 mouse_autohide = false
@@ -39,25 +39,25 @@ cursor_shape = block
 scrollbar = off
 
 [colors]
-background = #282828
-foreground = #ebdbb2
-foreground_bold = #ebdbb2
+background = {{ .colors.primary.background }}
+foreground = {{ .colors.primary.foreground }}
+foreground_bold = {{ .colors.primary.foreground }}
 
-color0 =  #282828
-color1 =  #cc241d
-color2 =  #98971a
-color3 =  #d79921
-color4 =  #458588
-color5 =  #b16286
-color6 =  #689d6a
-color7 =  #a89984
-color8 =  #928374
-color9 =  #fb4934
-color10 = #b8bb26
-color11 = #fabd2f
-color12 = #83a598
-color13 = #d3869b
-color14 = #8ec07c
-color15 = #ebdbb2
+color0 =  {{ .colors.normal.black }}
+color1 =  {{ .colors.normal.red }}
+color2 =  {{ .colors.normal.green }}
+color3 =  {{ .colors.normal.yellow }}
+color4 =  {{ .colors.normal.blue }}
+color5 =  {{ .colors.normal.magenta }}
+color6 =  {{ .colors.normal.cyan }}
+color7 =  {{ .colors.normal.white }}
+color8 =  {{ .colors.bright.black }}
+color9 =  {{ .colors.bright.red }}
+color10 = {{ .colors.bright.green }}
+color11 = {{ .colors.bright.yellow }}
+color12 = {{ .colors.bright.blue }}
+color13 = {{ .colors.bright.magenta }}
+color14 = {{ .colors.bright.cyan }}
+color15 = {{ .colors.bright.white }}
 
 # vim: ft=dosini
