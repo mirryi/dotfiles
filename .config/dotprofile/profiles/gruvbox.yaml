@@ -23,6 +23,7 @@ colors:
     alarm: "#cc241d"
 
 font: Iosevka Nerd Font
+wallpaper: "{{ .home }}/files/images/wallpaper/desktop/gruvbox/greenfog.jpg"
 
 bat:
   theme: TwoDark

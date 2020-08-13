@@ -43,6 +43,9 @@ vars:
 common-configs:
   - local.yaml
 
+run-after:
+  - hooks/set-wallpaper.sh "{{ .wallpaper }}"
+
 # List of application templating instructions.
 #
 # Required settings:
