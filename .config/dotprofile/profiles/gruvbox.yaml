@@ -25,16 +25,31 @@ colors:
 font: Iosevka Nerd Font
 
 bat:
-  theme: "TwoDark"
+  theme: TwoDark
 
 dunst:
   low_bg: "#32302f"
   normal_bg: "#32302f"
 
 hangups:
-  theme: "solarized-dark"
+  theme: solarized-dark
 
 i3:
   gaps:
     inner: 0
     outer: 0
+
+neovim:
+  theme: gruvbox-dark
+
+qutebrowser:
+  theme: gruvbox-dark-medium
+
+rofi:
+  theme: gruvbox-dark-hard
+
+taskwarrior:
+  theme: dark-256
+
+tmux:
+  theme: gruvbox

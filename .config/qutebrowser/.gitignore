@@ -1,6 +1,8 @@
 .vim/
 .stfolder/
 
+theme.py
+
 qsettings/
 bookmarks/
 

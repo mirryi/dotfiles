@@ -109,6 +109,7 @@ if [ "$os" == "Arch" ]; then
     zathura-cb zathura-djvu zathura-pdf-mupdf zathura-ps)
   install_pkgs ${util_pkgs[@]}
   install_aur_pkgs ibus-mozc polybar
+  sudo pip3 install inotify-simple psutil python-prctl
 
   echo "Installing some fonts..."
   font_pkgs=(adobe-source-code-pro-fonts adobe-source-han-sans-otc-fonts

@@ -35,5 +35,5 @@ config.load_autoconfig()
 sys.path.append(os.path.join(sys.path[0], 'jmatrix'))
 config.source("jmatrix/jmatrix/integrations/qutebrowser.py")
 
-# gruvbox theme
-config.source("theme/gruvbox-dark-medium.py")
+# enable dynamic theme loading
+config.source("qutewal.py")
