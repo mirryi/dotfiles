@@ -1,6 +1,0 @@
-mpd:
-{% if yadm.hostname == "origin" %}
-  library: "$HOME/files/lfs/music/library"
-{% else %}
-  library: "$HOME/files/music/library"
-{% endif %}

@@ -51,6 +51,8 @@ settings:
     - park.above.com
   content.javascript.can_access_clipboard:
     global: true
+  content.mouse_lock:
+    https://chdan03.gitlab.io: false
   content.pdfjs:
     global: true
   content.register_protocol_handler:

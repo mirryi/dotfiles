@@ -1,1 +1,0 @@
-/home/dophin2009/.config/nvim/themes/gruvbox-dark.vim
