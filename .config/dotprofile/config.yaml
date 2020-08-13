@@ -88,6 +88,7 @@ applications:
     run-after:
       - hooks/i3-after.sh
   - name: neovim
+    symlink: true
     src: "{{ .config_home }}/nvim/themes/{{ .neovim.theme }}.vim"
     dest: "{{ .config_home }}/nvim/theme.vim"
   - name: polybar-network
@@ -95,6 +96,7 @@ applications:
     src: "{{ .config_home }}/polybar/modules/network.ini.tmpl"
     dest: "{{ .config_home }}/polybar/modules/network.ini"
   - name: qutebrowser
+    symlink: true
     src: "{{ .config_home }}/qutebrowser/themes/{{ .qutebrowser.theme }}.py"
     dest: "{{ .config_home }}/qutebrowser/theme.py"
   - name: rofi
@@ -102,9 +104,11 @@ applications:
     src: "{{ .config_home }}/rofi/config.rasi.tmpl"
     dest: "{{ .config_home }}/rofi/config.rasi"
   - name: taskwarrior
+    symlink: true
     src: "{{ .config_home }}/task/themes/{{ .taskwarrior.theme }}.conf"
     dest: "{{ .config_home }}/task/theme.conf"
   - name: tmux
+    symlink: true
     src: "{{ .config_home }}/tmux/themes/{{ .tmux.theme }}.conf"
     dest: "{{ .config_home }}/tmux/theme.conf"
     run-after:
