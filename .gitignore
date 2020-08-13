@@ -21,7 +21,14 @@ files/
 !.local/
 .local/*
 
-!.local/bin/
+!.local/bin/fscreenshot
+!.local/bin/launch-polybar
+!.local/bin/lock-screen
+!.local/bin/monitor-battery
+!.local/bin/notify-battery
+!.local/bin/set-brightness
+!.local/bin/wallpaper-ctl
+
 !.local/share/themes/
 
 # config
