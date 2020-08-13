@@ -18,14 +18,14 @@ set $right l
 font pango:Inconsolata 10
 
 # colors                border  backgr  text    indic   child_border
-client.focused          {{ .colors.primary.background }} {{ .colors.primary.background }} {{ .colors.primary.foreground }} {{ .colors.primary.background }} {{ .colors.normal.white }}
+client.focused          {{ .colors.primary.background }} {{ .colors.primary.background }} {{ .colors.primary.foreground }} {{ .colors.primary.background }} {{ .colors.bright.white }}
 client.focused_inactive {{ .colors.primary.background }} {{ .colors.primary.background }} {{ .colors.primary.foreground }} {{ .colors.primary.background }} {{ .colors.normal.white }}
 client.unfocused        {{ .colors.primary.background }} {{ .colors.primary.background }} {{ .colors.primary.foreground }} {{ .colors.primary.background }} {{ .colors.normal.white }}
 client.urgent           {{ .colors.primary.background }} {{ .colors.primary.background }} {{ .colors.primary.foreground }} {{ .colors.primary.background }} {{ .colors.normal.white }}
 client.placeholder      {{ .colors.primary.background }} {{ .colors.primary.background }} {{ .colors.primary.foreground }} {{ .colors.primary.background }} {{ .colors.normal.white }}
 
-# gaps inner 15
-# gaps outer 0
+gaps inner {{ .i3.gaps.inner }}
+gaps outer {{ .i3.gaps.outer }}
 
 default_border pixel 2
 hide_edge_borders none
