@@ -385,18 +385,10 @@ nnoremap <leader>t :ThesaurusQueryReplaceCurrentWord<CR>
 """ THEME
 """
 
-"   gruvbox
-Plug 'morhetz/gruvbox'
 "   gruvbox-material
 Plug 'sainnhe/gruvbox-material'
-"   oceanic-next
-Plug 'mhartington/oceanic-next'
-"   nordisk
-Plug 'kamwitsta/nordisk'
-"   rainglow
-Plug 'rainglow/vim'
-"   vim-colorschemes
-" Plug 'flazz/vim-colorschemes'
+"   nord
+Plug 'arcticicestudio/nord-vim'
 
 "   end plugin check/installation
 call plug#end()

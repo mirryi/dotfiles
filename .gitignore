@@ -1,5 +1,7 @@
 **/.vim/
 
+**/*.bak
+
 files/
 
 .*
@@ -30,8 +32,10 @@ files/
 !.config/bat/
 !.config/beets/
 !.config/cursedtag/
+!.config/dotprofile/
 !.config/dunst/
 !.config/elinks/
+!.config/git/
 !.config/goto/
 !.config/gtk-3.0/
 !.config/hangups/
