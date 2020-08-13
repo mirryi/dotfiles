@@ -91,8 +91,6 @@ applications:
     template: true
     src: "{{ .config_home }}/polybar/modules/network.ini.tmpl"
     dest: "{{ .config_home }}/polybar/modules/network.ini"
-    run-after:
-      - hooks/polybar-reload.sh
   - name: qutebrowser
     src: "{{ .config_home }}/qutebrowser/themes/{{ .qutebrowser.theme }}.py"
     dest: "{{ .config_home }}/qutebrowser/theme.py"
@@ -118,3 +116,9 @@ applications:
     dest: "{{ .config_home }}/X11/xresources.theme"
     run-after:
       - hooks/xrdb-merge.sh "{{ .config_home }}/X11/xresources.theme"
+  - name: polybar
+    template: true
+    src: "{{ .config_home }}/polybar/theme.ini.tmpl"
+    dest: "{{ .config_home }}/polybar/theme.ini"
+    run-after:
+      - hooks/polybar-reload.sh
