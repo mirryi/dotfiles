@@ -8,8 +8,6 @@ files/
 .*/
 
 # home directory dotfiles
-!.bash_profile
-!.bashrc
 !.gitignore
 !.gitmodules
 !.pam_environment
