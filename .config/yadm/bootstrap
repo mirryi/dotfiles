@@ -132,11 +132,7 @@ if [ "$os" == "Arch" ]; then
   systemctl --user enable --now mpd
   systemctl --user enable --now dunst
   systemctl --user enable --now mpdnotify
-
-  yadm_class=$(yadm config local.class)
-  if [ "$yadm_class" == "laptop" ]; then
-    systemctl --user enable --now battery-monitor
-  fi
+  systemctl --user enable --now battery-monitor
 fi
 
 # Bootstrap neovim
