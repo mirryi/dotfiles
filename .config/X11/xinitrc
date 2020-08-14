@@ -33,8 +33,7 @@ mkdir -p "$HOME/.local/var/log/ibus"
 ibus-daemon --xim &
 
 # auto-adjust brightness
-xrandr --output HDMI-0 --brightness $DEFAULT_BRIGHTNESS
-xrandr --output HDMI-1 --brightness $DEFAULT_BRIGHTNESS
+set-brightness $DEFAULT_BRIGHTNESS
 
 # start wm
 mkdir -p "$HOME/.local/var/log/i3"
