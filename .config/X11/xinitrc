@@ -3,8 +3,8 @@
 # alacritty scale factor
 export WINIT_X11_SCALE_FACTOR=1
 
-# yadm variables
-class=`yadm config local.class`
+# load local variables
+. "$XDG_CONFIG_HOME/X11/xinitrc.variables"
 
 # load xresources
 xrdb -load "$HOME/.config/X11/xresources"
@@ -23,11 +23,6 @@ fi
 
 # start compositor
 mkdir -p "$HOME/.local/var/log/picom"
-if [ "$class" == "laptop" ]; then
-  PICOM_FLAGS="-Cb"
-else
-  PICOM_FLAGS="-fCb -D8"
-fi
 picom $PICOM_FLAGS >"$HOME/.local/var/log/picom/picom.log"
 
 # start ibus
@@ -38,10 +33,8 @@ mkdir -p "$HOME/.local/var/log/ibus"
 ibus-daemon --xim &
 
 # auto-adjust brightness
-if [ "$(hostname)" == "origin" ]; then
-  xrandr --output HDMI-0 --brightness 0.7
-  xrandr --output HDMI-1 --brightness 0.7
-fi
+xrandr --output HDMI-0 --brightness $DEFAULT_BRIGHTNESS
+xrandr --output HDMI-1 --brightness $DEFAULT_BRIGHTNESS
 
 # start wm
 mkdir -p "$HOME/.local/var/log/i3"
