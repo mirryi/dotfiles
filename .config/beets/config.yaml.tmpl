@@ -1,4 +1,4 @@
-directory: ~/files/music/library
+directory: {{ .local.beets.root_dir }}
 library: ~/.local/share/beets/library.db
 
 import:
@@ -56,12 +56,12 @@ fetchart:
     - albumart
 
 playlistc:
-  playlist_dir: ~/files/music/playlists
-  relative_to: ~/files/music/library
+  playlist_dir: {{ .local.beets.root_dir }}/playlists
+  relative_to: {{ .local.beets.root_dir }}/library
 
 smartplaylist:
-  playlist_dir: ~/files/music/playlists
-  relative_to: ~/files/music/library
+  playlist_dir: {{ .local.beets.root_dir }}/playlists
+  relative_to: {{ .local.beets.root_dir }}/library
   playlists:
     - name: "_all.m3u"
       query: ""
