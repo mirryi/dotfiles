@@ -68,6 +68,10 @@ applications:
     template: true
     src: "{{ .config_home }}/bat/config.tmpl"
     dest: "{{ .config_home }}/bat/config"
+  - name: beets
+    template: true
+    src: "{{ .config_home }}/beets/config.yaml.tmpl"
+    dest: "{{ .config_home }}/beets/config.yaml"
   - name: dunst
     template: true
     src: "{{ .config_home }}/dunst/dunstrc.tmpl"
