@@ -138,7 +138,7 @@ fi
 
 # Bootstrap neovim
 echo "Bootstrapping neovim..."
-nvim_bootstrap="$XDG_CONFIG_HOME/nvim/bootstrap"
+nvim_bootstrap="$XDG_CONFIG_HOME/nvim/scripts/bootstrap"
 if [ -f "$nvim_bootstrap" ]; then
   $nvim_bootstrap
 fi
