@@ -18,7 +18,8 @@ template some configuration files and manage themes.
 
 Clone this repo somewhere (e.g. `~/.dotfiles`).
 
-The \[bootstrap script\] will link the [base packages](#packages).
+The [bootstrap script](./bootstrap) will link the [base
+packages](#packages).
 
 Link the desired packages with `make <package>`.
 
