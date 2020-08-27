@@ -4,7 +4,6 @@ pkill -u "$USER" -USR1 dunst
 tmpbg="/tmp/screen.png"
 scrot "$tmpbg"
 convert "$tmpbg" -scale 10% -scale 1000% "$tmpbg"
-# i3lock -n -i "$HOME/files/images/wallpaper/gruvbox/koi.png" \
 i3lock -n -i "$tmpbg" \
   --insidecolor=37344500 --ringcolor=ffffffff --line-uses-inside \
   --keyhlcolor=d23c3dff --bshlcolor=d23c3dff --separatorcolor=00000000 \
