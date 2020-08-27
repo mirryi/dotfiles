@@ -1,12 +1,12 @@
-[submodule ".config/qutebrowser/jmatrix"]
-  path = .config/qutebrowser/jmatrix
+[submodule "qutebrowser/jmatrix"]
+  path = qutebrowser/jmatrix
   url = https://gitlab.com/jgkamat/jmatrix.git
-[submodule ".local/share/themes/gruvbox-gtk"]
-  path = .local/share/themes/gruvbox-gtk
-  url = https://github.com/3ximus/gruvbox-gtk
-[submodule ".local/share/tmux/plugins/tpm"]
-  path = .local/share/tmux/plugins/tpm
+[submodule "tmux/plugins/tpm"]
+  path = tmux/tpm
   url = https://github.com/tmux-plugins/tpm
-[submodule ".local/share/themes/nordic"]
-  path = .local/share/themes/nordic
+[submodule "gtk/themes/gruvbox-gtk"]
+  path = gtk/themes/gruvbox-gtk
+  url = https://github.com/3ximus/gruvbox-gtk
+[submodule "gtk/themes/nordic"]
+  path = gtk/themes/nordic
   url = https://github.com/EliverLara/Nordic
