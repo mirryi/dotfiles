@@ -1,6 +1,6 @@
 ROOT := $(shell pwd)
 
-BASE_PACKAGES := pam-env dotprofile git nvim sh tmux user-dirs zsh
+BASE_PACKAGES := dotprofile git nvim sh tmux user-dirs zsh
 DEV_PACKAGES := maven npm R texlive
 CLI_PACKAGES := bat beets cursedtag elinks hangups mpd mutt ncmpcpp neofetch newsboat ranger \
 	rtv task urlview
@@ -43,10 +43,6 @@ gui : $(GUI_PACKAGES)
 ###
 ### -- Base Packages
 ###
-
-pam-env :
-	@echo "-- Linking $@..."
-	@$(call link,$@/.pam_environment,.pam_environment)
 
 dotprofile :
 	@echo "-- Linking $@..."
