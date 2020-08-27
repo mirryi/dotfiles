@@ -1,17 +1,39 @@
 # dotfiles
 
-These are dotfiles that attempt to make everything conform to the XDG base
-directory specification. 
+The dotfiles for my Linux machines, managed by a custom Makefile
+solution similar to GNU Stow.
 
-Display: X11
+Each subdirectory is a configuration 'package'. The Makefile contains
+targets to link each package to its proper location. Some packages
+depend on others, and those dependencies are specified as target
+prerequisites.
 
-WM: i3
+A set of base packages are linked for every non-base package. See
+[Packages](#packages).
+
+[dotprofile](https://github.com/Dophin2009/dotprofile) is used to
+template some configuration files and manage themes.
 
 ## Installation
 
-yadm is used to manage this repo. See [yadm](https://github.com/TheLocehiliosan/yadm).
-The default template type (using awk) is used for all templates. 
+Clone this repo somewhere (e.g. `~/.dotfiles`).
 
-Simply `yadm clone` for easy setup. Don't bootstrap right away; many
-environment variables need to be reset, usually by re-login. Bootstrap with
-`yadm bootstrap`.
+The \[bootstrap script\] will link the [base packages](#packages).
+
+Link the desired packages with `make <package>`.
+
+## Packages
+
+### Base Packages
+
+The following are considered `base` packages. These are linked as
+dependencies for every other package.
+
+-   `pam-env`
+-   `user-dirs`
+-   `dotprofile`
+-   `git`
+-   `nvim`
+-   `tmux`
+-   `sh`
+-   `zsh`
