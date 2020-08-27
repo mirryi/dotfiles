@@ -26,22 +26,6 @@ gdiff() {
   git diff $@ --name-only | fzf -m --ansi --preview $preview
 }
 
-##  yadm
-alias y="yadm"
-alias yst="yadm status"
-alias ya="yadm add"
-alias yc="yadm commit"
-alias ycmsg="yadm commit -m"
-alias yp="yadm push"
-alias yl="yadm pull"
-alias yf="yadm fetch"
-alias yd="yadm diff"
-
-ydiff() {
-  preview="yadm diff $@ --color=always -- {-1}"
-  yadm diff $@ --name-only | fzf -m --ansi --preview $preview
-}
-
 ##  neovim
 rmnswap() {
   rm "$HOME/.local/share/nvim/swap/$(echo $1 | tr '/' '%').swp"
