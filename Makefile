@@ -60,7 +60,8 @@ git :
 nvim : dotprofile
 	@echo "-- Linking $@..."
 	@$(call link_files,$@,.config)
-	$(PROFILE_ACTIVATE) neovim
+	@echo "-- Processing neovim"
+	@$(PROFILE_ACTIVATE) neovim > /dev/null 2>&1
 
 sh :
 	@echo "-- Linking $@..."
@@ -71,7 +72,8 @@ tmux : dotprofile
 	@$(call link_files_rel,$@/config,.config/$@,$@/config)
 	-@rm -rf ${HOME}/.local/share/tmux/plugins/tpm
 	@$(call link,$@/tpm,.local/share/tmux/plugins)
-	$(PROFILE_ACTIVATE) $@
+	@echo "-- Processing $@..."
+	@$(PROFILE_ACTIVATE) $@ > /dev/null 2>&1
 
 user-dirs :
 	@echo "-- Linking $@..."
@@ -110,12 +112,14 @@ texlive : base
 bat : base dotprofile
 	@echo "-- Linking $@..."
 	@$(call link_files,$@,.config)
-	$(PROFILE_ACTIVATE) $@
+	@echo "-- Processing $@..."
+	@$(PROFILE_ACTIVATE) $@ > /dev/null 2>&1
 
 beets : base dotprofile
 	@echo "-- Linking $@..."
 	@$(call link_files,$@,.config)
-	$(PROFILE_ACTIVATE) $@
+	@echo "-- Processing $@..."
+	@$(PROFILE_ACTIVATE) $@ > /dev/null 2>&1
 
 cursedtag : base
 	@echo "-- Linking $@..."
@@ -128,7 +132,8 @@ elinks : base urlview
 hangups : base dotprofile
 	@echo "-- Linking $@..."
 	@$(call link_files,$@,.config)
-	$(PROFILE_ACTIVATE) $@
+	@echo "-- Processing $@..."
+	@$(PROFILE_ACTIVATE) $@ > /dev/null 2>&1
 
 mpd : base
 	@echo "-- Linking $@..."
@@ -173,13 +178,16 @@ urlview : base
 X11 : base dotprofile
 	@echo "-- Linking $@..."
 	@$(call link_files,$@,.config)
-	$(PROFILE_ACTIVATE) xinitrc.variables
-	$(PROFILE_ACTIVATE) xresources-theme
+	@echo "-- Processing xinitrc.variables..."
+	@$(PROFILE_ACTIVATE) xinitrc.variables > /dev/null 2>&1
+	@echo "-- Processing xresources-theme..."
+	@$(PROFILE_ACTIVATE) xresources-theme > /dev/null 2>&1
 
 alacritty : base dotprofile
 	@echo "-- Linking $@..."
 	@$(call link_files,$@,.config)
-	$(PROFILE_ACTIVATE) $@
+	@echo "-- Processing $@..."
+	@$(PROFILE_ACTIVATE) $@ > /dev/null 2>&1
 
 battery-notify : base
 	@echo "-- Linking $@..."
@@ -189,7 +197,8 @@ battery-notify : base
 dunst : base dotprofile
 	@echo "-- Linking $@..."
 	@$(call link_files,$@,.config)
-	$(PROFILE_ACTIVATE) $@
+	@echo "-- Processing $@..."
+	@$(PROFILE_ACTIVATE) $@ > /dev/null 2>&1
 
 fscreenshot : base
 	@echo "-- Linking $@..."
@@ -205,7 +214,8 @@ gtk : base
 i3 : base dotprofile polybar wallpaper fscreenshot
 	@echo "-- Linking $@..."
 	@$(call link_files,$@,.config)
-	$(PROFILE_ACTIVATE) $@
+	@echo "-- Processing $@..."
+	@$(PROFILE_ACTIVATE) $@ > /dev/null 2>&1
 
 lock-screen : base
 	@echo "-- Linking $@..."
@@ -232,18 +242,22 @@ polybar : base dotprofile
 	@echo "-- Linking $@..."
 	@$(call link_files_rel,$@/config,.config/$@,$@/config)
 	@$(call link_files_rel,$@/bin,.local/bin,$@/bin)
-	$(PROFILE_ACTIVATE) polybar-network
-	$(PROFILE_ACTIVATE) $@
+	@echo "-- Processing polybar-network..."
+	@$(PROFILE_ACTIVATE) polybar-network > /dev/null 2>&1
+	@echo "-- Processing $@..."
+	@$(PROFILE_ACTIVATE) $@ > /dev/null 2>&1
 
 qutebrowser : base dotprofile
 	@echo "-- Linking $@..."
 	@$(call link_files,$@,.config)
-	$(PROFILE_ACTIVATE) $@
+	@echo "-- Processing $@..."
+	@$(PROFILE_ACTIVATE) $@ > /dev/null 2>&1
 
 rofi : base dotprofile
 	@echo "-- Linking $@..."
 	@$(call link_files,$@,.config)
-	$(PROFILE_ACTIVATE) $@
+	@echo "-- Processing $@..."
+	@$(PROFILE_ACTIVATE) $@ > /dev/null 2>&1
 
 set-brightness : base
 	@echo "-- Linking $@..."
@@ -252,7 +266,8 @@ set-brightness : base
 termite : base dotprofile gtk
 	@echo "-- Linking $@..."
 	@$(call link_files,$@,.config)
-	$(PROFILE_ACTIVATE) $@
+	@echo "-- Processing $@..."
+	@$(PROFILE_ACTIVATE) $@ > /dev/null 2>&1
 
 wallpaper : base
 	@echo "-- Linking $@..."
