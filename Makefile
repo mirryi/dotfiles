@@ -64,7 +64,7 @@ sh :
 	@echo "-- Linking $@..."
 	@$(call link_files,$@,.config)
 
-tmux :
+tmux : dotprofile
 	@echo "-- Linking $@..."
 	@$(call link_files_rel,$@/config,.config/$@,$@/config)
 	-@rm -rf ${HOME}/.local/share/tmux/plugins/tpm
