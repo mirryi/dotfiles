@@ -1,3 +1,5 @@
+PROFILE := gruvbox
+
 ROOT := $(shell pwd)
 
 BASE_PACKAGES := dotprofile git nvim sh tmux user-dirs zsh
@@ -8,6 +10,9 @@ GUI_PACKAGES := alacritty battery-notify dunst fscreenshot gtk i3 lock-screen mp
 	networkmanager-dmenu picom polybar qutebrowser rofi set-brightness termite wallpaper X11 zathura
 
 ALL_PACKAGES = $(BASE_PACKAGES) $(DEV_PACKAGES) $(CLI_PACKAGES) $(GUI_PACKAGES)
+
+DOTPROFILE := dotprofile
+PROFILE_ACTIVATE := $(DOTPROFILE) -vvv activate $(PROFILE)
 
 define link
 	mkdir -p ${HOME}/$(dir $2);
@@ -52,9 +57,10 @@ git :
 	@echo "-- Linking $@..."
 	@$(call link_files,$@,.config)
 
-nvim :
+nvim : dotprofile
 	@echo "-- Linking $@..."
 	@$(call link_files,$@,.config)
+	$(PROFILE_ACTIVATE) neovim
 
 sh :
 	@echo "-- Linking $@..."
@@ -65,6 +71,7 @@ tmux : dotprofile
 	@$(call link_files_rel,$@/config,.config/$@,$@/config)
 	-@rm -rf ${HOME}/.local/share/tmux/plugins/tpm
 	@$(call link,$@/tpm,.local/share/tmux/plugins)
+	$(PROFILE_ACTIVATE) $@
 
 user-dirs :
 	@echo "-- Linking $@..."
@@ -103,10 +110,12 @@ texlive : base
 bat : base dotprofile
 	@echo "-- Linking $@..."
 	@$(call link_files,$@,.config)
+	$(PROFILE_ACTIVATE) $@
 
 beets : base dotprofile
 	@echo "-- Linking $@..."
 	@$(call link_files,$@,.config)
+	$(PROFILE_ACTIVATE) $@
 
 cursedtag : base
 	@echo "-- Linking $@..."
@@ -119,6 +128,7 @@ elinks : base urlview
 hangups : base dotprofile
 	@echo "-- Linking $@..."
 	@$(call link_files,$@,.config)
+	$(PROFILE_ACTIVATE) $@
 
 mpd : base
 	@echo "-- Linking $@..."
@@ -163,10 +173,13 @@ urlview : base
 X11 : base dotprofile
 	@echo "-- Linking $@..."
 	@$(call link_files,$@,.config)
+	$(PROFILE_ACTIVATE) xinitrc.variables
+	$(PROFILE_ACTIVATE) xresources-theme
 
 alacritty : base dotprofile
 	@echo "-- Linking $@..."
 	@$(call link_files,$@,.config)
+	$(PROFILE_ACTIVATE) $@
 
 battery-notify : base
 	@echo "-- Linking $@..."
@@ -176,6 +189,7 @@ battery-notify : base
 dunst : base dotprofile
 	@echo "-- Linking $@..."
 	@$(call link_files,$@,.config)
+	$(PROFILE_ACTIVATE) $@
 
 fscreenshot : base
 	@echo "-- Linking $@..."
@@ -191,6 +205,7 @@ gtk : base
 i3 : base dotprofile polybar wallpaper fscreenshot
 	@echo "-- Linking $@..."
 	@$(call link_files,$@,.config)
+	$(PROFILE_ACTIVATE) $@
 
 lock-screen : base
 	@echo "-- Linking $@..."
@@ -217,14 +232,18 @@ polybar : base dotprofile
 	@echo "-- Linking $@..."
 	@$(call link_files_rel,$@/config,.config/$@,$@/config)
 	@$(call link_files_rel,$@/bin,.local/bin,$@/bin)
+	$(PROFILE_ACTIVATE) polybar-network
+	$(PROFILE_ACTIVATE) $@
 
 qutebrowser : base dotprofile
 	@echo "-- Linking $@..."
 	@$(call link_files,$@,.config)
+	$(PROFILE_ACTIVATE) $@
 
 rofi : base dotprofile
 	@echo "-- Linking $@..."
 	@$(call link_files,$@,.config)
+	$(PROFILE_ACTIVATE) $@
 
 set-brightness : base
 	@echo "-- Linking $@..."
@@ -233,6 +252,7 @@ set-brightness : base
 termite : base dotprofile gtk
 	@echo "-- Linking $@..."
 	@$(call link_files,$@,.config)
+	$(PROFILE_ACTIVATE) $@
 
 wallpaper : base
 	@echo "-- Linking $@..."
