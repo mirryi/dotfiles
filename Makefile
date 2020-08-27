@@ -5,7 +5,7 @@ DEV_PACKAGES := maven npm R texlive
 CLI_PACKAGES := bat beets cursedtag elinks hangups mpd mutt ncmpcpp neofetch newsboat ranger \
 	rtv task urlview
 GUI_PACKAGES := alacritty battery-notify dunst fscreenshot gtk i3 lock-screen mpdnotify mpv \
-	networkmanager-dmenu picom polybar qutebrowser rofi termite wallpaper X11 zathura
+	networkmanager-dmenu picom polybar qutebrowser rofi set-brightness termite wallpaper X11 zathura
 
 ALL_PACKAGES = $(BASE_PACKAGES) $(DEV_PACKAGES) $(CLI_PACKAGES) $(GUI_PACKAGES)
 
@@ -189,6 +189,7 @@ gtk : base
 	@echo "-- Linking $@..."
 	@$(call link_files_rel,$@/gtk-2.0,.config/gtk-2.0,$@/gtk-2.0)
 	@$(call link_files_rel,$@/gtk-3.0,.config/gtk-3.0,$@/gtk-3.0)
+	-@rm $(foreach f,$(wildcard $@/themes/*),"${HOME}/.local/share/themes/$(shell realpath --relative-to $@/themes $(f))")
 	@$(call link_files_shallow_rel,$@/themes,.local/share/themes,$@/themes)
 
 i3 : base dotprofile polybar wallpaper fscreenshot
