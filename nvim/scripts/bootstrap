@@ -1,18 +1,18 @@
 #!/usr/bin/bash
+_echo() {
+  echo "-- $@"
+}
+
 checkcmd() {
   local arr=("$@")
   for cmd in "${arr[@]}"; do
-    printf "Checking for command $cmd..."
-    command -v "$cmd" >/dev/null 2>&1 || {
-      printf " but not found\n" >&2
-      return 1
-    }
-    printf " found!\n"
+    _echo "Checking for command $cmd..."
+    command -v "$cmd" >/dev/null 2>&1 || return 1
   done
 }
 
 exit1() {
-  echo "Exiting..."
+  _echo "Exiting..."
   exit 1
 }
 
@@ -22,21 +22,21 @@ checkcmd "${cmds[@]}" || exit1
 
 # Install nodejs support
 if ! checkcmd neovim-node-host; then
-  echo "Installing neovim package with yarn..."
+  _echo "Installing neovim package with yarn..."
   yarn global add neovim --silent
   if ! checkcmd neovim-node-host; then
-    echo "Consider adding the global yarn bin $(yarn global bin) to PATH..."
+    _echo "Consider adding the global yarn bin $(yarn global bin) to PATH..."
   fi
 fi
 
 # Install python support
 if checkcmd pip3; then
-  echo "Installing pynvim package with pip3..."
+  _echo "Installing pynvim package with pip3..."
   if ! (pip3 list | grep -F pynvim); then
     pip3 install --user pynvim
   fi
 else
-  echo "Skipping pynvim package installation..."
+  _echo "Skipping pynvim package installation..."
 fi
 
 # Install vim-plug
@@ -46,12 +46,12 @@ if [ ! -f "$plugvim" ]; then
 fi
 
 # Call init script
-echo "Sourcing nvim init.vim..."
+_echo "Sourcing nvim init.vim..."
 nvim +PlugInstall "+source ~/.config/nvim/init.vim" +qall
 
 if checkcmd go; then
-  echo "Install Go binaries..."
+  _echo "Install Go binaries..."
   nvim +GoInstallBinaries +qall
 fi
 
-echo "Finished bootstrapping neovim."
+_echo "Finished bootstrapping neovim."
