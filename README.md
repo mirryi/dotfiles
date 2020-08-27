@@ -30,7 +30,6 @@ Link the desired packages with `make <package>`.
 The following are considered `base` packages. These are linked as
 dependencies for every other package.
 
--   `pam-env`
 -   `user-dirs`
 -   `dotprofile`
 -   `git`
