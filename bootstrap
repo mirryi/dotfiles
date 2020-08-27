@@ -38,6 +38,7 @@ git submodule update --recursive --init
 
 _echo "Linking base packages..."
 make base
+dotprofile -vvv activate gruvbox
 
 cd "$HOME" || exit
 
