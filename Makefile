@@ -1,7 +1,7 @@
 PROFILE := gruvbox
 
 ROOT := $(shell pwd)
-ENVFILE := sh/env
+ENVFILE := sh/.config/sh/env
 
 BASE_PACKAGES := dotprofile git sh tmux user-dirs zsh less
 DEV_PACKAGES := maven npm R texlive
@@ -22,7 +22,11 @@ define link
 endef
 
 define link_files
-	$(foreach f,$(shell find $1 -type f),$(call link,$(f),$2/$(f)))
+	$(foreach f,$(shell find $1 -type f),$(call link,$(f),$(shell realpath --relative-to $1 $(f))))
+endef
+
+define link_files_rel
+	$(foreach f,$(shell find $1 -type f),$(call link,$(f),$2/$(shell realpath --relative-to $3 $(f))))
 endef
 
 define link_files_shallow
@@ -33,9 +37,6 @@ define link_files_shallow_rel
 	$(foreach f,$(wildcard $1/*),$(call link,$(f),$2/$(shell realpath --relative-to $3 $(f))))
 endef
 
-define link_files_rel
-	$(foreach f,$(shell find $1 -type f),$(call link,$(f),$2/$(shell realpath --relative-to $3 $(f))))
-endef
 
 .PHONY : all base dev cli gui bootstrap update-submodules $(ALL_PACKAGES)
 
@@ -59,35 +60,32 @@ update-submodules :
 
 sh :
 	@echo "-- Linking $@..."
-	@$(call link_files,$@,.config)
+	@$(call link_files,$@)
 
 git :
 	@echo "-- Linking $@..."
-	@$(call link_files,$@,.config)
+	@$(call link_files,$@)
 
 dotprofile : sh
 	@echo "-- Linking $@..."
-	@$(call link_files,$@,.config)
+	@$(call link_files,$@)
 
 tmux : sh dotprofile
 	@echo "-- Linking $@..."
-	@$(call link_files_rel,$@/config,.config/$@,$@/config)
 	-@. $(ENVFILE) && \
 		rm -rf ${XDG_DATA_HOME}/tmux/plugins/tpm
-	@$(call link,$@/tpm,.local/share/tmux/plugins)
+	@$(call link_files,$@)
 	@echo "-- Processing $@..."
 	@. $(ENVFILE) && \
 		$(PROFILE_ACTIVATE) $@ > /dev/null 2>&1
 
 user-dirs : sh
 	@echo "-- Linking $@..."
-	@$(call link_files_rel,$@,.config,$@)
+	@$(call link_files,$@)
 
 zsh : sh tmux
 	@echo "-- Linking $@..."
-	@$(call link,$@/.zshrc,.zshrc)
-	@$(call link,$@/.zprofile,.zprofile)
-	@$(call link_files_rel,$@/config,.config/$@,$@/config)
+	@$(call link_files,$@)
 
 less : sh
 	@echo "-- Bootstrapping less"
@@ -100,19 +98,19 @@ less : sh
 
 maven : base
 	@echo "-- Linking $@..."
-	@$(call link_files,$@,.config)
+	@$(call link_files,$@)
 
 npm : base
 	@echo "-- Linking $@..."
-	@$(call link_files,$@,.config)
+	@$(call link_files,$@)
 
 R : base
 	@echo "-- Linking $@..."
-	@$(call link_files,$@,.config)
+	@$(call link_files,$@)
 
 texlive : base
 	@echo "-- Linking $@..."
-	@$(call link_files,$@,.config)
+	@$(call link_files,$@)
 
 ###
 ### -- CLI Packages
@@ -120,14 +118,14 @@ texlive : base
 
 bat : base dotprofile
 	@echo "-- Linking $@..."
-	@$(call link_files,$@,.config)
+	@$(call link_files,$@)
 	@echo "-- Processing $@..."
 	@. $(ENVFILE) && \
 		$(PROFILE_ACTIVATE) $@ > /dev/null 2>&1
 
 beets : base dotprofile
 	@echo "-- Linking $@..."
-	@$(call link_files,$@,.config)
+	@$(call link_files,$@)
 	@echo "-- Processing $@..."
 	@. $(ENVFILE) && \
 		$(PROFILE_ACTIVATE) $@ > /dev/null 2>&1
@@ -136,70 +134,70 @@ beets : base dotprofile
 
 cursedtag : base
 	@echo "-- Linking $@..."
-	@$(call link_files,$@,.config)
+	@$(call link_files,$@)
 
 elinks : base urlview
 	@echo "-- Linking $@..."
-	@$(call link_files,$@,.config)
+	@$(call link_files,$@)
 
 hangups : base dotprofile
 	@echo "-- Linking $@..."
-	@$(call link_files,$@,.config)
+	@$(call link_files,$@)
 	@echo "-- Processing $@..."
 	@. $(ENVFILE) && \
 		$(PROFILE_ACTIVATE) $@ > /dev/null 2>&1
 
 mpd : base
 	@echo "-- Linking $@..."
-	@$(call link_files,$@,.config)
+	@$(call link_files,$@)
 	@. $(ENVFILE) && \
 		mkdir -p ${XDG_DATA_HOME}/$@
 
 mutt : base
 	@echo "-- Linking $@..."
-	@$(call link_files,$@,.config)
+	@$(call link_files,$@)
 
 ncmpcpp : base
 	@echo "-- Linking $@..."
-	@$(call link_files,$@,.config)
+	@$(call link_files,$@)
 
 neofetch : base
 	@echo "-- Linking $@..."
-	@$(call link_files,$@,.config)
+	@$(call link_files,$@)
 
 newsboat : base
 	@echo "-- Linking $@..."
-	@$(call link_files,$@,.config)
+	@$(call link_files,$@)
 
 nvim : base dotprofile
 	@echo "-- Linking $@..."
-	@$(call link_files,$@,.config)
+	@$(call link_files,$@)
 	@echo "-- Processing neovim"
 	@. $(ENVFILE) && \
 		$(PROFILE_ACTIVATE) neovim > /dev/null 2>&1
 	@echo "-- Bootstrapping neovim"
 	@. $(ENVFILE) && \
-		$@/scripts/bootstrap
+		$@/.config/nvim/scripts/bootstrap
 
 ranger : base
 	@echo "-- Linking $@..."
-	@$(call link_files,$@,.config)
+	@$(call link_files,$@)
 
 rtv : base
 	@echo "-- Linking $@..."
-	@$(call link_files,$@,.config)
+	@$(call link_files,$@)
 
 task: base
 	@echo "-- Linking $@..."
-	@$(call link_files,$@,.config)
+	@$(call link_files,$@)
 
 urlview : base
 	@echo "-- Linking $@..."
-	@$(call link,$@/.urlview,.urlview)
+	@$(call link_files,$@)
 
 wget : base
 	@echo "-- Linking $@"
-	@$(call link_files,$@,.config)
+	@$(call link_files,$@)
 
 ###
 ### -- GUI Packages
@@ -207,7 +205,7 @@ wget : base
 
 X11 : base dotprofile
 	@echo "-- Linking $@..."
-	@$(call link_files,$@,.config)
+	@$(call link_files,$@)
 	@echo "-- Processing xinitrc.variables..."
 	@. $(ENVFILE) && \
 		$(PROFILE_ACTIVATE) xinitrc.variables > /dev/null 2>&1
@@ -219,67 +217,65 @@ X11 : base dotprofile
 
 alacritty : base dotprofile
 	@echo "-- Linking $@..."
-	@$(call link_files,$@,.config)
+	@$(call link_files,$@)
 	@echo "-- Processing $@..."
 	@. $(ENVFILE) && \
 		$(PROFILE_ACTIVATE) $@ > /dev/null 2>&1
 
 battery-notify : base
 	@echo "-- Linking $@..."
-	@$(call link_files_rel,$@/systemd,.config/systemd/user,$@/systemd)
-	@$(call link_files_rel,$@/bin,.local/bin,$@/bin)
+	@$(call link_files,$@)
 
 dunst : base dotprofile
 	@echo "-- Linking $@..."
-	@$(call link_files,$@,.config)
+	@$(call link_files,$@)
 	@echo "-- Processing $@..."
 	@. $(ENVFILE) && \
 		$(PROFILE_ACTIVATE) $@ > /dev/null 2>&1
 
 fscreenshot : base
 	@echo "-- Linking $@..."
-	@$(call link,$@/fscreenshot,.local/bin/)
+	@$(call link_files,$@)
 
-gtk : base
+gtk :
 	@echo "-- Linking $@..."
-	@$(call link_files_rel,$@/gtk-2.0,.config/gtk-2.0,$@/gtk-2.0)
-	@$(call link_files_rel,$@/gtk-3.0,.config/gtk-3.0,$@/gtk-3.0)
+	@$(call link_files_rel,$@/.config,.config,$@/.config)
 	-@. $(ENVFILE) && \
-		rm $(foreach f,$(wildcard $@/themes/*),"${XDG_DATA_HOME}/themes/$(shell realpath --relative-to $@/themes $(f))")
-	@$(call link_files_shallow_rel,$@/themes,.local/share/themes,$@/themes)
+		rm -f $(foreach f,$(wildcard $@/.local/share/themes/*),"${XDG_DATA_HOME}/themes/$(shell realpath --relative-to $@/themes $(f))")
+	@$(call link_files_shallow_rel,$@/.local/share/themes,.local/share/themes,$@/.local/share/themes)
+	@. $(ENVFILE) && \
+		$(PROFILE_ACTIVATE) $@ > /dev/null 2>&1
 
 i3 : base dotprofile polybar wallpaper fscreenshot
 	@echo "-- Linking $@..."
-	@$(call link_files,$@,.config)
+	@$(call link_files,$@)
 	@echo "-- Processing $@..."
 	@. $(ENVFILE) && \
 		$(PROFILE_ACTIVATE) $@ > /dev/null 2>&1
 
 lock-screen : base
 	@echo "-- Linking $@..."
-	@$(call link_files_rel,$@,.local/bin,$@)
+	@$(call link_files,$@)
 
 mpdnotify : base mpd
 	@echo "-- Linking $@..."
-	@$(call link_files_rel,$@/config,.config/$@,$@/config)
-	@$(call link_files_rel,$@/systemd,.config/systemd/user,$@/systemd)
+	@$(call link_files,$@)
 
 mpv : base
 	@echo "-- Linking $@..."
-	@$(call link_files,$@,.config)
+	@$(call link_files,$@)
 
 networkmanager-dmenu : base rofi
 	@echo "-- Linking $@..."
-	@$(call link_files,$@,.config)
+	@$(call link_files,$@)
 
 picom : base
 	@echo "-- Linking $@..."
-	@$(call link_files,$@,.config)
+	@$(call link_files,$@)
 
 polybar : base dotprofile
 	@echo "-- Linking $@..."
-	@$(call link_files_rel,$@/config,.config/$@,$@/config)
-	@$(call link_files_rel,$@/bin,.local/bin,$@/bin)
+	@$(call link_files,$@)
 	@echo "-- Processing polybar-network..."
 	@. $(ENVFILE) && \
 		$(PROFILE_ACTIVATE) polybar-network > /dev/null 2>&1
@@ -289,21 +285,21 @@ polybar : base dotprofile
 
 qutebrowser : base dotprofile
 	@echo "-- Linking $@..."
-	@$(call link_files,$@,.config)
+	@$(call link_files,$@)
 	@echo "-- Processing $@..."
 	@. $(ENVFILE) && \
 		$(PROFILE_ACTIVATE) $@ > /dev/null 2>&1
 
 rofi : base dotprofile
 	@echo "-- Linking $@..."
-	@$(call link_files,$@,.config)
+	@$(call link_files,$@)
 	@echo "-- Processing $@..."
 	@. $(ENVFILE) && \
 		$(PROFILE_ACTIVATE) $@ > /dev/null 2>&1
 
 set-brightness : base
 	@echo "-- Linking $@..."
-	@$(call link_files_rel,$@,.local/bin,$@)
+	@$(call link_files,$@)
 
 steam : SKINS_DIR = ${XDG_DATA_HOME}/Steam/skins
 steam : SKINS_DIR_METRO = $(SKINS_DIR)/metro-for-steam-4.4
@@ -324,15 +320,15 @@ steam : base wget
 
 termite : base dotprofile gtk
 	@echo "-- Linking $@..."
-	@$(call link_files,$@,.config)
+	@$(call link_files,$@)
 	@echo "-- Processing $@..."
 	@. $(ENVFILE) && \
 		$(PROFILE_ACTIVATE) $@ > /dev/null 2>&1
 
 wallpaper : base
 	@echo "-- Linking $@..."
-	@$(call link,$@/wallpaper-ctl,.local/bin/)
+	@$(call link_files,$@)
 
 zathura : base
 	@echo "-- Linking $@..."
-	@$(call link_files,$@,.config)
+	@$(call link_files,$@)
