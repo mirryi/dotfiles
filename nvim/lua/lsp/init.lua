@@ -1,5 +1,4 @@
 local nvim_lsp = require('nvim_lsp')
-local completion = require('completion')
 local diagnostic = require('diagnostic')
 local lsp_status = require('lsp-status')
 
@@ -20,7 +19,6 @@ lsp_status.config({
 
 -- grouped on_attach
 local on_attach = function(client, bufnr)
-    completion.on_attach(client, bufnr)
     diagnostic.on_attach(client, bufnr)
     lsp_status.on_attach(client, bufnr)
 

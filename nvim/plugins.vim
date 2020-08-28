@@ -27,15 +27,32 @@ Plug 'airblade/vim-gitgutter'
 
 
 """
-""" CODE COMPLETION
+""" LINTING / COMPLETION
 """
 
 """ nvim-lsp
 Plug 'neovim/nvim-lsp'
-""" completion-nvim
-Plug 'nvim-lua/completion-nvim'
 """ diagnostic-nvim
 Plug 'nvim-lua/diagnostic-nvim'
+
+""" completion-nvim
+" Plug 'nvim-lua/completion-nvim'
+
+""" deoplete
+Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+"   context filetype functionality
+Plug 'Shougo/context_filetype.vim'
+"   prints documentation in completion menu
+Plug 'Shougo/echodoc.vim'
+"   nvim-lsp source
+Plug 'Shougo/deoplete-lsp'
+"   file includes sources
+Plug 'Shougo/neoinclude.vim'
+"   clang source
+Plug 'zchee/deoplete-clang'
+"   tmux panes source
+Plug 'wellle/tmux-complete.vim'
+
 """ delimitMate (autoclose parentheses, etc.)
 Plug 'Raimondi/delimitMate'
 """ vim-closetag (autoclose XHTML tags)
@@ -43,23 +60,12 @@ Plug 'alvan/vim-closetag'
 """ import-js (import js dependencies)
 Plug 'galooshi/vim-import-js', { 'for': 'javascript' }
 
-
-"""
-""" SNIPPETS
-"""
-
 """ neosnippet
-Plug 'Shougo/neosnippet.vim'
-Plug 'Shougo/neosnippet-snippets'
-
-
-"""
-""" LINTING
-"""
+" Plug 'Shougo/neosnippet.vim'
+" Plug 'Shougo/neosnippet-snippets'
 
 """ Asynchronous Lint Engine (ALE)
 " Plug 'dense-analysis/ale'
-
 
 """
 """ FORMATTING
