@@ -6,7 +6,7 @@ ENVFILE := sh/env
 BASE_PACKAGES := dotprofile git sh tmux user-dirs zsh less
 DEV_PACKAGES := maven npm R texlive
 CLI_PACKAGES := bat beets cursedtag elinks hangups mpd mutt ncmpcpp neofetch newsboat nvim \
-	ranger rtv task urlview
+	ranger rtv task urlview wget
 GUI_PACKAGES := alacritty battery-notify dunst fscreenshot gtk i3 lock-screen mpdnotify mpv \
 	networkmanager-dmenu picom polybar qutebrowser rofi set-brightness steam termite wallpaper \
 	X11 zathura
@@ -197,6 +197,10 @@ urlview : base
 	@echo "-- Linking $@..."
 	@$(call link,$@/.urlview,.urlview)
 
+wget : base
+	@echo "-- Linking $@"
+	@$(call link_files,$@,.config)
+
 ###
 ### -- GUI Packages
 ###
@@ -305,7 +309,7 @@ steam : SKINS_DIR = ${XDG_DATA_HOME}/Steam/skins
 steam : SKINS_DIR_METRO = $(SKINS_DIR)/metro-for-steam-4.4
 steam : METRO_ZIP = $(SKINS_DIR)/metro-for-steam-4.4.zip
 steam : METRO_PATCH = $(SKINS_DIR)/metro-for-steam-4.4-patch
-steam : base
+steam : base wget
 	@echo "-- Installing Steam skin..."
 	@. $(ENVFILE) && \
 		mkdir -p $(SKINS_DIR) && \
