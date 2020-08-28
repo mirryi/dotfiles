@@ -1,2 +1,2 @@
 #!/bin/bash
-scrot ~/files/tmp/$(date -u +"%Y%m%dT%H%M%S").png
+scrot /tmp/$(date -u +"%Y%m%dT%H%M%S").png
