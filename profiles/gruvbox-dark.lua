@@ -68,28 +68,28 @@ local M = {
                 bg = colors.primary.background,
                 text = colors.primary.foreground,
                 indic = colors.primary.background,
-                cborder = colors.normal.white
+                cborder = colors.primary.background
             },
             unfoc = {
                 border = colors.primary.background,
                 bg = colors.primary.background,
                 text = colors.primary.foreground,
                 indic = colors.primary.background,
-                cborder = colors.normal.white
+                cborder = colors.primary.background
             },
             urgent = {
                 border = colors.primary.background,
                 bg = colors.primary.background,
                 text = colors.primary.foreground,
                 indic = colors.primary.background,
-                cborder = colors.normal.white
+                cborder = colors.primary.background
             },
             ph = {
                 border = colors.primary.background,
                 bg = colors.primary.background,
                 text = colors.primary.foreground,
                 indic = colors.primary.background,
-                cborder = colors.normal.white
+                cborder = colors.primary.background
             }
         },
         gaps = {inner = 5, outer = 0}
