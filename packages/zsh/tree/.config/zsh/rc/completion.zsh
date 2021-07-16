@@ -1,23 +1,25 @@
 #!/bin/zsh
 
 # auto pairs
-zinit light hlissner/zsh-autopair
+zinit wait'2' lucid light-mode for \
+  hlissner/zsh-autopair
 
 # fzf tab
-zinit light Aloxaf/fzf-tab
+zinit wait lucid light-mode for \
+  Aloxaf/fzf-tab
 
 # OMZ git plugin
-zinit snippet OMZ::lib/git.zsh
-zinit snippet OMZ::plugins/git/git.plugin.zsh
+zinit wait'1' lucid has'git' light-mode for \
+  OMZ::lib/git.zsh \
+  OMZ::plugins/git/git.plugin.zsh
 
 # syntax highlighting, autosuggestions, completions plugins
-zinit wait silent for \
-  atinit'ZINIT[COMPINIT_OPTS]=-C; zicompinit; zicdreplay' \
-    zdharma/fast-syntax-highlighting \
-  atload'!_zsh_autosuggest_start' \
-    zsh-users/zsh-autosuggestions \
-  blockf \
-    zsh-users/zsh-completions
+zinit wait lucid light-mode for \
+  atload'!_zsh_autosuggest_start' zsh-users/zsh-autosuggestions \
+  blockf zsh-users/zsh-completions \
+  atinit'ZINIT[COMPINIT_OPTS]=-C; zicompinit; zicdreplay' zdharma/fast-syntax-highlighting
+
+zinit creinstall -Q "${ZSH_DATA}/completions"
 
 # disable sort when completing options of any command
 zstyle ':completion:complete:*:options' sort false
