@@ -5,6 +5,7 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
+
 local HERE="$(dirname "${(%):-%N}")"
 local CORE="$HERE/rc"
 
@@ -27,10 +28,14 @@ if [[ ! -f "$ZINIT_HOME/bin/zinit.zsh" ]]; then
 fi
 source "$ZINIT_HOME/bin/zinit.zsh"
 
+# Load zmod
+module_path+=( "${ZINIT[BIN_DIR]}/zmodules/Src" )
+zmodload zdharma/zplugin
+
 # Load core components
 . "$CORE/theme.zsh"
-. "$CORE/opts.zsh"
 . "$CORE/completion.zsh"
+. "$CORE/opts.zsh"
 . "$CORE/navigation.zsh"
 . "$CORE/misc.zsh"
 . "$CORE/keybindings.zsh"

@@ -1,8 +1,12 @@
 #!/bin/zsh
 
 # powerlevel10k theme
-zinit ice depth=1
-zinit light romkatv/powerlevel10k
+zinit light-mode for \
+	depth=1 romkatv/powerlevel10k
+
+# pure theme
+# zinit for \
+# compile'(pure|async).zsh' pick'async.zsh' src'pure.zsh' sindresorhus/pure
 
 # window title
 precmd() {

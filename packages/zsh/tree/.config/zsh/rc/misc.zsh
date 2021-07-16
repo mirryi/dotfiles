@@ -1,12 +1,14 @@
 #!/bin/zsh
 
 # command not found
-zinit light Tarrasch/zsh-command-not-found
+zinit wait'1' lucid light-mode for \
+	Tarrasch/zsh-command-not-found
 
 # fast alias tips
-zinit ice from'gh-r' as'program'
-zinit light sei40kr/fast-alias-tips-bin
-zinit light sei40kr/zsh-fast-alias-tips
+zinit wait'2' lucid light-mode for \
+	from'gh-r' as'program' sei40kr/fast-alias-tips-bin \
+	sei40kr/zsh-fast-alias-tips
 
 # auto-notify
-zinit light MichaelAquilina/zsh-auto-notify
+zinit wait'2' lucid light-mode for \
+	MichaelAquilina/zsh-auto-notify
