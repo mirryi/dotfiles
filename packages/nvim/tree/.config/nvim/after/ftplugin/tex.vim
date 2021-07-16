@@ -1,6 +1,3 @@
-setlocal textwidth=100
-setlocal conceallevel=2
-
 setlocal spell
 setlocal spelllang=en_gb
 
