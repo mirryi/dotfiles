@@ -1,12 +1,3 @@
-"   tab size
-setlocal tabstop=4
-setlocal shiftwidth=4
-setlocal expandtab
-setlocal conceallevel=2
-
-" no wrapping
-setlocal nowrap
-
 " local spellfile
 let b:buffer_dir = expand('%:p:h') . '/.vim'
 let b:local_spellfile = findfile('spell.en.add', b:buffer_dir)
