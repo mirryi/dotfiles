@@ -28,8 +28,7 @@ endsnippet
 # match
 #
 snippet "match " "match ? with ..." rA
-match ${1:expr} with
-| $0
+match ${1:expr} with | $0
 endsnippet
 
 snippet "matchopt " "match ? with Some(?) ..." rA
@@ -39,8 +38,7 @@ match ${1:expr} with
 endsnippet
 
 snippet "([^\s].*)\.match" "match ? with ..." r
-match `!p snip.rv = match.group(1)`$1 with
-| $0
+match `!p snip.rv = match.group(1)`$1 with | $0
 endsnippet
 
 

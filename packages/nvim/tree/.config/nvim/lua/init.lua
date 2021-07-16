@@ -14,7 +14,7 @@ g.nvim_cache = getenv('XDG_CACHE_HOME', '~/.cache') .. '/nvim'
 require 'global'
 
 -- Load plugins
-require 'plugins'
+require'plugins'.init()
 
 -- Load keybindings
 require 'bindings'

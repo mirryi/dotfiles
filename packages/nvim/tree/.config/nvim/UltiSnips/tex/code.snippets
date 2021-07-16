@@ -8,7 +8,7 @@ endsnippet
 
 priority 200
 snippet "imint(.+)" "\mintinline{?}|?|" r
-\mintinline{`!p snip.rv = match.group(1)`}|${1}|$0
+\mintinline{`!p snip.rv = match.group(1)`}|${1:${VISUAL}}|$0
 endsnippet
 
 snippet mint "\begin{minted}{?} ... \end{minted}" 

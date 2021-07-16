@@ -139,7 +139,7 @@ lspconfig.intelephense.setup {
 -- lspconfig.psalm_lsp.setup {on_attach = on_attach, capabilities = capabilities}
 
 -- python language server
-lspconfig.pyls.setup {on_attach = on_attach, capabilities = capabilities}
+lspconfig.pylsp.setup {on_attach = on_attach, capabilities = capabilities}
 
 -- pyright language server
 lspconfig.pyright.setup {on_attach = on_attach, capabilities = capabilities}
@@ -173,6 +173,22 @@ lspconfig.rust_analyzer.setup {
         }
     }
 }
+
+-- taplo
+-- if not configs.taplo_lsp then
+-- configs.taplo_lsp = {
+-- default_config = {
+-- cmd = {'taplo-lsp', 'run'},
+-- filetypes = {'toml'},
+-- root_dir = function(fname)
+-- return lspconfig.util.root_pattern('taplo.toml')(fname) or
+-- lspconfig.util.find_git_ancestor(fname) or
+-- vim.fn.getcwd()
+-- end
+-- }
+-- }
+-- end
+-- lspconfig.taplo_lsp.setup {on_attach = on_attach, capabilities = capabilities}
 
 -- texlab
 -- lspconfig.texlab.setup {on_attach = on_attach, capabilities = capabilities}

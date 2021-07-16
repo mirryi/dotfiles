@@ -23,11 +23,11 @@ end
 --
 -- Keybinding utilities
 --
-U.bind = require 'util/bind'
+U.bind = require 'util.bind'
 
 --
 -- Syntax highlight utilities
 --
-U.hi = require 'util/hi'
+U.hi = require 'util.hi'
 
 return U

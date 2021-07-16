@@ -1,10 +1,12 @@
-snippet beg "\begin{?} ... \end{?}" 
+priority 100
+snippet "beg(in)?" "\begin{?} ... \end{?}" r
 \begin{${1:env}}
 	${0:${VISUAL}}
 \end{$1}
 endsnippet
 
-snippet "([^\s].*)\.beg" "\begin{?} ... \end{?}" r
+priority 200
+snippet "([^\s].*)\.beg(in)?" "\begin{?} ... \end{?}" r
 \begin{`!p snip.rv = match.group(1)`}
 	${0:${VISUAL}}
 \end{`!p snip.rv = match.group(1)`}
