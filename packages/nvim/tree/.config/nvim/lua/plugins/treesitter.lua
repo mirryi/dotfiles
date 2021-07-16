@@ -12,6 +12,12 @@ if treesitter ~= nil then
             }
         },
         indent = {enable = true, disable = {'lua', 'rust'}},
+        refactor = {
+            enable = true,
+            highlight_definitions = {enable = true},
+            highlight_current_scope = {enable = true},
+            keymaps = {goto_definition = 'gd'}
+        },
         -- External modules
         autotag = {enable = true},
         context_commentstring = {enable = true}

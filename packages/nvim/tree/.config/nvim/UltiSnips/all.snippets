@@ -2,10 +2,26 @@ snippet today "Insert today's date"
 `date +%Y-%m-%d`
 endsnippet
 
-snippet q "VISUAL: quote"
+priority 100
+snippet "q " "quote ? quote" r
 "${0:${VISUAL}}"
 endsnippet
 
-snippet b "VISUAL: brace" 
+priority 200
+snippet "qq " "'?'" r
+'${0:${VISUAL}}'
+endsnippet
+
+priority 100
+snippet "b " "[?]" r
 {${0:${VISUAL}}}
+endsnippet
+
+priority 200
+snippet "bb " "{?}" r
+{${0:${VISUAL}}}
+endsnippet
+
+snippet "p " "(?)" r
+(${0:${VISUAL}})
 endsnippet

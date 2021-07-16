@@ -8,7 +8,7 @@ local telescope = require 'telescope'
 telescope.setup {}
 
 -- Picker picker
-cmd [[ command Pickers :lua require('telescope.builtin').builtin() ]]
+-- cmd [[ command Pickers :lua require('telescope.builtin').builtin() ]]
 
 --
 -- File pickers

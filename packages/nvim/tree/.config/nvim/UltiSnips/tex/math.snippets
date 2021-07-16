@@ -11,7 +11,7 @@ endglobal
 #
 # Blocks
 #
-snippet mb "\[ ... \]" bA
+snippet "mb " "\[ ... \]" brA
 \[
 	${0:${VISUAL}}
 \]
@@ -21,44 +21,44 @@ snippet mt "$?$"
 $${0:${VISUAL}}$
 endsnippet
 
-snippet mpar "\begin{mathpar} ... \end{mathpar}" bA
+snippet "mpar " "\begin{mathpar} ... \end{mathpar}" brA
 \begin{mathpar}
 	${0:${VISUAL}}
 \end{mathpar}
 endsnippet
 
-snippet marr "\[\begin{array} ... \end{array}\]" bA
+snippet "marr " "\[\begin{array} ... \end{array}\]" brA
 \[\begin{array}
 	${0:${VISUAL}}
 \end{array}\]
 endsnippet
 
-snippet mali "Align" bA
+snippet "mali " "\begin{align*} .. \end{align*}" brA
 \begin{align*}
 	${0:${VISUAL}}
-.\end{align*}
+\end{align*}
 endsnippet
 
 #
 # Fractions
 #
 context "math()"
-snippet // "Fraction" iA
+snippet // "\frac{?}{?}" iA
 \\frac{$1}{$2}$0
 endsnippet
 
-snippet / "Fraction" i
+snippet / "\frac{?}{?}" i
 \\frac{${VISUAL}}{$1}$0
 endsnippet
 
 context "math()"
-snippet '((\d+)|(\d*)(\\)?([A-Za-z]+)((\^|_)(\{\d+\}|\d))*)/' "symbol frac" wrA
+snippet '((\d+)|(\d*)(\\)?([A-Za-z]+)((\^|_)(\{\d+\}|\d))*)/' "\frac{?}{?}" wrA
 \\frac{`!p snip.rv = match.group(1)`}{$1}$0
 endsnippet
 
 priority 1000
 context "math()"
-snippet '^.*\)/' "() frac" wrA
+snippet '^.*\)/' "\frac{(?)}{?}" wrA
 `!p
 stripped = match.string[:-1]
 depth = 0
@@ -75,32 +75,32 @@ endsnippet
 #
 # Notation
 #
-snippet sum "sum" w
+snippet sum "\sum_{n=?}^{?} ?" w
 \sum_{n=${1:1}}^{${2:\infty}} ${3:a_n z^n}
 endsnippet
 
-snippet taylor "taylor" w
+snippet taylor "\sum_{?=?}^{?} ? (x-a^)?" w
 \sum_{${1:k}=${2:0}}^{${3:\infty}} ${4:c_$1} (x-a)^$1 $0
 endsnippet
 
-snippet lim "limit" w
+snippet lim "\lim_? \to ?" w
 \lim_{${1:n} \to ${2:\infty}}
 endsnippet
 
-snippet limsup "limsup" w
+snippet limsup "\limsup_{? \to ?}" w
 \limsup_{${1:n} \to ${2:\infty}}
 endsnippet
 
-snippet prod "product" w
+snippet prod "\prod_{?=?}^{?} ?" w
 \prod_{${1:n=${2:1}}}^{${3:\infty}} ${4:${VISUAL}} $0
 endsnippet
 
-snippet part "d/dx" w
+snippet part "\frac{\partial ?}{\partial ?}" w
 \frac{\partial ${1:V}}{\partial ${2:x}} $0
 endsnippet
 
 context "math()"
-snippet sq "\sqrt{}" iA
+snippet sq "\sqrt{?}" iA
 \sqrt{${1:${VISUAL}}} $0
 endsnippet
 
@@ -110,62 +110,62 @@ endsnippet
 
 # Subscript
 context "math()"
-snippet '([A-Za-z])(\d)' "Subscript" wrA
+snippet '([A-Za-z])(\d)' "?_?" wrA
 `!p snip.rv = match.group(1)`_`!p snip.rv = match.group(2)`
 endsnippet
 
 context "math()"
-snippet '([A-Za-z])_(\d\d)' "Subscript" wrA
+snippet '([A-Za-z])_(\d\d)' "?_{?}" wrA
 `!p snip.rv = match.group(1)`_{`!p snip.rv = match.group(2)`}
 endsnippet
 
 context "math()"
-snippet __ "Subscript" iA
+snippet __ "_{?}" iA
 _{$1}$0
 endsnippet
 
 context "math()"
-snippet xnn "xn" iA
+snippet xnn "x_{n}" iA
 x_{n}
 endsnippet
 
 context "math()"
-snippet ynn "yn" iA
+snippet ynn "y_{n}" iA
 y_{n}
 endsnippet
 
 context "math()"
-snippet xmm "ym" iA
+snippet xmm "y_{m}" iA
 x_{m}
 endsnippet
 
 context "math()"
-snippet ymm "ym" iA
+snippet ymm "y_{m}" iA
 y_{m}
 endsnippet
 
 context "math()"
-snippet xii "xi" iA
+snippet xii "x_{i}" iA
 x_{i}
 endsnippet
 
 context "math()"
-snippet yii "yi" iA
+snippet yii "y_{i}" iA
 y_{i}
 endsnippet
 
 context "math()"
-snippet xjj "xj" iA
+snippet xjj "x_{j}" iA
 x_{j}
 endsnippet
 
 context "math()"
-snippet yjj "yj" iA
+snippet yjj "y_{j}" iA
 y_{j}
 endsnippet
 
 context "math()"
-snippet xn1 "xn+1" iA
+snippet xn1 "x_{n+1}" iA
 x_{n+1}
 endsnippet
 
@@ -181,141 +181,141 @@ snippet cb "^3" iA
 endsnippet
 
 context "math()"
-snippet su "Superscript" iA
+snippet ^ "^{?}" iA
 ^{$1}$0
 endsnippet
 
 # Hat
 context "math()"
 priority 10
-snippet "bar" "Bar" riA
+snippet "bar " "\overline{?}" riA
 \overline{$1}$0
 endsnippet
 
 context "math()"
 priority 100
-snippet "([a-zA-Z])bar" "Bar" riA
+snippet "([a-zA-Z])bar" "\overline{?}" riA
 \overline{`!p snip.rv=match.group(1)`}
 endsnippet
 
 # Bar
 context "math()"
 priority 10
-snippet "hat" "Hat" riA
+snippet "hat " "\hat{?}" riA
 \hat{$1}$0
 endsnippet
 
 context "math()"
 priority 100
-snippet "([a-zA-Z])hat" "Hat" riA
+snippet "([a-zA-Z])hat" "\hat{?}" riA
 \hat{`!p snip.rv=match.group(1)`}
 endsnippet
 
 # Implies
 context "math()"
-snippet => "implies" Ai
+snippet => "\implies" Ai
 \implies
 endsnippet
 
 context "math()"
-snippet =< "implied by" Ai
+snippet =< "\impliedby" Ai
 \impliedby
 endsnippet
 
 context "math()"
-snippet iff "iff" Ai
+snippet iff "iff" iA
 \iff
 endsnippet
-# Arrows
 
+# Arrows
 priority 100
 context "math()"
-snippet -> "to" iA
+snippet -> "\to" iA
 \to
 endsnippet
 
 priority 200
 context "math()"
-snippet <-> "leftrightarrow" iA
+snippet <-> "\leftrightarrow" iA
 \leftrightarrow
 endsnippet
 
 context "math()"
-snippet !> "mapsto" iA
+snippet !> "\mapsto" iA
 \mapsto
 endsnippet
 
 # Equality
 context "math()"
-snippet == "equals" iA
+snippet == "&=" iA
 &= $1 \\\\
 endsnippet
 
 context "math()"
-snippet != "equals" iA
+snippet != "\neq" iA
 \neq
 endsnippet
 
 context "math()"
-snippet <= "leq" iA
+snippet <= "\leq" iA
 \le
 endsnippet
 
 context "math()"
-snippet >= "geq" iA
+snippet >= "\geq" iA
 \ge
 endsnippet
 
 context "math()"
-snippet >> ">>" iA
+snippet >> "\gg" iA
 \gg
 endsnippet
 
 context "math()"
-snippet << "<<" iA
+snippet << "\ll" iA
 \ll
 endsnippet
 
 # Ceil
 context "math()"
-snippet ceil "ceil" iA
+snippet "ceil " "\left\lceil ? \right\rceil" riA
 \left\lceil $1 \right\rceil $0
 endsnippet
 
 # Floor
 context "math()"
-snippet floor "floor" iA
+snippet "floor " "\left\lfloor ? \right\rfloor" riA
 \left\lfloor $1 \right\rfloor$0
 endsnippet
 
 # Infinity
 context "math()"
-snippet __ "subscript" iA
+snippet __ "_{?}" iA
 _{$1}$0
 endsnippet
 
 # Cross
 context "math()"
-snippet xx "cross" iA
+snippet xx "\times" iA
 \times
 endsnippet
 
 # Text
 context "math()"
-snippet tt "text" iA
+snippet tt "\text{?}"
 \text{$1}$0
 endsnippet
 
 #
 # amsthm snippets
 #
-snippet thm "\begin{theorem}[?] ... \end{theorem}" b
+snippet "thm " "\begin{theorem}[?] ... \end{theorem}" brA
 \begin{theorem}[${1}]
 	${0:${VISUAL}}
 \end{theorem}
 endsnippet
 
-snippet lemm "\begin{lemma} ... \end{lemma}" b
+snippet "lemm " "\begin{lemma} ... \end{lemma}" brA
 \begin{lemma}
 	${0:${VISUAL}}
 \end{lemma}
@@ -325,13 +325,13 @@ endsnippet
 # Sympy evaluation
 #
 context "math()"
-snippet sympy "sympy block " w
+snippet sympy "sympy ? sympy" w
 sympy $1 sympy$0
 endsnippet
 
 context "math()"
 priority 10000
-snippet 'sympy(.*)sympy' "evaluate sympy" wr
+snippet 'sympy(.*)sympy' "sympy evaluation" wr
 `!p
 from sympy import *
 x, y, z, t = symbols('x y z t')
