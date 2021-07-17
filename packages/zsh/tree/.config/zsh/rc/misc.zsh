@@ -12,3 +12,6 @@ zinit wait'2' lucid light-mode for \
 # auto-notify
 zinit wait'2' lucid light-mode for \
 	MichaelAquilina/zsh-auto-notify
+
+zinit wait'2' lucid light-mode for \
+	romkatv/zsh-prompt-benchmark
