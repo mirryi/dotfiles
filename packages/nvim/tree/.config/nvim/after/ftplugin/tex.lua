@@ -1,5 +1,6 @@
 -- luacheck: globals vim
 local bo = vim.bo
+local wo = vim.wo
 
 bo.textwidth = 100
-bo.conceallevel = 2
+wo.conceallevel = 2
