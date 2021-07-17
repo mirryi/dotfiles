@@ -1,0 +1,2 @@
+#!/bin/sh
+export MOZC_CONFIGURATION_DIRECTORY="${XDG_CONFIG_HOME}/mozc"
