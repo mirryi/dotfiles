@@ -5,7 +5,7 @@ zinit wait'2' lucid light-mode for \
   hlissner/zsh-autopair
 
 # fzf tab
-zinit wait lucid light-mode for \
+zinit wait'0' lucid light-mode for \
   Aloxaf/fzf-tab
 
 # OMZ git plugin
@@ -16,10 +16,14 @@ zinit wait'1' lucid has'git' light-mode for \
 # syntax highlighting, autosuggestions, completions plugins
 zinit wait lucid light-mode for \
   atload'!_zsh_autosuggest_start' zsh-users/zsh-autosuggestions \
-  blockf zsh-users/zsh-completions \
+  blockf zsh-users/zsh-completions
+
+zinit wait'0' lucid light-mode for \
   atinit'ZINIT[COMPINIT_OPTS]=-C; zicompinit; zicdreplay' zdharma/fast-syntax-highlighting
 
-zinit creinstall -Q "${ZSH_DATA}/completions"
+if [[ -d "${ZSH_DATA}/completions" ]]; then
+  zinit creinstall -Q "${ZSH_DATA}/completions"
+fi
 
 # disable sort when completing options of any command
 zstyle ':completion:complete:*:options' sort false
