@@ -7,15 +7,13 @@ if treesitter ~= nil then
         ensure_installed = 'maintained',
         highlight = {
             enable = true,
-            disable = {
-                'latex', 'ocaml', 'r', 'rust', 'scss', 'tex', 'yaml', 'zsh'
-            }
+            disable = {'latex', 'ocaml', 'r', 'rust', 'scss', 'tex', 'yaml'}
         },
         indent = {enable = true, disable = {'lua', 'rust'}},
         refactor = {
             enable = true,
             highlight_definitions = {enable = true},
-            highlight_current_scope = {enable = true},
+            highlight_current_scope = {enable = false},
             keymaps = {goto_definition = 'gd'}
         },
         -- External modules
