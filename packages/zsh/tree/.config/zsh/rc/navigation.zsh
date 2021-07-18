@@ -5,7 +5,7 @@
 # zinit light skywind3000/z.lua
 
 # zoxide
-zinit wait lucid has'zoxide' light-mode for \
+zinit has'zoxide' light-mode for \
 	atinit'export _ZO_DATA_DIR="$ZSH_DATA/zoxide"' ajeetdsouza/zoxide
 
 # autoswitch-virtualenv
