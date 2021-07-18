@@ -297,6 +297,12 @@ M.init = function()
             setup = function() require 'plugins.barbar' end
         }
 
+        -- Minimap
+        luse {
+            'wfxr/minimap.vim',
+            config = function() require 'plugins.minimap' end
+        }
+
         -- Smooth page-down and page-up
         luse {'psliwka/vim-smoothie'}
 
