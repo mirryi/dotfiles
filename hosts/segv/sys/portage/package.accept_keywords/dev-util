@@ -17,3 +17,5 @@ dev-util/shellcheck ~amd64
 # required by dev-util/shellcheck-0.7.1::gentoo
 # required by dev-util/shellcheck (argument)
 =dev-haskell/diff-0.4.0 ~amd64
+
+dev-util/code-minimap ~amd64
