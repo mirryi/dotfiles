@@ -1,2 +1,4 @@
 # enable distributed compilation client
 dev-util/sccache dist-client
+
+dev-util/code-minimap zsh-completion
