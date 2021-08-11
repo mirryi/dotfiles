@@ -1,25 +1,25 @@
 #
 # if / else
 #
-snippet "if " "if ? {}" rA
+snippet if "if ? {}"
 if ${1:condition} {
 	${0:${VISUAL}}
 }
 endsnippet
 
-snippet "else if " "else if ? {}" rA
+snippet "else if" "else if ? {}"
 else if ${1:condition} {
 	${0:${VISUAL}}
 }
 endsnippet
 
-snippet "else " "else {}" rA
+snippet else "else {}"
 else {
 	${0:${VISUAL}}
 }
 endsnippet
 
-snippet "if let " "if let ? = ? {}" rA
+snippet "if let" "if let ? = ? {}"
 if let ${1:destr} = ${2:expr} {
 	${0:${VISUAL}}
 }
@@ -28,7 +28,7 @@ endsnippet
 #
 # match
 #
-snippet "match " "match ? { ? }" rA
+snippet match "match ? { ? }"
 match ${1:expr} {
 	${0:${VISUAL}}
 }
@@ -37,7 +37,7 @@ endsnippet
 #
 # for
 #
-snippet "for " "for ? in ? {}" rA
+snippet for "for ? in ? {}"
 for ${1:ele} in ${2:iter} {
 	${0:${VISUAL}}
 }
@@ -46,13 +46,13 @@ endsnippet
 #
 # while
 #
-snippet "while " "while ? {}" rA
+snippet while "while ? {}"
 while ${1:cond} {
 	${0:${VISUAL}}
 }
 endsnippet
 
-snippet "whilel " "while let ? = ? {}" rA
+snippet whilel "while let ? = ? {}"
 while let ${1:destr} = ${2:expr} {
 	${0:${VISUAL}}
 }
@@ -75,49 +75,49 @@ endsnippet
 # Result<T>
 #
 snippet Res "Result<?>"
-Result<${1:T}>
+Result<${1:${VISUAL}}>
 endsnippet
 
-snippet "Ok " "Ok(?)" rA
-Ok(${1:val})
+snippet Ok "Ok(?)"
+Ok(${1:${VISUAL}})
 endsnippet
 
-snippet "Err  " "Err(?)" rA
-Err(${1:err})
+snippet Err "Err(?)"
+Err(${1:${VISUAL}})
 endsnippet
 
 #
 # Option<T>
 #
 snippet Opt "Option<?>"
-Option<${1:T}>
+Option<${1:${VISUAL}}>
 endsnippet
 
-snippet "Some " "Some(?)" rA
-Some(${1:val})
+snippet Some "Some(?)"
+Some(${1:${VISUAL}})
 endsnippet
 
 #
 # Box<T>
 #
 snippet Box "Box<?>"
-Box<${1:T}>
+Box<${1:${VISUAL}}>
 endsnippet
 
-snippet "box " "Box::new(?)" rA
+snippet box "Box::new(?)"
 Box::new(${1:${VISUAL}})
 endsnippet
 
 #
 # Vec<T>
 #
-snippet "vec! " "vec![]" rA
+snippet vec! "vec![]"
 vec![${1:items}]
 endsnippet
 
 #
 # String
 #
-snippet "fmt! " "format!(?)" brA
-format!("$1"${2/..*/, /}$2)
+snippet fmt! "format!(?)"
+format!("${1:${VISUAL}}"${2/..*/, /}$2)
 endsnippet

@@ -1,36 +1,36 @@
 #
 # use
 #
-snippet "use " "use ?;" brA
+snippet use "use ?;" b
 use $1;$0
 endsnippet
 
-snippet "usea " "use ? as ?;" brA
+snippet usea "use ? as ?;" b
 use $1 as $2;$0
 endsnippet
 
-snippet "use\* " "use ?::*" brA
+snippet use* "use ?::*" b
 use $1::*;$0
 endsnippet
 
 #
 # mod
 #
-snippet "mod " "mod ?;" brA
+snippet mod "mod ?;" b
 mod $1;$0
 endsnippet
 
-snippet "pmod " "pub mod ?;" brA
+snippet pmod "pub mod ?;" b
 pub mod $1;$0
 endsnippet
 
-snippet "bmod " "mod ? {}" brA
+snippet bmod "mod ? {}" b
 mod $1 {
 	${0:${VISUAL}}
 }
 endsnippet
 
-snippet "pbmod " "pub mod ? {}" brA
+snippet pbmod "pub mod ? {}" b
 pub mod $1 {
 	${0:${VISUAL}}
 }
@@ -40,14 +40,14 @@ endsnippet
 # struct
 #
 priority 100
-snippet "struct " "struct ? {}" brA
+snippet struct "struct ? {}" b
 struct ${1:Name} {
 	${0:${VISUAL}}
 }
 endsnippet
 
 priority 200
-snippet "pstruct " "struct ? {}" brA
+snippet pstruct "struct ? {}" b
 pub struct ${1:Name} {
 	${0:${VISUAL}}
 }
@@ -61,7 +61,7 @@ endsnippet
 # }
 # endsnippet
 
-snippet "derive " "#[derive(?)]" brA
+snippet derive "#[derive(?)]" b
 #[derive(${1})]$0
 endsnippet
 
@@ -69,38 +69,38 @@ endsnippet
 # enum
 #
 priority 100
-snippet "enum " "enum ? {}" brA
+snippet enum "enum ? {}" b
 enum ${1:Name} {
 	$0
 }
 endsnippet
 
 priority 200
-snippet "penum " "pub enum ? {}" brA
+snippet penum "pub enum ? {}" b
 pub enum ${1:Name} {
 	${0:${VISUAL}}
 }
 endsnippet
 
 # trait
-snippet "trait " "trait ? {}" brA
+snippet trait "trait ? {}" b
 trait ${1:Name} {
 	${0:${VISUAL}}
 }
 endsnippet
 
-snippet "ptrait " "pub trait ? {}" brA
+snippet ptrait "pub trait ? {}" b
 pub trait ${1:Name} {
 	${0:${VISUAL}}
 }
 endsnippet
 
 # type
-snippet "type " "type ? = ?" brA
+snippet type "type ? = ?" b
 type ${1:Name} = ${2:type};$0
 endsnippet
 
-snippet "ptype " "pub type ? = ?" brA
+snippet ptype "pub type ? = ?" b
 pub type ${1:Name} = ${2:type};$0
 endsnippet
 
@@ -108,52 +108,62 @@ endsnippet
 # fn
 #
 priority 100
-snippet "fn " "fn ?(?) {}" brA
+snippet fn "fn ?(?) {}" b
 fn ${1:name}($2) ${3/..*/-> /}$3 {
 	${0:${VISUAL}}
 }
 endsnippet
 
 priority 200
-snippet "pfn " "pub fn ?(?) -> ? {}" brA
+snippet pfn "pub fn ?(?) -> ? {}" b
 pub fn ${1:name}($2)${3/..*/-> /}$3 {
 	${0:${VISUAL}}
 }
 endsnippet
 
 priority 200
-snippet "afn " "async fn ?(?) -> ? {}" brA
+snippet afn "async fn ?(?) -> ? {}" b
 async fn ${1:name}($2)${3/..*/-> /}$3 {
 	${0:${VISUAL}}
 }
 endsnippet
 
 priority 300
-snippet "pafn " "pub async fn ?(?) -> ? {}" brA
+snippet pafn "pub async fn ?(?) -> ? {}" b
 pub async fn ${1:name}($2)${3/..*/-> /}$3 {
 	${0:${VISUAL}}
 }
 endsnippet
 
 priority 200
-snippet "mfn " "fn ?(&? self, ?) -> ? {}" brA
+snippet mfn "fn ?(&? self, ?) -> ? {}" b
 fn ${1:name}(&$2self${3/..*/, /}$3)${4/..*/-> /}$4 {
 	${0:${VISUAL}}
 }
 endsnippet
 
 priority 300
-snippet "mfn " "fn ?(&? self, ?) -> ? {}" brA
+snippet pmfn "fn ?(&? self, ?) -> ? {}" b
 pub fn ${1:name}(&$2self${3/..*/, /}$3)${4/..*/-> /}$4 {
 	${0:${VISUAL}}
 }
 endsnippet
 
-snippet inline "#[inline]" bA
+priority 200
+snippet tfn "fn ?(?) -> ?;" b
+fn ${1:name}($2) ${3/..*/-> /}$3;
+endsnippet
+
+priority 300
+snippet tmfn "fn ?(&? self, ?) -> ?;" b
+fn ${1:name}(&$2self${3/..*/, /}$3)${4/..*/-> /}$4;
+endsnippet
+
+snippet inline "#[inline]" b
 #[inline]
 endsnippet
 
-snippet "fnmain " "fn main() {}" brA
+snippet main "fn main() {}" b
 fn main() ${1/..*/-> /}$1 {
 	${0:${VISUAL}}
 }
@@ -162,6 +172,6 @@ endsnippet
 #
 # const
 #
-snippet "const " "const ?: ? = ?;" brA
+snippet const "const ?: ? = ?;" b
 const ${1:NAME}: ${2:type} = ${3:val};
 endsnippet

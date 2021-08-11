@@ -1,18 +1,18 @@
 #
 # attributes
 #
-snippet "cfg! " "#[cfg(?)]" brA
+snippet cfg! "#[cfg(?)]" b
 #[cfg($1)]
 endsnippet
 
-snippet "cfgf! " "#[cfg(feature = ?)]" brA
+snippet cfgf! "#[cfg(feature = ?)]" b
 #[cfg(feature = "$1")]
 endsnippet
 
 #
 # macro_rules
 #
-snippet "mr! " "macro_rules! ? {}" brA
+snippet mr! "macro_rules! ? {}" b
 macro_rules! ${1:name} {
 	${0:${VISUAL}}
 }

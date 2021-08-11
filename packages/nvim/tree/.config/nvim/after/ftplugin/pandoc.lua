@@ -1,11 +1,13 @@
 -- luacheck: globals vim
-local bo = vim.bo
+local bo, wo = vim.bo, vim.wo
+
+-- textwidth
+bo.textwidth = 100
 
 -- tab size
 bo.tabstop = 4
 bo.shiftwidth = 4
 bo.expandtab = true
-bo.conceallevel = 2
 
 -- no wrapping
-bo.nowrap = true
+wo.wrap = false

@@ -8,31 +8,31 @@ endsnippet
 #
 # let
 #
-snippet "let " "let ? = ? in" rA
-let ${1:name} = ${2:expr} in $0
+snippet "lett " "let ? = ?" rA
+let ${1:name} = ${2:${VISUAL}}
 endsnippet
 
-snippet vlet "VISUAL: let ? = ? in" 
-let ${1:name} = ${VISUAL} in $0
+snippet "let " "let ? = ? in" rA
+let ${1:name} = ${2:${VISUAL}} in $0
 endsnippet
 
 snippet "letr " "let rec ? = ? in" rA
-let rec ${1:name} = ${2:expr} in $0
+let rec ${1:name} = ${2:${VISUAL}} in $0
 endsnippet
 
-snippet "leto" "let open ? in" rA
-let open ${1:module} in $0
+snippet "leto " "let open ? in" rA
+let open ${1:${VISUAL}} in $0
 endsnippet
 
 #
 # match
 #
 snippet "match " "match ? with ..." rA
-match ${1:expr} with | $0
+match ${1:${VISUAL}} with | $0
 endsnippet
 
 snippet "matchopt " "match ? with Some(?) ..." rA
-match ${1:expr} with
+match ${1:${VISUAL}} with
 | Some ${2:v} -> ${3:()}
 | None -> ${4:()}
 endsnippet
@@ -46,7 +46,7 @@ endsnippet
 # if
 #
 snippet "if " "if ? then ? else ?" rA
-if ${1:cond} then ${2:e1} else ${3:e2}
+if ${1:${VISUAL}} then ${2:e1} else ${3:e2}
 endsnippet
 
 snippet "([^\s].*)\.if" "if ? then ? else ?" r
@@ -57,14 +57,14 @@ endsnippet
 # fun
 #
 snippet "fun " "fun ? -> ?" rA
-(fun ${1:param} -> ${2:body})
+(fun ${1:param} -> ${2:${VISUAL}})
 endsnippet
 
 #
 # raise
 #
 snippet "raise " "raise ?" rA
-raise ${1:Exception}
+raise ${1:${VISUAL}}
 endsnippet
 
 snippet "([^\s].*)\.raise" "raise ?;" r
@@ -75,14 +75,14 @@ endsnippet
 # open
 #
 snippet "open " "open ?" brA
-open ${1:Module}
+open ${1:${VISUAL}}
 endsnippet
 
 #
 # include
 #
 snippet "include " "include ?" brA
-include ${1:Module}
+include ${1:${VISUAL}}
 endsnippet
 
 #
@@ -90,7 +90,7 @@ endsnippet
 #
 snippet "begin " "begin ... end" rA
 begin
-	$0
+	${0:${VISUAL}}
 end
 endsnippet
 
@@ -99,13 +99,13 @@ endsnippet
 #
 snippet "mods " "module ? = struct ... end" brA
 module ${1:Name} ${2/..*/: /}$2 = struct
-	$0
+	${0:${VISUAL}}
 end
 endsnippet
 
 snippet "modg " "module ? = sig ... end" brA
 module ${1:Name} ${2/..*/:/} $2 = sig
-	$0
+	${0:${VISUAL}}
 end
 endsnippet
 
@@ -113,24 +113,24 @@ snippet "modsg " "module ? : sig ... end = struct ... end" brA
 module ${1:Name} : sig
 	$2
 end = struct
-	$0
+	${0:${VISUAL}}
 end
 endsnippet
 
 snippet "modf " "module ? (? : ?) : ? = struct ... end" brA
 module ${1:Name} (${2:Param} : ${3:ParamType}) ${2/..*/:/} $2 = struct
-	$0
+	${0:${VISUAL}}
 end
 endsnippet
 
 snippet "struct " "struct ... end" rA
 struct
-	$0
+	${0:${VISUAL}}
 end
 endsnippet
 
 snippet "sig " "sig ... end" rA
 sig
-	$0
+	${0:${VISUAL}}
 end
 endsnippet
