@@ -19,11 +19,6 @@ mouse:
     threshold: 300
   triple_click:
     threshold: 300
-  url:
-    launcher:
-      args: []
-      modifiers: None
-      program: xdg-open
 mouse_bindings:
   - action: PasteSelection
     mouse: Middle

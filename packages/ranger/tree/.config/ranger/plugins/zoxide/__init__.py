@@ -11,8 +11,11 @@ hook_init_old = ranger.api.hook_init
 def hook_init(fm: ranger.core.fm.FM):
     def zoxide_add(signal: ranger.ext.signals.Signal):
         path = signal.new.path
-        process = subprocess.Popen(["zoxide", "add", path])
-        process.wait()
+        try:
+            process = subprocess.Popen(["zoxide", "add", path])
+            process.wait()
+        except FileNotFoundError:
+            return
 
     fm.signal_bind("cd", zoxide_add)
     return hook_init_old(fm)
