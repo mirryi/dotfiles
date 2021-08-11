@@ -9,6 +9,7 @@ zinit has'zoxide' light-mode for \
 	atinit'export _ZO_DATA_DIR="$ZSH_DATA/zoxide"' ajeetdsouza/zoxide
 
 # autoswitch-virtualenv
+export AUTOSWITCH_VIRTUAL_ENV_DIR="${XDG_DATA_HOME}/venvs"
 zinit wait'2' lucid has'virtualenv' light-mode for \
 	MichaelAquilina/zsh-autoswitch-virtualenv
 
