@@ -9,7 +9,9 @@ local partials = {
     common = 'config/common.yaml',
     profile = 'config/profile.yaml.hbs'
 }
-if lfs.attributes('local.yaml.hbs') then partials.lcl = 'local.yaml.hbs' end
+if lfs.attributes('config/local.yaml.hbs') then
+    partials.lcl = 'config/local.yaml.hbs'
+end
 
 pkg.files.templates:push({
     src = 'config/config.yaml.hbs',
