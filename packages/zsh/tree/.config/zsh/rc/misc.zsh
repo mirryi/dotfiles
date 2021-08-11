@@ -10,7 +10,7 @@ zinit wait'2' lucid light-mode for \
 	sei40kr/zsh-fast-alias-tips
 
 # auto-notify
-zinit wait'2' lucid light-mode for \
+zinit wait'2' has'notify-send' lucid light-mode for \
 	MichaelAquilina/zsh-auto-notify
 
 zinit wait'2' lucid light-mode for \

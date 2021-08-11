@@ -73,8 +73,8 @@ bind pager i display-toggle-weed
 bind pager gg top
 
 # <ctrl>b to navigate and open urls
-macro index,pager \cb "<pipe-message> urlscan<Enter>" "call urlscan to extract URLs out of a message"
-macro attach,compose \cb "<pipe-entry> urlscan<Enter>" "call urlscan to extract URLs out of a message"
+macro index,pager \cb "<pipe-message> urlscan -c<Enter>" "call urlscan to extract URLs out of a message"
+macro attach,compose \cb "<pipe-entry> urlscan -c<Enter>" "call urlscan to extract URLs out of a message"
 
 #
 # Management
