@@ -156,19 +156,15 @@ lspconfig.rust_analyzer.setup {
     capabilities = capabilities,
     settings = {
         ['rust-analyzer'] = {
+            assist = {importGranularity = 'module'},
             cargo = {loadOutDirsFromCheck = true, allFeatures = true},
-            checkOnSave = {
-                allFeatures = true,
-                overrideCommand = {
-                    'cargo', 'clippy', '--workspace', '--message-format=json',
-                    '--all-targets', '--all-features'
-                }
-            },
-            diagnostics = {
-                enable = true,
-                disabled = {'unresolved-proc-macro'},
-                enableExperimental = true
-            },
+            -- checkOnSave = {
+            -- allFeatures = true,
+            -- overrideCommand = {
+            -- 'cargo', 'clippy', '--workspace', '--message-format=json',
+            -- '--all-targets', '--all-features'
+            -- }
+            -- },
             procMacro = {enable = true}
         }
     }

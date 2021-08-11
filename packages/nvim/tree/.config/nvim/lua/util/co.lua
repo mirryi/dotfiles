@@ -2,6 +2,11 @@ local co = coroutine
 
 local M = {}
 
+M.bg = function(f)
+    local thread = co.create(function() f() end)
+    return thread
+end
+
 M.poll = function(thread)
     local nxt = nil
     nxt = function(cont, ...)

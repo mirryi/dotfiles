@@ -324,6 +324,12 @@ M.init = function()
         -- Automatically make nonexistent directories
         luse {'benizi/vim-automkdir'}
 
+        -- wildmenu enhancements
+        luse {
+            'gelguy/wilder.nvim',
+            config = function() require 'plugins.wilder' end
+        }
+
         --
         -- LANGUAGE SUPPORT
         --
@@ -349,6 +355,9 @@ M.init = function()
 
         -- ELinks configuration syntax file
         luse {'vim-scripts/elinks.vim'}
+
+        -- elvish support
+        luse {'dmix/elvish.vim'}
 
         -- i3 configuration file syntax
         luse {'mboughaba/i3config.vim'}

@@ -1,3 +1,3 @@
-local U = require('util')
+local bind = require('util.bind')
 
-U.nmap('<leader>p', '<cmd>Glow<CR>')
+bind.nmap('<leader>p', '<cmd>Glow<CR>')
