@@ -1,7 +1,0 @@
-#!/sbin/openrc-run
-command="protonmail-bridge"
-command_args="--noninteractive"
-command_background=true
-pidfile="/run/protonmail-bridge.pid"
-
-command_user="${USER}"
