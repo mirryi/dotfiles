@@ -32,10 +32,10 @@ bindsym $mod+g exec rofi -show ssh
 bindsym $mod+Shift+g exec networkmanager_dmenu
 
 ##  terminal
-#   open alacritty
-bindsym $mod+t exec alacritty
-#   floating terminal
-bindsym $mod+Shift+t exec floatw alacritty
+#   open st
+bindsym $mod+t exec st
+#   floating st
+bindsym $mod+Shift+t exec floatw st
 
 ##  control audio
 #   mute
