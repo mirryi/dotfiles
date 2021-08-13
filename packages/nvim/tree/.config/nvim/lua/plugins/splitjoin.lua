@@ -1,6 +1,6 @@
 -- luacheck: globals vim
 local g = vim.g
-local U = require 'util'
+local U = require('util')
 
 -- Disable default mappings
 g.splitjoin_split_mapping = ''

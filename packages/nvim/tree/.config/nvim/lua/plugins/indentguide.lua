@@ -5,7 +5,7 @@ local g = vim.g
 g.indentLine_char = 'ˌ'
 
 -- Disable on dashboard
-g.indentLine_fileTypeExclude = {'dashboard'}
+g.indentLine_fileTypeExclude = { 'dashboard' }
 
 -- Disable setting concealcursor
 g.indentLine_setConceal = 0

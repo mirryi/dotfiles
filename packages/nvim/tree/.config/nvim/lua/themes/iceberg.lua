@@ -6,12 +6,15 @@ local exec = vim.api.nvim_exec
 o.background = 'dark'
 g.airline_theme = 'icebergDark'
 
-exec([[
+exec(
+	[[
 try
   colorscheme iceberg
   catch
 endtry
-]], true)
+]],
+	true
+)
 
 -- Initialize lualine
 local lualine = require('themes/common/lualine')

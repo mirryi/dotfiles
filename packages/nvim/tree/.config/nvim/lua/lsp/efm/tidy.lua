@@ -1,4 +1,4 @@
 return {
-    formatCommand = 'tidy -xml -i --indent-attributes yes --',
-    formatStdin = true
+	formatCommand = 'tidy -xml -i --indent-attributes yes --',
+	formatStdin = true,
 }

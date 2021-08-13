@@ -12,8 +12,8 @@ g.python3_host_prog = '/usr/bin/python3'
 --
 
 -- Enable syntax and indent
-cmd [[syntax on]]
-cmd [[filetype plugin indent on]]
+cmd([[syntax on]])
+cmd([[filetype plugin indent on]])
 
 -- Map leader
 g.mapleader = '\\'
@@ -44,8 +44,8 @@ wo.wrap = false
 
 -- Tabs (space tabs)
 local function opt(name, value)
-    o[name] = value
-    bo[name] = value
+	o[name] = value
+	bo[name] = value
 end
 
 o.smarttab = true
@@ -61,9 +61,12 @@ o.completeopt = 'menuone,noinsert,noselect'
 
 -- Undo
 bo.undofile = true
-vim.api.nvim_exec([[
+vim.api.nvim_exec(
+	[[
   let &undodir=g:nvim_cache . '/undo'
-]], true)
+]],
+	true
+)
 
 -- No local .vimrc files
 o.exrc = false
@@ -81,5 +84,5 @@ vim.api.nvim_command([[
 ]])
 
 -- Go to previous diagnostic
-bind.nmap('gN', '<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>', {noremap = false})
-bind.nmap('gn', '<cmd>lua vim.lsp.diagnostic.goto_next()<CR>', {noremap = false})
+bind.nmap('gN', '<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>', { noremap = false })
+bind.nmap('gn', '<cmd>lua vim.lsp.diagnostic.goto_next()<CR>', { noremap = false })

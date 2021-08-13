@@ -1,4 +1,4 @@
 return {
-  formatCommand = 'shfmt -',
-  formatStdin = true
+	formatCommand = 'shfmt -',
+	formatStdin = true,
 }

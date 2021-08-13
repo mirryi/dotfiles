@@ -1,8 +1,8 @@
 -- luacheck: globals vim
 -- Set global variables for XDG dirs
 local getenv = function(var, def)
-    local env = os.getenv(var)
-    return env and env or def
+	local env = os.getenv(var)
+	return env and env or def
 end
 
 local g = vim.g
@@ -11,13 +11,13 @@ g.nvim_data = getenv('XDG_DATA_HOME', '~/.local/share') .. '/nvim'
 g.nvim_cache = getenv('XDG_CACHE_HOME', '~/.cache') .. '/nvim'
 
 -- Load global editor settings
-require 'global'
+require('global')
 
 -- Load plugins
-require'plugins'.init()
+require('plugins').init()
 
 -- Load keybindings
-require 'bindings'
+require('bindings')
 
 -- Load theme
-require 'theme'
+require('theme')

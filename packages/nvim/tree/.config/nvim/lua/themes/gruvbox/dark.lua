@@ -1,5 +1,5 @@
 -- luacheck: globals vim
-local U = require 'util'
+local U = require('util')
 
 -- Initialize colorscheme
 local shared = require('themes/gruvbox/shared')
