@@ -5,12 +5,15 @@ local exec = vim.api.nvim_exec
 -- Use sakura colorscheme
 o.background = 'dark'
 
-exec([[
+exec(
+	[[
 try
   colorscheme sakura
   catch
 endtry
-]], true)
+]],
+	true
+)
 
 -- Initialize lualine
 local lualine = require('themes/common/lualine')

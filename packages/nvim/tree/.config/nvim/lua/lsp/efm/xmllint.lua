@@ -1,3 +1,3 @@
 return {
-    formatCommand = 'xmllint --format',
+	formatCommand = 'xmllint --format',
 }

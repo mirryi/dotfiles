@@ -1,2 +1,2 @@
-local shade = require 'shade'
-shade.setup {overlay_opacity = 90}
+local shade = require('shade')
+shade.setup({ overlay_opacity = 90 })

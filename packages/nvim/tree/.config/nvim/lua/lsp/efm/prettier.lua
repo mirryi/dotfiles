@@ -1,1 +1,1 @@
-return {formatCommand = './node_modules/.bin/prettier'}
+return { formatCommand = './node_modules/.bin/prettier' }

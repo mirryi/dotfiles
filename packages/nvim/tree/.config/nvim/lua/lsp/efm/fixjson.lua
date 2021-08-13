@@ -1,4 +1,4 @@
 return {
-  formatCommand = 'fixjson --stdin-filename ${INPUT}',
-  formatStdin = true,
+	formatCommand = 'fixjson --stdin-filename ${INPUT}',
+	formatStdin = true,
 }

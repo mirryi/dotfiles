@@ -6,10 +6,11 @@ local g, exec = vim.g, vim.api.nvim_exec
 g.goyo_width = 85
 
 -- Toggle goyo
-U.nmap('<leader>G', '<cmdGoyo<CR>', {silent = true})
+U.nmap('<leader>G', '<cmdGoyo<CR>', { silent = true })
 
 -- Set custom enter/exit hooks
-exec([[
+exec(
+	[[
 function! s:goyo_enter()
   if executable('tmux') && strlen($TMUX)
     silent !tmux set status off
@@ -32,4 +33,6 @@ endfunction
 
 autocmd! User GoyoEnter nested call <SID>goyo_enter()
 autocmd! User GoyoLeave nested call <SID>goyo_leave()
-]], true)
+]],
+	true
+)

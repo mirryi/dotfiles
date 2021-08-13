@@ -4,12 +4,15 @@ local exec = vim.api.nvim_exec
 
 -- Use nord colorscheme
 o.background = 'dark'
-exec([[
+exec(
+	[[
 try
   colorscheme nord
   catch
 endtry
-]], true)
+]],
+	true
+)
 
 -- Initialize lualine
 local lualine = require('themes/common/lualine')

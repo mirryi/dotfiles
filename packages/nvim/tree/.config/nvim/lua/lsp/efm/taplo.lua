@@ -1,1 +1,1 @@
-return {formatCommand = 'taplo format -', formatStdin = true}
+return { formatCommand = 'taplo format -', formatStdin = true }
