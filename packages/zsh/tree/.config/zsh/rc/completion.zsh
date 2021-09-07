@@ -24,6 +24,8 @@ zinit light-mode for \
 # autocomplete
 zinit light-mode for \
   marlonrichert/zsh-autocomplete
+zstyle ':autocomplete:*' min-delay 0.3
+zstyle ':autocomplete:*' min-input 2
 zstyle ':autocomplete:*' list-lines 10
 zstyle ':autocomplete:*' recent-dirs zoxide
 zstyle ':autocomplete:*' widget-style menu-complete
