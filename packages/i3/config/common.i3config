@@ -24,6 +24,8 @@ bindsym $mod+Shift+w exec xkill
 ##  rofi menu
 #   application runner
 bindsym $mod+d exec rofi -show run
+#   file opener
+bindsym $mod+f exec rofi -show file-browser
 #   window switcher
 bindsym $mod+Shift+d exec rofi -show window
 #   ssh menu
@@ -56,6 +58,9 @@ bindsym $mod+m exec mpdnd --now
 # battery
 bindsym $mod+b exec notify-battery -f
 
+# screenshot
+bindsym $mod+i exec maim -s /tmp/a.png
+
 ######### MOVEMENT #########
 # change focus
 bindsym $mod+$left focus left
@@ -86,7 +91,7 @@ bindsym $mod+c split h
 bindsym $mod+Shift+c split v
 
 # enter fullscreen mode for the focused container
-bindsym $mod+f fullscreen toggle
+bindsym $mod+Shift+f fullscreen toggle
 
 # change container layout (stacked, tabbed, toggle split)
 bindsym $mod+s layout stacking
