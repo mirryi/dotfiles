@@ -1,0 +1,2 @@
+#!/bin/sh
+export PUB_CACHE="${XDG_CACHE_HOME}/flutter/pub-cache"
