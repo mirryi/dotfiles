@@ -2,5 +2,5 @@ map <C-r> reload
 map <C-i> recolor
 
 set recolor false
-set recolor-darkcolor "#dcdccc"
-set recolor-lightcolor "#1f1f1f"
+set recolor-lightcolor "#282828"
+set recolor-darkcolor "#ebdbb2"
