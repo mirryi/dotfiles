@@ -1,18 +1,18 @@
 #
 # if / else
 #
-snippet "if " "if ?; ... fi" brA
+snippet if "if ?; ... fi" b
 if ${2:[[ ${1:cond} ]]}; then
 	${0:${VISUAL}}
 fi
 endsnippet
 
-snippet "elif " "elif ?; then ... " brA
+snippet elif "elif ?; then ... " b
 elif ${2:[[ ${1:cond} ]]}; then
 	${0:${VISUAL}}
 endsnippet
 
-snippet "else " "else ..." brA
+snippet else "else ..." b
 else
 	${0:${VISUAL}}
 endsnippet
@@ -20,7 +20,7 @@ endsnippet
 #
 # function
 #
-snippet "fn " "? () {}" brA
+snippet fn "? () {}" b
 ${1:name} () {
 	${0:${VISUAL}}
 }

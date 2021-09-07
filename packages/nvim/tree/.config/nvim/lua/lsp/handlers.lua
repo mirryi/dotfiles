@@ -15,20 +15,10 @@ vim.cmd([[command! FormatOn :lua vim.g.format = true ]])
 vim.cmd([[command! FormatOff :lua vim.g.format = false ]])
 vim.cmd([[command! FormatToggle :lua vim.g.format = not vim.g.format ]])
 
-vim.lsp.handlers['textDocument/formatting'] = function(err, _, result, _, bufnr)
-	if not vim.g.format then
-		return
-	end
-	if err ~= nil or result == nil then
-		return
-	end
-	if not vim.api.nvim_buf_get_option(bufnr, 'modified') then
-		local view = vim.fn.winsaveview()
-		vim.lsp.util.apply_text_edits(result, bufnr)
-		vim.fn.winrestview(view)
-		if bufnr == vim.api.nvim_get_current_buf() then
-			vim.api.nvim_command('noautocmd :update')
-		end
+local on_formatting = vim.lsp.handlers['textDocument/formatting']
+vim.lsp.handlers['textDocument/formatting'] = function(err, c, result, bufnr)
+	if vim.g.format then
+        on_formatting(err, c, result, bufnr)
 	end
 end
 
