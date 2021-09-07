@@ -81,7 +81,7 @@ user_styles_dir = os.path.join(config.configdir, 'styles', '*.user.css')
 c.content.user_stylesheets = glob.glob(user_styles_dir)
 
 # editor command
-c.editor.command = ['alacritty', '-e', 'nvim',
+c.editor.command = ['st', '-e', 'nvim',
                     '{file}', '-c', 'normal {file}G{column0}l']
 
 # default fonts
@@ -92,9 +92,9 @@ c.fonts.default_size = '10pt'
 # file selector
 c.fileselect.handler = 'external'
 c.fileselect.single_file.command = [
-    'alacritty', '-e', 'ranger', '--choosefile={}']
+    'st', '-e', 'ranger', '--choosefile={}']
 c.fileselect.multiple_files.command = [
-    'alacritty', '-e', 'ranger', '--choosefiles={}']
+    'st', '-e', 'ranger', '--choosefiles={}']
 
 # QT hidpi fix
 c.qt.highdpi = True
