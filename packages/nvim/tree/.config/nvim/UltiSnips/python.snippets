@@ -1,21 +1,21 @@
-snippet "TODO " "# TODO ?" rA
+snippet TODO "# TODO ?" b
 # TODO ${0:${VISUAL}}
 endsnippet
 
 #
 # if / else
 #
-snippet "if " "if ?:" brA
+snippet if "if ?:" b
 if ${1:condition}:
 	${0:${VISUAL}}
 endsnippet
 
-snippet "else if " "else if ?:" brA
-else if ${1:condition}:
+snippet elif "else if ?:" b
+elif ${1:condition}:
 	${0:${VISUAL}}
 endsnippet
 
-snippet "else " "else:" brA
+snippet else "else:" b
 else:
 	${0:${VISUAL}}
 endsnippet
@@ -23,7 +23,7 @@ endsnippet
 #
 # for
 #
-snippet "for " "for ? in ?:" brA
+snippet for "for ? in ?:" b
 for ${1:item} in ${2:iter}:
 	${0:${VISUAL}}
 endsnippet
@@ -31,7 +31,7 @@ endsnippet
 #
 # while
 #
-snippet "while " "while ?:" brA
+snippet while "while ?:" b
 while ${1:cond}:
 	${0:${VISUAL}}
 endsnippet
@@ -39,25 +39,25 @@ endsnippet
 #
 # with
 #
-snippet "with " "with ? as ?:" brA
-with ${1:expr} as ${2:var}
+snippet with "with ? as ?:" b
+with ${1:${VISUAL}} as ${2:var}
 endsnippet
 
 #
 # try / except
 #
-snippet "try " "try: ... except ?:" brA
+snippet try "try: ... except ?:" b
 try:
-	$1
+	${1:${VISUAL}}
 except ${2:Error}:
-	${0:${VISUAL}}
+	$0
 endsnippet
 
 #
 # return
 #
-snippet "ret " "return ?" brA
-return ${1:expr}
+snippet ret "return ?" b
+return ${1:${VISUAL}}
 endsnippet
 
 snippet "([^\s].*)\.ret" "return ?" r
@@ -67,40 +67,40 @@ endsnippet
 #
 # lambda
 #
-snippet "lam!" "lambda ?: ?" rA
-lambda ${1:param}: ${2:ret}
+snippet lam "lambda ?: ?"
+lambda ${1:param}: ${2:${VISUAL}}
 endsnippet
 
 #
 # print
 #
-snippet "print " "print(?)" rA
-print($1)
+snippet print "print(?)"
+print(${1:${VISUAL}})
 endsnippet
 
 #
 # def
 #
 priority 100
-snippet "def " "def ?(?):" brA
+snippet def "def ?(?):" b
 def ${1:name}($2) ${3/..*/-> /}$3:
 	${0:${VISUAL}}
 endsnippet
 
 priority 200
-snippet "defa " "def async ?(?):" brA
+snippet defa "def async ?(?):" b
 def async ${1:name}($2) ${3/..*/-> /}$3:
 	${0:${VISUAL}}
 endsnippet
 
 priority 200
-snippet "defmain " "def main():" brA
+snippet defmain "def main():" b
 def main():
 	${0:${VISUAL}}
 endsnippet
 
 priority 300
-snippet "defmaint " "def main(): ..." brA
+snippet defmaint "def main(): ..." b
 def main():
 	${0:${VISUAL}}
 
@@ -112,12 +112,23 @@ endsnippet
 #
 # class
 #
-snippet "class " "class ?:" brA
+snippet class "class ?:" b
 class ${1:Name}`!p snip.rv = '(' if t[2] != '' else ''`${2:(}`!p snip.rv = ')' if t[2] != '' else ''`:
 	${0:${VISUAL}}
 endsnippet
 
-snippet "init! " "def __init__(self): " brA
+snippet definit "def __init__(self): " b
 def __init__(self, ${1:params}):
 	${0:${VISUAL}}
+endsnippet
+
+#
+# import
+#
+snippet imp "import ?" b
+import ${1:${VISUAL}}
+endsnippet
+
+snippet impf "from ? import ?" b
+from ${1:${VISUAL}} import $2
 endsnippet
