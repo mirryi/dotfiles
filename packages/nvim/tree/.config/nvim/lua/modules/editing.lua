@@ -40,7 +40,7 @@ plugins['AndrewRadev/splitjoin.vim'] = {
 
 		-- Use custom mappings
 		bind.nmap('<leader>j', '<cmd>SplitjoinJoin<CR>')
-		bind.nmap('<leader>s', '<cmd>SplitjoinSplit<CR>')
+		bind.nmap('<leader>S', '<cmd>SplitjoinSplit<CR>')
 	end,
 }
 

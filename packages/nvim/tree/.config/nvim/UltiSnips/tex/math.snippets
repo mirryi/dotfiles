@@ -11,29 +11,29 @@ endglobal
 #
 # Blocks
 #
-snippet "mb " "\[ ... \]" brA
-\[
+snippet mb "\[% ... \]%" i
+\[%
 	${0:${VISUAL}}
-\]
+\]%
 endsnippet
 
-snippet mt "$?$"
+snippet mt "$?$" i
 $${0:${VISUAL}}$
 endsnippet
 
-snippet "mpar " "\begin{mathpar} ... \end{mathpar}" brA
+snippet mpar "\begin{mathpar} ... \end{mathpar}"
 \begin{mathpar}
 	${0:${VISUAL}}
 \end{mathpar}
 endsnippet
 
-snippet "marr " "\[\begin{array} ... \end{array}\]" brA
+snippet marr "\[\begin{array} ... \end{array}\]"
 \[\begin{array}
 	${0:${VISUAL}}
 \end{array}\]
 endsnippet
 
-snippet "mali " "\begin{align*} .. \end{align*}" brA
+snippet mali "\begin{align*} .. \end{align*}"
 \begin{align*}
 	${0:${VISUAL}}
 \end{align*}
@@ -100,8 +100,8 @@ snippet part "\frac{\partial ?}{\partial ?}" w
 endsnippet
 
 context "math()"
-snippet sq "\sqrt{?}" iA
-\sqrt{${1:${VISUAL}}} $0
+snippet sqrt "\sqrt{?}" iA
+\sqrt{${1:${VISUAL}}}
 endsnippet
 
 #
@@ -303,7 +303,7 @@ endsnippet
 # Text
 context "math()"
 snippet tt "\text{?}"
-\text{$1}$0
+\text{${1:${VISUAL}}}${0}
 endsnippet
 
 #
