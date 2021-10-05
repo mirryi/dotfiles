@@ -1,6 +1,6 @@
 -- luacheck: globals vim
 local lspconfig = require('lspconfig')
-local configs = require('lspconfig.configs')
+-- local configs = require('lspconfig.configs')
 
 -- override handlers
 local handlers = require('modules.lsp.handlers')
@@ -195,7 +195,7 @@ lspconfig.vimls.setup({ on_attach = on_attach, capabilities = capabilities })
 -- efm-langserver
 -- local autopep8 = require('modules.lsp.efm.autopep8')
 local eslint = require('modules.lsp.efm.eslint')
-local fixjson = require('modules.lsp.efm.fixjson')
+-- local fixjson = require('modules.lsp.efm.fixjson')
 -- local flake8 = require('modules.lsp.efm.flake8')
 local goimports = require('modules.lsp.efm.goimports')
 local golint = require('modules.lsp.efm.golint')
@@ -236,7 +236,7 @@ lspconfig.efm.setup({
 		'javascript',
 		'javascriptreact',
 		'javascript.jsx',
-		'json',
+		-- 'json',
 		'lua',
 		'pandoc',
 		'php',
@@ -262,11 +262,14 @@ lspconfig.efm.setup({
 			javascript = { eslint, prettier },
 			javascriptreact = { eslint, prettier },
 			['javascript.jsx'] = { eslint, prettier },
-			json = { fixjson, prettier },
+			-- json = { fixjson, prettier },
 			-- kotlin = {ktlint},
 			-- latex = {lacheck},
 			lua = { stylua },
-			pandoc = { pandoc },
+			pandoc = {
+				pandoc,
+				--vale
+			},
 			php = {
 				prettier, -- psalm,
 				phpstan,

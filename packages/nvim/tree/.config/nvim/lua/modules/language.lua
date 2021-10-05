@@ -13,6 +13,9 @@ plugins['habamax/vim-asciidoctor'] = {
 -- luseful csv utilities and highlighting
 plugins['mechatroner/rainbow_csv'] = { ft = { 'csv' } }
 
+-- C++ highlighting
+-- plugins['bfrg/vim-cpp-modern'] = {}
+
 -- EBNF syntax file
 plugins['a-vrma/ebnf-vim'] = {}
 
@@ -83,6 +86,7 @@ plugins['mhinz/vim-crates'] = {
 plugins['lervag/vimtex'] = {
 	config = function()
 		local g = vim.g
+		g.tex_flavor = 'latex'
 		g.vimtex_enabled = 1
 
 		-- Syntax options

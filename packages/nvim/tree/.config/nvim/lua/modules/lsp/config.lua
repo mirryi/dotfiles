@@ -95,6 +95,7 @@ config.lint = function()
 
 	-- Define linters
 	use({
+		cpp = { 'cppcheck' },
 		lua = { 'luacheck' },
 		-- pandoc = {'vale'},
 		sh = { 'shellcheck' },
@@ -111,17 +112,18 @@ config.treesitter = function()
 			ensure_installed = 'maintained',
 			highlight = {
 				enable = true,
-				disable = { 'latex', 'ocaml', 'r', 'rust', 'scss', 'tex', 'yaml' },
+				disable = { 'cmake', 'latex', 'ocaml', 'r', 'rust', 'scss', 'tex', 'yaml' },
 			},
-			indent = { enable = true, disable = { 'lua', 'rust' } },
+			indent = { enable = true, disable = { 'lua', 'rust', 'tex' } },
 			refactor = {
 				enable = true,
+				disable = { 'tex' },
 				highlight_definitions = { enable = true },
 				highlight_current_scope = { enable = false },
 				keymaps = { goto_definition = 'gd' },
 			},
 			-- External modules
-			autotag = { enable = true },
+			autotag = { enable = true, disable = { 'tex' } },
 			context_commentstring = { enable = true },
 		})
 	end
