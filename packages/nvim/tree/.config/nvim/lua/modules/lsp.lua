@@ -52,9 +52,10 @@ plugins['neovim/nvim-lspconfig'] = {
 		{ 'jose-elias-alvarez/nvim-lsp-ts-utils' },
 		-- Rust inline type indications
 		{ 'nvim-lua/lsp_extensions.nvim', ft = { 'rust' } },
-	},
-	after = {
-		'telescope.nvim',
+		-- Better UIs
+		{ 'RishabhRD/nvim-lsputils', requires = { { 'RishabhRD/popfix' } } },
+		-- Better code actions menus
+		-- { 'weilbith/nvim-code-action-menu' },
 	},
 	config = function()
 		require('modules.lsp.config').lspconfig()
@@ -69,7 +70,7 @@ plugins['mfussenegger/nvim-jdtls'] = {
 	end,
 }
 
--- -- Better scala support
+-- Better scala support
 plugins['scalameta/nvim-metals'] = {
 	ft = { 'scala', 'sbt' },
 	config = function()
@@ -77,11 +78,22 @@ plugins['scalameta/nvim-metals'] = {
 	end,
 }
 
--- -- Better flutter support
+-- Better flutter support
 plugins['akinsho/flutter-tools.nvim'] = {
 	requires = { { 'nvim-lua/plenary.nvim' } },
 	config = function()
 		require('modules.lsp.config').flutter()
+	end,
+}
+
+-- Better rust utilities
+plugins['simrat39/rust-tools.nvim'] = {
+	requires = {
+		{ 'nvim-lua/popup.nvim', 'nvim-lua/plenary.nvim', 'nvim-telescope/telescope.nvim' },
+	},
+	after = { 'nvim-lspconfig' },
+	config = function()
+		require('modules.lsp.config').rust_tools()
 	end,
 }
 

@@ -123,24 +123,24 @@ lspconfig.r_language_server.setup({
 })
 
 -- rust analyzer
-lspconfig.rust_analyzer.setup({
-	on_attach = on_attach,
-	capabilities = capabilities,
-	settings = {
-		['rust-analyzer'] = {
-			assist = { importGranularity = 'module' },
-			cargo = { loadOutDirsFromCheck = true, allFeatures = true },
-			-- checkOnSave = {
-			-- allFeatures = true,
-			-- overrideCommand = {
-			-- 'cargo', 'clippy', '--workspace', '--message-format=json',
-			-- '--all-targets', '--all-features'
-			-- }
-			-- },
-			procMacro = { enable = true },
-		},
-	},
-})
+-- lspconfig.rust_analyzer.setup({
+-- on_attach = on_attach,
+-- capabilities = capabilities,
+-- settings = {
+-- ['rust-analyzer'] = {
+-- assist = { importGranularity = 'module' },
+-- cargo = { loadOutDirsFromCheck = true, allFeatures = true },
+-- -- checkOnSave = {
+-- -- allFeatures = true,
+-- -- overrideCommand = {
+-- -- 'cargo', 'clippy', '--workspace', '--message-format=json',
+-- -- '--all-targets', '--all-features'
+-- -- }
+-- -- },
+-- procMacro = { enable = true },
+-- },
+-- },
+-- })
 
 -- taplo
 -- if not configs.taplo_lsp then

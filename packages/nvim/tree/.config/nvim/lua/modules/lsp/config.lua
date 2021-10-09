@@ -37,6 +37,50 @@ config.metals = function()
 end
 -- }}}
 
+-- {{{ rust-tools
+config.rust_tools = function()
+	local rust_tools = require('rust-tools')
+
+	local handlers = require('modules.lsp.handlers')
+	local on_attach = handlers.on_attach
+	local capabilities = handlers.capabilities
+
+	rust_tools.setup({
+		tools = {
+			autoSetHints = true,
+			runnables = { use_telescope = true },
+			inlay_hints = {
+				only_current_line = false,
+				show_parameter_hints = true,
+				max_len_align = false,
+			},
+			crate_graph = { output = nil, full = true },
+		},
+		server = {
+			on_attach = on_attach,
+			capabilities = capabilities,
+			settings = {
+				['rust-analyzer'] = {
+					cargo = { loadOutDirsFromCheck = true, allFeatures = true },
+					checkOnSave = {
+						allFeatures = true,
+						overrideCommand = {
+							'cargo',
+							'clippy',
+							'--workspace',
+							'--message-format=json',
+							'--all-targets',
+							'--all-features',
+						},
+					},
+					procMacro = { enable = true },
+				},
+			},
+		},
+	})
+end
+-- }}}
+
 -- {{{ illuminate.vim
 config.illuminate = function()
 	local bind = require('util.bind')

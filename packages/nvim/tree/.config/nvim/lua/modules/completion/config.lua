@@ -32,8 +32,8 @@ local mapping = function()
 	end
 
 	local tab_complete = function(fallback)
-		if vim.fn.pumvisible() == 1 then
-			vim.fn.feedkeys(t('<C-n>'), 'n')
+		if cmp.visible() then
+			cmp.select_next_item()
 		elseif vim.fn['UltiSnips#CanExpandSnippet']() == 1 or vim.fn['UltiSnips#CanJumpForwards']() == 1 then
 			vim.fn.feedkeys(t('<C-R>=UltiSnips#ExpandSnippetOrJump()<CR>'), '')
 		elseif check_back_space() then
@@ -44,8 +44,8 @@ local mapping = function()
 	end
 
 	local s_tab_complete = function(fallback)
-		if vim.fn.pumvisible() == 1 then
-			vim.fn.feedkeys(t('<C-p>'), 'n')
+		if cmp.visible() then
+			cmp.select_prev_item()
 		elseif vim.fn['UltiSnips#CanJumpBackwards']() == 1 then
 			vim.fn.feedkeys(t('<C-R>=UltiSnips#JumpBackwards()<CR>'), '')
 		else
