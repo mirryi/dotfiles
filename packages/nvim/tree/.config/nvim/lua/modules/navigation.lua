@@ -28,6 +28,9 @@ plugins['nvim-telescope/telescope.nvim'] = {
 	end,
 }
 
+-- Better quickfix list
+plugins['kevinhwang91/nvim-bqf'] = {}
+
 -- Dim inactive buffers
 -- plugins['sunjon/Shade.nvim'] = {
 -- 	config = function()

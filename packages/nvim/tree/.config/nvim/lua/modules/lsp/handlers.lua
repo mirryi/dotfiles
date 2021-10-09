@@ -11,6 +11,16 @@ vim.lsp.handlers['textDocument/publishDiagnostics'] = vim.lsp.with(vim.lsp.diagn
 	update_in_insert = false,
 })
 
+-- Use lsputil handlers
+-- vim.lsp.handlers['textDocument/codeAction'] = require('lsputil.locations').code_action_handler
+vim.lsp.handlers['textDocument/references'] = require('lsputil.locations').references_handler
+vim.lsp.handlers['textDocument/definition'] = require('lsputil.locations').definition_handler
+vim.lsp.handlers['textDocument/declaration'] = require('lsputil.locations').declaration_handler
+vim.lsp.handlers['textDocument/typeDefinition'] = require('lsputil.locations').typeDefinition_handler
+vim.lsp.handlers['textDocument/implementation'] = require('lsputil.locations').implementation_handler
+vim.lsp.handlers['textDocument/documentSymbol'] = require('lsputil.symbols').document_handler
+vim.lsp.handlers['workspace/symbol'] = require('lsputil.symbols').workspace_handler
+
 -- Async formatting handle
 -- TODO: no global
 vim.g.format = true
@@ -52,7 +62,8 @@ M.on_attach = function(client, bufnr)
 	-- buf_opt('omnifunc', 'v:lua.vim.lsp.omnifunc')
 
 	-- Goto definition
-	bufmap('n', 'gd', '<cmd>LSPGotoDefinition<CR>')
+	bufmap('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>')
+	-- bufmap('n', 'gd', '<cmd>LSPGotoDefinition<CR>')
 	-- Goto declaration
 	bufmap('n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<CR>')
 	-- Goto implementation
@@ -64,20 +75,21 @@ M.on_attach = function(client, bufnr)
 	-- Show signature help
 	bufmap('n', 'gs', '<cmd>lua vim.lsp.buf.signature_help()<CR>')
 	-- List references
-	-- bufmap('n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>')
-	bufmap('n', 'gr', '<cmd>LSPReferences<CR>')
+	bufmap('n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>')
+	-- bufmap('n', 'gr', '<cmd>LSPReferences<CR>')
 	-- Rename the hovered symbol
 	bufmap('n', 'gR', '<cmd>lua vim.lsp.buf.rename()<CR>')
 	-- Select a code action
 	-- bufmap('n', 'gc', '<cmd>lua vim.lsp.buf.code_action()<CR>')
 	bufmap('n', 'gc', '<cmd>LSPActions<CR>')
+	-- bufmap('n', 'gc', '<cmd>CodeActionMenu<CR>')
 	-- Show diagnostics for the current line
 	bufmap('n', 'ge', '<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>')
 	-- Show document diagnostics list
-	-- bufmap('n', 'gQ', '<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>')
-	bufmap('n', 'gQ', '<cmd>LSPDiagnostics<CR>')
+	bufmap('n', 'gQ', '<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>')
+	-- bufmap('n', 'gQ', '<cmd>LSPDiagnostics<CR>')
 	-- Show workspace diagnostics list
-	bufmap('n', 'gwQ', '<cmd>LSPWDiagnostics<CR>')
+	-- bufmap('n', 'gwQ', '<cmd>LSPWDiagnostics<CR>')
 	-- Workspace functionality
 	bufmap('n', 'gwa', '<cmd>lua vim.lsp.buf.add_workspace_folder()<CR>')
 	bufmap('n', 'gwr', '<cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>')
