@@ -37,6 +37,9 @@ lspconfig.dhall_lsp_server.setup({ on_attach = on_attach, capabilities = capabil
 -- dockerfile language server
 lspconfig.dockerls.setup({ on_attach = on_attach, capabilities = capabilities })
 
+-- dot language server
+lspconfig.dotls.setup({ on_attach = on_attach, capabilities = capabilities })
+
 -- go language server
 lspconfig.gopls.setup({ on_attach = on_attach, capabilities = capabilities })
 

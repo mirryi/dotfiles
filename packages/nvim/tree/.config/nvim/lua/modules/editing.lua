@@ -44,4 +44,12 @@ plugins['AndrewRadev/splitjoin.vim'] = {
 	end,
 }
 
+-- Highlight selected ranges
+plugins['winston0410/range-highlight.nvim'] = {
+	requires = { { 'winston0410/cmd-parser.nvim' } },
+	config = function()
+		require('range-highlight').setup({})
+	end,
+}
+
 return plugins

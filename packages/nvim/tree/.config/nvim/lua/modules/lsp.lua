@@ -28,10 +28,34 @@ plugins['folke/lsp-trouble.nvim'] = {
 plugins['nvim-treesitter/nvim-treesitter'] = {
 	requires = {
 		'nvim-treesitter/nvim-treesitter-refactor',
+		-- Auto close HTML/XML tags
 		'windwp/nvim-ts-autotag',
+		-- Treesitter-based commentstring
 		-- 'JoosepAlviste/nvim-ts-context-commentstring'
-		-- 'romgrk/nvim-treesitter-context',
+		{
+			'romgrk/nvim-treesitter-context',
+			config = function()
+				require('treesitter-context').setup({ enable = true, throttle = true })
+			end,
+		},
 		'haringsrob/nvim_context_vt',
+		-- Spellcheck using treesitter
+		{
+			'lewis6991/spellsitter.nvim',
+			after = { 'nvim-treesitter' },
+			config = function()
+				require('spellsitter').setup()
+			end,
+		},
+		-- Rainbow parentheses
+		'p00f/nvim-ts-rainbow',
+		-- Swapping of paremters, lists, arrays, etc.
+		{
+			'mizlan/iswap.nvim',
+			config = function()
+				require('iswap').setup({})
+			end,
+		},
 	},
 	config = function()
 		require('modules.lsp.config').treesitter()

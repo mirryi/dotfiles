@@ -61,6 +61,7 @@ config.rust_tools = function()
 			capabilities = capabilities,
 			settings = {
 				['rust-analyzer'] = {
+					assist = { importGranularity = 'module' },
 					cargo = { loadOutDirsFromCheck = true, allFeatures = true },
 					checkOnSave = {
 						allFeatures = true,
@@ -169,6 +170,10 @@ config.treesitter = function()
 			-- External modules
 			autotag = { enable = true, disable = { 'tex' } },
 			context_commentstring = { enable = true },
+			rainbow = {
+				enable = true,
+				extended_mode = true,
+			},
 		})
 	end
 end

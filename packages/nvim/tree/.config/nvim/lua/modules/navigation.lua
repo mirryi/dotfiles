@@ -22,7 +22,11 @@ plugins['ludovicchabant/vim-gutentags'] = {
 
 -- Fuzzy picker
 plugins['nvim-telescope/telescope.nvim'] = {
-	requires = { { 'nvim-lua/popup.nvim' }, { 'nvim-lua/plenary.nvim' }, { 'nvim-telescope/telescope-fzy-native.nvim' } },
+	requires = {
+		{ 'nvim-lua/popup.nvim' },
+		{ 'nvim-lua/plenary.nvim' },
+		{ 'nvim-telescope/telescope-fzy-native.nvim' },
+	},
 	config = function()
 		require('modules.navigation.config').telescope()
 	end,
@@ -30,22 +34,6 @@ plugins['nvim-telescope/telescope.nvim'] = {
 
 -- Better quickfix list
 plugins['kevinhwang91/nvim-bqf'] = {}
-
--- Dim inactive buffers
--- plugins['sunjon/Shade.nvim'] = {
--- 	config = function()
--- 		local shade = require('shade')
--- 		shade.setup({ overlay_opacity = 90 })
--- 	end,
--- }
-
--- Keep eye on jump location
--- plugins['edluffy/specs.nvim'] = {
--- 	config = function()
--- 		local specs = require('specs')
--- 		specs.setup({ min_jump = 20, popup = { inc_ms = 20 } })
--- 	end,
--- }
 
 -- Smooth page-down and page-up
 plugins['psliwka/vim-smoothie'] = {}
