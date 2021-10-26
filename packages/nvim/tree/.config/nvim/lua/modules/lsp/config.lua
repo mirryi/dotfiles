@@ -63,17 +63,17 @@ config.rust_tools = function()
 				['rust-analyzer'] = {
 					assist = { importGranularity = 'module' },
 					cargo = { loadOutDirsFromCheck = true, allFeatures = true },
-					checkOnSave = {
-						allFeatures = true,
-						overrideCommand = {
-							'cargo',
-							'clippy',
-							'--workspace',
-							'--message-format=json',
-							'--all-targets',
-							'--all-features',
-						},
-					},
+					-- checkOnSave = {
+					-- allFeatures = true,
+					-- overrideCommand = {
+					-- 'cargo',
+					-- 'clippy',
+					-- '--workspace',
+					-- '--message-format=json',
+					-- '--all-targets',
+					-- '--all-features',
+					-- },
+					-- },
 					procMacro = { enable = true },
 				},
 			},
@@ -172,6 +172,7 @@ config.treesitter = function()
 			context_commentstring = { enable = true },
 			rainbow = {
 				enable = true,
+				disable = { 'tex' },
 				extended_mode = true,
 			},
 		})

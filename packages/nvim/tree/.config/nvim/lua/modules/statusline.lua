@@ -2,7 +2,7 @@
 local plugins = {}
 
 -- Statusline
-plugins['hoob3rt/lualine.nvim'] = { requires = { { 'kyazdani42/nvim-web-devicons' } } }
+plugins['hoob3rt/lualine.nvim'] = { requires = { { 'kyazdani42/nvim-web-devicons', 'arkav/lualine-lsp-progress' } } }
 
 -- Git signs in the signcolumn
 plugins['lewis6991/gitsigns.nvim'] = {
