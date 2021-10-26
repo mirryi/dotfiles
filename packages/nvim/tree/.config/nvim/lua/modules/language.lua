@@ -1,6 +1,13 @@
 -- luacheck: globals vim
 local plugins = {}
 
+-- Agda support
+plugins['msuperdock/vim-agda'] = {
+	config = function()
+		-- Initialize keybinds
+	end,
+}
+
 -- Asciidoctor support
 plugins['habamax/vim-asciidoctor'] = {
 	ft = { 'asciidoc' },

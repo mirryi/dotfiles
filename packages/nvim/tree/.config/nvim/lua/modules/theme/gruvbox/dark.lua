@@ -11,7 +11,7 @@ plugins['sainnhe/gruvbox-material'] = {
 
 		-- Initialize lualine
 		local lualine = require('modules.theme.common.lualine')
-		lualine.setup('gruvbox_material')
+		lualine.setup('gruvbox-material')
 
 		-- Treesitter highlight modifications
 		local hilink = U.hi.link

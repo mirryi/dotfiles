@@ -7,6 +7,9 @@ local handlers = require('modules.lsp.handlers')
 local on_attach = handlers.on_attach
 local capabilities = handlers.capabilities
 
+-- agda language server
+lspconfig.als.setup({ on_attach = on_attach, capabilities = capabilities })
+
 -- bash language server
 lspconfig.bashls.setup({ on_attach = on_attach, capabilities = capabilities })
 
@@ -39,6 +42,9 @@ lspconfig.dockerls.setup({ on_attach = on_attach, capabilities = capabilities })
 
 -- dot language server
 lspconfig.dotls.setup({ on_attach = on_attach, capabilities = capabilities })
+
+-- eslint language server
+lspconfig.eslint.setup({ on_attach = on_attach, capabilities = capabilities })
 
 -- go language server
 lspconfig.gopls.setup({ on_attach = on_attach, capabilities = capabilities })
@@ -161,6 +167,9 @@ lspconfig.r_language_server.setup({
 -- end
 -- lspconfig.taplo_lsp.setup {on_attach = on_attach, capabilities = capabilities}
 
+-- tailwindcss
+lspconfig.tailwindcss.setup({ on_attach = on_attach, capabilities = capabilities })
+
 -- texlab
 lspconfig.texlab.setup({ on_attach = on_attach, capabilities = capabilities })
 
@@ -197,7 +206,7 @@ lspconfig.vimls.setup({ on_attach = on_attach, capabilities = capabilities })
 
 -- efm-langserver
 -- local autopep8 = require('modules.lsp.efm.autopep8')
-local eslint = require('modules.lsp.efm.eslint')
+-- local eslint = require('modules.lsp.efm.eslint')
 -- local fixjson = require('modules.lsp.efm.fixjson')
 -- local flake8 = require('modules.lsp.efm.flake8')
 local goimports = require('modules.lsp.efm.goimports')
@@ -262,9 +271,18 @@ lspconfig.efm.setup({
 			css = { stylelint },
 			go = { golint, goimports },
 			html = { htmlhint, prettier },
-			javascript = { eslint, prettier },
-			javascriptreact = { eslint, prettier },
-			['javascript.jsx'] = { eslint, prettier },
+			javascript = {
+				-- eslint,
+				prettier,
+			},
+			javascriptreact = {
+				-- eslint,
+				prettier,
+			},
+			['javascript.jsx'] = {
+				-- eslint,
+				prettier,
+			},
 			-- json = { fixjson, prettier },
 			-- kotlin = {ktlint},
 			-- latex = {lacheck},
@@ -282,9 +300,18 @@ lspconfig.efm.setup({
 			scss = { prettier, stylelint },
 			sh = { shfmt },
 			toml = { taplo },
-			typescript = { eslint, prettier },
-			typescriptreact = { eslint, prettier },
-			['typescript.tsx'] = { eslint, prettier },
+			typescript = {
+				-- eslint,
+				prettier,
+			},
+			typescriptreact = {
+				-- eslint,
+				prettier,
+			},
+			['typescript.tsx'] = {
+				-- eslint,
+				prettier,
+			},
 			xml = {
 				-- xmllint,
 				tidy,

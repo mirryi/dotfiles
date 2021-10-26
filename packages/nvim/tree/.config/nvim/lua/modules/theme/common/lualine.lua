@@ -8,7 +8,7 @@ M.setup = function(theme)
 		-- TODO: Colorscheme-based theme
 		options = { theme = theme },
 		sections = {
-			lualine_c = { { 'diagnostics', sources = { 'nvim_lsp' } }, 'filename' },
+			lualine_c = { { 'diagnostics', sources = { 'nvim_lsp' } }, 'filename', 'lsp_progress' },
 		},
 	})
 end
