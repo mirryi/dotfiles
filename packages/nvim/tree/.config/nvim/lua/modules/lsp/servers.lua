@@ -151,21 +151,8 @@ lspconfig.r_language_server.setup({
 -- },
 -- })
 
--- taplo
--- if not configs.taplo_lsp then
--- configs.taplo_lsp = {
--- default_config = {
--- cmd = {'taplo-lsp', 'run'},
--- filetypes = {'toml'},
--- root_dir = function(fname)
--- return lspconfig.util.root_pattern('taplo.toml')(fname) or
--- lspconfig.util.find_git_ancestor(fname) or
--- vim.fn.getcwd()
--- end
--- }
--- }
--- end
--- lspconfig.taplo_lsp.setup {on_attach = on_attach, capabilities = capabilities}
+-- taplo (toml)
+lspconfig.taplo.setup({ on_attach = on_attach, capabilities = capabilities })
 
 -- tailwindcss
 lspconfig.tailwindcss.setup({ on_attach = on_attach, capabilities = capabilities })
@@ -255,7 +242,6 @@ lspconfig.efm.setup({
 		'sass',
 		'scss',
 		'sh',
-		'toml',
 		'typescript',
 		'typescriptreact',
 		'typescript.tsx',
@@ -299,7 +285,6 @@ lspconfig.efm.setup({
 			sass = { prettier, stylelint },
 			scss = { prettier, stylelint },
 			sh = { shfmt },
-			toml = { taplo },
 			typescript = {
 				-- eslint,
 				prettier,

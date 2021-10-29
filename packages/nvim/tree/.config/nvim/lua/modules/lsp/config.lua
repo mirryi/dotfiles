@@ -157,7 +157,7 @@ config.treesitter = function()
 			ensure_installed = 'maintained',
 			highlight = {
 				enable = true,
-				disable = { 'cmake', 'latex', 'ocaml', 'r', 'rust', 'scss', 'tex', 'yaml' },
+				disable = { 'cmake', 'latex', 'ocaml', 'r', 'rust', 'scss', 'tex', 'toml', 'yaml' },
 			},
 			indent = { enable = true, disable = { 'lua', 'rust', 'tex' } },
 			refactor = {
