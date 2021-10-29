@@ -42,9 +42,9 @@ plugins['psliwka/vim-smoothie'] = {}
 plugins['tmux-plugins/vim-tmux-focus-events'] = {}
 
 -- Dashboard
-plugins['glepnir/dashboard-nvim'] = {
+plugins['goolord/alpha-nvim'] = {
 	config = function()
-		vim.g.dashboard_default_executive = 'telescope'
+		require('alpha').setup(require('alpha.themes.dashboard').opts)
 	end,
 }
 

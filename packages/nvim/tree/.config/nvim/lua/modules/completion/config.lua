@@ -99,13 +99,6 @@ config.autopairs = function()
 			map = '<C-e>',
 		},
 	})
-
-	local autopairs_cmp = require('nvim-autopairs.completion.cmp')
-	autopairs_cmp.setup({
-		map_cr = false,
-		map_complete = false,
-		auto_select = true,
-	})
 end
 
 return config
