@@ -1,7 +1,7 @@
 -- luacheck: globals vim
 local plugins = {}
 
--- RGB, hex color highlighting
+-- {{{ nvim-colorizer.lua : RGB, hex color highlighting
 plugins['norcalli/nvim-colorizer.lua'] = {
 	config = function()
 		local colorizer = require('colorizer')
@@ -14,8 +14,8 @@ plugins['norcalli/nvim-colorizer.lua'] = {
 		})
 	end,
 }
-
--- Indent guides
+-- }}}
+-- {{{ indent-blankline.nvim : Indent guides
 plugins['lukas-reineke/indent-blankline.nvim'] = {
 	config = function()
 		local g = vim.g
@@ -28,8 +28,8 @@ plugins['lukas-reineke/indent-blankline.nvim'] = {
 		g.indentLine_setConceal = 0
 	end,
 }
-
--- Markdown preview
+-- }}}
+-- {{{ glow.nvim : Markdown preview
 plugins['npxbr/glow.nvim'] = {
 	ft = { 'markdown', 'pandoc' },
 	config = function()
@@ -37,5 +37,6 @@ plugins['npxbr/glow.nvim'] = {
 		bind.nmap('<leader>p', '<cmd>Glow<CR>')
 	end,
 }
+-- }}}
 
 return plugins

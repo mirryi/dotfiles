@@ -1,30 +1,39 @@
+-- luacheck: globals vim
 local plugins = {}
 
--- Code action indicator
+-- {{{ nvim-lightbulb : Code action indicator
 plugins['kosayoda/nvim-lightbulb'] = {
 	config = function()
-		require('modules.lsp.config').lightbulb()
+		vim.cmd([[ autocmd CursorHold,CursorHoldI * lua require'nvim-lightbulb'.update_lightbulb() ]])
+		vim.fn.sign_define('LightBulbSign', { text = '' })
 	end,
 }
-
--- Highlight same item instances
+-- }}}
+-- {{{ vim-illuminate : Highlight same item instances
 plugins['RRethy/vim-illuminate'] = {
 	config = function()
-		require('modules.lsp.config').illuminate()
+		local bind = require('util.bind')
+		bind.nmap('<C-.>', [[ <cmd>lua require('illuminate').next_reference{wrap=true}<CR> ]])
+		bind.nmap('<C-,>', [[ <cmd>lua require('illuminate').next_reference{reverse=true, wrap=true}<CR> ]])
 	end,
 }
-
--- Pretty diagnostics view list
+-- }}}
+-- {{{ lsp-trouble.nvim : Pretty diagnostics view list
 plugins['folke/lsp-trouble.nvim'] = {
 	requires = {
 		{ 'kyazdani42/nvim-web-devicons' },
 	},
 	config = function()
-		require('modules.lsp.config').trouble()
+		local trouble = require('trouble')
+		trouble.setup({})
+
+		local bind = require('util.bind')
+		bind.nmap('gL', '<cmd>LspTroubleDocumentOpen<CR>')
+		bind.nmap('gwL', '<cmd>LspTroubleWorkspaceOpen<CR>')
 	end,
 }
-
--- Treesitter
+-- }}}
+-- {{{ nvim-treesitter : Treesitter support
 plugins['nvim-treesitter/nvim-treesitter'] = {
 	requires = {
 		'nvim-treesitter/nvim-treesitter-refactor',
@@ -58,18 +67,78 @@ plugins['nvim-treesitter/nvim-treesitter'] = {
 		},
 	},
 	config = function()
-		require('modules.lsp.config').treesitter()
+		local treesitter = require('nvim-treesitter.configs')
+		if treesitter ~= nil then
+			treesitter.setup({
+				ensure_installed = 'maintained',
+				highlight = {
+					enable = true,
+					disable = { 'cmake', 'latex', 'ocaml', 'r', 'rust', 'scss', 'tex', 'toml', 'yaml' },
+				},
+				indent = { enable = true, disable = { 'lua', 'rust', 'tex' } },
+				refactor = {
+					enable = true,
+					disable = { 'tex' },
+					highlight_definitions = { enable = true },
+					highlight_current_scope = { enable = false },
+					keymaps = { goto_definition = 'gd' },
+				},
+				-- External modules
+				autotag = { enable = true, disable = { 'tex' } },
+				context_commentstring = { enable = true },
+				rainbow = {
+					enable = true,
+					disable = { 'tex' },
+					extended_mode = true,
+				},
+			})
+		end
 	end,
 }
-
--- Non-lsp linter integration
+-- }}}
+-- {{{ nvim-lint : Non-lsp linter integration
 plugins['mfussenegger/nvim-lint'] = {
 	config = function()
-		require('modules.lsp.config').lint()
+		local lint = require('lint')
+
+		local use = function(t)
+			local function register(names)
+				if type(names) == 'table' then
+					for _, name in ipairs(names) do
+						register(name)
+					end
+				else
+					local ok, linter = pcall(require, 'modules.lsp.lint.' .. names)
+					if ok then
+						rawset(lint.linters, names, linter)
+					end
+				end
+			end
+
+			for _, linters in pairs(t) do
+				register(linters)
+			end
+
+			lint.linters_by_ft = t
+		end
+
+		-- Register linters and autocmd
+		vim.api.nvim_command([[aug Lint]])
+		vim.api.nvim_command([[au BufReadPost,TextChanged,TextChangedI <buffer> lua require('lint').try_lint()]])
+		vim.api.nvim_command([[aug END]])
+
+		-- Define linters
+		use({
+			cpp = { 'cppcheck' },
+			lua = { 'luacheck' },
+			-- pandoc = {'vale'},
+			sh = { 'shellcheck' },
+			tex = { 'chktex' },
+		})
 	end,
 }
-
--- Predefined language server configurations
+-- }}}
+-- {{{ nvim-lspconfig : Predefined language server configurations
 plugins['neovim/nvim-lspconfig'] = {
 	requires = {
 		-- Support for tsserver extensions
@@ -82,43 +151,93 @@ plugins['neovim/nvim-lspconfig'] = {
 		-- { 'weilbith/nvim-code-action-menu' },
 	},
 	config = function()
-		require('modules.lsp.config').lspconfig()
+		-- Show diagnostics on hover
+		vim.api.nvim_exec(
+			[[
+                aug lsp_autocmds
+                  autocmd CursorHold * lua vim.lsp.diagnostic.show_line_diagnostics()
+                aug END
+            ]],
+			true
+		)
+
+		require('modules.lsp.servers')
 	end,
 }
-
--- Better java support
+-- }}}
+-- {{{ nvim-jdtls : Enhanced java language server
 plugins['mfussenegger/nvim-jdtls'] = {
 	ft = { 'java' },
 	config = function()
-		require('modules.lsp.config').jdtls()
+		require('modules.lsp.servers.jdtls')
 	end,
 }
-
--- Better scala support
+-- }}}
+-- {{{ nvim-metals : Enhanced scala language server and tools
 plugins['scalameta/nvim-metals'] = {
 	ft = { 'scala', 'sbt' },
 	config = function()
-		require('modules.lsp.config').metals()
+		require('modules.lsp.servers.metals')
 	end,
 }
-
--- Better flutter support
+-- }}}
+-- {{{ flutter-tools.nvim : Enhanced flutter language server and tools
 plugins['akinsho/flutter-tools.nvim'] = {
 	requires = { { 'nvim-lua/plenary.nvim' } },
 	config = function()
-		require('modules.lsp.config').flutter()
+		require('modules.lsp.servers.flutter')
 	end,
 }
-
--- Better rust utilities
+-- }}}
+-- rust-tools.nvim : Enahcned rust language server and tools
 plugins['simrat39/rust-tools.nvim'] = {
 	requires = {
 		{ 'nvim-lua/popup.nvim', 'nvim-lua/plenary.nvim', 'nvim-telescope/telescope.nvim' },
 	},
 	after = { 'nvim-lspconfig' },
 	config = function()
-		require('modules.lsp.config').rust_tools()
+		local rust_tools = require('rust-tools')
+
+		local handlers = require('modules.lsp.handlers')
+		local on_attach = handlers.on_attach
+		local capabilities = handlers.capabilities
+
+		rust_tools.setup({
+			tools = {
+				autoSetHints = true,
+				runnables = { use_telescope = true },
+				inlay_hints = {
+					only_current_line = false,
+					show_parameter_hints = true,
+					max_len_align = false,
+				},
+				crate_graph = { output = nil, full = true },
+			},
+			server = {
+				on_attach = on_attach,
+				capabilities = capabilities,
+				settings = {
+					['rust-analyzer'] = {
+						assist = { importGranularity = 'module' },
+						cargo = { loadOutDirsFromCheck = true, allFeatures = true },
+						checkOnSave = {
+							allFeatures = true,
+							overrideCommand = {
+								'cargo',
+								'clippy',
+								'--workspace',
+								'--message-format=json',
+								'--all-targets',
+								'--all-features',
+							},
+						},
+						procMacro = { enable = true },
+					},
+				},
+			},
+		})
 	end,
 }
+-- }}}
 
 return plugins
