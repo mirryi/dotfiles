@@ -1,6 +1,5 @@
 -- luacheck: globals vim
 local lspconfig = require('lspconfig')
--- local configs = require('lspconfig.configs')
 
 -- override handlers
 local handlers = require('modules.lsp.handlers')
@@ -14,9 +13,7 @@ lspconfig.als.setup({ on_attach = on_attach, capabilities = capabilities })
 lspconfig.bashls.setup({ on_attach = on_attach, capabilities = capabilities })
 
 -- clangd
--- local clangd_handlers = nil
 lspconfig.clangd.setup({
-	-- handlers = clangd_handlers,
 	on_attach = on_attach,
 	capabilities = capabilities,
 })
@@ -26,13 +23,6 @@ lspconfig.cmake.setup({ on_attach = on_attach, capabilities = capabilities })
 
 -- css language server
 lspconfig.cssls.setup({ on_attach = on_attach, capabilities = capabilities })
-
--- deno language server
--- lspconfig.denols.setup {
--- init_options = {lint = true},
--- on_attach = on_attach,
--- capabilities = capabilities
--- }
 
 -- dhall language server
 lspconfig.dhall_lsp_server.setup({ on_attach = on_attach, capabilities = capabilities })
@@ -54,13 +44,6 @@ lspconfig.hie.setup({ on_attach = on_attach, capabilities = capabilities })
 
 -- html language server
 lspconfig.html.setup({ on_attach = on_attach, capabilities = capabilities })
-
--- java language server
--- lspconfig.jdtls.setup {
--- on_attach = on_attach,
--- capabilities = capabilities,
--- root_dir = lspconfig.util.root_pattern('.project')
--- }
 
 -- jedi language server
 -- lspconfig.jedi_language_server.setup {
@@ -131,26 +114,6 @@ lspconfig.r_language_server.setup({
 	capabilities = capabilities,
 })
 
--- rust analyzer
--- lspconfig.rust_analyzer.setup({
--- on_attach = on_attach,
--- capabilities = capabilities,
--- settings = {
--- ['rust-analyzer'] = {
--- assist = { importGranularity = 'module' },
--- cargo = { loadOutDirsFromCheck = true, allFeatures = true },
--- -- checkOnSave = {
--- -- allFeatures = true,
--- -- overrideCommand = {
--- -- 'cargo', 'clippy', '--workspace', '--message-format=json',
--- -- '--all-targets', '--all-features'
--- -- }
--- -- },
--- procMacro = { enable = true },
--- },
--- },
--- })
-
 -- taplo (toml)
 lspconfig.taplo.setup({ on_attach = on_attach, capabilities = capabilities })
 
@@ -192,117 +155,92 @@ lspconfig.vimls.setup({ on_attach = on_attach, capabilities = capabilities })
 -- lspconfig.yamlls.setup {on_attach = on_attach, capabilities = capabilities}
 
 -- efm-langserver
--- local autopep8 = require('modules.lsp.efm.autopep8')
--- local eslint = require('modules.lsp.efm.eslint')
--- local fixjson = require('modules.lsp.efm.fixjson')
--- local flake8 = require('modules.lsp.efm.flake8')
-local goimports = require('modules.lsp.efm.goimports')
-local golint = require('modules.lsp.efm.golint')
-local htmlhint = require('modules.lsp.efm.htmlhint')
--- local ktlint = require('modules.lsp.efm.ktlint')
--- local lacheck = require('modules.lsp.efm.lacheck')
--- local luacheck = require('modules.lsp.efm.luacheck')
--- local luafmt = require('modules.lsp.efm.luafmt')
--- local luac = require('modules.lsp.efm.luac')
--- local misspell = require('modules.lsp.efm.misspell')
--- local mypy = require('modules.lsp.efm.mypy')
 local pandoc = require('modules.lsp.efm.pandoc')
--- local psalm = require('modules.lsp.efm.psalm')
-local phpcs = require('modules.lsp.efm.phpcs')
-local phpstan = require('modules.lsp.efm.phpstan')
-local prettier = require('modules.lsp.efm.prettier')
--- local reorder_python_imports = require('modules.lsp.efm.reorder_python_imports')
-local shfmt = require('modules.lsp.efm.shfmt')
-local stylua = require('modules.lsp.efm.stylua')
-local stylelint = require('modules.lsp.efm.stylelint')
-local taplo = require('modules.lsp.efm.taplo')
 local tidy = require('modules.lsp.efm.tidy')
--- local vale = require('modules.lsp.efm.vale')
--- local vint = require('modules.lsp.efm.vint')
--- local xmllint = require('modules.lsp.efm.xmllint')
--- local yamllint = require('modules.lsp.efm.yamllint')
 
 lspconfig.efm.setup({
 	on_attach = on_attach,
 	capabilities = capabilities,
 	init_options = { documentformatting = true },
 	filetypes = {
-		'bash',
-		'css',
-		'go',
-		'html',
-		'javascript',
-		'javascript',
-		'javascriptreact',
-		'javascript.jsx',
-		-- 'json',
-		'lua',
 		'pandoc',
-		'php',
-		'sass',
-		'scss',
-		'sh',
-		'typescript',
-		'typescriptreact',
-		'typescript.tsx',
-		'vim',
-		'zsh',
+		'xml',
 	},
 	settings = {
 		cmd = { 'efm-langserver' },
 		rootmarkers = { '.git/' },
 		languages = {
-			-- ["="] = {misspell},
-			bash = { shfmt },
-			css = { stylelint },
-			go = { golint, goimports },
-			html = { htmlhint, prettier },
-			javascript = {
-				-- eslint,
-				prettier,
-			},
-			javascriptreact = {
-				-- eslint,
-				prettier,
-			},
-			['javascript.jsx'] = {
-				-- eslint,
-				prettier,
-			},
-			-- json = { fixjson, prettier },
-			-- kotlin = {ktlint},
-			-- latex = {lacheck},
-			lua = { stylua },
 			pandoc = {
 				pandoc,
-				--vale
-			},
-			php = {
-				prettier, -- psalm,
-				phpstan,
-				phpcs,
-			},
-			sass = { prettier, stylelint },
-			scss = { prettier, stylelint },
-			sh = { shfmt },
-			typescript = {
-				-- eslint,
-				prettier,
-			},
-			typescriptreact = {
-				-- eslint,
-				prettier,
-			},
-			['typescript.tsx'] = {
-				-- eslint,
-				prettier,
 			},
 			xml = {
-				-- xmllint,
 				tidy,
 			},
-			-- yaml = {yamllint},
-			zsh = { shfmt },
 		},
 	},
 })
+
+-- Non-lsp linter/formatter integration
+local nullls = require('null-ls')
+local builtins = nullls.builtins
+nullls.config({
+	diagnostics_format = '#{m} (#{s})',
+	sources = {
+		-- actions
+		builtins.code_actions.gitsigns,
+
+		-- generic
+		builtins.formatting.trim_newlines,
+		builtins.formatting.trim_whiespace,
+
+		-- c / c++
+		builtins.diagnostics.cppcheck,
+		builtins.formatting.clang_format,
+		builtins.formatting.cmake_format,
+
+		-- docker
+		builtins.diagnostics.hadolint,
+
+		-- go
+		builtins.formatting.goimports,
+
+		-- json
+		builtins.formatting.fixjson,
+
+		-- javascript / typescript / etc.
+		builtins.formatting.prettierd,
+		builtins.formatting.rustywind,
+		builtins.diagnostics.stylelint,
+		builtins.formatting.stylelint,
+
+		-- latex
+		builtins.diagnostics.chktex,
+
+		-- lua
+		builtins.diagnostics.luacheck,
+		builtins.formatting.stylua,
+		-- builtins.diagnostics.selene,
+
+		-- php
+		builtins.diagnostics.phpstan,
+		builtins.diagnostics.psalm,
+		builtins.diagnostics.phpcs,
+
+		-- python
+		builtins.formatting.isort,
+		-- builtins.diagnostics.flake8,
+		-- builtins.formatting.autopep8,
+
+		-- shell
+		builtins.diagnostics.shellcheck,
+		builtins.formatting.shfmt,
+		builtins.formatting.shellharden,
+
+		-- vimscript
+		builtins.diagnostics.vint,
+
+		-- yaml
+		builtins.diagnostics.yamllint,
+	},
+})
+lspconfig['null-ls'].setup({ on_attach = on_attach, capabilities = capabilities })
