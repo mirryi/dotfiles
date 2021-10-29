@@ -2,23 +2,24 @@
 
 local plugins = {}
 
--- Preview search and replace
+-- {{{ traces.vim : Preview search and replace
 plugins['markonm/traces.vim'] = {}
-
--- Comment and uncomment with keybindings (<leader>c<space>)
+-- }}}
+-- {{{ nerdcommenter : Comment and uncomment with keybindings
 plugins['scrooloose/nerdcommenter'] = {
+	-- This plugin binds <leader>c<space>
 	config = function()
 		local g = vim.g
 		g.NERDSpaceDelims = 1
 	end,
 }
-
--- Automated text table spacing
+-- }}}
+-- {{{ tabular : Automated text table spacing
 plugins['godlygeek/tabular'] = {
 	ft = { 'asciidoc', 'markdown', 'pandoc', 'rmarkdown', 'text', 'tex' },
 }
-
--- Easy text alignment
+-- }}}
+-- {{{ vim-easy-align : Easy text alignment
 plugins['junegunn/vim-easy-align'] = {
 	config = function()
 		local bind = require('util.bind')
@@ -27,8 +28,8 @@ plugins['junegunn/vim-easy-align'] = {
 		bind.vmap('gA', '<Plug>(EasyAlign)')
 	end,
 }
-
--- Toggle between short/long constructs
+-- }}}
+-- {{{ splitjoin.vim : Toggle between short/long constructs
 plugins['AndrewRadev/splitjoin.vim'] = {
 	config = function()
 		local g = vim.g
@@ -43,13 +44,14 @@ plugins['AndrewRadev/splitjoin.vim'] = {
 		bind.nmap('<leader>S', '<cmd>SplitjoinSplit<CR>')
 	end,
 }
-
--- Highlight selected ranges
+-- }}}
+-- {{{ range-highlight.nvim : Highlight selected ranges
 plugins['winston0410/range-highlight.nvim'] = {
 	requires = { { 'winston0410/cmd-parser.nvim' } },
 	config = function()
 		require('range-highlight').setup({})
 	end,
 }
+-- }}}
 
 return plugins

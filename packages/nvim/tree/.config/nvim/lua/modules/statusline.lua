@@ -1,10 +1,10 @@
 -- luacheck: globals vim
 local plugins = {}
 
--- Statusline
+-- {{{ lualine.nvim : Statusline
 plugins['hoob3rt/lualine.nvim'] = { requires = { { 'kyazdani42/nvim-web-devicons', 'arkav/lualine-lsp-progress' } } }
-
--- Git signs in the signcolumn
+-- }}}
+-- {{{ gitsigns.nvim : Git signs in the signcolumn
 plugins['lewis6991/gitsigns.nvim'] = {
 	requires = { { 'nvim-lua/plenary.nvim' } },
 	config = function()
@@ -12,8 +12,8 @@ plugins['lewis6991/gitsigns.nvim'] = {
 		gitsigns.setup()
 	end,
 }
-
--- Sane buffer tabline
+-- }}}
+-- {{{ barbar.nvim : Sane buffer tabline
 plugins['romgrk/barbar.nvim'] = {
 	setup = function()
 		local bind = require('util.bind')
@@ -59,8 +59,8 @@ plugins['romgrk/barbar.nvim'] = {
 		nmap('tc', ' <cmd>BufferClose<CR>', { silent = true })
 	end,
 }
-
--- Minimap
+-- }}}
+-- {{{ minimap.vim : Minimap
 plugins['wfxr/minimap.vim'] = {
 	config = function()
 		local bind = require('util.bind')
@@ -68,8 +68,8 @@ plugins['wfxr/minimap.vim'] = {
 		bind.nmap('<leader>m', '<cmd>MinimapToggle<CR>', { silent = true })
 	end,
 }
-
--- wildmenu enhancements
+-- }}}
+-- {{{ wilder.nvim : wildmenu enhancements
 plugins['gelguy/wilder.nvim'] = {
 	config = function()
 		local cmd, fn = vim.cmd, vim.fn
@@ -84,15 +84,15 @@ plugins['gelguy/wilder.nvim'] = {
 
 		vim.api.nvim_exec(
 			[[
-call wilder#set_option('renderer', wilder#popupmenu_renderer({'highlighter': wilder#basic_highlighter(), 'left': [wilder#popupmenu_devicons()]}))
-call wilder#set_option('pipeline', [wilder#branch([ wilder#check({_, x -> empty(x)}), wilder#history(), ], wilder#cmdline_pipeline(), wilder#search_pipeline())])
-]],
+                call wilder#set_option('renderer', wilder#popupmenu_renderer({'highlighter': wilder#basic_highlighter(), 'left': [wilder#popupmenu_devicons()]}))
+                call wilder#set_option('pipeline', [wilder#branch([ wilder#check({_, x -> empty(x)}), wilder#history(), ], wilder#cmdline_pipeline(), wilder#search_pipeline())])
+            ]],
 			false
 		)
 	end,
 }
-
--- Popup with keybind suggestions
+-- }}}
+-- {{{ which-key.nvim : Popup with keybind suggestions
 plugins['folke/which-key.nvim'] = {
 	config = function()
 		local whichkey = require('which-key')
@@ -101,5 +101,6 @@ plugins['folke/which-key.nvim'] = {
 		whichkey.setup({})
 	end,
 }
+-- }}}
 
 return plugins
