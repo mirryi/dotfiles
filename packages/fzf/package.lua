@@ -5,7 +5,6 @@ pkg.dependencies:extend('../sh')
 
 local profile = require('profile').fzf
 pkg.files.extra:push({
-    src = 'themes/' .. profile.name,
-    dest = '.config/sh/load/fzf/theme'
+	src = 'themes/' .. profile.name,
+	dest = '.config/sh/load/fzf/theme',
 })
-
