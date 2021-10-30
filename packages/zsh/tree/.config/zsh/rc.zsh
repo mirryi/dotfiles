@@ -22,14 +22,14 @@ ZINIT[BIN_DIR]="$ZINIT_HOME/bin"
 ZINIT[ZCOMPDUMP_PATH]="$ZSH_CACHE/zcompdump-$ZSH_VERSION"
 if [[ ! -f "$ZINIT_HOME/bin/zinit.zsh" ]]; then
   command mkdir -p "$ZINIT_HOME"
-  command git clone "https://github.com/zdharma/zinit" "$ZINIT_HOME/bin"
+  command git clone "https://github.com/zdharma-continuum/zinit" "$ZINIT_HOME/bin"
   zcompile "$ZINIT_HOME/bin/zinit.zsh"
 fi
 source "$ZINIT_HOME/bin/zinit.zsh"
 
 # Load zmod
-module_path+=( "${ZINIT[BIN_DIR]}/zmodules/Src" )
-zmodload zdharma/zplugin
+# module_path+=( "${ZINIT[BIN_DIR]}/zmodules/Src" )
+# zmodload zdharma-continuum/zplugin
 
 # Load core components
 . "$CORE/theme.zsh"
