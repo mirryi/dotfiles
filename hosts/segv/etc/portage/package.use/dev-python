@@ -1,2 +1,12 @@
 # required by www-client/qutebrowser-2.3.0::gentoo
 >=dev-python/PyQt5-5.15.4-r1 multimedia network opengl dbus gui widgets printsupport
+
+# required by dev-python/pyzmq-22.1.0::gentoo[-test]
+# required by dev-python/notebook-6.4.4::gentoo
+# required by dev-python/widgetsnbextension-3.5.1-r1::gentoo
+# required by dev-python/ipywidgets-7.6.5::gentoo
+# required by dev-python/jupyter-1.0.0-r3::gentoo
+>=net-libs/zeromq-4.3.4-r1 drafts
+# required by dev-python/qtconsole-5.1.1::gentoo
+# required by dev-python/jupyter-1.0.0-r3::gentoo
+>=dev-python/QtPy-1.9.0-r5 gui printsupport svg

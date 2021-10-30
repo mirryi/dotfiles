@@ -1,10 +1,13 @@
-dev-util/conan ~amd64
-
-dev-util/rustup ~amd64
-dev-util/sccache ~amd64
-
+dev-util/android-sdk-update-manager ~amd64
 dev-util/cargo-ebuild ~amd64
 dev-util/cargo-license ~amd64
+dev-util/clion ~amd64
+dev-util/code-minimap ~amd64
+dev-util/conan ~amd64
+dev-util/github-cli ~amd64
+dev-util/perf ~amd64
+dev-util/rustup ~amd64
+dev-util/sccache ~amd64
 
 dev-util/shellcheck ~amd64
 # required by dev-haskell/scientific-0.3.6.2::gentoo
@@ -28,5 +31,3 @@ dev-util/shellcheck ~amd64
 # required by dev-python/adblock-0.5.0::gentoo
 # required by www-client/qutebrowser-2.3.0::gentoo[adblock]
 >=dev-util/maturin-0.11.1 ~amd64
-
-dev-util/code-minimap ~amd64

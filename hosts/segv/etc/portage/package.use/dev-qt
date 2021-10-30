@@ -1,0 +1,4 @@
+dev-qt/qtgui ibus dbus
+
+# required by www-client/qutebrowser-2.3.1-r2::gentoo
+>=dev-qt/qtcore-5.15.2-r10 icu
