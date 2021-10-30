@@ -107,6 +107,7 @@ plugins['hrsh7th/nvim-cmp'] = {
 			completion = {
 				autocomplete = { require('cmp.types').cmp.TriggerEvent.TextChanged },
 				completeopt = 'menu,menuone,noselect',
+				keyword_length = 2,
 			},
 		})
 	end,

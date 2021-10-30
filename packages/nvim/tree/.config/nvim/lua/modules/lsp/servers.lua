@@ -194,7 +194,9 @@ nullls.config({
 		builtins.formatting.trim_whiespace,
 
 		-- c / c++
-		builtins.diagnostics.cppcheck,
+		-- builtins.diagnostics.cppcheck.with({
+		-- extra_args = { '--project=compile_commands.json', '--cppcheck-build-dir=.cache/cppcheck' },
+		-- }),
 		builtins.formatting.clang_format,
 		builtins.formatting.cmake_format,
 
@@ -214,7 +216,7 @@ nullls.config({
 		builtins.formatting.stylelint,
 
 		-- latex
-		builtins.diagnostics.chktex,
+		-- builtins.diagnostics.chktex,
 
 		-- lua
 		builtins.diagnostics.luacheck,

@@ -20,6 +20,20 @@ vim.lsp.handlers['textDocument/typeDefinition'] = require('lsputil.locations').t
 vim.lsp.handlers['textDocument/implementation'] = require('lsputil.locations').implementation_handler
 vim.lsp.handlers['textDocument/documentSymbol'] = require('lsputil.symbols').document_handler
 vim.lsp.handlers['workspace/symbol'] = require('lsputil.symbols').workspace_handler
+vim.lsp.handlers['textDocument/hover'] = function(_, result, ctx, config)
+	local util = vim.lsp.util
+	config = config or {}
+	config.focus_id = ctx.method
+	if not (result and result.contents) then
+		return { 'No information available' }
+	end
+	local markdown_lines = util.convert_input_to_markdown_lines(result.contents)
+	markdown_lines = util.trim_empty_lines(markdown_lines)
+	if vim.tbl_isempty(markdown_lines) then
+		return { 'No information available' }
+	end
+	return util.open_floating_preview(markdown_lines, 'pandoc', config)
+end
 
 -- Async formatting handle
 -- TODO: no global
@@ -100,7 +114,7 @@ M.on_attach = function(client, bufnr)
 	if client.resolved_capabilities.document_formatting then
 		vim.api.nvim_command([[augroup Format]])
 		vim.api.nvim_command([[autocmd! * <buffer>]])
-		vim.api.nvim_command([[autocmd BufWritePost <buffer> lua vim.lsp.buf.formatting()]])
+		vim.api.nvim_command([[autocmd BufWritePost <buffer> lua vim.lsp.buf.formatting_seq_sync()]])
 		vim.api.nvim_command([[augroup END]])
 	end
 
