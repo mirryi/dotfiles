@@ -19,7 +19,7 @@ zinit wait lucid light-mode for \
 
 # syntax highlighting
 zinit light-mode for \
-  atinit'ZINIT[COMPINIT_OPTS]=-C; zicompinit; zicdreplay' zdharma/fast-syntax-highlighting
+  atinit'ZINIT[COMPINIT_OPTS]=-C; zicompinit; zicdreplay' zdharma-continuum/fast-syntax-highlighting
 
 # autocomplete
 zinit light-mode for \
