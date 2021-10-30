@@ -1,0 +1,2 @@
+# required by app-misc/anki-2.1.15-r1::gentoo[python_single_target_python3_9]
+>=dev-python/PyQt5-5.15.4-r1 svg
