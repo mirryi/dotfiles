@@ -27,6 +27,9 @@ bind-key K prev article
 macro i set browser feh ; open-in-browser ; set browser elinks
 macro y set browser mpv ; open-in-browser ; set browser elinks
 
-color title     white  default dim
-color info      white  default dim
-color listfocus yellow black
+color title             white default dim
+color info              white default dim
+color listnormal        white default dim
+color listnormal_unread green default
+color listfocus         green black
+color listfocus_unread  blue  black   standout
