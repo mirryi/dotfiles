@@ -25,7 +25,7 @@ bindsym $mod+Shift+w exec xkill
 #   application runner
 bindsym $mod+d exec rofi -show run
 #   file opener
-bindsym $mod+f exec rofi -show file-browser
+bindsym $mod+f exec rofi -show filebrowser
 #   window switcher
 bindsym $mod+Shift+d exec rofi -show window
 #   ssh menu
