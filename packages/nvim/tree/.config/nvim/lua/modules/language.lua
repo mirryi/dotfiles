@@ -100,6 +100,11 @@ plugins['lervag/vimtex'] = {
 			{ name = 'textbf', mathmode = 1, conceal = 1, argstyle = 'bold' },
 		}
 
+		-- Fold options
+		g.vimtex_fold_enabled = 1
+		g.vimtex_fold_levelmarker = '>'
+		g.vimtex_fold_types = { items = { enabled = 0 } }
+
 		-- View options
 		g.vimtex_view_method = 'zathura'
 	end,
