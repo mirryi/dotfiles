@@ -29,12 +29,14 @@ plugins['romgrk/barbar.nvim'] = {
 			closable = true,
 			-- Disable icons
 			icons = false,
-			-- Lettters to assign buffer in order
+			-- Letters to assign buffer in order
 			letters = 'asdfjkl;ghnmxcbziowerutyqpASDFJKLGHNMXCBZIOWERUTYQP',
 			-- Maximum padding width surrounding each tab
 			maximum_padding = 4,
 			-- Set buffer letters first in terms of their name
 			semantic_letters = true,
+			-- Exclude quickfix list
+			exclude_ft = { 'qf' },
 		}
 
 		-- Select tab
