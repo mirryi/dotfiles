@@ -81,13 +81,13 @@ user_styles_dir = os.path.join(config.configdir, 'styles', '*.user.css')
 c.content.user_stylesheets = glob.glob(user_styles_dir)
 
 # editor command
-c.editor.command = ['st', '-e', 'nvim',
+c.editor.command = ['alacritty', '-e', 'nvim',
                     '{file}', '-c', 'normal {file}G{column0}l']
 
 # default fonts
 c.fonts.default_family = ['JetBrains Mono Nerd Font', 'Iosevka',
                           'Inconsolata', 'Fira Code', 'DejaVu Sans Mono']
-c.fonts.default_size = '10pt'
+c.fonts.default_size = '11pt'
 
 # file selector
 c.fileselect.handler = 'external'

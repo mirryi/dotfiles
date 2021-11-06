@@ -186,9 +186,6 @@ local builtins = nullls.builtins
 nullls.config({
 	diagnostics_format = '#{m} (#{s})',
 	sources = {
-		-- actions
-		builtins.code_actions.gitsigns,
-
 		-- generic
 		builtins.formatting.trim_newlines,
 		builtins.formatting.trim_whiespace,
