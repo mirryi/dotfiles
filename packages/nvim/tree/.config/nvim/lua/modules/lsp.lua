@@ -58,7 +58,7 @@ plugins['nvim-treesitter/nvim-treesitter'] = {
 		},
 		-- Rainbow parentheses
 		'p00f/nvim-ts-rainbow',
-		-- Swapping of paremters, lists, arrays, etc.
+		-- Swapping of parameters, lists, arrays, etc.
 		{
 			'mizlan/iswap.nvim',
 			config = function()
@@ -88,7 +88,7 @@ plugins['nvim-treesitter/nvim-treesitter'] = {
 				context_commentstring = { enable = true },
 				rainbow = {
 					enable = true,
-					disable = { 'tex' },
+					disable = { 'rust', 'tex' },
 					extended_mode = true,
 				},
 			})

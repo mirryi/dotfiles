@@ -121,7 +121,11 @@ lspconfig.taplo.setup({ on_attach = on_attach, capabilities = capabilities })
 lspconfig.tailwindcss.setup({ on_attach = on_attach, capabilities = capabilities })
 
 -- texlab
-lspconfig.texlab.setup({ on_attach = on_attach, capabilities = capabilities })
+lspconfig.texlab.setup({
+	on_attach = on_attach,
+	capabilities = capabilities,
+	settings = { texlab = { formatterLineLength = 100 } },
+})
 
 -- tsserver
 lspconfig.tsserver.setup({
@@ -188,7 +192,7 @@ nullls.config({
 	sources = {
 		-- generic
 		builtins.formatting.trim_newlines,
-		builtins.formatting.trim_whiespace,
+		builtins.formatting.trim_whitespace,
 
 		-- c / c++
 		-- builtins.diagnostics.cppcheck.with({
