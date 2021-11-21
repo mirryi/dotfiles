@@ -4,6 +4,7 @@ import os
 import sys
 
 import yaml
+
 from qutebrowser.config.config import ConfigContainer  # noqa: F401
 from qutebrowser.config.configfiles import ConfigAPI  # noqa: F401
 
@@ -92,9 +93,9 @@ c.fonts.default_size = '11pt'
 # file selector
 c.fileselect.handler = 'external'
 c.fileselect.single_file.command = [
-    'st', '-e', 'ranger', '--choosefile={}']
+    'alacritty', '-e', 'ranger', '--choosefile={}']
 c.fileselect.multiple_files.command = [
-    'st', '-e', 'ranger', '--choosefiles={}']
+    'alacritty', '-e', 'ranger', '--choosefiles={}']
 
 # QT hidpi fix
 c.qt.highdpi = True
