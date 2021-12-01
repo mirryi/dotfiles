@@ -53,5 +53,8 @@ plugins['winston0410/range-highlight.nvim'] = {
 	end,
 }
 -- }}}
+-- {{{
+plugins['tpope/vim-surround'] = {}
+-- }}}
 
 return plugins
