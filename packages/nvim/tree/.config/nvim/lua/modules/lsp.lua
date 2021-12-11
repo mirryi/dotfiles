@@ -58,6 +58,13 @@ plugins['nvim-treesitter/nvim-treesitter'] = {
 		},
 		-- Rainbow parentheses
 		'p00f/nvim-ts-rainbow',
+		{
+			'luochen1990/rainbow',
+			ft = { 'rust' },
+			setup = function()
+				vim.g.rainbow_active = 1
+			end,
+		},
 		-- Swapping of parameters, lists, arrays, etc.
 		{
 			'mizlan/iswap.nvim',
@@ -68,31 +75,29 @@ plugins['nvim-treesitter/nvim-treesitter'] = {
 	},
 	config = function()
 		local treesitter = require('nvim-treesitter.configs')
-		if treesitter ~= nil then
-			treesitter.setup({
-				ensure_installed = 'maintained',
-				highlight = {
-					enable = true,
-					disable = { 'cmake', 'latex', 'ocaml', 'r', 'rust', 'scss', 'tex', 'toml', 'yaml' },
-				},
-				indent = { enable = true, disable = { 'lua', 'rust', 'tex' } },
-				refactor = {
-					enable = true,
-					disable = { 'tex' },
-					highlight_definitions = { enable = true },
-					highlight_current_scope = { enable = false },
-					keymaps = { goto_definition = 'gd' },
-				},
-				-- External modules
-				autotag = { enable = true, disable = { 'tex' } },
-				context_commentstring = { enable = true },
-				rainbow = {
-					enable = true,
-					disable = { 'rust', 'tex' },
-					extended_mode = true,
-				},
-			})
-		end
+		local highlight_disabled = { 'cmake', 'latex', 'ocaml', 'r', 'rust', 'scss', 'tex', 'toml', 'yaml' }
+		treesitter.setup({
+			ensure_installed = 'maintained',
+			highlight = {
+				enable = true,
+				disable = highlight_disabled,
+			},
+			indent = { enable = true },
+			refactor = {
+				enable = true,
+				highlight_definitions = { enable = true },
+				highlight_current_scope = { enable = false },
+				keymaps = { goto_definition = 'gd' },
+			},
+			-- External modules
+			autotag = { enable = true },
+			context_commentstring = { enable = true },
+			rainbow = {
+				enable = true,
+				disable = highlight_disabled,
+				extended_mode = true,
+			},
+		})
 	end,
 }
 -- }}}
@@ -113,11 +118,7 @@ plugins['neovim/nvim-lspconfig'] = {
 	config = function()
 		-- Show diagnostics on hover
 		vim.api.nvim_exec(
-			[[
-                aug lsp_autocmds
-                  autocmd CursorHold * lua vim.lsp.diagnostic.show_line_diagnostics()
-                aug END
-            ]],
+			[[ aug lsp_autocmds autocmd CursorHold * lua vim.diagnostic.open_float({focus = false}) aug END ]],
 			true
 		)
 
@@ -179,13 +180,12 @@ plugins['simrat39/rust-tools.nvim'] = {
 				settings = {
 					['rust-analyzer'] = {
 						assist = { importGranularity = 'module' },
-						cargo = { loadOutDirsFromCheck = true, allFeatures = true },
+						cargo = { loadOutDirsFromCheck = true },
 						checkOnSave = {
 							allFeatures = true,
 							overrideCommand = {
 								'cargo',
 								'clippy',
-								'--workspace',
 								'--message-format=json',
 								'--all-targets',
 								'--all-features',

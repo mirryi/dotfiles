@@ -223,9 +223,9 @@ nullls.config({
 		-- builtins.diagnostics.chktex,
 
 		-- lua
-		builtins.diagnostics.luacheck,
+		-- builtins.diagnostics.luacheck,
 		builtins.formatting.stylua,
-		-- builtins.diagnostics.selene,
+		builtins.diagnostics.selene,
 
 		-- php
 		builtins.diagnostics.phpstan,

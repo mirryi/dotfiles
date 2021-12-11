@@ -53,7 +53,7 @@ plugins['winston0410/range-highlight.nvim'] = {
 	end,
 }
 -- }}}
--- {{{
+-- {{{ vim-surround : More surround movements
 plugins['tpope/vim-surround'] = {}
 -- }}}
 
