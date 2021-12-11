@@ -84,5 +84,5 @@ vim.api.nvim_command([[
 ]])
 
 -- Go to previous diagnostic
-bind.nmap('gN', '<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>', { noremap = false })
-bind.nmap('gn', '<cmd>lua vim.lsp.diagnostic.goto_next()<CR>', { noremap = false })
+bind.nmap('gN', '<cmd>lua vim.diagnostic.goto_prev()<CR>', { noremap = false })
+bind.nmap('gn', '<cmd>lua vim.diagnostic.goto_next()<CR>', { noremap = false })

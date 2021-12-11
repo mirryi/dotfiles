@@ -98,7 +98,7 @@ M.on_attach = function(client, bufnr)
 	bufmap('n', 'gc', '<cmd>LSPActions<CR>')
 	-- bufmap('n', 'gc', '<cmd>CodeActionMenu<CR>')
 	-- Show diagnostics for the current line
-	bufmap('n', 'ge', '<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>')
+	bufmap('n', 'ge', '<cmd>lua vim.diagnostic.open_float({focus = false})<CR>')
 	-- Show document diagnostics list
 	bufmap('n', 'gQ', '<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>')
 	-- bufmap('n', 'gQ', '<cmd>LSPDiagnostics<CR>')
