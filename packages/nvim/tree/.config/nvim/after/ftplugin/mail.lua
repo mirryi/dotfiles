@@ -1,7 +1,8 @@
 -- luacheck: globals vim
-local bo = vim.bo
+local bo, wo = vim.bo, vim.wo
 
 bo.textwidth = 0
-bo.wrap = true
-bo.linebreak = true
-bo.showbreak = '+'
+
+wo.wrap = true
+wo.linebreak = true
+wo.showbreak = '+'
