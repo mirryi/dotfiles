@@ -60,7 +60,7 @@ plugins['nvim-treesitter/nvim-treesitter'] = {
 		'p00f/nvim-ts-rainbow',
 		{
 			'luochen1990/rainbow',
-			ft = { 'rust' },
+			ft = { 'latex', 'ocaml', 'reason', 'rust', 'tex' },
 			setup = function()
 				vim.g.rainbow_active = 1
 			end,
