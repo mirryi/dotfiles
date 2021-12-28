@@ -135,6 +135,7 @@ end
 M.capabilities = vim.lsp.protocol.make_client_capabilities()
 
 -- Enable snippets
+M.capabilities.offsetEncoding = {'utf-16'}
 M.capabilities.textDocument.completion.completionItem.snippetSupport = true
 M.capabilities.textDocument.completion.completionItem.resolveSupport = {
 	properties = { 'documentation', 'detail', 'additionalTextEdits' },
