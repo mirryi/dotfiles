@@ -75,7 +75,7 @@ plugins['nvim-treesitter/nvim-treesitter'] = {
 	},
 	config = function()
 		local treesitter = require('nvim-treesitter.configs')
-		local highlight_disabled = { 'cmake', 'latex', 'ocaml', 'r', 'rust', 'scss', 'tex', 'toml', 'yaml' }
+		local highlight_disabled = { 'cmake', 'latex', 'make', 'ocaml', 'r', 'rust', 'scss', 'tex', 'toml', 'yaml' }
 		treesitter.setup({
 			ensure_installed = 'maintained',
 			highlight = {

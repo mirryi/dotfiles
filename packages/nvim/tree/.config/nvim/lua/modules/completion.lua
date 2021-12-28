@@ -27,7 +27,7 @@ plugins['hrsh7th/nvim-cmp'] = {
 	-- {{{ config
 	config = function()
 		local sources = function()
-			local sources = {
+			local source_list = {
 				{ name = 'nvim_lsp' },
 				{ name = 'ultisnips' },
 				{ name = 'path' },
@@ -36,12 +36,12 @@ plugins['hrsh7th/nvim-cmp'] = {
 
 			local ft = vim.o.ft
 			if ft == 'lua' then
-				table.insert(sources, { name = 'nvim_lua' })
+				table.insert(source_list, { name = 'nvim_lua' })
 			end
 			if ft == 'markdown' or ft == 'pandoc' or ft == 'tex' then
-				table.insert(sources, { name = 'spell' })
+				table.insert(source_list, { name = 'spell' })
 			end
-			return sources
+			return source_list
 		end
 		local mapping = function()
 			local cmp = require('cmp')

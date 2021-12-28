@@ -190,7 +190,7 @@ lspconfig.efm.setup({
 -- Non-lsp linter/formatter integration
 local nullls = require('null-ls')
 local builtins = nullls.builtins
-nullls.config({
+nullls.setup({
 	diagnostics_format = '#{m} (#{s})',
 	sources = {
 		-- generic
@@ -201,7 +201,7 @@ nullls.config({
 		-- builtins.diagnostics.cppcheck.with({
 		-- extra_args = { '--project=compile_commands.json', '--cppcheck-build-dir=.cache/cppcheck' },
 		-- }),
-		builtins.formatting.clang_format,
+		-- builtins.formatting.clang_format,
 		builtins.formatting.cmake_format,
 
 		-- docker
@@ -249,4 +249,3 @@ nullls.config({
 		builtins.diagnostics.yamllint,
 	},
 })
-lspconfig['null-ls'].setup({ on_attach = on_attach, capabilities = capabilities })

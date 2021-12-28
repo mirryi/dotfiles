@@ -150,7 +150,7 @@ plugins['kevinhwang91/nvim-bqf'] = {}
 plugins['psliwka/vim-smoothie'] = {}
 -- }}}
 -- {{{ vim-tmux-focus-events : tmux event compatbility
-plugins['tmux-plugins/vim-tmux-focus-events'] = {}
+-- plugins['tmux-plugins/vim-tmux-focus-events'] = {}
 -- }}}
 -- {{{ alpha-nvim : Dashboard
 plugins['goolord/alpha-nvim'] = {
