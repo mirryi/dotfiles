@@ -13,9 +13,11 @@ lspconfig.als.setup({ on_attach = on_attach, capabilities = capabilities })
 lspconfig.bashls.setup({ on_attach = on_attach, capabilities = capabilities })
 
 -- clangd
+local clangd_capabilities = vim.deepcopy(capabilities)
+clangd_capabilities.offsetEncoding = { 'utf-16' }
 lspconfig.clangd.setup({
 	on_attach = on_attach,
-	capabilities = capabilities,
+	capabilities = clangd_capabilities,
 })
 
 -- cmake language server
@@ -66,7 +68,7 @@ lspconfig.sumneko_lua.setup({
 	on_attach = on_attach,
 	capabilities = capabilities,
 	settings = {
-		Lua = { diagnostics = { enable = false }, workspace = { maxPreload = 2000 } },
+		Lua = { diagnostics = { enable = false }, workspace = { maxPreload = 9999, checkThirdParty = false } },
 	},
 })
 

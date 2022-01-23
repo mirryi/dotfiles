@@ -12,7 +12,7 @@ snippet "([^\s].*)\.beg(in)?" "\begin{?} ... \end{?}" r
 \end{`!p snip.rv = match.group(1)`}
 endsnippet
 
-snippet centered "\begin{center} ... \end{center}" 
+snippet center "\begin{center} ... \end{center}" 
 \begin{center}
 	${0:${VISUAL}}
 \end{center}
@@ -20,18 +20,24 @@ endsnippet
 
 snippet items "\begin{itemize} ... \end{itemize}"
 \begin{itemize}
-	\item ${0}
+	\item ${0:${VISUAL}}
 \end{itemize}
 endsnippet
 
 snippet enum "\begin{enumerate} ... \end{enumerate}"
 \begin{enumerate}
-	\item ${0}
+	\item ${0:${VISUAL}}
 \end{enumerate}
 endsnippet
 
+snippet multicols "\begin{multicols}{?} ... \end{multicols}"
+\begin{multicols}{$1}
+	${0:${VISUAL}}
+\end{multicols}
+endsnippet
+
 snippet tabl "\begin{tabular} ... \end{tabular}" 
-\begin{tabular}
+\begin{tabular}[$1]
 	${0:${VISUAL}}
 \end{tabular}
 endsnippet

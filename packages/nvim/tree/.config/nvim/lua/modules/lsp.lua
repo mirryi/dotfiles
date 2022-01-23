@@ -126,6 +126,14 @@ plugins['neovim/nvim-lspconfig'] = {
 	end,
 }
 -- }}}
+-- {{{ nvim-dap : Debugging support
+plugins['mfussenegger/nvim-dap'] = {
+	requires = { { 'rcarriga/nvim-dap-ui' }, { 'theHamsta/nvim-dap-virtual-text' } },
+	config = function()
+		require('modules.lsp.dap')
+	end,
+}
+-- }}}
 -- {{{ nvim-jdtls : Enhanced java language server
 plugins['mfussenegger/nvim-jdtls'] = {
 	ft = { 'java' },
