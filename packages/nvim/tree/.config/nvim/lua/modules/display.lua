@@ -38,5 +38,8 @@ plugins['npxbr/glow.nvim'] = {
 	end,
 }
 -- }}}
+-- {{{ markdown-preview.nvim : Web markdown preview
+plugins['iamcco/markdown-preview.nvim'] = {}
+-- }}}
 
 return plugins

@@ -6,21 +6,21 @@ local M = {}
 
 -- {{{ M.init
 M.init = function()
-    M.global()
-    M.bindings()
-    M.plugins()
+	M.global()
+	M.bindings()
+	M.plugins()
 end
 -- }}}
 
 -- {{{ M.global
 M.global = function()
-    require('core.global')
+	require('core.global')
 end
 -- }}}
 
 -- {{{ M.bindings
 M.bindings = function()
-    require('core.bindings')
+	require('core.bindings')
 end
 -- }}}
 
@@ -74,7 +74,6 @@ M.plugins = function()
 				end
 			end
 			-- }}}
-
 		end,
 		-- }}}
 		-- {{{ Packer Config

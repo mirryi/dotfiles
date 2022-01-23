@@ -13,12 +13,12 @@ plugins['phaazon/hop.nvim'] = {
 }
 -- }}}
 -- {{{ vim-gutentag : Tag management
-plugins['ludovicchabant/vim-gutentags'] = {
-	config = function()
-		local g = vim.g
-		g.gutentags_cache_dir = g.nvim_cache .. '/gutentags'
-	end,
-}
+-- plugins['ludovicchabant/vim-gutentags'] = {
+-- config = function()
+-- local g = vim.g
+-- g.gutentags_cache_dir = g.nvim_cache .. '/gutentags'
+-- end,
+-- }
 -- }}}
 -- {{{ telescope.nvim : Fuzzy picker
 plugins['nvim-telescope/telescope.nvim'] = {
