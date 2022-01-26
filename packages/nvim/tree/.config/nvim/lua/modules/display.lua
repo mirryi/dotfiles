@@ -1,6 +1,17 @@
 -- luacheck: globals vim
 local plugins = {}
 
+-- {{
+plugins['petertriho/nvim-scrollbar'] = {
+	config = function()
+		require('scrollbar').setup({
+            handle = {
+                color = "black",
+            },
+        })
+	end,
+}
+-- }}
 -- {{{ nvim-colorizer.lua : RGB, hex color highlighting
 plugins['norcalli/nvim-colorizer.lua'] = {
 	config = function()
@@ -39,7 +50,14 @@ plugins['npxbr/glow.nvim'] = {
 }
 -- }}}
 -- {{{ markdown-preview.nvim : Web markdown preview
-plugins['iamcco/markdown-preview.nvim'] = {}
+plugins['iamcco/markdown-preview.nvim'] = {
+	run = 'cd app && yarn install',
+	config = function()
+		vim.g.mkdp_auto_start = false
+		vim.g.mkdp_echo_preview_url = 1
+		vim.g.mkdp_filetypes = { 'markdown', 'pandoc' }
+	end,
+}
 -- }}}
 
 return plugins

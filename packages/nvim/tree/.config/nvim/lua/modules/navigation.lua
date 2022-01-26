@@ -26,6 +26,7 @@ plugins['nvim-telescope/telescope.nvim'] = {
 		{ 'nvim-lua/popup.nvim' },
 		{ 'nvim-lua/plenary.nvim' },
 		{ 'nvim-telescope/telescope-fzy-native.nvim' },
+		{ 'nvim-telescope/telescope-file-browser.nvim' },
 	},
 	config = function()
 		local nmap = function(lhs, rhs)
@@ -49,7 +50,6 @@ plugins['nvim-telescope/telescope.nvim'] = {
 				find_files = { theme = 'ivy' },
 				git_files = { theme = 'ivy' },
 				oldfiles = { theme = 'ivy' },
-				file_browser = { theme = 'ivy' },
 				live_grep = { theme = 'ivy' },
 				buffers = { theme = 'ivy' },
 				marks = { theme = 'ivy' },
@@ -67,8 +67,13 @@ plugins['nvim-telescope/telescope.nvim'] = {
 				lsp_code_actions = { theme = 'cursor' },
 				lsp_range_code_actions = { theme = 'cursor' },
 			},
+			extensions = {
+				file_browser = { theme = 'ivy' },
+			},
 		})
+
 		telescope.load_extension('fzy_native')
+		telescope.load_extension('file_browser')
 
 		-- {{{ File pickers
 		-- Files

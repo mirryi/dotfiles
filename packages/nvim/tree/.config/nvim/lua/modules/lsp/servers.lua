@@ -9,6 +9,9 @@ local capabilities = handlers.capabilities
 -- agda language server
 lspconfig.als.setup({ on_attach = on_attach, capabilities = capabilities })
 
+-- ansible language server
+lspconfig.ansiblels.setup({ on_attach = on_attach, capabilities = capabilities })
+
 -- bash language server
 lspconfig.bashls.setup({ on_attach = on_attach, capabilities = capabilities })
 
