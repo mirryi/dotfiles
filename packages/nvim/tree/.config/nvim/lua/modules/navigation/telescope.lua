@@ -1,4 +1,5 @@
 local builtin = require('telescope.builtin')
+local extensions = require('telescope').extensions
 
 local M = { lsp = {} }
 
@@ -17,7 +18,7 @@ M.oldfiles = function()
 end
 
 M.filebrowser = function()
-	builtin.file_browser()
+	extensions.file_browser.file_browser()
 end
 
 M.ripgrep = function()

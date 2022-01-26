@@ -33,6 +33,13 @@ plugins['folke/lsp-trouble.nvim'] = {
 	end,
 }
 -- }}}
+-- {{{
+-- plugins['j-hui/fidget.nvim'] = {
+-- config = function()
+-- require('fidget').setup()
+-- end,
+-- }
+-- }}}
 -- {{{ nvim-treesitter : Treesitter support
 plugins['nvim-treesitter/nvim-treesitter'] = {
 	requires = {
