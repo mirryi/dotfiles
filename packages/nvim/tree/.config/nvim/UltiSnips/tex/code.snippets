@@ -24,6 +24,19 @@ ${0:${VISUAL}}
 \end{minted}
 endsnippet
 
+snippet pmint "\begin{minted}[xleftmargin=\parindent]{?} ... \end{minted}" 
+\begin{minted}[xleftmargin=\parindent]{${1:lang}}
+${0:${VISUAL}}
+\end{minted}
+endsnippet
+
+priority 1001
+snippet "pmint(.+)" "\begin{minted}[xleftmargin=\parindent]{?} ... \end{minted}" r
+\begin{minted}[xleftmargin=\parindent]{`!p snip.rv = match.group(1)`}
+${0:${VISUAL}}
+\end{minted}
+endsnippet
+
 priority 100
 snippet lsting "\begin{lstlisting} ... \end{lstlisting}"
 \begin{lstlisting}${1/..*/\[/}$1`!p snip.rv = ']' if t[1] != '' else ''`

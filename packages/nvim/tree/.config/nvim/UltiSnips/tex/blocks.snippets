@@ -30,6 +30,18 @@ snippet enum "\begin{enumerate} ... \end{enumerate}"
 \end{enumerate}
 endsnippet
 
+snippet enumal "\begin{enumerate}[label=\alph*.] ... \end{enumerate}"
+\begin{enumerate}[label=\alph*.]
+	\item ${0:${VISUAL}}
+\end{enumerate}
+endsnippet
+
+snippet enumro "\begin{enumerate}[label=\roman*.] ... \end{enumerate}"
+\begin{enumerate}[label=\roman*.]
+	\item ${0:${VISUAL}}
+\end{enumerate}
+endsnippet
+
 snippet multicols "\begin{multicols}{?} ... \end{multicols}"
 \begin{multicols}{$1}
 	${0:${VISUAL}}
@@ -37,7 +49,7 @@ snippet multicols "\begin{multicols}{?} ... \end{multicols}"
 endsnippet
 
 snippet tabl "\begin{tabular} ... \end{tabular}" 
-\begin{tabular}[$1]
+\begin{tabular}{$1}
 	${0:${VISUAL}}
 \end{tabular}
 endsnippet

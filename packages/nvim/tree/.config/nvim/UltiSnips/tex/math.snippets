@@ -248,7 +248,7 @@ endsnippet
 # Equality
 context "math()"
 snippet == "&=" iA
-&= $1 \\\\
+&=$1
 endsnippet
 
 context "math()"
@@ -310,6 +310,39 @@ endsnippet
 context "math()"
 snippet tt "\text{?}"
 \text{${1:${VISUAL}}}${0}
+endsnippet
+
+#
+# Symbols
+#
+context "math()"
+snippet RR "\mathbb{R}" i
+\mathbb{R}
+endsnippet
+
+context "math()"
+snippet NN "\mathbb{N}" i
+\mathbb{N}
+endsnippet
+
+context "math()"
+snippet ZZ "\mathbb{Z}" i
+\mathbb{Z}
+endsnippet
+
+context "math()"
+snippet ZZ+ "\mathbb{Z}^{+}" i
+\mathbb{Z}^{+}
+endsnippet
+
+context "math()"
+snippet ZZ- "\mathbb{Z}^{-}" i
+\mathbb{Z}^{-}
+endsnippet
+
+context "math()"
+snippet QQ "\mathbb{Q}" i
+\mathbb{Q}
 endsnippet
 
 #

@@ -1,16 +1,16 @@
 -- luacheck: globals vim
 local plugins = {}
 
--- {{
-plugins['petertriho/nvim-scrollbar'] = {
-	config = function()
-		require('scrollbar').setup({
-            handle = {
-                color = "black",
-            },
-        })
-	end,
-}
+-- {{ nvim-scrollbar: Scrollbar with indicators
+-- plugins['petertriho/nvim-scrollbar'] = {
+	-- config = function()
+		-- require('scrollbar').setup({
+            -- handle = {
+                -- color = "black",
+            -- },
+        -- })
+	-- end,
+-- }
 -- }}
 -- {{{ nvim-colorizer.lua : RGB, hex color highlighting
 plugins['norcalli/nvim-colorizer.lua'] = {

@@ -119,6 +119,9 @@ lspconfig.r_language_server.setup({
 	capabilities = capabilities,
 })
 
+-- solargraph (ruby)
+lspconfig.solargraph.setup({ on_attach = on_attach, capabilities = capabilities })
+
 -- taplo (toml)
 lspconfig.taplo.setup({ on_attach = on_attach, capabilities = capabilities })
 
