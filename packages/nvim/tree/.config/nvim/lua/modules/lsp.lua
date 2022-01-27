@@ -33,7 +33,7 @@ plugins['folke/lsp-trouble.nvim'] = {
 	end,
 }
 -- }}}
--- {{{
+-- {{{ fidget.nvim : LSP status indicator
 -- plugins['j-hui/fidget.nvim'] = {
 -- config = function()
 -- require('fidget').setup()
@@ -82,7 +82,7 @@ plugins['nvim-treesitter/nvim-treesitter'] = {
 	},
 	config = function()
 		local treesitter = require('nvim-treesitter.configs')
-		local highlight_disabled = { 'cmake', 'latex', 'make', 'ocaml', 'r', 'rust', 'scss', 'tex', 'toml', 'yaml' }
+		local highlight_disabled = { 'cmake', 'latex', 'make', 'ocaml', 'r', 'ruby', 'rust', 'scss', 'tex', 'toml', 'yaml' }
 		treesitter.setup({
 			ensure_installed = 'maintained',
 			highlight = {
