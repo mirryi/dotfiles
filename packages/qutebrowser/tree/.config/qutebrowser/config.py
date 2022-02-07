@@ -4,7 +4,6 @@ import os
 import sys
 
 import yaml
-
 from qutebrowser.config.config import ConfigContainer  # noqa: F401
 from qutebrowser.config.configfiles import ConfigAPI  # noqa: F401
 
@@ -54,16 +53,17 @@ c.content.blocking.adblock.lists = [
     'https://raw.githubusercontent.com/anudeepND/blacklist/master/adservers.txt',
     'https://blocklistproject.github.io/Lists/ads.txt',
     'https://blocklistproject.github.io/Lists/phishing.txt',
-    'https://blocklistproject.github.io/Lists/tracking.txt'
+    'https://blocklistproject.github.io/Lists/tracking.txt',
+    'https://raw.githubusercontent.com/quenhus/uBlock-Origin-dev-filter/main/dist/google_duckduckgo/all.txt'
 ]
 
 # content settings
 # disable autoplay
 c.content.autoplay = False
-# enable canvas, webgl, and clipboard access
-c.content.canvas_reading = True
-c.content.webgl = True
-c.content.javascript.can_access_clipboard = True
+# disable canvas, webgl, clipboard access
+c.content.canvas_reading = False
+c.content.webgl = False
+c.content.javascript.can_access_clipboard = False
 # disable geolocation
 c.content.geolocation = False
 # set user agent string
@@ -123,11 +123,13 @@ except IOError:
     pass
 
 # register jmatrix
-try:
-    sys.path.append(os.path.join(sys.path[0], 'jmatrix'))
-    config.source("jmatrix/jmatrix/integrations/qutebrowser.py")
-except ValueError:
-    pass
+if "JMATRIX_LOADED" in os.environ:
+    os.environ["JAMTRIX_LOADED"] = True
+    try:
+        sys.path.append(os.path.join(sys.path[0], 'jmatrix'))
+        config.source("jmatrix/jmatrix/integrations/qutebrowser.py")
+    except ValueError:
+        pass
 
 # enable dynamic theme loading
 config.source("qutewal.py")
