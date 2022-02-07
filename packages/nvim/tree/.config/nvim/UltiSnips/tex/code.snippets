@@ -50,3 +50,82 @@ snippet "lsting(.+)" "\begin{lstlisting}[language=?] ... \end{lstlisting}" r
 ${0:${VISUAL}}
 \end{lstlisting}
 endsnippet
+
+snippet algo "\begin{algorithm} ... \end{algorithm}" 
+\begin{algorithm}
+	${0:${VISUAL}}
+\end{algorithm}
+endsnippet
+
+snippet alg "\begin{algorithmic} ... \end{algorithmic}" 
+\begin{algorithmic}
+	${0:${VISUAL}}
+\end{algorithmic}
+endsnippet
+
+snippet ast "\State ..." 
+\State ${0:${VISUAL}}
+endsnippet
+
+snippet afun "\Function{?}{?} ... \EndFunction"
+\Function{${1}}{${2}}
+	${0:${VISUAL}}
+\EndFunction
+endsnippet
+
+snippet aproc "\Procedure{?}{?} ... \EndProcedure"
+\Procedure{${1}}{${2}}
+	${0:${VISUAL}}
+\EndProcedure
+endsnippet
+
+snippet awh "\While{?} ... \EndWhile"
+\While{${1}}
+	${0:${VISUAL}}
+\EndWhile
+endsnippet
+
+snippet afor "\For{?} ... \EndFor" 
+\For{${1}}
+	${0:${VISUAL}}
+\EndFor
+endsnippet
+
+snippet aif "\If{?} ... \EndIf"
+\If{${1}}
+	${0:${VISUAL}}
+\EndIf
+endsnippet
+
+snippet aife "\If{?} ... \Else ... \EndIf"
+\If{${1}}
+	${0:${VISUAL}}
+\Else
+\EndIf
+endsnippet
+
+snippet aief "\If{?} ... \Else ... \EndIf"
+\If{${1}}
+	${0:${VISUAL}}
+\ElseIf{${2}}
+\Else
+\EndIf
+endsnippet
+
+snippet aef "\Else ..."
+\Else
+	${0:${VISUAL}}
+endsnippet
+
+snippet aeif "\ElseIf{?} ..."
+\ElseIf{${1}}
+	${0:${VISUAL}}
+endsnippet
+
+snippet aret "\State \Return ?"
+\State \Return ${0:${VISUAL}}
+endsnippet
+
+snippet acall "\Call{?}{?}"
+\Call{${1}}{${0:${VISUAL}}}
+endsnippet
