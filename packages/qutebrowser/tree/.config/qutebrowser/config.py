@@ -123,8 +123,9 @@ except IOError:
     pass
 
 # register jmatrix
-if "JMATRIX_LOADED" in os.environ:
-    os.environ["JAMTRIX_LOADED"] = True
+JMATRIX_LOADED = "JMATRIX_LOADED"
+if JMATRIX_LOADED not in os.environ:
+    os.environ[JMATRIX_LOADED] = "true"
     try:
         sys.path.append(os.path.join(sys.path[0], 'jmatrix'))
         config.source("jmatrix/jmatrix/integrations/qutebrowser.py")
