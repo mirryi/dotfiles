@@ -65,6 +65,19 @@ lspconfig.kotlin_language_server.setup({
 	capabilities = capabilities,
 })
 
+-- ltex language server
+-- lspconfig.ltex.setup({
+	-- on_attach = on_attach,
+	-- capabilities = capabilities,
+	-- settings = {
+		-- ltex = {
+			-- dictionary = {
+				-- ['en-US'] = { ':.vim/ltex.dictionary.en-US.txt' },
+			-- },
+		-- },
+	-- },
+-- })
+
 -- lua language server
 lspconfig.sumneko_lua.setup({
 	cmd = { 'lua-language-server' },
@@ -206,10 +219,10 @@ nullls.setup({
 		builtins.formatting.trim_whitespace,
 
 		-- c / c++
-		-- builtins.diagnostics.cppcheck.with({
-		-- extra_args = { '--project=compile_commands.json', '--cppcheck-build-dir=.cache/cppcheck' },
-		-- }),
-		-- builtins.formatting.clang_format,
+		builtins.diagnostics.cppcheck.with({
+			method = nullls.methods.DIAGNOSTICS_ON_SAVE,
+			extra_args = { '--inline-suppr' },
+		}),
 		builtins.formatting.cmake_format,
 
 		-- docker
@@ -232,8 +245,18 @@ nullls.setup({
 
 		-- lua
 		-- builtins.diagnostics.luacheck,
-		builtins.formatting.stylua,
-		builtins.diagnostics.selene,
+		builtins.formatting.stylua.with({
+			cwd = function(_)
+				local bufpath = vim.api.nvim_buf_get_name(0)
+				return lspconfig.util.root_pattern('stylua.toml')(bufpath)
+			end,
+		}),
+		builtins.diagnostics.selene.with({
+			cwd = function(_)
+				local bufpath = vim.api.nvim_buf_get_name(0)
+				return lspconfig.util.root_pattern('selene.toml')(bufpath)
+			end,
+		}),
 
 		-- php
 		builtins.diagnostics.phpstan,
