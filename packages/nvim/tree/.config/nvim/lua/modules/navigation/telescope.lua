@@ -65,14 +65,6 @@ M.lsp.definitions = function()
 	builtin.lsp_definitions()
 end
 
-M.lsp.diagnostics = function()
-	builtin.lsp_document_diagnostics()
-end
-
-M.lsp.workspace_diagnostics = function()
-	builtin.lsp_workspace_diagnostics()
-end
-
 M.lsp.references = function()
 	builtin.lsp_references()
 end

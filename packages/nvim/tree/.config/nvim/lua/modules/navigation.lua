@@ -59,8 +59,6 @@ plugins['nvim-telescope/telescope.nvim'] = {
 				help = { theme = 'ivy' },
 				man = { theme = 'ivy' },
 				lsp_definitions = { theme = 'ivy' },
-				lsp_document_diagnostics = { theme = 'ivy' },
-				lsp_workspace_diagnostics = { theme = 'ivy' },
 				lsp_references = { theme = 'ivy' },
 				lsp_document_symbols = { theme = 'ivy' },
 				lsp_workspace_symbols = { theme = 'ivy' },
@@ -131,9 +129,6 @@ plugins['nvim-telescope/telescope.nvim'] = {
 		-- {{{ LSP pickers
 		-- Goto definition picker
 		cmd([[ command! LSPGotoDefinition :lua require('modules.navigation.telescope').lsp.definitions() ]])
-		-- Diagnostics pickers
-		cmd([[ command! LSPDiagnostics :lua require('modules.navigation.telescope').lsp.diagnostics() ]])
-		cmd([[ command! LSPWDiagnostics :lua require('modules.navigation.telescope').lsp.workspace_diagnostics() ]])
 		-- References picker
 		cmd([[ command! LSPReferences :lua require('modules.navigation.telescope').lsp.references() ]])
 		-- Document symbols picker

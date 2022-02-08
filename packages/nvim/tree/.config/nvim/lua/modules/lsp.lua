@@ -28,8 +28,8 @@ plugins['folke/lsp-trouble.nvim'] = {
 		trouble.setup({})
 
 		local bind = require('util.bind')
-		bind.nmap('gL', '<cmd>LspTroubleDocumentOpen<CR>')
-		bind.nmap('gwL', '<cmd>LspTroubleWorkspaceOpen<CR>')
+		bind.nmap('gL', '<cmd>TroubleToggle document_diagnostics<CR>')
+		bind.nmap('gwL', '<cmd>TroubleToggle workspace_diagnostics<CR>')
 	end,
 }
 -- }}}
