@@ -56,5 +56,31 @@ plugins['winston0410/range-highlight.nvim'] = {
 -- {{{ vim-surround : More surround movements
 plugins['tpope/vim-surround'] = {}
 -- }}}
+-- {{{ tabout.nvim : Tab out of parentheses
+plugins['abecodes/tabout.nvim'] = {
+	config = function()
+		require('tabout').setup({
+			tabkey = '<C-n>',
+			backwards_tabkey = '<C-m>',
+			act_as_tab = false,
+			act_as_shift_tab = false,
+			enable_backwards = true,
+			completion = false,
+			tabouts = {
+				{ open = "'", close = "'" },
+				{ open = '"', close = '"' },
+				{ open = '`', close = '`' },
+				{ open = '(', close = ')' },
+				{ open = '[', close = ']' },
+				{ open = '{', close = '}' },
+				{ open = '$', close = '$' },
+			},
+			ignore_beginning = true,
+			exclude = {},
+		})
+	end,
+	after = { 'nvim-treesitter' },
+}
+-- }}}
 
 return plugins

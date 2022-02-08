@@ -82,7 +82,19 @@ plugins['nvim-treesitter/nvim-treesitter'] = {
 	},
 	config = function()
 		local treesitter = require('nvim-treesitter.configs')
-		local highlight_disabled = { 'cmake', 'latex', 'make', 'ocaml', 'r', 'ruby', 'rust', 'scss', 'tex', 'toml', 'yaml' }
+		local highlight_disabled = {
+			'cmake',
+			'latex',
+			'make',
+			'ocaml',
+			'r',
+			'ruby',
+			'rust',
+			'scss',
+			'tex',
+			'toml',
+			'yaml',
+		}
 		treesitter.setup({
 			ensure_installed = 'maintained',
 			highlight = {
@@ -165,7 +177,7 @@ plugins['akinsho/flutter-tools.nvim'] = {
 	end,
 }
 -- }}}
--- rust-tools.nvim : Enahcned rust language server and tools
+-- {{{ rust-tools.nvim : Enahcned rust language server and tools
 plugins['simrat39/rust-tools.nvim'] = {
 	requires = {
 		{ 'nvim-lua/popup.nvim', 'nvim-lua/plenary.nvim', 'nvim-telescope/telescope.nvim' },
@@ -209,6 +221,27 @@ plugins['simrat39/rust-tools.nvim'] = {
 						procMacro = { enable = true },
 					},
 				},
+			},
+		})
+	end,
+}
+-- }}}
+-- {{{ clangd_extensions.nvim: Enhanced clangd and tools
+plugins['p00f/clangd_extensions.nvim'] = {
+	after = { 'nvim-lspconfig' },
+	config = function()
+		local handlers = require('modules.lsp.handlers')
+		local on_attach = handlers.on_attach
+		local capabilities = handlers.capabilities
+
+		local clangd_capabilities = vim.deepcopy(capabilities)
+		clangd_capabilities.offsetEncoding = { 'utf-16' }
+
+		local clangd_extensions = require('clangd_extensions')
+		clangd_extensions.setup({
+			server = {
+				on_attach = on_attach,
+				capabilities = clangd_capabilities,
 			},
 		})
 	end,
