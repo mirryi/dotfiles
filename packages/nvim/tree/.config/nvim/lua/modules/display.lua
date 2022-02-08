@@ -3,13 +3,13 @@ local plugins = {}
 
 -- {{ nvim-scrollbar: Scrollbar with indicators
 -- plugins['petertriho/nvim-scrollbar'] = {
-	-- config = function()
-		-- require('scrollbar').setup({
-            -- handle = {
-                -- color = "black",
-            -- },
-        -- })
-	-- end,
+-- config = function()
+-- require('scrollbar').setup({
+-- handle = {
+-- color = "black",
+-- },
+-- })
+-- end,
 -- }
 -- }}
 -- {{{ nvim-colorizer.lua : RGB, hex color highlighting
