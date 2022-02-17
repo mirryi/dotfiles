@@ -43,6 +43,7 @@ plugins['j-hui/fidget.nvim'] = {
 -- {{{ nvim-treesitter : Treesitter support
 plugins['nvim-treesitter/nvim-treesitter'] = {
 	requires = {
+		'nvim-treesitter/playground',
 		'nvim-treesitter/nvim-treesitter-refactor',
 		-- Auto close HTML/XML tags
 		'windwp/nvim-ts-autotag',
@@ -133,7 +134,12 @@ plugins['neovim/nvim-lspconfig'] = {
 		{ 'RishabhRD/nvim-lsputils', requires = { { 'RishabhRD/popfix' } } },
 		-- Better code actions menus
 		-- { 'weilbith/nvim-code-action-menu' },
+		-- Virtual text for types
+		{ 'jubnzv/virtual-types.nvim' },
+		-- Schema access for jsonls
+		{ 'b0o/SchemaStore.nvim' },
 	},
+	after = { 'nvim-notify' },
 	config = function()
 		-- Show diagnostics on hover
 		vim.api.nvim_exec(
