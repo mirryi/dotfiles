@@ -110,6 +110,14 @@ plugins['lervag/vimtex'] = {
 	end,
 }
 -- }}}
+-- {{{
+plugins['jbyuki/nabla.nvim'] = {
+	config = function()
+		local bind = require('util.bind')
+		bind.nmap('<leader>lf', '<cmd>lua require("nabla").popup()<CR>')
+	end,
+}
+-- }}}
 -- {{{ vader.vim : Vader support
 plugins['junegunn/vader.vim'] = {}
 -- }}}

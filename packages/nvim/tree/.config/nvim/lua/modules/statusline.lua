@@ -104,5 +104,8 @@ plugins['folke/which-key.nvim'] = {
 	end,
 }
 -- }}}
+-- {{{ nvim-notify: Fancy notifications
+plugins['rcarriga/nvim-notify'] = {}
+-- }}}
 
 return plugins

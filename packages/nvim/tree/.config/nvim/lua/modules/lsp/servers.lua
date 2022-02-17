@@ -1,5 +1,6 @@
 -- luacheck: globals vim
 local lspconfig = require('lspconfig')
+local schemastore = require('schemastore')
 
 -- override handlers
 local handlers = require('modules.lsp.handlers')
@@ -57,7 +58,15 @@ lspconfig.html.setup({ on_attach = on_attach, capabilities = capabilities })
 -- }
 
 -- json language server
-lspconfig.jsonls.setup({ on_attach = on_attach, capabilities = capabilities })
+local jsonls_capabilities = vim.deepcopy(capabilities)
+jsonls_capabilities.textDocument.completion.completionItem.snippetSupport = true
+lspconfig.jsonls.setup({
+	on_attach = on_attach,
+	capabilities = jsonls_capabilities,
+	settings = {
+		schemas = require('schemastore').json.schemas(),
+	},
+})
 
 -- kotlin language server
 lspconfig.kotlin_language_server.setup({
@@ -67,15 +76,15 @@ lspconfig.kotlin_language_server.setup({
 
 -- ltex language server
 -- lspconfig.ltex.setup({
-	-- on_attach = on_attach,
-	-- capabilities = capabilities,
-	-- settings = {
-		-- ltex = {
-			-- dictionary = {
-				-- ['en-US'] = { ':.vim/ltex.dictionary.en-US.txt' },
-			-- },
-		-- },
-	-- },
+-- on_attach = on_attach,
+-- capabilities = capabilities,
+-- settings = {
+-- ltex = {
+-- dictionary = {
+-- ['en-US'] = { ':.vim/ltex.dictionary.en-US.txt' },
+-- },
+-- },
+-- },
 -- })
 
 -- lua language server
@@ -220,9 +229,15 @@ nullls.setup({
 
 		-- c / c++
 		builtins.diagnostics.cppcheck.with({
+			filetypes = { 'c' },
 			method = nullls.methods.DIAGNOSTICS_ON_SAVE,
 			extra_args = { '--inline-suppr' },
 		}),
+		-- builtins.diagnostics.cppcheck.with({
+		-- filetypes = { 'cpp' },
+		-- method = nullls.methods.DIAGNOSTICS_ON_SAVE,
+		-- extra_args = { '--inline-suppr', '--language=c++' },
+		-- }),
 		builtins.formatting.cmake_format,
 
 		-- docker
