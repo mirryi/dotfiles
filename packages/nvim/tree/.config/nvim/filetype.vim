@@ -51,3 +51,8 @@ aug end
 aug FtdetectMail
   au! BufNewFile,BufFilePre,BufRead *mutt-* set filetype=mail
 aug end
+
+" detect grain files
+aug FtdetectGrain
+  au! BufNewFile,BufFilePre,BufRead *.gr set filetype=grain
+aug end
