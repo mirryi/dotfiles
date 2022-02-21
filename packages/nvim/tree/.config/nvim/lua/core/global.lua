@@ -63,7 +63,7 @@ o.completeopt = 'menuone,noinsert,noselect'
 bo.undofile = true
 vim.api.nvim_exec(
 	[[
-  let &undodir=g:nvim_cache . '/undo'
+  let &undodir=luaeval('require("core.paths").config') . '/undo'
 ]],
 	true
 )

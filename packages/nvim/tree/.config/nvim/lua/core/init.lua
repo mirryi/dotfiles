@@ -1,5 +1,4 @@
 -- luacheck: globals vim use
-local g = vim.g
 local cmd, fn = vim.cmd, vim.fn
 
 local M = {}
@@ -34,7 +33,6 @@ M.plugins = function()
 		execute('packadd packer.nvim')
 	end
 	cmd([[packadd packer.nvim]])
-	cmd('autocmd BufWritePost ' .. g.nvim_config .. '/lua/plugins/init.lua PackerCompile')
 	-- }}}
 
 	-- {{{ Startup

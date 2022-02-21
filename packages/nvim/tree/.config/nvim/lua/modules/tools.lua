@@ -15,5 +15,8 @@ plugins['kdheepak/lazygit.nvim'] = {
 -- {{{ vim-eunuch : Unix command use
 plugins['tpope/vim-eunuch'] = {}
 -- }}}
+-- {{{ aw-watcher-vim : ActivityWatch integration
+plugins['ActivityWatch/aw-watcher-vim'] = {}
+-- }}}
 
 return plugins
