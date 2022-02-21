@@ -87,49 +87,47 @@ M.on_attach = function(client, bufnr)
 		U.bind.buf.map(bufnr, mode, lhs, rhs, { noremap = false })
 	end
 
-    print(vim.inspect(client.resolved_capabilities))
-
 	-- Goto definition
-    if client.resolved_capabilities.goto_definition then
-        bufmap('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>')
-        -- bufmap('n', 'gd', '<cmd>LSPGotoDefinition<CR>')
-        bufmap('n', 'gH', '<cmd>lua require("modules.lsp.helpers").peek_definition()<CR>')
-    end
+	if client.resolved_capabilities.goto_definition then
+		bufmap('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>')
+		-- bufmap('n', 'gd', '<cmd>LSPGotoDefinition<CR>')
+		bufmap('n', 'gH', '<cmd>lua require("modules.lsp.helpers").peek_definition()<CR>')
+	end
 	-- Goto declaration
-    if client.resolved_capabilities.declaration then
-        bufmap('n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<CR>')
-    end
+	if client.resolved_capabilities.declaration then
+		bufmap('n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<CR>')
+	end
 	-- Goto implementation
-    if client.resolved_capabilities.implementation then
-        bufmap('n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<CR>')
-    end
+	if client.resolved_capabilities.implementation then
+		bufmap('n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<CR>')
+	end
 	-- Goto type definition
-    if client.resolved_capabilities.type_definition then
-        bufmap('n', 'gy', '<cmd>lua vim.lsp.buf.type_definition()<CR>')
-    end
+	if client.resolved_capabilities.type_definition then
+		bufmap('n', 'gy', '<cmd>lua vim.lsp.buf.type_definition()<CR>')
+	end
 	-- Show hover information
-    if client.resolved_capabilities.hover then
-        bufmap('n', 'gh', '<cmd>lua vim.lsp.buf.hover()<CR>')
-    end
+	if client.resolved_capabilities.hover then
+		bufmap('n', 'gh', '<cmd>lua vim.lsp.buf.hover()<CR>')
+	end
 	-- Show signature help
-    if client.resolved_capabilities.signature_help then
-        bufmap('n', 'gs', '<cmd>lua vim.lsp.buf.signature_help()<CR>')
-    end
+	if client.resolved_capabilities.signature_help then
+		bufmap('n', 'gs', '<cmd>lua vim.lsp.buf.signature_help()<CR>')
+	end
 	-- List references
-    if client.resolved_capabilities.find_references then
-        bufmap('n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>')
-        -- bufmap('n', 'gr', '<cmd>LSPReferences<CR>')
-    end
+	if client.resolved_capabilities.find_references then
+		bufmap('n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>')
+		-- bufmap('n', 'gr', '<cmd>LSPReferences<CR>')
+	end
 	-- Rename the hovered symbol
-    if client.resolved_capabilities.rename then
-        bufmap('n', 'gR', '<cmd>lua vim.lsp.buf.rename()<CR>')
-    end
+	if client.resolved_capabilities.rename then
+		bufmap('n', 'gR', '<cmd>lua vim.lsp.buf.rename()<CR>')
+	end
 	-- Select a code action
-    if client.resolved_capabilities.code_action then
-        -- bufmap('n', 'gc', '<cmd>lua vim.lsp.buf.code_action()<CR>')
-        bufmap('n', 'gc', '<cmd>LSPActions<CR>')
-        -- bufmap('n', 'gc', '<cmd>CodeActionMenu<CR>')
-    end
+	if client.resolved_capabilities.code_action then
+		-- bufmap('n', 'gc', '<cmd>lua vim.lsp.buf.code_action()<CR>')
+		bufmap('n', 'gc', '<cmd>LSPActions<CR>')
+		-- bufmap('n', 'gc', '<cmd>CodeActionMenu<CR>')
+	end
 
 	-- Show diagnostics for the current line
 	bufmap('n', 'ge', '<cmd>lua vim.diagnostic.open_float({focus = false})<CR>')

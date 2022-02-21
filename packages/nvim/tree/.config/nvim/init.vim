@@ -2,4 +2,4 @@
 lua require 'init'
 
 " Load vimscript files
-execute 'source' . g:nvim_config . '/macros.vim'
+execute 'source' . luaeval('require("core.paths").config') . '/macros.vim'
