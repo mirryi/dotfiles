@@ -148,7 +148,7 @@ lspconfig.solargraph.setup({ on_attach = on_attach, capabilities = capabilities 
 lspconfig.taplo.setup({ on_attach = on_attach, capabilities = capabilities })
 
 -- tailwindcss
-lspconfig.tailwindcss.setup({ on_attach = on_attach, capabilities = capabilities })
+-- lspconfig.tailwindcss.setup({ on_attach = on_attach, capabilities = capabilities })
 
 -- terraform
 lspconfig.terraformls.setup({ on_attach = on_attach, capabilities = capabilities })
