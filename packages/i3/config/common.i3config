@@ -59,7 +59,8 @@ bindsym $mod+m exec mpdnd --now
 bindsym $mod+b exec notify-battery -f
 
 # screenshot
-bindsym $mod+i exec maim -s /tmp/a.png
+# bindsym $mod+i exec maim -s /tmp/a.png
+bindsym $mod+i exec --no-startup-id flameshot gui -r | xclip -selection clipboard -t image/png
 
 ######### MOVEMENT #########
 # change focus
