@@ -13,17 +13,17 @@ if lfs.attributes('config/local.yaml.hbs') then
 	partials.lcl = 'config/local.yaml.hbs'
 end
 
-pkg.files.templates:push({
+pkg.files.templates:push {
 	src = 'config/config.yaml.hbs',
 	dest = '.config/beets/config.yaml',
 	engine = 'handlebars',
 	partials = partials,
-})
+}
 
-pkg.hooks.post:push({
+pkg.hooks.post:push {
 	name = 'Create beets data directory',
 	command = 'hooks/mk-datadir.sh',
-})
+}
 
 -- Local config required
 local lcl = require('variables')

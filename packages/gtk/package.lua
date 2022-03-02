@@ -15,11 +15,11 @@ end)
 pkg.files.extra:extend(unpack(theme_files))
 
 local profile = require('profile').gtk
-pkg.files.extra:push({
+pkg.files.extra:push {
 	src = 'themes/' .. profile.theme,
 	dest = '.local/share/themes/current-theme',
 	replace_dirs = true,
-})
+}
 
 -- Load local file if exists
 lib.require_opt('local')

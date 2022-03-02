@@ -4,12 +4,12 @@ pkg.name = 'tmux'
 pkg.dependencies:extend('../sh')
 
 local profile = require('profile').tmux
-pkg.files.extra:push({
+pkg.files.extra:push {
 	src = 'tree/.config/tmux/themes/' .. profile.theme .. '.conf',
 	dest = '.config/tmux/theme.conf',
-})
+}
 
-pkg.hooks.post:push({ name = 'Reload tmux', command = 'hooks/reload-tmux.sh' })
+pkg.hooks.post:push { name = 'Reload tmux', command = 'hooks/reload-tmux.sh' }
 
 -- Load local file if it exists
 lib.require_opt('local')

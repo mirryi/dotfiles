@@ -15,10 +15,10 @@ pkg.files.templates:extend({
 })
 
 local home = os.getenv('HOME')
-pkg.hooks.post:extend({
+pkg.hooks.post:extend {
 	name = 'Reload polybar',
 	command = home .. '/.local/bin/launch-polybar',
-})
+}
 
 local profile = require('profile').polybar
 pkg.variables:overwrite(profile)
