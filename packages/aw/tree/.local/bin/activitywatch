@@ -1,0 +1,15 @@
+#!/bin/bash
+SOCKET="$(mktemp)"
+
+async_() {
+  async -s="$SOCKET" $@
+}
+
+async_ server --start
+
+async_ cmd -- aw-server
+async_ cmd -- aw-watcher-afk
+async_ cmd -- aw-watcher-window
+
+async_ wait
+async_ server --stop
