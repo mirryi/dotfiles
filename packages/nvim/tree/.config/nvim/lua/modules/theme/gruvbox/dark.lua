@@ -25,11 +25,13 @@ plugins['sainnhe/gruvbox-material'] = {
 		hilink.TSTypeBuiltin = 'Yellow'
 		hilink.TSVariableBuiltin = 'BlueItalic'
 		hilink.TSConstant = 'Purple'
-		-- Bold on function calls
+
 		hilink.TSFunction = 'Green'
 		hilink.TSFuncMacro = 'Purple'
 		hilink.TSFuncBuiltin = 'Purple'
 		hilink.TSMethod = 'Green'
+        hilink.TSConstructor = 'Green'
+		-- hilink.TSVariable = 'Green'
 	end,
 }
 
