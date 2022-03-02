@@ -5,7 +5,7 @@ pkg.name = 'alacritty'
 pkg.dependencies:extend('../qt')
 
 pkg.files.trees:clear()
-pkg.files.templates:push({
+pkg.files.templates:push {
 	src = 'config/alacritty.yml.hbs',
 	dest = '.config/alacritty/alacritty.yml',
 	engine = 'handlebars',
@@ -13,7 +13,7 @@ pkg.files.templates:push({
 		common = 'config/common.yml',
 		profile = 'config/profile.yml.hbs',
 	},
-})
+}
 
 local profile = require('profile').alacritty
 pkg.variables:overwrite(profile)
