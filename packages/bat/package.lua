@@ -5,9 +5,9 @@ pkg.name = 'bat'
 
 pkg.files.trees:clear()
 pkg.files.templates:push {
-	src = 'config/config.hbs',
-	dest = '.config/bat/config',
-	engine = 'handlebars',
+    src = 'config/config.hbs',
+    dest = '.config/bat/config',
+    engine = 'handlebars',
 }
 
 local profile = require('profile').bat
