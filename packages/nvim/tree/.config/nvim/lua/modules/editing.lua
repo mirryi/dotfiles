@@ -49,7 +49,7 @@ plugins['AndrewRadev/splitjoin.vim'] = {
 plugins['winston0410/range-highlight.nvim'] = {
 	requires = { { 'winston0410/cmd-parser.nvim' } },
 	config = function()
-		require('range-highlight').setup({})
+		require('range-highlight').setup {}
 	end,
 }
 -- }}}
@@ -59,7 +59,7 @@ plugins['tpope/vim-surround'] = {}
 -- {{{ tabout.nvim : Tab out of parentheses
 plugins['abecodes/tabout.nvim'] = {
 	config = function()
-		require('tabout').setup({
+		require('tabout').setup {
 			tabkey = '<C-n>',
 			backwards_tabkey = '<C-b>',
 			act_as_tab = false,
@@ -77,7 +77,7 @@ plugins['abecodes/tabout.nvim'] = {
 			},
 			ignore_beginning = true,
 			exclude = {},
-		})
+		}
 	end,
 	after = { 'nvim-treesitter' },
 }

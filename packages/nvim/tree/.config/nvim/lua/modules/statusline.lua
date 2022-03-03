@@ -100,7 +100,14 @@ plugins['folke/which-key.nvim'] = {
 		local whichkey = require('which-key')
 
 		vim.o.timeoutlen = 500
-		whichkey.setup({})
+		whichkey.setup {
+            plugins = {
+                spelling = {
+                    enabled = true,
+                    suggestions = 20,
+                },
+            }
+        }
 	end,
 }
 -- }}}

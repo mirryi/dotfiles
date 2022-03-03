@@ -84,17 +84,17 @@ plugins['hrsh7th/nvim-cmp'] = {
 				['<C-f>'] = cmp.mapping.scroll_docs(4),
 				['<C-Space>'] = cmp.mapping.complete(),
 				['<C-e>'] = cmp.mapping.close(),
-				['<CR>'] = cmp.mapping.confirm({
+				['<CR>'] = cmp.mapping.confirm {
 					behavior = cmp.ConfirmBehavior.Insert,
 					select = true,
-				}),
+				},
 				['<Tab>'] = cmp.mapping(tab_complete, { 'i', 's' }),
 				['<S-Tab>'] = cmp.mapping(s_tab_complete, { 'i', 's' }),
 			}
 		end
 		local cmp = require('cmp')
 
-		cmp.setup({
+		cmp.setup {
 			sources = sources(),
 			mapping = mapping(),
 			autocomplete = true,
@@ -109,7 +109,10 @@ plugins['hrsh7th/nvim-cmp'] = {
 				completeopt = 'menu,menuone,noselect',
 				keyword_length = 2,
 			},
-		})
+			experimental = {
+				ghost_text = true,
+			},
+		}
 	end,
 	-- }}}
 }
@@ -119,14 +122,14 @@ plugins['windwp/nvim-autopairs'] = {
 	after = 'nvim-cmp',
 	config = function()
 		local autopairs = require('nvim-autopairs')
-		autopairs.setup({
+		autopairs.setup {
 			disable_filetype = { 'TelescopePrompt' },
 			ignored_next_char = '[%w%.]',
 			enable_check_bracket_line = false,
 			fast_wrap = {
 				map = '<C-e>',
 			},
-		})
+		}
 	end,
 }
 -- }}}

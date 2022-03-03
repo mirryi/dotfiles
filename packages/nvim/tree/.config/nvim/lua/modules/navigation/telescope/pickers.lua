@@ -1,28 +1,34 @@
 local builtin = require('telescope.builtin')
+local utils = require('telescope.utils')
 local extensions = require('telescope').extensions
 
 local M = { lsp = {} }
 
-M.files = function()
-	builtin.find_files({
+local cwd_of = function(relative)
+	return relative and utils.buffer_dir() or nil
+end
+
+M.files = function(relative)
+	builtin.find_files {
+		cwd = cwd_of(relative),
 		find_command = { 'rg', '--ignore', '--hidden', '--files', '--follow', '-g!.git' },
-	})
+	}
 end
 
 M.git_files = function()
 	builtin.git_files()
 end
 
-M.oldfiles = function()
-	builtin.oldfiles()
+M.oldfiles = function(relative)
+	builtin.oldfiles { cwd = cwd_of(relative) }
 end
 
-M.filebrowser = function()
-	extensions.file_browser.file_browser()
+M.filebrowser = function(relative)
+	extensions.file_browser.file_browser { cwd = cwd_of(relative) }
 end
 
-M.ripgrep = function()
-	builtin.live_grep()
+M.ripgrep = function(relative)
+	builtin.live_grep { cwd = cwd_of(relative) }
 end
 
 M.buffers = function()
