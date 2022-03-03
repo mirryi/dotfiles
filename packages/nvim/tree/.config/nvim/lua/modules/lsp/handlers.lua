@@ -1,5 +1,5 @@
 -- luacheck: globals vim
-local U = require('util')
+local bind = require('util.bind')
 
 local M = {}
 
@@ -36,7 +36,6 @@ vim.lsp.handlers['textDocument/hover'] = function(_, result, ctx, config)
 end
 
 -- Async formatting handle
--- TODO: no global
 vim.g.format = true
 vim.cmd([[command! FormatOn :lua vim.g.format = true ]])
 vim.cmd([[command! FormatOff :lua vim.g.format = false ]])
@@ -83,14 +82,18 @@ end
 -- Grouped on_attach
 M.on_attach = function(client, bufnr)
 	-- Bind lsp functionality for this buffer
-	local bufmap = function(mode, lhs, rhs)
-		U.bind.buf.map(bufnr, mode, lhs, rhs, { noremap = false })
+	local bufmap = function(mode, lhs, rhs, desc)
+		bind.buf.map(bufnr, mode, lhs, rhs, { noremap = false, desc = desc })
 	end
+
+	-- Jump to diagnostics
+	bufmap('n', 'gN', '<cmd>lua vim.diagnostic.goto_prev()<CR>')
+	bufmap('n', 'gn', '<cmd>lua vim.diagnostic.goto_next()<CR>')
 
 	-- Goto definition
 	if client.resolved_capabilities.goto_definition then
 		bufmap('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>')
-		-- bufmap('n', 'gd', '<cmd>LSPGotoDefinition<CR>')
+		-- bufmap('n', 'gd', '<cmd>LspGotoDefinition<CR>')
 		bufmap('n', 'gH', '<cmd>lua require("modules.lsp.helpers").peek_definition()<CR>')
 	end
 	-- Goto declaration
@@ -125,24 +128,25 @@ M.on_attach = function(client, bufnr)
 	-- Select a code action
 	if client.resolved_capabilities.code_action then
 		-- bufmap('n', 'gc', '<cmd>lua vim.lsp.buf.code_action()<CR>')
-		bufmap('n', 'gc', '<cmd>LSPActions<CR>')
-		-- bufmap('n', 'gc', '<cmd>CodeActionMenu<CR>')
+		bufmap('n', 'gc', '<cmd>LspActions<CR>')
+        -- bufmap('n', 'gc', '<cmd>CodeActionMenu<CR>')
 	end
 
 	-- Show diagnostics for the current line
 	bufmap('n', 'ge', '<cmd>lua vim.diagnostic.open_float({focus = false})<CR>')
+    
 	-- Show document diagnostics list
 	bufmap('n', 'gQ', '<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>')
 	-- bufmap('n', 'gQ', '<cmd>LSPDiagnostics<CR>')
 	-- Show workspace diagnostics list
 	-- bufmap('n', 'gwQ', '<cmd>LSPWDiagnostics<CR>')
+
 	-- Workspace functionality
 	bufmap('n', 'gwa', '<cmd>lua vim.lsp.buf.add_workspace_folder()<CR>')
 	bufmap('n', 'gwr', '<cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>')
 	bufmap('n', 'gwl', '<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>')
 
 	-- If server supports formatting, format on save.
-	-- TODO: Toggle for formatting
 	if client.resolved_capabilities.document_formatting then
 		vim.api.nvim_command([[augroup Format]])
 		vim.api.nvim_command([[autocmd! * <buffer>]])
@@ -163,10 +167,6 @@ M.on_attach = function(client, bufnr)
 		local virtualtypes = require('virtualtypes')
 		virtualtypes.on_attach(client, bufnr)
 	end
-
-	-- Attach word highlighting
-	-- local illuminate = require('illuminate')
-	-- illuminate.on_attach(client, bufnr)
 end
 
 M.capabilities = vim.lsp.protocol.make_client_capabilities()

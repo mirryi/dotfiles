@@ -25,7 +25,7 @@ plugins['folke/lsp-trouble.nvim'] = {
 	},
 	config = function()
 		local trouble = require('trouble')
-		trouble.setup({})
+		trouble.setup {}
 
 		local bind = require('util.bind')
 		bind.nmap('gL', '<cmd>TroubleToggle document_diagnostics<CR>')
@@ -52,7 +52,7 @@ plugins['nvim-treesitter/nvim-treesitter'] = {
 		{
 			'romgrk/nvim-treesitter-context',
 			config = function()
-				require('treesitter-context').setup({ enable = true, throttle = true })
+				require('treesitter-context').setup { enable = true, throttle = true }
 			end,
 		},
 		'haringsrob/nvim_context_vt',
@@ -77,7 +77,7 @@ plugins['nvim-treesitter/nvim-treesitter'] = {
 		{
 			'mizlan/iswap.nvim',
 			config = function()
-				require('iswap').setup({})
+				require('iswap').setup {}
 			end,
 		},
 	},
@@ -96,7 +96,7 @@ plugins['nvim-treesitter/nvim-treesitter'] = {
 			'toml',
 			'yaml',
 		}
-		treesitter.setup({
+		treesitter.setup {
 			ensure_installed = 'maintained',
 			highlight = {
 				enable = true,
@@ -117,7 +117,10 @@ plugins['nvim-treesitter/nvim-treesitter'] = {
 				disable = highlight_disabled,
 				extended_mode = true,
 			},
-		})
+		}
+
+		-- vim.cmd([[set foldmethod=expr]])
+		-- vim.cmd([[set foldexpr=nvim_treesitter#foldexpr()]])
 	end,
 }
 -- }}}
@@ -196,7 +199,7 @@ plugins['simrat39/rust-tools.nvim'] = {
 		local on_attach = handlers.on_attach
 		local capabilities = handlers.capabilities
 
-		rust_tools.setup({
+		rust_tools.setup {
 			tools = {
 				autoSetHints = true,
 				runnables = { use_telescope = true },
@@ -228,7 +231,7 @@ plugins['simrat39/rust-tools.nvim'] = {
 					},
 				},
 			},
-		})
+		}
 	end,
 }
 -- }}}
@@ -244,12 +247,12 @@ plugins['p00f/clangd_extensions.nvim'] = {
 		clangd_capabilities.offsetEncoding = { 'utf-16' }
 
 		local clangd_extensions = require('clangd_extensions')
-		clangd_extensions.setup({
+		clangd_extensions.setup {
 			server = {
 				on_attach = on_attach,
 				capabilities = clangd_capabilities,
 			},
-		})
+		}
 	end,
 }
 -- }}}

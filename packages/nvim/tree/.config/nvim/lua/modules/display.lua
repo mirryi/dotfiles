@@ -16,13 +16,13 @@ local plugins = {}
 plugins['norcalli/nvim-colorizer.lua'] = {
 	config = function()
 		local colorizer = require('colorizer')
-		colorizer.setup({
+		colorizer.setup {
 			'*',
 			css = { rgb_fn = true },
 			html = { names = false },
 			pandoc = { names = false },
 			tex = { names = false },
-		})
+		}
 	end,
 }
 -- }}}

@@ -48,7 +48,7 @@ M.plugins = function()
 
 			-- {{{ packer.nvim
 			-- Have packer.nvim manage itself
-			luse({ 'wbthomason/packer.nvim', opt = true })
+			luse { 'wbthomason/packer.nvim', opt = true }
 			-- }}}
 
 			-- {{{ Modules
@@ -79,7 +79,7 @@ M.plugins = function()
 			config = {
 				display = {
 					open_fn = function()
-						return require('packer.util').float({ border = 'single' })
+						return require('packer.util').float { border = 'single' }
 					end,
 				},
 			},
