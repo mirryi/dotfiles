@@ -5,8 +5,8 @@ pkg.dependencies:extend('../sh')
 
 local profile = require('profile').tmux
 pkg.files.extra:push {
-	src = 'tree/.config/tmux/themes/' .. profile.theme .. '.conf',
-	dest = '.config/tmux/theme.conf',
+    src = 'tree/.config/tmux/themes/' .. profile.theme .. '.conf',
+    dest = '.config/tmux/theme.conf',
 }
 
 pkg.hooks.post:push { name = 'Reload tmux', command = 'hooks/reload-tmux.sh' }

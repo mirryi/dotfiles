@@ -6,23 +6,23 @@ pkg.name = 'beets'
 pkg.dependencies:extend('../sh')
 
 local partials = {
-	common = 'config/common.yaml',
-	profile = 'config/profile.yaml.hbs',
+    common = 'config/common.yaml',
+    profile = 'config/profile.yaml.hbs',
 }
 if lfs.attributes('config/local.yaml.hbs') then
-	partials.lcl = 'config/local.yaml.hbs'
+    partials.lcl = 'config/local.yaml.hbs'
 end
 
 pkg.files.templates:push {
-	src = 'config/config.yaml.hbs',
-	dest = '.config/beets/config.yaml',
-	engine = 'handlebars',
-	partials = partials,
+    src = 'config/config.yaml.hbs',
+    dest = '.config/beets/config.yaml',
+    engine = 'handlebars',
+    partials = partials,
 }
 
 pkg.hooks.post:push {
-	name = 'Create beets data directory',
-	command = 'hooks/mk-datadir.sh',
+    name = 'Create beets data directory',
+    command = 'hooks/mk-datadir.sh',
 }
 
 -- Local config required

@@ -6,7 +6,7 @@ pkg.name = 'mail'
 pkg.dependencies:extend('../sh')
 
 if lfs.attributes('./local') then
-	pkg.files.trees:extend { path = './local' }
+    pkg.files.trees:extend { path = './local' }
 end
 
 -- Load local file if exists

@@ -4,9 +4,9 @@ pkg.name = 'mpd'
 pkg.dependencies:extend('../sh')
 
 pkg.files.templates:push {
-	src = 'config/mpd.conf.hbs',
-	dest = '.config/mpd/mpd.conf',
-	engine = 'handlebars',
+    src = 'config/mpd.conf.hbs',
+    dest = '.config/mpd/mpd.conf',
+    engine = 'handlebars',
 }
 
 pkg.variables.home = os.getenv('HOME')
