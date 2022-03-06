@@ -8,7 +8,7 @@ plugins['tweekmonster/startuptime.vim'] = {}
 plugins['kdheepak/lazygit.nvim'] = {
 	config = function()
 		local bind = require('util.bind')
-		bind.nmap('<leader>lg', '<cmd>LazyGit<CR>')
+		bind.nmap('<leader>gl', '<cmd>LazyGit<CR>')
 	end,
 }
 -- }}}

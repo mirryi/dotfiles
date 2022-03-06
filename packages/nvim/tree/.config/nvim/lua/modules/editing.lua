@@ -82,5 +82,8 @@ plugins['abecodes/tabout.nvim'] = {
 	after = { 'nvim-treesitter' },
 }
 -- }}}
+-- {{{ jpformat.vim : Text formatting for Japanese
+plugins['fuenor/JpFormat.vim'] = {}
+-- }}}
 
 return plugins
