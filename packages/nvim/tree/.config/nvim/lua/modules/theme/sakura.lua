@@ -6,13 +6,13 @@ local exec = vim.api.nvim_exec
 o.background = 'dark'
 
 exec(
-	[[
+    [[
 try
   colorscheme sakura
   catch
 endtry
 ]],
-	true
+    true
 )
 
 -- Initialize lualine

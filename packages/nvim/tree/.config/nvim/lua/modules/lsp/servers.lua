@@ -61,17 +61,17 @@ lspconfig.html.setup { on_attach = on_attach, capabilities = capabilities }
 local jsonls_capabilities = vim.deepcopy(capabilities)
 jsonls_capabilities.textDocument.completion.completionItem.snippetSupport = true
 lspconfig.jsonls.setup {
-	on_attach = on_attach,
-	capabilities = jsonls_capabilities,
-	settings = {
-		schemas = require('schemastore').json.schemas(),
-	},
+    on_attach = on_attach,
+    capabilities = jsonls_capabilities,
+    settings = {
+        schemas = require('schemastore').json.schemas(),
+    },
 }
 
 -- kotlin language server
 lspconfig.kotlin_language_server.setup {
-	on_attach = on_attach,
-	capabilities = capabilities,
+    on_attach = on_attach,
+    capabilities = capabilities,
 }
 
 -- ltex language server
@@ -89,12 +89,12 @@ lspconfig.kotlin_language_server.setup {
 
 -- lua language server
 lspconfig.sumneko_lua.setup {
-	cmd = { 'lua-language-server' },
-	on_attach = on_attach,
-	capabilities = capabilities,
-	settings = {
-		Lua = { diagnostics = { enable = false }, workspace = { maxPreload = 9999, checkThirdParty = false } },
-	},
+    cmd = { 'lua-language-server' },
+    on_attach = on_attach,
+    capabilities = capabilities,
+    settings = {
+        Lua = { diagnostics = { enable = false }, workspace = { maxPreload = 9999, checkThirdParty = false } },
+    },
 }
 
 -- ocaml/reason language server
@@ -102,11 +102,11 @@ lspconfig.ocamllsp.setup { on_attach = on_attach, capabilities = capabilities }
 
 -- php language server
 lspconfig.intelephense.setup {
-	on_attach = function(client, bufnr)
-		client.resolved_capabilities.document_formatting = false
-		on_attach(client, bufnr)
-	end,
-	capabilities = capabilities,
+    on_attach = function(client, bufnr)
+        client.resolved_capabilities.document_formatting = false
+        on_attach(client, bufnr)
+    end,
+    capabilities = capabilities,
 }
 
 -- php language server
@@ -137,8 +137,8 @@ lspconfig.pylsp.setup { on_attach = on_attach, capabilities = capabilities }
 
 -- r language server
 lspconfig.r_language_server.setup {
-	on_attach = on_attach,
-	capabilities = capabilities,
+    on_attach = on_attach,
+    capabilities = capabilities,
 }
 
 -- solargraph (ruby)
@@ -155,34 +155,34 @@ lspconfig.terraformls.setup { on_attach = on_attach, capabilities = capabilities
 
 -- texlab
 lspconfig.texlab.setup {
-	on_attach = on_attach,
-	capabilities = capabilities,
-	settings = { texlab = { formatterLineLength = 100 } },
+    on_attach = on_attach,
+    capabilities = capabilities,
+    settings = { texlab = { formatterLineLength = 100 } },
 }
 
 -- tsserver
 lspconfig.tsserver.setup {
-	on_attach = function(client, bufnr)
-		-- Enable incremental sync
-		if client.config.flags then
-			client.config.flags.allow_incremental_sync = true
-		end
+    on_attach = function(client, bufnr)
+        -- Enable incremental sync
+        if client.config.flags then
+            client.config.flags.allow_incremental_sync = true
+        end
 
-		-- Disable built-in formatting
-		client.resolved_capabilities.document_formatting = false
+        -- Disable built-in formatting
+        client.resolved_capabilities.document_formatting = false
 
-		local ts_utils = require('nvim-lsp-ts-utils')
-		vim.lsp.handlers['textDocument/codeAction'] = ts_utils.code_action_handler
-		ts_utils.setup { enable_import_on_completion = true }
+        local ts_utils = require('nvim-lsp-ts-utils')
+        vim.lsp.handlers['textDocument/codeAction'] = ts_utils.code_action_handler
+        ts_utils.setup { enable_import_on_completion = true }
 
-		vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gS', ':TSLspOrganize<CR>', { silent = true })
-		vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gQ', ':TSLspFixCurrent<CR>', { silent = true })
-		vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gT', ':TSLspRenameFile<CR>', { silent = true })
-		vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gi', ':TSLspImportAll<CR>', { silent = true })
+        vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gS', ':TSLspOrganize<CR>', { silent = true })
+        vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gQ', ':TSLspFixCurrent<CR>', { silent = true })
+        vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gT', ':TSLspRenameFile<CR>', { silent = true })
+        vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gi', ':TSLspImportAll<CR>', { silent = true })
 
-		on_attach(client, bufnr)
-	end,
-	capabilities = capabilities,
+        on_attach(client, bufnr)
+    end,
+    capabilities = capabilities,
 }
 
 -- vim language server
@@ -196,102 +196,102 @@ local pandoc = require('modules.lsp.efm.pandoc')
 local tidy = require('modules.lsp.efm.tidy')
 
 lspconfig.efm.setup {
-	on_attach = on_attach,
-	capabilities = capabilities,
-	init_options = { documentformatting = true },
-	filetypes = {
-		'pandoc',
-		'xml',
-	},
-	settings = {
-		cmd = { 'efm-langserver' },
-		rootmarkers = { '.git/' },
-		languages = {
-			pandoc = {
-				pandoc,
-			},
-			xml = {
-				tidy,
-			},
-		},
-	},
+    on_attach = on_attach,
+    capabilities = capabilities,
+    init_options = { documentformatting = true },
+    filetypes = {
+        'pandoc',
+        'xml',
+    },
+    settings = {
+        cmd = { 'efm-langserver' },
+        rootmarkers = { '.git/' },
+        languages = {
+            pandoc = {
+                pandoc,
+            },
+            xml = {
+                tidy,
+            },
+        },
+    },
 }
 
 -- Non-lsp linter/formatter integration
 local nullls = require('null-ls')
 local builtins = nullls.builtins
 nullls.setup {
-	diagnostics_format = '#{m} (#{s})',
-	sources = {
-		-- generic
-		builtins.formatting.trim_newlines,
-		builtins.formatting.trim_whitespace,
+    diagnostics_format = '#{m} (#{s})',
+    sources = {
+        -- generic
+        builtins.formatting.trim_newlines,
+        builtins.formatting.trim_whitespace,
 
-		-- c / c++
-		builtins.diagnostics.cppcheck.with {
-			filetypes = { 'c' },
-			method = nullls.methods.DIAGNOSTICS_ON_SAVE,
-			extra_args = { '--inline-suppr' },
-		},
-		-- builtins.diagnostics.cppcheck.with({
-		-- filetypes = { 'cpp' },
-		-- method = nullls.methods.DIAGNOSTICS_ON_SAVE,
-		-- extra_args = { '--inline-suppr', '--language=c++' },
-		-- }),
-		builtins.formatting.cmake_format,
+        -- c / c++
+        builtins.diagnostics.cppcheck.with {
+            filetypes = { 'c' },
+            method = nullls.methods.DIAGNOSTICS_ON_SAVE,
+            extra_args = { '--inline-suppr' },
+        },
+        -- builtins.diagnostics.cppcheck.with({
+        -- filetypes = { 'cpp' },
+        -- method = nullls.methods.DIAGNOSTICS_ON_SAVE,
+        -- extra_args = { '--inline-suppr', '--language=c++' },
+        -- }),
+        builtins.formatting.cmake_format,
 
-		-- docker
-		builtins.diagnostics.hadolint,
+        -- docker
+        builtins.diagnostics.hadolint,
 
-		-- go
-		builtins.formatting.goimports,
+        -- go
+        builtins.formatting.goimports,
 
-		-- json
-		builtins.formatting.fixjson,
+        -- json
+        builtins.formatting.fixjson,
 
-		-- javascript / typescript / etc.
-		builtins.formatting.prettierd,
-		builtins.formatting.rustywind,
-		builtins.diagnostics.stylelint,
-		builtins.formatting.stylelint,
+        -- javascript / typescript / etc.
+        builtins.formatting.prettierd,
+        builtins.formatting.rustywind,
+        builtins.diagnostics.stylelint,
+        builtins.formatting.stylelint,
 
-		-- latex
-		-- builtins.diagnostics.chktex,
+        -- latex
+        -- builtins.diagnostics.chktex,
 
-		-- lua
-		-- builtins.diagnostics.luacheck,
-		builtins.formatting.stylua.with {
-			cwd = function(_)
-				local bufpath = vim.api.nvim_buf_get_name(0)
-				return lspconfig.util.root_pattern('stylua.toml')(bufpath)
-			end,
-		},
-		builtins.diagnostics.selene.with {
-			cwd = function(_)
-				local bufpath = vim.api.nvim_buf_get_name(0)
-				return lspconfig.util.root_pattern('selene.toml')(bufpath)
-			end,
-		},
+        -- lua
+        -- builtins.diagnostics.luacheck,
+        builtins.formatting.stylua.with {
+            cwd = function(_)
+                local bufpath = vim.api.nvim_buf_get_name(0)
+                return lspconfig.util.root_pattern('stylua.toml')(bufpath)
+            end,
+        },
+        builtins.diagnostics.selene.with {
+            cwd = function(_)
+                local bufpath = vim.api.nvim_buf_get_name(0)
+                return lspconfig.util.root_pattern('selene.toml')(bufpath)
+            end,
+        },
 
-		-- php
-		builtins.diagnostics.phpstan,
-		builtins.diagnostics.psalm,
-		builtins.diagnostics.phpcs,
+        -- php
+        builtins.diagnostics.phpstan,
+        builtins.diagnostics.psalm,
+        builtins.diagnostics.phpcs,
 
-		-- python
-		builtins.formatting.isort,
-		-- builtins.diagnostics.flake8,
-		-- builtins.formatting.autopep8,
+        -- python
+        builtins.formatting.isort,
+        -- builtins.diagnostics.flake8,
+        -- builtins.formatting.autopep8,
 
-		-- shell
-		builtins.diagnostics.shellcheck,
-		builtins.formatting.shfmt,
-		builtins.formatting.shellharden,
+        -- shell
+        builtins.diagnostics.shellcheck,
+        builtins.formatting.shfmt,
+        builtins.formatting.shellharden,
 
-		-- vimscript
-		builtins.diagnostics.vint,
+        -- vimscript
+        builtins.diagnostics.vint,
 
-		-- yaml
-		builtins.diagnostics.yamllint,
-	},
+        -- yaml
+        builtins.diagnostics.yamllint,
+    },
 }
