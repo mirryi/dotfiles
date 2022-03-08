@@ -42,8 +42,8 @@ wo.wrap = false
 
 -- Tabs (space tabs)
 local function opt(name, value)
-	o[name] = value
-	bo[name] = value
+    o[name] = value
+    bo[name] = value
 end
 
 o.smarttab = true

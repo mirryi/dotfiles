@@ -6,10 +6,10 @@ plugins['tweekmonster/startuptime.vim'] = {}
 -- }}}
 -- {{{ lazygit.nvim : Lazygit
 plugins['kdheepak/lazygit.nvim'] = {
-	config = function()
-		local bind = require('util.bind')
-		bind.nmap('<leader>gl', '<cmd>LazyGit<CR>')
-	end,
+    config = function()
+        local bind = require('util.bind')
+        bind.nmap('<leader>gl', '<cmd>LazyGit<CR>')
+    end,
 }
 -- }}}
 -- {{{ vim-eunuch : Unix command use

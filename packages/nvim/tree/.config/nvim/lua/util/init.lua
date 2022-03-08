@@ -7,8 +7,8 @@ local U = {}
 
 -- Optionally require a module.
 U.require = function(pkg)
-	local status, module = pcall(require, pkg)
-	return status and module or nil
+    local status, module = pcall(require, pkg)
+    return status and module or nil
 end
 
 --
@@ -17,7 +17,7 @@ end
 
 -- Set an option for the given buffer.
 U.buf_opt = function(bufnr, name, value)
-	vim.api.nvim_buf_set_option(bufnr, name, value)
+    vim.api.nvim_buf_set_option(bufnr, name, value)
 end
 
 --

@@ -1,4 +1,4 @@
 return {
-	formatCommand = 'reorder-python-imports -',
-	formatStdin = true,
+    formatCommand = 'reorder-python-imports -',
+    formatStdin = true,
 }
