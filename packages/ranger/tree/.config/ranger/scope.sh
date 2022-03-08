@@ -1,4 +1,4 @@
-#!/usr/bin/env sh
+#!/usr/bin/env bash
 
 set -o noclobber -o noglob -o nounset -o pipefail
 IFS=$'\n'
@@ -304,13 +304,13 @@ handle_mime() {
 		if [[ "$(stat --printf='%s' -- "${FILE_PATH}")" -gt "${HIGHLIGHT_SIZE_MAX}" ]]; then
 			exit 2
 		fi
-		if [[ "$(tput colors)" -ge 256 ]]; then
-			local pygmentize_format='terminal256'
-			local highlight_format='xterm256'
-		else
-			local pygmentize_format='terminal'
-			local highlight_format='ansi'
-		fi
+		# if [[ "$(tput colors)" -ge 256 ]]; then
+			# local pygmentize_format='terminal256'
+			# local highlight_format='xterm256'
+		# else
+			# local pygmentize_format='terminal'
+			# local highlight_format='ansi'
+		# fi
 		# env HIGHLIGHT_OPTIONS="${HIGHLIGHT_OPTIONS}" highlight \
 		# --out-format="${highlight_format}" \
 		# --force -- "${FILE_PATH}" && exit 5
