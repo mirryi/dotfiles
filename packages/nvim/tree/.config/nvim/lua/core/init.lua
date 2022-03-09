@@ -1,12 +1,27 @@
 -- luacheck: globals vim use
 local cmd, fn = vim.cmd, vim.fn
 
+local modules = {
+    'modules.fix',
+    'modules.statusline',
+    'modules.display',
+    'modules.navigation',
+    'modules.language',
+    'modules.lsp',
+    'modules.completion',
+    'modules.editing',
+    'modules.writing',
+    'modules.tools',
+    'modules.theme',
+}
+
 local M = {}
 
 -- {{{ M.init
 M.init = function()
     M.global()
     M.bindings()
+    M.project()
     M.plugins()
 end
 -- }}}
@@ -23,9 +38,15 @@ M.bindings = function()
 end
 -- }}}
 
+-- {{{ M.project
+M.project = function()
+    local project = require('core.project')
+    project.setup()
+end
+-- }}}
+
 -- {{{ M.plugins
 M.plugins = function()
-    -- {{{ Bootstrap
     local install_path = fn.stdpath('data') .. '/site/pack/packer/opt/packer.nvim'
     if fn.empty(fn.glob(install_path)) > 0 then
         local execute = vim.api.nvim_command
@@ -33,60 +54,25 @@ M.plugins = function()
         execute('packadd packer.nvim')
     end
     cmd([[packadd packer.nvim]])
-    -- }}}
 
-    -- {{{ Startup
     local packer = require('packer')
-    packer.startup(
-        -- {{{ Plugins
-        function()
-            -- {{{ luse declaration
-            local luse = function(spec)
+    packer.startup(function()
+        use { 'wbthomason/packer.nvim', opt = true }
+        for _, module in ipairs(modules) do
+            for name, conf in pairs(require(module)) do
+                local spec = vim.tbl_extend('force', { name }, conf)
                 use(spec)
             end
-            -- }}}
-
-            -- {{{ packer.nvim
-            -- Have packer.nvim manage itself
-            luse { 'wbthomason/packer.nvim', opt = true }
-            -- }}}
-
-            -- {{{ Modules
-            local modules = {
-                'modules.fix',
-                'modules.statusline',
-                'modules.display',
-                'modules.navigation',
-                'modules.language',
-                'modules.lsp',
-                'modules.completion',
-                'modules.editing',
-                'modules.writing',
-                'modules.tools',
-                'modules.theme',
-            }
-            for _, module in ipairs(modules) do
-                for name, conf in pairs(require(module)) do
-                    local spec = vim.tbl_extend('force', { name }, conf)
-                    luse(spec)
-                end
-            end
-            -- }}}
-        end,
-        -- }}}
-        -- {{{ Packer Config
-        {
-            config = {
-                display = {
-                    open_fn = function()
-                        return require('packer.util').float { border = 'single' }
-                    end,
-                },
+        end
+    end, {
+        config = {
+            display = {
+                open_fn = function()
+                    return require('packer.util').float { border = 'single' }
+                end,
             },
-        }
-        -- }}}
-    )
-    -- }}}
+        },
+    })
 end
 -- }}}
 
