@@ -32,6 +32,9 @@ plugins['mhinz/vim-crates'] = {
     end,
 }
 -- }}}
+-- {{{ wmgraphviz.vim : Enhanced graphviz support
+plugins['wannesm/wmgraphviz.vim'] = {}
+-- }}}
 -- {{{ ebnf-vim : EBNF syntax file
 plugins['a-vrma/ebnf-vim'] = {}
 -- }}}
@@ -110,7 +113,7 @@ plugins['lervag/vimtex'] = {
     end,
 }
 -- }}}
--- {{{
+-- {{{ nabla.nvim : TeX math preview on hover
 plugins['jbyuki/nabla.nvim'] = {
     config = function()
         local bind = require('util.bind')
