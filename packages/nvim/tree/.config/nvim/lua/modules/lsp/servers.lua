@@ -241,7 +241,9 @@ nullls.setup {
         builtins.formatting.cmake_format,
 
         -- docker
-        builtins.diagnostics.hadolint,
+        builtins.diagnostics.hadolint.with {
+            method = nullls.methods.DIAGNOSTICS_ON_SAVE
+        },
 
         -- go
         builtins.formatting.goimports,
