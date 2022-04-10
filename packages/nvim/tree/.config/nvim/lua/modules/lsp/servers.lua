@@ -1,5 +1,6 @@
 -- luacheck: globals vim
 local lspconfig = require('lspconfig')
+local configs = require('lspconfig.configs')
 local schemastore = require('schemastore')
 
 -- override handlers
@@ -7,8 +8,25 @@ local handlers = require('modules.lsp.handlers')
 local on_attach = handlers.on_attach
 local capabilities = handlers.capabilities
 
+-- ada language server
+-- lspconfig.als.setup { on_attach = on_attach, capabilities = capabilities }
+
 -- agda language server
-lspconfig.als.setup { on_attach = on_attach, capabilities = capabilities }
+if not configs.agda_ls then
+    configs.agda_ls = {
+        default_config = {
+            cmd = { 'als' },
+            filetypes = { 'agda' },
+            root_dir = function(fname)
+                -- return lspconfig.util.find_git_ancestor(fname)
+                return lspconfig.util.root_pattern('*.agda-lib', '.git')(fname)
+                    or lspconfig.util.find_git_ancestor(fname)
+            end,
+            settings = {},
+        },
+    }
+end
+lspconfig.agda_ls.setup { on_attach = on_attach, capabilities = capabilities }
 
 -- ansible language server
 lspconfig.ansiblels.setup { on_attach = on_attach, capabilities = capabilities }
@@ -64,7 +82,7 @@ lspconfig.jsonls.setup {
     on_attach = on_attach,
     capabilities = jsonls_capabilities,
     settings = {
-        schemas = require('schemastore').json.schemas(),
+        schemas = schemastore.json.schemas(),
     },
 }
 
@@ -242,7 +260,7 @@ nullls.setup {
 
         -- docker
         builtins.diagnostics.hadolint.with {
-            method = nullls.methods.DIAGNOSTICS_ON_SAVE
+            method = nullls.methods.DIAGNOSTICS_ON_SAVE,
         },
 
         -- go

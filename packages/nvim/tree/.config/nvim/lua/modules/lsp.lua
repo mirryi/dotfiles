@@ -103,7 +103,7 @@ plugins['nvim-treesitter/nvim-treesitter'] = {
             'yaml',
         }
         treesitter.setup {
-            ensure_installed = 'maintained',
+            ensure_installed = 'all',
             highlight = {
                 enable = true,
                 disable = highlight_disabled,
