@@ -2,9 +2,47 @@
 local plugins = {}
 
 -- {{{ vim-agda : Agda support
-plugins['msuperdock/vim-agda'] = {
+-- plugins['msuperdock/vim-agda'] = {
+-- requires = { { 'msuperdock/vim-foldout' } },
+-- ft = { 'agda' },
+-- config = function()
+-- local bind = require('util.bind')
+-- local bind_call = function(k, fun)
+-- bind.nmap('<leader>a' .. k, '<CMD>call agda#' .. fun .. '()<CR>')
+-- end
+
+-- bind_call('l', 'load')
+-- bind_call('a', 'abort')
+-- bind_call('n', 'next')
+-- bind_call('N', 'previous')
+-- bind_call('i', 'infer')
+-- bind_call('g', 'give')
+-- bind_call('r', 'refine')
+-- bind_call('c', 'context')
+-- end,
+-- }
+-- }}}
+-- {{{ cornelis : Agda support
+plugins['isovector/cornelis'] = {
+    run = { 'stack build' },
+    requires = { { 'kana/vim-textobj-user' }, { 'neovimhaskell/nvim-hs.vim' }, { 'liuchengxu/vim-which-key' } },
+    setup = function()
+        vim.g.cornelius_no_agda_input = 1
+    end,
     config = function()
-        -- TODO: Initialize keybinds
+        local bind = require('util.bind')
+        bind.nmap('<leader>al', '<cmd>CornelisLoad<CR>')
+        bind.nmap('<leader>ar', '<cmd>CornelisRefine<CR>')
+        bind.nmap('<leader>ac', '<cmd>CornelisMakeCase<CR>')
+        bind.nmap('<leader>ae', '<cmd>CornelisTypeContext<CR>')
+        bind.nmap('<leader>as', '<cmd>CornelisSolve<CR>')
+        bind.nmap('<leader>aa', '<cmd>CornelisAuto<CR>')
+        bind.nmap('<leader>ag', '<cmd>CornelisGoToDefinition<CR>')
+        bind.nmap('<leader>aN', '<cmd>CornelisPrevGoal<CR>')
+        bind.nmap('<leader>an', '<cmd>CornelisNextGoal<CR>')
+
+        vim.cmd([[ au BufWritePost,BufReadPre *.agda execute "normal! <cmd>CornelisLoad<CR>" ]])
+        vim.cmd([[ au BufWritePost,BufReadPre *.lagda execute "normal! <cmd>CornelisLoad<CR>" ]])
     end,
 }
 -- }}}

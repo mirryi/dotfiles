@@ -25,6 +25,9 @@ o.updatetime = 800
 -- Always 10 lines below cursor
 o.scrolloff = 10
 
+-- Transparent popupmenu
+o.pumblend = 15
+
 -- Ignore case in search
 o.ignorecase = true
 -- Unless search with uppercase
