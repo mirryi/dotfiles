@@ -1,5 +1,4 @@
 configuration {
-  theme:             "{{ theme }}.rasi";
   terminal:          "alacritty";
   ssh-client:        "ssh";
   ssh-command:       "alacritty -e {ssh-client} {host}";
@@ -19,3 +18,5 @@ configuration {
   kb-row-up:         "Up";
   kb-row-down:       "Down";
 }
+
+@theme "{{ theme }}.rasi"
