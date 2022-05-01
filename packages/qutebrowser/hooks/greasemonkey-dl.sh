@@ -6,15 +6,15 @@ dl() {
 	if [ ! -f "$script_path" ]; then
 		wget -q -O "$script_path" "$2"
 
-		printf -- "-- Checking $1..."
-		local checksum
-		checksum="$(sha256sum "$SCRIPT_DIR/$1" | cut -d " " -f1)"
-		if [ ! "$checksum" == "$3" ]; then
-			echo "Failed!"
-			rm "$script_path"
-		else
-			echo "OK"
-		fi
+    # printf -- "-- Checking $1..."
+    # local checksum
+    # checksum="$(sha256sum "$SCRIPT_DIR/$1" | cut -d " " -f1)"
+    # if [ ! "$checksum" == "$3" ]; then
+      # echo "Failed!"
+      # rm "$script_path"
+    # else
+      # echo "OK"
+    # fi
 	fi
 
 }
@@ -26,7 +26,7 @@ dl "oneechan.user.js" \
 	"https://raw.githubusercontent.com/KevinParnell/OneeChan/master/builds/OneeChan.user.js" \
 	"9ba024493c392d978fc59e0ece8fa2d80703a1e6faca1157c98cd0e262a7d509"
 dl "mouseover-image-viewer.user.js" \
-	"https://greasyfork.org/scripts/404-mouseover-popup-image-viewer/code/Mouseover%20Popup%20Image%20Viewer.user.js" \
+	"https://greasyfork.org/scripts/394820-mouseover-popup-image-viewer/code/Mouseover%20Popup%20Image%20Viewer.user.js" \
 	"dd5dcd198ba84167d8e1390061df91ec4b3ea7a14828618a1caf510d4dec1a0f"
 dl "github-code-colors.user.js" \
 	"https://raw.githubusercontent.com/Mottie/GitHub-userscripts/master/github-code-colors.user.js" \
@@ -46,9 +46,6 @@ dl "github-mentioned-links.user.js" \
 dl "github-label-color-picker.user.js" \
 	"https://raw.githubusercontent.com/Mottie/GitHub-userscripts/master/github-label-color-picker.user.js" \
 	"ec964e519d24ea3e4f52fe188bf1b1ce34639c7e3e067a40440ab52969a76468"
-dl "github-sort-content.user.js" \
-	"https://raw.githubusercontent.com/Mottie/GitHub-userscripts/master/github-sort-content.user.js" \
-	"1b099a3bb6f989aa2de9d16df27f025b5f9a027d5d52da6b4764352f1b537ec6"
 dl "gist-raw-links.user.js" \
 	"https://raw.githubusercontent.com/Mottie/GitHub-userscripts/master/gist-raw-links.user.js" \
 	"34684058884f4563291210f2a2d8a7ed2ebb7912b9ec84c724683d4185f3260c"
@@ -58,12 +55,9 @@ dl "github-json-dependencies-linker.user.js" \
 dl "github-image-viewer.user.js" \
 	"https://raw.githubusercontent.com/jerone/UserScripts/master/Github_Image_Viewer/Github_Image_Viewer.user.js" \
 	"a830d077c4bc84f1153f77c8078f6ac868ffdb40b8467aeee0a7cc799c9ce4cf"
-dl "general-url-cleaner.user.js" \
-	"https://greasyfork.org/scripts/395298-general-url-cleaner/code/General%20URL%20Cleaner.user.js" \
-	"a6b8f6cb147f84afab179508e16ecb4bea485857564af8238f4c4df9dc18b8d8"
 dl "google-hit-hider.user.js" \
 	"https://greasyfork.org/scripts/1682-google-hit-hider-by-domain-search-filter-block-sites/code/Google%20Hit%20Hider%20by%20Domain%20(Search%20Filter%20%20Block%20Sites).user.js" \
 	"42144cee9ba6a4476a458e13b3f9b56fafdfe5588324cba5ca4ab7046120e286"
-dl "wikichan.user.js" \
-	"https://github.com/Dophin2009/wikichan/releases/download/v3.0.1/wikichan.user.js" \
-	"aecc6e36347048c5a0adceca94dd40b5c69c4e3cb80e05958b910bd0049ddca3"
+dl "tidy-url.user.js" \
+  "https://github.com/DrKain/tidy-url/raw/main/data/tidy.user.js" \
+  "TODO"
