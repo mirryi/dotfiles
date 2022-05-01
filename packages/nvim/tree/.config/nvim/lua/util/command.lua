@@ -13,7 +13,7 @@ M.new_cmd = function(name, desc, force, f, opts)
 
     opts.desc = desc
     opts.force = force
-    vim.api.nvim_add_user_command(name, f, opts)
+    vim.api.nvim_create_user_command(name, f, opts)
 end
 
 M.new_cmd_nmap = function(opts)
