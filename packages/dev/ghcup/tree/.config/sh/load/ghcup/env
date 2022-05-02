@@ -3,5 +3,5 @@ export GHCUP_INSTALL_BASE_PREFIX="${XDG_DATA_HOME}/ghcup"
 
 # ghcup installed tool binaries
 if [ -d "$GHCUP_INSTALL_BASE_PREFIX/.ghcup/bin" ]; then
-  export PATH="$PATH:$GHCUP_INSTALL_BASE_PREFIX/.ghcup/bin"
+  export PATH="$GHCUP_INSTALL_BASE_PREFIX/.ghcup/bin:$PATH"
 fi
