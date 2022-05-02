@@ -45,6 +45,7 @@ vim.lsp.handlers['textDocument/formatting'] = function(err, result, ctx, _)
     if not vim.g.format then
         return
     end
+
     if err ~= nil or result == nil then
         return
     end
@@ -91,42 +92,42 @@ M.on_attach = function(client, bufnr)
     bufmap('n', 'gn', '<cmd>lua vim.diagnostic.goto_next()<CR>')
 
     -- Goto definition
-    if client.resolved_capabilities.goto_definition then
+    if client.server_capabilities.definitionProvider then
         bufmap('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>')
         -- bufmap('n', 'gd', '<cmd>LspGotoDefinition<CR>')
         bufmap('n', 'gH', '<cmd>lua require("modules.lsp.helpers").peek_definition()<CR>')
     end
     -- Goto declaration
-    if client.resolved_capabilities.declaration then
+    if client.server_capabilities.declarationProvider then
         bufmap('n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<CR>')
     end
     -- Goto implementation
-    if client.resolved_capabilities.implementation then
+    if client.server_capabilities.implementationProvider then
         bufmap('n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<CR>')
     end
     -- Goto type definition
-    if client.resolved_capabilities.type_definition then
+    if client.server_capabilities.typeDefinitionProvider then
         bufmap('n', 'gy', '<cmd>lua vim.lsp.buf.type_definition()<CR>')
     end
     -- Show hover information
-    if client.resolved_capabilities.hover then
+    if client.server_capabilities.hoverProvider then
         bufmap('n', 'gh', '<cmd>lua vim.lsp.buf.hover()<CR>')
     end
     -- Show signature help
-    if client.resolved_capabilities.signature_help then
+    if client.server_capabilities.signatureHelpProvider then
         bufmap('n', 'gs', '<cmd>lua vim.lsp.buf.signature_help()<CR>')
     end
     -- List references
-    if client.resolved_capabilities.find_references then
+    if client.server_capabilities.referencesProvider then
         bufmap('n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>')
         -- bufmap('n', 'gr', '<cmd>LSPReferences<CR>')
     end
     -- Rename the hovered symbol
-    if client.resolved_capabilities.rename then
+    if client.server_capabilities.renameProvider then
         bufmap('n', 'gR', '<cmd>lua vim.lsp.buf.rename()<CR>')
     end
     -- Select a code action
-    if client.resolved_capabilities.code_action then
+    if client.server_capabilities.codeActionProvider then
         -- bufmap('n', 'gc', '<cmd>lua vim.lsp.buf.code_action()<CR>')
         bufmap('n', 'gc', '<cmd>LspActions<CR>')
         -- bufmap('n', 'gc', '<cmd>CodeActionMenu<CR>')
@@ -147,15 +148,15 @@ M.on_attach = function(client, bufnr)
     bufmap('n', 'gwl', '<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>')
 
     -- If server supports formatting, format on save.
-    if client.resolved_capabilities.document_formatting then
+    if client.server_capabilities.documentFormattingProvider then
         vim.api.nvim_command([[augroup Format]])
         vim.api.nvim_command([[autocmd! * <buffer>]])
-        vim.api.nvim_command([[autocmd BufWritePost <buffer> lua vim.lsp.buf.formatting_seq_sync()]])
+        vim.api.nvim_command([[autocmd BufWritePost <buffer> lua vim.lsp.buf.format()]])
         vim.api.nvim_command([[augroup END]])
     end
 
     -- If range formatting is supported, add a keybind
-    if client.resolved_capabilities.document_range_formatting then
+    if client.server_capabilities.documentRangeFormattingProvider then
         bufmap('v', '<leader>f', '<cmd>lua vim.lsp.buf.range_formatting()<CR>')
     end
 
@@ -163,7 +164,7 @@ M.on_attach = function(client, bufnr)
     local signature = require('lsp_signature')
     signature.on_attach()
 
-    if client.resolved_capabilities.code_lens then
+    if client.server_capabilities.codeLensProvider then
         local virtualtypes = require('virtualtypes')
         virtualtypes.on_attach(client, bufnr)
     end

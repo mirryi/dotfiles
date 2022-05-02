@@ -12,21 +12,21 @@ local capabilities = handlers.capabilities
 -- lspconfig.als.setup { on_attach = on_attach, capabilities = capabilities }
 
 -- agda language server
-if not configs.agda_ls then
-    configs.agda_ls = {
-        default_config = {
-            cmd = { 'als' },
-            filetypes = { 'agda' },
-            root_dir = function(fname)
-                -- return lspconfig.util.find_git_ancestor(fname)
-                return lspconfig.util.root_pattern('*.agda-lib', '.git')(fname)
-                    or lspconfig.util.find_git_ancestor(fname)
-            end,
-            settings = {},
-        },
-    }
-end
-lspconfig.agda_ls.setup { on_attach = on_attach, capabilities = capabilities }
+-- if not configs.agda_ls then
+-- configs.agda_ls = {
+-- default_config = {
+-- cmd = { 'als' },
+-- filetypes = { 'agda' },
+-- root_dir = function(fname)
+-- -- return lspconfig.util.find_git_ancestor(fname)
+-- return lspconfig.util.root_pattern('*.agda-lib', '.git')(fname)
+-- or lspconfig.util.find_git_ancestor(fname)
+-- end,
+-- settings = {},
+-- },
+-- }
+-- end
+-- lspconfig.agda_ls.setup { on_attach = on_attach, capabilities = capabilities }
 
 -- ansible language server
 lspconfig.ansiblels.setup { on_attach = on_attach, capabilities = capabilities }
