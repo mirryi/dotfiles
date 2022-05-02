@@ -12,7 +12,7 @@ local theme_files = functional.map(themes, function(v)
     }
 end)
 
-pkg.files.extra:extend(unpack(theme_files))
+pkg.files.extra:extend(table.unpack(theme_files))
 
 local profile = require('profile').gtk
 pkg.files.extra:push {
