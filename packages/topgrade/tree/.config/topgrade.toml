@@ -1,1 +1,3 @@
-disable = ["system", "flutter", "stack"]
+disable = ["system", "flutter", "stack", "containers"]
+no_retry = true
+set_title = true
