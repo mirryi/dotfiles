@@ -27,7 +27,7 @@ plugins['isovector/cornelis'] = {
     run = { 'stack build' },
     requires = { { 'kana/vim-textobj-user' }, { 'neovimhaskell/nvim-hs.vim' }, { 'liuchengxu/vim-which-key' } },
     setup = function()
-        vim.g.cornelius_no_agda_input = 1
+        vim.g.cornelis_no_agda_input = 1
     end,
     config = function()
         local bind = require('util.bind')

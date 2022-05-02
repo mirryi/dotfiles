@@ -202,6 +202,7 @@ call extend(s:glyphs,
   \ , 'empty': '∅'
   \ , 'equiv': '≡'
   \ , 'eq': '≡'
+  \ , '.=': '≐'
   \ , 'eventually': '◇'
   \ , 'exists': '∃'
   \ , 'flat': '♭'
@@ -225,6 +226,7 @@ call extend(s:glyphs,
   \ , 'int': '∫'
   \ , 'intersect': '∩'
   \ , 'iso': '≅'
+  \ , '~-': '≃'
   \ , 'join': '⋈'
   \ , 'land': '∧'
   \ , 'langle': '⟨'
@@ -235,6 +237,7 @@ call extend(s:glyphs,
   \ , 'leadsto': '⇝'
   \ , '~>': '⇝'
   \ , 'le': '≤'
+  \ , '<~': '≲'
   \ , 'lift': '⌊⌋<left>'
   \ , 'floor': '⌊⌋<left>'
   \ , 'llangle': '⟪'
@@ -368,6 +371,8 @@ call extend(s:glyphs,
   \ , 'Xmark': '✘'
   \ , 'No': '✘'
   \ , 'Z': 'ℤ'
+  \ , '<': '⟨'
+  \ , '>': '⟩'
   \ })
 
 " #### Superscripts
@@ -387,6 +392,8 @@ call extend(s:glyphs,
   \ , '^i': 'ⁱ'
   \ , '^+': '⁺'
   \ , '^-': '⁻'
+  \ , '^l': 'ˡ'
+  \ , '^r': 'ʳ'
   \ , "'": '′'
   \ , "''": '″'
   \ , "'''": '‴'
