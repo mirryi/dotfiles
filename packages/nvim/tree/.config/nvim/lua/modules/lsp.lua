@@ -200,6 +200,7 @@ plugins['simrat39/rust-tools.nvim'] = {
     after = { 'nvim-lspconfig' },
     config = function()
         local rust_tools = require('rust-tools')
+        local inlay_hints = require('rust-tools.inlay_hints')
 
         local handlers = require('modules.lsp.handlers')
         local on_attach = handlers.on_attach
@@ -224,14 +225,14 @@ plugins['simrat39/rust-tools.nvim'] = {
                         assist = { importGranularity = 'module' },
                         cargo = { loadOutDirsFromCheck = true },
                         checkOnSave = {
-                            allFeatures = true,
-                            overrideCommand = {
-                                'cargo',
-                                'clippy',
-                                '--message-format=json',
-                                '--all-targets',
-                                '--all-features',
-                            },
+                            command = "clippy"
+                        -- overrideCommand = {
+                        -- 'cargo',
+                        -- 'clippy',
+                        -- '--message-format=json',
+                        -- -- '--workspace',
+                        -- -- '--all-targets',
+                        -- },
                         },
                         procMacro = { enable = true },
                     },

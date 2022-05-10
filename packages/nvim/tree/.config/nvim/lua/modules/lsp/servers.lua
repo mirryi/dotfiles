@@ -63,8 +63,8 @@ lspconfig.eslint.setup { on_attach = on_attach, capabilities = capabilities }
 -- go language server
 lspconfig.gopls.setup { on_attach = on_attach, capabilities = capabilities }
 
--- haskell ide engine
-lspconfig.hie.setup { on_attach = on_attach, capabilities = capabilities }
+-- haskell language server
+lspconfig.hls.setup { on_attach = on_attach, capabilities = capabilities }
 
 -- html language server
 lspconfig.html.setup { on_attach = on_attach, capabilities = capabilities }
@@ -242,8 +242,8 @@ nullls.setup {
     diagnostics_format = '#{m} (#{s})',
     sources = {
         -- generic
-        builtins.formatting.trim_newlines,
-        builtins.formatting.trim_whitespace,
+        -- builtins.formatting.trim_newlines,
+        -- builtins.formatting.trim_whitespace,
 
         -- c / c++
         builtins.diagnostics.cppcheck.with {
@@ -272,8 +272,11 @@ nullls.setup {
         -- javascript / typescript / etc.
         builtins.formatting.prettierd,
         builtins.formatting.rustywind,
-        builtins.diagnostics.stylelint,
-        builtins.formatting.stylelint,
+        -- builtins.diagnostics.stylelint,
+        -- builtins.formatting.stylelint,
+
+        -- haskell
+        builtins.formatting.fourmolu,
 
         -- latex
         -- builtins.diagnostics.chktex,

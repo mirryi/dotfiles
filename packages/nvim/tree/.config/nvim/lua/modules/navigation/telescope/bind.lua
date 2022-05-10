@@ -48,8 +48,6 @@ local defs = {
         with_non { 'LspReferences', 'Open LSP references picker', false, pickers.lsp.references },
         with_non { 'LspDocSymbols', 'Open LSP document symbols picker', false, pickers.lsp.symbols },
         with_non { 'LspWsSymbols', 'Open LSP workspace symbols picker', false, pickers.lsp.workspace_symbols },
-        with_non { 'LspActions', 'Open LSP code actions picker', false, pickers.lsp.code_actions },
-        with_non { 'LspRangeactions', 'Open LSP range code actions picker', false, pickers.lsp.range_actions },
     },
     binds = {
         { '<C-p>', 'Files' },

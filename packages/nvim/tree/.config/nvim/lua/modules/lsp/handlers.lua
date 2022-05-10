@@ -128,9 +128,7 @@ M.on_attach = function(client, bufnr)
     end
     -- Select a code action
     if client.server_capabilities.codeActionProvider then
-        -- bufmap('n', 'gc', '<cmd>lua vim.lsp.buf.code_action()<CR>')
-        bufmap('n', 'gc', '<cmd>LspActions<CR>')
-        -- bufmap('n', 'gc', '<cmd>CodeActionMenu<CR>')
+        bufmap('n', 'gc', '<cmd>lua vim.lsp.buf.code_action()<CR>')
     end
 
     -- Show diagnostics for the current line
@@ -138,14 +136,11 @@ M.on_attach = function(client, bufnr)
 
     -- Show document diagnostics list
     bufmap('n', 'gQ', '<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>')
-    -- bufmap('n', 'gQ', '<cmd>LSPDiagnostics<CR>')
-    -- Show workspace diagnostics list
-    -- bufmap('n', 'gwQ', '<cmd>LSPWDiagnostics<CR>')
 
     -- Workspace functionality
-    bufmap('n', 'gwa', '<cmd>lua vim.lsp.buf.add_workspace_folder()<CR>')
-    bufmap('n', 'gwr', '<cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>')
-    bufmap('n', 'gwl', '<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>')
+    -- bufmap('n', 'gwa', '<cmd>lua vim.lsp.buf.add_workspace_folder()<CR>')
+    -- bufmap('n', 'gwr', '<cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>')
+    -- bufmap('n', 'gwl', '<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>')
 
     -- If server supports formatting, format on save.
     if client.server_capabilities.documentFormattingProvider then
