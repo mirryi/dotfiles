@@ -24,13 +24,15 @@ telescope.setup {
         lsp_references = { theme = 'ivy' },
         lsp_document_symbols = { theme = 'ivy' },
         lsp_workspace_symbols = { theme = 'ivy' },
-        lsp_code_actions = { theme = 'cursor' },
-        lsp_range_code_actions = { theme = 'cursor' },
     },
     extensions = {
         file_browser = { theme = 'ivy' },
+        ['ui-select'] = {
+            require('telescope.themes').get_dropdown {},
+        },
     },
 }
 
 telescope.load_extension('fzy_native')
 telescope.load_extension('file_browser')
+telescope.load_extension('ui-select')

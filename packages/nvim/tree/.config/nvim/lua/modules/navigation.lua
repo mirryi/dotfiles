@@ -19,6 +19,7 @@ plugins['nvim-telescope/telescope.nvim'] = {
         { 'nvim-lua/plenary.nvim' },
         { 'nvim-telescope/telescope-fzy-native.nvim' },
         { 'nvim-telescope/telescope-file-browser.nvim' },
+        { 'nvim-telescope/telescope-ui-select.nvim' }
     },
     config = function()
         local telescope = require('modules.navigation.telescope')

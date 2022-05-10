@@ -83,12 +83,4 @@ M.lsp.workspace_symbols = function()
     builtin.lsp_workspace_symbols()
 end
 
-M.lsp.code_actions = function()
-    builtin.lsp_code_actions()
-end
-
-M.lsp.range_actions = function()
-    builtin.lsp_range_code_actions()
-end
-
 return M
