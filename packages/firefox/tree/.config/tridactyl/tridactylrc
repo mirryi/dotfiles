@@ -1,0 +1,109 @@
+" vim: filetype=vim
+sanitize tridactyllocal tridactylsync
+
+set newtab about:blank
+
+" Vim-like find
+set findcase sensitive
+bind / fillcmdline find
+bind ? fillcmdline find -?
+bind n findnext 1
+bind N findnext -1
+
+" Smooth scrolling
+set smoothscroll true
+
+" Reduce jump
+bind j scrollline 5
+bind k scrollline -5
+
+" Tab keybinds
+bind J tabnext
+bind K tabprev
+bind H back
+bind L forward
+bind d tabclose
+bind u undo tab
+bind T fillcmdline tab
+
+bind O fillcmdline tabopen
+bind o fillcmdline open
+
+" No autofocus
+set allowautofocus false
+setpref browser.autofocus false
+
+" Container-aware tabs
+set tabopencontaineraware true
+
+" Disable about:config warning
+setpref browser.aboutconfig.showWarning false
+
+" Warn on closing multiple tabs
+setpref browser.tabs.warnOnClose true
+
+" Configure devtools
+setpref devtools.toolbox.host right
+
+" Privacy settings
+setpref app.normandy.first_run false
+setpref app.normandy.enabled false
+setpref app.normandy.api_url ""
+setpref app.shield.optoutstudies.enabled false
+setpref app.update.enabled false
+
+setpref beacon.enabled false
+
+setpref browser.contextblocking.category strict
+setpref browser.uitour.enabled false
+setpref browser.urlbar.suggest.engines false
+setpref browser.urlbar.suggest.history false
+setpref browser.urlbar.suggest.openpage false
+setpref browser.urlbar.suggest.quicksuggest.nonsponsored false
+setpref browser.urlbar.suggest.quicksuggest.sponsored false
+setpref browser.urlbar.suggest.searches false
+setpref browser.urlbar.suggest.topsites false
+
+setpref datareporting.healthreport.uploadEnabled false
+
+setpref dom.security.https_only_mode true
+
+setpref extensions.pocket.enabled false
+
+setpref geo.enabled false
+
+setpref media.peerconnection.enabled false
+setpref media.peerconnection.ice.no_host true
+setpref media.peerconnection.ice.proxy_only true
+
+setpref network.allow-experiments false
+setpref network.http.referer.XOriginPolicy 1
+setpref network.http.referer.defaultPolicy 3
+setpref network.http.referer.defaultPolicy.pbmode 2
+setpref network.http.referer.spoofSource false
+
+setpref places.history.enabled false
+
+setpref plugin.state.flash 0
+
+setpref privacy.firstparty.isolate true
+setpref privacy.resistFingerprinting false
+setpref privacy.resistFingerprinting.block_mozAddonManager true
+setpref privacy.userContext.enabled true
+setpref privacy.userContext.ui.enabled true
+setpref privacy.usercontext.about_newtab_segregation.enabled true
+
+setpref toolkit.cosmeticAnimations.enabled false
+setpref toolkit.telemetry.archive.enabled false
+setpref toolkit.telemetry.bhrPing.enabled false
+setpref toolkit.telemetry.cachedClientID ""
+setpref toolkit.telemetry.enabled false
+setpref toolkit.telemetry.firstShutdownPing.enabled false
+setpref toolkit.telemetry.hybridContent.enabled false
+setpref toolkit.telemetry.newProfilePing.enabled false
+setpref toolkit.telemetry.server "data:,"
+setpref toolkit.telemetry.shutdownPingSender.enabled false
+setpref toolkit.telemetry.unified false
+setpref toolkit.telemetry.updatePing.enabled false
+
+setpref webgl.disabled true
