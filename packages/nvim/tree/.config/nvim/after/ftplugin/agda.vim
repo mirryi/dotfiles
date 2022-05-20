@@ -199,6 +199,7 @@ call extend(s:glyphs,
   \ , 'dunion': '⊎'
   \ , 'du': '⊎'
   \ , 'ell': 'ℓ'
+  \ , 'em': '—'
   \ , 'empty': '∅'
   \ , 'equiv': '≡'
   \ , 'eq': '≡'
@@ -217,6 +218,7 @@ call extend(s:glyphs,
   \ , 'Fromto': '⇔'
   \ , 'ge': '≥'
   \ , 'glub': '⊓'
+  \ , 'Gl-': 'ƛ'
   \ , 'iff': '⇔'
   \ , 'implies': '⇒'
   \ , 'impliedby': '⇐'
@@ -308,6 +310,7 @@ call extend(s:glyphs,
   \ , 'rdown': '⇂'
   \ , 'righttri': '▸'
   \ , 'rrangle': '⟫'
+  \ , 'rr-': '↠'
   \ , 'rup': '↾'
   \ , 'searrow': '↘'
   \ , 'Searrow': '⇘'
@@ -365,6 +368,7 @@ call extend(s:glyphs,
   \ , 'uptri': '▲'
   \ , 'Up': '⇑'
   \ , 'union': '∪'
+  \ , 'vdash': '⊢'
   \ , 'vdots': '⋮'
   \ , 'voltage': '⚡'
   \ , 'x': '×'
@@ -375,6 +379,7 @@ call extend(s:glyphs,
   \ , 'Z': 'ℤ'
   \ , '<': '⟨'
   \ , '>': '⟩'
+  \ , ':::': '⦂'
   \ })
 
 " #### Superscripts
@@ -395,6 +400,7 @@ call extend(s:glyphs,
   \ , '^+': '⁺'
   \ , '^-': '⁻'
   \ , '^b': 'ᵇ'
+  \ , '^c': 'ᶜ'
   \ , '^l': 'ˡ'
   \ , '^r': 'ʳ'
   \ , "'": '′'
