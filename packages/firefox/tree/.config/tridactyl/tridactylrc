@@ -29,12 +29,15 @@ bind T fillcmdline tab
 bind O fillcmdline tabopen
 bind o fillcmdline open
 
+" Set default search engine
+set searchengine duckduckgo
+
 " No autofocus
 set allowautofocus false
 setpref browser.autofocus false
 
 " Container-aware tabs
-set tabopencontaineraware true
+set tabopencontaineraware false
 
 " Disable about:config warning
 setpref browser.aboutconfig.showWarning false
@@ -86,7 +89,7 @@ setpref places.history.enabled false
 
 setpref plugin.state.flash 0
 
-setpref privacy.firstparty.isolate true
+" setpref privacy.firstparty.isolate true
 setpref privacy.resistFingerprinting false
 setpref privacy.resistFingerprinting.block_mozAddonManager true
 setpref privacy.userContext.enabled true
