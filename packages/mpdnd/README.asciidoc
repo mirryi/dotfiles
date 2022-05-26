@@ -7,7 +7,7 @@ ifdef::env-github[]
 :warning-caption: :warning:
 endif::[]
 
-:mpdnd: https://github.com/Dophin2009/mpdnd
+:mpdnd: https://github.com/mirryi/mpdnd
 :local: local.dhall
 :localtype: link:./types/LocalType.dhall
 

@@ -1,9 +1,9 @@
 // ==UserScript==
 // @name          Reddit JPN Fix
-// @namespace     https://github.com/Dophin2009
+// @namespace     https://github.com/mirryi
 // @version       1.01
 // @description   Fixes some Japanese translation things.
-// @author        Dophin2009
+// @author        mirryi
 // @match         *://*.reddit.com/*
 // @grant         none
 // @icon          https://www.redditstatic.com/desktop2x/img/favicon/apple-icon-76x76.png
