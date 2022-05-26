@@ -101,7 +101,7 @@ plugins['euclidianAce/BetterLua.vim'] = { ft = { 'lua' } }
 plugins['chunkhang/vim-mbsync'] = {}
 -- }}}
 -- {{{ neon-syntax.vim : NEON filetype support
-plugins['Dophin2009/neon-syntax.vim'] = {}
+plugins['mirryi/neon-syntax.vim'] = {}
 -- }}}
 -- {{{ nginx.vim : Nginx configuration highlighting
 plugins['chr4/nginx.vim'] = {}

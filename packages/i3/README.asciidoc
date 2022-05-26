@@ -34,7 +34,7 @@ See specific profiles for their dependencies.
 :dunst: https://github.com/dunst-project/dunst
 :htop: https://htop.dev/
 :mpd: https://www.musicpd.org/
-:mpdnd: https://github.com/Dophin2009/mpdnd
+:mpdnd: https://github.com/mirryi/mpdnd
 :ncmpcpp: https://github.com/ncmpcpp/ncmpcpp
 :pulseaudio: https://www.freedesktop.org/wiki/Software/PulseAudio/
 :vifm: https://github.com/vifm/vifm
