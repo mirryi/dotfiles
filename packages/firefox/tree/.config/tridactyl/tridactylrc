@@ -116,3 +116,6 @@ setpref toolkit.telemetry.unified false
 setpref toolkit.telemetry.updatePing.enabled false
 
 setpref webgl.disabled true
+
+" Source other files
+source ~/.config/tridactyl/bookmarks
