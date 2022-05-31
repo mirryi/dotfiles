@@ -1,6 +1,8 @@
 " vim: filetype=vim
 sanitize tridactyllocal tridactylsync
 
+set theme dark
+
 set newtab about:blank
 
 " Vim-like find
@@ -94,7 +96,7 @@ setpref places.history.enabled false
 setpref plugin.state.flash 0
 
 " setpref privacy.firstparty.isolate true
-setpref privacy.resistFingerprinting false
+" setpref privacy.resistFingerprinting true
 setpref privacy.resistFingerprinting.block_mozAddonManager true
 setpref privacy.userContext.enabled true
 setpref privacy.userContext.ui.enabled true
