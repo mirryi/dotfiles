@@ -88,6 +88,7 @@ let &l:matchpairs
   \ . ',｛:｝'
   \ . ',｟:｠'
   \ . ',｢:｣'
+  \ . ',⦇:⦈'
 
 " ## Glyphs
 
@@ -157,6 +158,10 @@ call extend(s:glyphs,
 call extend(s:glyphs,
   \ { '{{': '⦃'
   \ , '}}': '⦄'
+  \ , '({': '⦇'
+  \ , '})': '⦈'
+  \ , '`[': '⌜'
+  \ , '`]': '⌟'
   \ , ':': '∶'
   \ , '::': '∷'
   \ , ';': '﹔'
@@ -192,6 +197,7 @@ call extend(s:glyphs,
   \ , 'deg': '°'
   \ , 'den': '⟦⟧<left>'
   \ , 'diamond': '◇'
+  \ , 'dot': '·'
   \ , 'dots': '…'
   \ , 'down': '↓'
   \ , 'downtri': '▼'
