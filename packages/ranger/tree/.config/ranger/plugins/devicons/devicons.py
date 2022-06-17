@@ -47,6 +47,7 @@ file_node_extensions = {
     'db': '',
     'deb': '',
     'diff': '',
+    'djvu': '',
     'dll': '',
     'doc': '',
     'docx': '',
