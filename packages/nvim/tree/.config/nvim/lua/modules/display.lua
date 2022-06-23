@@ -59,5 +59,13 @@ plugins['iamcco/markdown-preview.nvim'] = {
     end,
 }
 -- }}}
+-- {{{ nvim-pqf : Prettier quickfix window
+plugins['https://gitlab.com/yorickpeterse/nvim-pqf.git'] = {
+    config = function()
+        local pqf = require('pqf')
+        pqf.setup()
+    end,
+}
+-- }}}
 
 return plugins
