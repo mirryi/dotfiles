@@ -167,6 +167,12 @@ end
 
 M.capabilities = vim.lsp.protocol.make_client_capabilities()
 
+-- Enable range folding
+M.capabilities.textDocument.foldingRange = {
+    dynamicRegistration = false,
+    lineFoldingOnly = true,
+}
+
 -- Enable snippets
 M.capabilities.textDocument.completion.completionItem.snippetSupport = true
 M.capabilities.textDocument.completion.completionItem.resolveSupport = {

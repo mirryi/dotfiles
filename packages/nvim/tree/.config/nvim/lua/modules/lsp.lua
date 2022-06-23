@@ -124,9 +124,6 @@ plugins['nvim-treesitter/nvim-treesitter'] = {
                 extended_mode = true,
             },
         }
-
-        -- vim.cmd([[set foldmethod=expr]])
-        -- vim.cmd([[set foldexpr=nvim_treesitter#foldexpr()]])
     end,
 }
 -- }}}
@@ -225,14 +222,14 @@ plugins['simrat39/rust-tools.nvim'] = {
                         assist = { importGranularity = 'module' },
                         cargo = { loadOutDirsFromCheck = true },
                         checkOnSave = {
-                            command = "clippy"
-                        -- overrideCommand = {
-                        -- 'cargo',
-                        -- 'clippy',
-                        -- '--message-format=json',
-                        -- -- '--workspace',
-                        -- -- '--all-targets',
-                        -- },
+                            command = 'clippy',
+                            -- overrideCommand = {
+                            -- 'cargo',
+                            -- 'clippy',
+                            -- '--message-format=json',
+                            -- -- '--workspace',
+                            -- -- '--all-targets',
+                            -- },
                         },
                         procMacro = { enable = true },
                     },

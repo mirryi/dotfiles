@@ -12,7 +12,7 @@ function! Sorted(list)
   " Make sure the list consists of numbers (and not strings)
   " This also ensures that the original list is not modified
   let nrs = ToNrs(a:list)
-  let sortedList = sort(nrs, "NaturalOrder")
+  let sortedList = sort(nrs, 'NaturalOrder')
   echo sortedList
   return sortedList
 endfunction
@@ -50,9 +50,9 @@ function! WordFrequency() range
 
   let countToWords = {}
   for [word,cnt] in items(wordToCount)
-    let words = get(countToWords,cnt,"")
+    let words = get(countToWords,cnt, '')
     " Append this word to the other words that occur as many times in the text
-    let countToWords[cnt] = words . " " . word
+    let countToWords[cnt] = words . ' ' . word
   endfor
 
   " Create a new buffer to show the results in
@@ -62,12 +62,12 @@ function! WordFrequency() range
   " List of word counts in ascending order
   let sortedWordCounts = Sorted(keys(countToWords))
 
-  call append("$", "count \t words")
-  call append("$", "--------------------------")
+  call append('$', 'count \t words')
+  call append('$', '--------------------------')
   " Show the most frequent words first -> Descending order
   for cnt in reverse(sortedWordCounts)
     let words = countToWords[cnt]
-    call append("$", cnt . "\t" . words)
+    call append('$', cnt . '\t' . words)
   endfor
 endfunction
 
