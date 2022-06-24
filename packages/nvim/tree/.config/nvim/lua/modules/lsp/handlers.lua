@@ -32,7 +32,9 @@ vim.lsp.handlers['textDocument/hover'] = function(_, result, ctx, config)
     if vim.tbl_isempty(markdown_lines) then
         return { 'No information available' }
     end
-    return util.open_floating_preview(markdown_lines, 'pandoc', config)
+    local bufnr, winnr = util.open_floating_preview(markdown_lines, 'pandoc', config)
+    vim.api.nvim_buf_set_option(bufnr, 'filetype', 'pandoc')
+    return bufnr, winnr
 end
 
 -- Async formatting handle
@@ -156,9 +158,12 @@ M.on_attach = function(client, bufnr)
     end
 
     -- Attach signature help
-    local signature = require('lsp_signature')
-    signature.on_attach()
+    if client.server_capabilities.signatureHelpProvider then
+        local signature = require('lsp_signature')
+        signature.on_attach()
+    end
 
+    -- Attach virtual types indicator.
     if client.server_capabilities.codeLensProvider then
         local virtualtypes = require('virtualtypes')
         virtualtypes.on_attach(client, bufnr)
