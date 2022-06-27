@@ -1,6 +1,0 @@
-media-sound/beets ffmpeg mpd
-media-sound/ncmpcpp outputs visualizer
-
-# required by media-sound/pulseaudio-13.0-r1::gentoo[alsa-plugin,alsa]
-# required by media-sound/pulsemixer-1.5.1::gentoo
->=media-plugins/alsa-plugins-1.2.2 pulseaudio

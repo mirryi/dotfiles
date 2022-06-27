@@ -1,7 +1,0 @@
-dev-util/code-minimap zsh-completion
-dev-util/sccache dist-client
-
-# required by dev-util/android-sdk-update-manager-24.4.1-r2::gentoo
->=dev-java/swt-4.10-r2 cairo
-# required by dev-util/android-sdk-update-manager-24.4.1-r2::gentoo
->=sys-libs/ncurses-compat-6.2 abi_x86_32
