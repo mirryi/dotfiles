@@ -1,8 +1,0 @@
-app-misc/anki ~amd64
-app-misc/dragon ~amd64
-app-misc/ranger ~amd64
-app-misc/tealdeer ~amd64
-
-app-misc/termdown ~amd64
-# required by app-misc/termdown-1.17.0::guru
-=dev-python/pyfiglet-0.8_p1 ~amd64

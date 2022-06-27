@@ -1,7 +1,0 @@
-dev-go/gopls ~amd64
-dev-go/goimports ~amd64
-dev-go/golint ~amd64
-
-dev-go/efm-langserver ~amd64
-
-dev-go/golicense ~amd64
