@@ -37,32 +37,6 @@ vim.lsp.handlers['textDocument/hover'] = function(_, result, ctx, config)
     return bufnr, winnr
 end
 
--- Async formatting handle
-vim.g.format = true
-vim.cmd([[command! FormatOn :lua vim.g.format = true ]])
-vim.cmd([[command! FormatOff :lua vim.g.format = false ]])
-vim.cmd([[command! FormatToggle :lua vim.g.format = not vim.g.format ]])
-
-vim.lsp.handlers['textDocument/formatting'] = function(err, result, ctx, _)
-    if not vim.g.format then
-        return
-    end
-
-    if err ~= nil or result == nil then
-        return
-    end
-
-    local bufnr = ctx.bufnr
-    if not vim.api.nvim_buf_get_option(bufnr, 'modified') then
-        local view = vim.fn.winsaveview()
-        vim.lsp.util.apply_text_edits(result, bufnr)
-        vim.fn.winrestview(view)
-        if bufnr == vim.api.nvim_get_current_buf() then
-            vim.api.nvim_command('noautocmd :update')
-        end
-    end
-end
-
 vim.lsp.handlers['window/showMessage'] = function(_, result, ctx)
     local notify = require('notify')
 
@@ -147,8 +121,7 @@ M.on_attach = function(client, bufnr)
     -- If server supports formatting, format on save.
     if client.server_capabilities.documentFormattingProvider then
         vim.api.nvim_command([[augroup Format]])
-        vim.api.nvim_command([[autocmd! * <buffer>]])
-        vim.api.nvim_command([[autocmd BufWritePost <buffer> lua vim.lsp.buf.format()]])
+        vim.api.nvim_command([[autocmd! BufWritePost <buffer> lua vim.lsp.buf.format()]])
         vim.api.nvim_command([[augroup END]])
     end
 
