@@ -1,3 +1,7 @@
+augroup start
+  autocmd BufCreate * stopinsert
+augroup END
+
 " Load main configuration
 lua require 'init'
 

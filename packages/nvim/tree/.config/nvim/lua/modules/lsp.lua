@@ -55,13 +55,13 @@ plugins['nvim-treesitter/nvim-treesitter'] = {
         },
         'haringsrob/nvim_context_vt',
         -- Spellcheck using treesitter
-        {
-            'lewis6991/spellsitter.nvim',
-            after = { 'nvim-treesitter' },
-            config = function()
-                require('spellsitter').setup()
-            end,
-        },
+        -- {
+        --     'lewis6991/spellsitter.nvim',
+        --     after = { 'nvim-treesitter' },
+        --     config = function()
+        --         require('spellsitter').setup()
+        --     end,
+        -- },
         -- Rainbow parentheses
         'p00f/nvim-ts-rainbow',
         {

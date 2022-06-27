@@ -43,6 +43,12 @@ wo.cursorline = true
 -- No softwrap
 wo.wrap = false
 
+-- Folds
+wo.foldcolumn = '1'
+wo.foldlevel = 99
+wo.foldenable = true
+
+
 -- Tabs (space tabs)
 local function opt(name, value)
     o[name] = value
