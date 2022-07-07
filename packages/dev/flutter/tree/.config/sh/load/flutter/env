@@ -1,2 +1,8 @@
 #!/bin/sh
 export PUB_CACHE="${XDG_CACHE_HOME}/flutter/pub-cache"
+export FVM_HOME="${XDG_CACHE_HOME}/fvm"
+
+
+if [ -d "${FVM_HOME}/default/bin" ]; then
+  export PATH="${FVM_HOME}/default/bin:${PATH}"
+fi
