@@ -20,23 +20,6 @@ vim.lsp.handlers['textDocument/typeDefinition'] = require('lsputil.locations').t
 vim.lsp.handlers['textDocument/implementation'] = require('lsputil.locations').implementation_handler
 vim.lsp.handlers['textDocument/documentSymbol'] = require('lsputil.symbols').document_handler
 vim.lsp.handlers['workspace/symbol'] = require('lsputil.symbols').workspace_handler
-vim.lsp.handlers['textDocument/hover'] = function(_, result, ctx, config)
-    local util = vim.lsp.util
-    config = config or {}
-    config.focus_id = ctx.method
-    if not (result and result.contents) then
-        return { 'No information available' }
-    end
-    local markdown_lines = util.convert_input_to_markdown_lines(result.contents)
-    markdown_lines = util.trim_empty_lines(markdown_lines)
-    if vim.tbl_isempty(markdown_lines) then
-        return { 'No information available' }
-    end
-    local bufnr, winnr = util.open_floating_preview(markdown_lines, 'pandoc', config)
-    vim.api.nvim_buf_set_option(bufnr, 'filetype', 'pandoc')
-    return bufnr, winnr
-end
-
 vim.lsp.handlers['window/showMessage'] = function(_, result, ctx)
     local notify = require('notify')
 

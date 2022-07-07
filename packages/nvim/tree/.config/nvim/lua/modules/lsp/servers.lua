@@ -63,6 +63,18 @@ lspconfig.eslint.setup { on_attach = on_attach, capabilities = capabilities }
 -- go language server
 lspconfig.gopls.setup { on_attach = on_attach, capabilities = capabilities }
 
+-- grain language server
+if not configs.grainls then
+    configs.grainls = {
+        default_config = {
+            cmd = { 'grain', 'lsp' },
+            filetypes = { 'grain' },
+            settings = {},
+        },
+    }
+end
+lspconfig.grainls.setup { on_attach = on_attach, capabilities = capabilities }
+
 -- haskell language server
 lspconfig.hls.setup { on_attach = on_attach, capabilities = capabilities }
 

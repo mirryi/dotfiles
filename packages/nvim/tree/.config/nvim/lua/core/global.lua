@@ -45,9 +45,8 @@ wo.wrap = false
 
 -- Folds
 wo.foldcolumn = '1'
-wo.foldlevel = 99
 wo.foldenable = true
-
+wo.foldlevel = 99
 
 -- Tabs (space tabs)
 local function opt(name, value)
