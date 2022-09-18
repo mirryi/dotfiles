@@ -89,9 +89,9 @@ plugins['fuenor/JpFormat.vim'] = {}
 plugins['kevinhwang91/nvim-ufo'] = {
     requires = 'kevinhwang91/promise-async',
     config = function()
-        vim.wo.foldcolumn = '1'
-        vim.wo.foldenable = true
-        vim.wo.foldlevel = 99
+        -- vim.wo.foldcolumn = '1'
+        -- vim.wo.foldenable = true
+        -- vim.wo.foldlevel = 99
 
         require('ufo').setup {
             provider_selector = function(_bufnr, filetype)

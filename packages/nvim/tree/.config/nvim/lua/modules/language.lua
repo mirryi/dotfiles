@@ -55,6 +55,11 @@ plugins['habamax/vim-asciidoctor'] = {
     end,
 }
 -- }}}
+-- {{{ coq-au-vim : Coq support
+plugins['https://framagit.org/manu/coq-au-vim'] = {
+    requires = { 'jvoorhis/coq.vim' },
+}
+-- }}}
 -- {{{ rainbow_csv : csv utilities and highlighting
 plugins['mechatroner/rainbow_csv'] = { ft = { 'csv' } }
 -- }}}

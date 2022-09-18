@@ -79,13 +79,13 @@ plugins['nvim-treesitter/nvim-treesitter'] = {
             end,
         },
         -- Dimming of unused code.
-        {
-            'narutoxy/dim.lua',
-            after = { 'nvim-treesitter', 'nvim-lspconfig' },
-            config = function()
-                require('dim').setup()
-            end,
-        },
+        -- {
+            -- 'narutoxy/dim.lua',
+            -- after = { 'nvim-treesitter', 'nvim-lspconfig' },
+            -- config = function()
+                -- require('dim').setup()
+            -- end,
+        -- },
     },
     config = function()
         local treesitter = require('nvim-treesitter.configs')
