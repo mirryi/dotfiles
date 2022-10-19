@@ -21,7 +21,7 @@ o.hidden = true
 -- Avoid hit-enter messages
 o.shortmess = o.shortmess .. 'c'
 -- Updatetime for CursorHold
-o.updatetime = 800
+o.updatetime = 100
 -- Always 10 lines below cursor
 o.scrolloff = 10
 

@@ -1,7 +1,7 @@
 local plugins = {}
 
 -- {{{ FixCursorHold : CurserHold performance fix
-plugins['antoinemadec/FixCursorHold.nvim'] = {}
+-- plugins['antoinemadec/FixCursorHold.nvim'] = {}
 -- }}}
 
 return plugins
