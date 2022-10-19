@@ -4,8 +4,17 @@ local plugins = {}
 -- {{{ nvim-lightbulb : Code action indicator
 plugins['kosayoda/nvim-lightbulb'] = {
     config = function()
-        vim.cmd([[ autocmd CursorHold,CursorHoldI * lua require'nvim-lightbulb'.update_lightbulb() ]])
-        vim.fn.sign_define('LightBulbSign', { text = '' })
+        local lightbulb = require('nvim-lightbulb')
+        lightbulb.setup {
+            sign = {
+                enabled = false,
+            },
+            virtual_text = {
+                enabled = true,
+                text = '',
+            },
+            autocmd = { enabled = true },
+        }
     end,
 }
 -- }}}
@@ -80,16 +89,17 @@ plugins['nvim-treesitter/nvim-treesitter'] = {
         },
         -- Dimming of unused code.
         -- {
-            -- 'narutoxy/dim.lua',
-            -- after = { 'nvim-treesitter', 'nvim-lspconfig' },
-            -- config = function()
-                -- require('dim').setup()
-            -- end,
+        -- 'narutoxy/dim.lua',
+        -- after = { 'nvim-treesitter', 'nvim-lspconfig' },
+        -- config = function()
+        -- require('dim').setup()
+        -- end,
         -- },
     },
     config = function()
         local treesitter = require('nvim-treesitter.configs')
         local highlight_disabled = {
+            'agda',
             'cmake',
             'latex',
             'make',

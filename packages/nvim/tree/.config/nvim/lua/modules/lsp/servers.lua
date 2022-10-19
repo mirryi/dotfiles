@@ -98,6 +98,12 @@ lspconfig.jsonls.setup {
     },
 }
 
+-- julia language server
+lspconfig.julials.setup {
+    on_attach = on_attach,
+    capabilities = capabilities,
+}
+
 -- kotlin language server
 lspconfig.kotlin_language_server.setup {
     on_attach = on_attach,
@@ -263,6 +269,7 @@ nullls.setup {
         -- generic
         -- builtins.formatting.trim_newlines,
         -- builtins.formatting.trim_whitespace,
+        builtins.diagnostics.trail_space,
 
         -- c / c++
         builtins.diagnostics.cppcheck.with {
