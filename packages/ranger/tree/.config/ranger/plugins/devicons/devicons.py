@@ -5,6 +5,8 @@ import os
 file_node_extensions = {
     '7z': '',
     'a': '',
+    'agda': 'ﬦ',
+    'agdai': 'ﬦ',
     'ai': '',
     'apk': '',
     'as': '',
