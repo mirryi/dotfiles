@@ -269,7 +269,7 @@ nullls.setup {
         -- generic
         -- builtins.formatting.trim_newlines,
         -- builtins.formatting.trim_whitespace,
-        builtins.diagnostics.trail_space,
+        -- builtins.diagnostics.trail_space,
 
         -- c / c++
         builtins.diagnostics.cppcheck.with {
