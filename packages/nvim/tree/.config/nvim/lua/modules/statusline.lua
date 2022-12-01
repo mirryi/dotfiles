@@ -63,13 +63,13 @@ plugins['romgrk/barbar.nvim'] = {
 }
 -- }}}
 -- {{{ minimap.vim : Minimap
-plugins['wfxr/minimap.vim'] = {
-    config = function()
-        local bind = require('util.bind')
-        -- Toggle minimap
-        bind.nmap('<leader>m', '<cmd>MinimapToggle<CR>', { silent = true })
-    end,
-}
+-- plugins['wfxr/minimap.vim'] = {
+    -- config = function()
+        -- local bind = require('util.bind')
+        -- -- Toggle minimap
+        -- bind.nmap('<leader>m', '<cmd>MinimapToggle<CR>', { silent = true })
+    -- end,
+-- }
 -- }}}
 -- {{{ wilder.nvim : wildmenu enhancements
 plugins['gelguy/wilder.nvim'] = {
