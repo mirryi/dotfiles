@@ -33,6 +33,13 @@ plugins['kevinhwang91/nvim-bqf'] = {}
 -- {{{ vim-smoothie : Smooth page-down and page-up
 plugins['psliwka/vim-smoothie'] = {}
 -- }}}
+-- {{{ SmoothCursor.nvim : Smooth cursor jumps
+-- plugins['gen740/SmoothCursor.nvim'] = {
+    -- config = function()
+        -- require('smoothcursor').setup()
+    -- end,
+-- }
+-- }}}
 -- {{{ vim-tmux-focus-events : tmux event compatbility
 -- plugins['tmux-plugins/vim-tmux-focus-events'] = {}
 -- }}}

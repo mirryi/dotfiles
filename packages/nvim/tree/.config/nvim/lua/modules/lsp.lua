@@ -101,9 +101,11 @@ plugins['nvim-treesitter/nvim-treesitter'] = {
         local highlight_disabled = {
             'agda',
             'cmake',
+            'help',
             'latex',
             'make',
-            'ocaml',
+            'markdown',
+            'pandoc',
             'r',
             'ruby',
             'rust',

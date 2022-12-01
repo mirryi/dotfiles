@@ -279,6 +279,7 @@ call extend(s:glyphs,
   \ , 'nin': '∉'
   \ , 'niso': '≇'
   \ , 'notin': '∉'
+  \ , 'nni': '∌'
   \ , 'nwarrow': '↖'
   \ , 'Nwarrow': '⇖'
   \ , 'oast': '⊛'

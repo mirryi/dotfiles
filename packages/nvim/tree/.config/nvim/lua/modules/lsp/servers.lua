@@ -111,17 +111,14 @@ lspconfig.kotlin_language_server.setup {
 }
 
 -- ltex language server
--- lspconfig.ltex.setup({
--- on_attach = on_attach,
--- capabilities = capabilities,
--- settings = {
--- ltex = {
--- dictionary = {
--- ['en-US'] = { ':.vim/ltex.dictionary.en-US.txt' },
--- },
--- },
--- },
--- })
+-- lspconfig.ltex.setup {
+    -- filetypes = { 'asciidoc', 'tex', 'markdown', 'org', 'pandoc', 'text' },
+    -- on_attach = on_attach,
+    -- capabilities = capabilities,
+    -- settings = {
+        -- ltex = { disabledRules = { ['en-US'] = { 'COMMA_PARENTHESIS_WHITESPACE', 'WHITESPACE_RULE' } } },
+    -- },
+-- }
 
 -- lua language server
 lspconfig.sumneko_lua.setup {
