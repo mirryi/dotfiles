@@ -8,7 +8,7 @@ vim.lsp.handlers['textDocument/publishDiagnostics'] = vim.lsp.with(vim.lsp.diagn
     underline = true,
     virtual_text = true,
     signs = true,
-    update_in_insert = false,
+    update_in_insert = true,
 })
 
 -- Use lsputil handlers
