@@ -120,11 +120,6 @@ snippet '([A-Za-z])_(\d\d)' "?_{?}" wrA
 endsnippet
 
 context "math()"
-snippet __ "_{?}" iA
-_{$1}$0
-endsnippet
-
-context "math()"
 snippet xnn "x_{n}" iA
 x_{n}
 endsnippet
@@ -185,6 +180,11 @@ snippet ^ "^{?}" iA
 ^{$1}$0
 endsnippet
 
+context "math()"
+snippet __ "_{?}" iA
+_{$1}$0
+endsnippet
+
 # Hat
 context "math()"
 priority 10
@@ -213,18 +213,13 @@ endsnippet
 
 # Implies
 context "math()"
-snippet => "\implies" Ai
-\implies
+snippet => "\Rightarrow" Ai
+\Rightarrow
 endsnippet
 
 context "math()"
-snippet =< "\impliedby" Ai
-\impliedby
-endsnippet
-
-context "math()"
-snippet iff "iff" iA
-\iff
+snippet =< "\Leftarrow" Ai
+\Leftarrow
 endsnippet
 
 # Arrows
@@ -276,34 +271,40 @@ snippet << "\ll" iA
 \ll
 endsnippet
 
-# Ceil
-context "math()"
-snippet ceil "\left\lceil ? \right\rceil" i
-\left\lceil $1 \right\rceil $0
-endsnippet
-
-# Floor
-context "math()"
-snippet floor "\left\lfloor ? \right\rfloor" i
-\left\lfloor $1 \right\rfloor$0
-endsnippet
-
-# Infinity
-context "math()"
-snippet __ "_{?}" iA
-_{$1}$0
-endsnippet
-
 # Cross
 context "math()"
 snippet xx "\times" iA
 \times
 endsnippet
 
+# Ceiling
+context "math()"
+snippet ceil "\left\lceil ? \right\rceil" i
+\left\lceil ${0:${VISUAL}} \right\rceil
+endsnippet
+
+# Floor
+context "math()"
+snippet floor "\left\lfloor ? \right\rfloor" i
+\left\lfloor ${0:${VISUAL}} \right\rfloor
+endsnippet
+
 # Cardinality / aboslute value
 context "math()"
-snippet abs "\lvert ? \rvert" i
+snippet abs "\left\lvert ? \right\rvert" i
 \left\lvert ${0:${VISUAL}} \right\rvert
+endsnippet
+
+# Parentheses
+context "math()"
+snippet paren "\left( ? \right)" i
+\left( ${0:${VISUAL}} \right)
+endsnippet
+
+# Denotation
+context "math()"
+snippet den "\llbracket ? \rrbracket" i
+\llbracket ${0:${VISUAL}} \rrbracket
 endsnippet
 
 # Text

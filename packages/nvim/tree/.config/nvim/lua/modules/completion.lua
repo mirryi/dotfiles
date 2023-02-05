@@ -58,8 +58,6 @@ plugins['hrsh7th/nvim-cmp'] = {
             local tab_complete = function(fallback)
                 if cmp.visible() then
                     cmp.select_next_item()
-                elseif vim.fn['UltiSnips#CanExpandSnippet']() == 1 or vim.fn['UltiSnips#CanJumpForwards']() == 1 then
-                    vim.fn.feedkeys(t('<C-R>=UltiSnips#ExpandSnippetOrJump()<CR>'), '')
                 elseif check_back_space() then
                     vim.fn.feedkeys(t('<Tab>'), 'n')
                 else
@@ -70,8 +68,6 @@ plugins['hrsh7th/nvim-cmp'] = {
             local s_tab_complete = function(fallback)
                 if cmp.visible() then
                     cmp.select_prev_item()
-                elseif vim.fn['UltiSnips#CanJumpBackwards']() == 1 then
-                    vim.fn.feedkeys(t('<C-R>=UltiSnips#JumpBackwards()<CR>'), '')
                 else
                     fallback()
                 end
