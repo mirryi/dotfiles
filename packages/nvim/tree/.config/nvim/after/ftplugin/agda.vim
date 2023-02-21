@@ -195,6 +195,7 @@ call extend(s:glyphs,
   \ , 'cclock': '↺'
   \ , 'comp': '∘'
   \ , 'contra': '↯'
+  \ , 'cursor': '▹◃<left>'
   \ , 'deg': '°'
   \ , 'den': '⟦⟧<left>'
   \ , 'diamond': '◇'
