@@ -28,7 +28,7 @@ plugins['romgrk/barbar.nvim'] = {
             -- Enable close button
             closable = true,
             -- Disable icons
-            icons = false,
+            icons = { filetype = { enabled = false } },
             -- Letters to assign buffer in order
             letters = 'asdfjkl;ghnmxcbziowerutyqpASDFJKLGHNMXCBZIOWERUTYQP',
             -- Maximum padding width surrounding each tab
@@ -64,11 +64,11 @@ plugins['romgrk/barbar.nvim'] = {
 -- }}}
 -- {{{ minimap.vim : Minimap
 -- plugins['wfxr/minimap.vim'] = {
-    -- config = function()
-        -- local bind = require('util.bind')
-        -- -- Toggle minimap
-        -- bind.nmap('<leader>m', '<cmd>MinimapToggle<CR>', { silent = true })
-    -- end,
+-- config = function()
+-- local bind = require('util.bind')
+-- -- Toggle minimap
+-- bind.nmap('<leader>m', '<cmd>MinimapToggle<CR>', { silent = true })
+-- end,
 -- }
 -- }}}
 -- {{{ wilder.nvim : wildmenu enhancements
