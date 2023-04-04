@@ -15,14 +15,11 @@ plugins['lewis6991/gitsigns.nvim'] = {
 -- }}}
 -- {{{ barbar.nvim : Sane buffer tabline
 plugins['romgrk/barbar.nvim'] = {
-    setup = function()
+    config = function()
         local bind = require('util.bind')
         local nmap = bind.nmap
 
-        local g = vim.g
-
-        -- Tabline options
-        g.bufferline = {
+        require('barbar').setup {
             -- Enable animations
             animation = true,
             -- Enable close button
