@@ -131,11 +131,11 @@ lspconfig.lua_ls.setup {
 }
 
 -- markdown language server
-lspconfig.marksman.setup {
-    filetypes = { 'markdown', 'pandoc' },
-    on_attach = on_attach,
-    capabilities = capabilities,
-}
+-- lspconfig.marksman.setup {
+    -- filetypes = { 'markdown', 'pandoc' },
+    -- on_attach = on_attach,
+    -- capabilities = capabilities,
+-- }
 
 -- ocaml/reason language server
 lspconfig.ocamllsp.setup { on_attach = on_attach, capabilities = capabilities }
