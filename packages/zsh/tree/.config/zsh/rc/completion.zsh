@@ -24,11 +24,18 @@ zinit light-mode for \
 # autocomplete
 zinit light-mode for \
   marlonrichert/zsh-autocomplete
-zstyle ':autocomplete:*' min-delay 0.3
+zstyle ':autocomplete:*' min-delay 0.02
 zstyle ':autocomplete:*' min-input 2
 zstyle ':autocomplete:*' list-lines 10
 zstyle ':autocomplete:*' recent-dirs zoxide
 zstyle ':autocomplete:*' widget-style menu-complete
+zstyle ':autocomplete:*complete*:*' insert-unambiguous yes
+zstyle ':autocomplete:*history*:*' insert-unambiguous yes
+zstyle ':autocomplete:menu-search:*' insert-unambiguous yes
+
+# bindkey '\t' menu-complete "$terminfo[kcbt]" reverse-menu-complete
+bindkey '\t' menu-select "$terminfo[kcbt]" menu-select
+bindkey -M menuselect '\t' menu-complete "$terminfo[kcbt]" reverse-menu-complete
 
 if [[ -d "${ZSH_DATA}/completions" ]]; then
   zinit creinstall -Q "${ZSH_DATA}/completions"
