@@ -10,6 +10,7 @@
 
 [push]
   followTags = true
+  autoSetupRemote = true
 [pull]
   rebase = false
 
