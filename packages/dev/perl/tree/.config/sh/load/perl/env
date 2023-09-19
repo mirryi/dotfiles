@@ -1,0 +1,6 @@
+#!/bin/sh
+export PATH="$HOME/.local/share/perl/bin${PATH:+:${PATH}}"
+export PERL5LIB="$HOME/.local/share/perl/lib/perl5"
+export PERL_LOCAL_LIB_ROOT="$HOME/.local/share/perl"
+export PERL_MB_OPT="--install_base '$HOME/.local/share/perl'"
+export PERL_MM_OPT="INSTALL_BASE=$HOME/.local/share/perl"
