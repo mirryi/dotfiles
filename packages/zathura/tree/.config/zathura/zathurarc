@@ -4,3 +4,5 @@ map <C-i> recolor
 set recolor false
 set recolor-lightcolor "#282828"
 set recolor-darkcolor "#ebdbb2"
+
+set selection-clipboard clipboard
