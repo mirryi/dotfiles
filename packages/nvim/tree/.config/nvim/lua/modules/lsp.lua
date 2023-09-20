@@ -245,20 +245,13 @@ plugins['simrat39/rust-tools.nvim'] = {
 plugins['p00f/clangd_extensions.nvim'] = {
     after = { 'nvim-lspconfig' },
     config = function()
-        local handlers = require('modules.lsp.handlers')
-        local on_attach = handlers.on_attach
-        local capabilities = handlers.capabilities
-
-        local clangd_capabilities = vim.deepcopy(capabilities)
-        clangd_capabilities.offsetEncoding = { 'utf-16' }
-
         local clangd_extensions = require('clangd_extensions')
-        clangd_extensions.setup {
-            server = {
-                on_attach = on_attach,
-                capabilities = clangd_capabilities,
-            },
-        }
+        local inlay_hints = require('clangd_extensions.inlay_hints')
+
+        clangd_extensions.setup {}
+
+        inlay_hints.setup_autocmd()
+        inlay_hints.set_inlay_hints()
     end,
 }
 -- }}}

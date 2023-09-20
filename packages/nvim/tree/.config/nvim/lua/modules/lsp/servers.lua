@@ -35,12 +35,12 @@ lspconfig.ansiblels.setup { on_attach = on_attach, capabilities = capabilities }
 lspconfig.bashls.setup { on_attach = on_attach, capabilities = capabilities }
 
 -- clangd
--- local clangd_capabilities = vim.deepcopy(capabilities)
--- clangd_capabilities.offsetEncoding = { 'utf-16' }
--- lspconfig.clangd.setup({
--- on_attach = on_attach,
--- capabilities = clangd_capabilities,
--- })
+local clangd_capabilities = vim.deepcopy(capabilities)
+clangd_capabilities.offsetEncoding = { 'utf-16' }
+lspconfig.clangd.setup {
+    on_attach = on_attach,
+    capabilities = clangd_capabilities,
+}
 
 -- cmake language server
 lspconfig.cmake.setup { on_attach = on_attach, capabilities = capabilities }
