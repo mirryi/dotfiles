@@ -1,10 +1,4 @@
-disable = [
-  "config_update",
-  "containers",
-  "flutter",
-  "git_repos",
-  "github_cli_extensions",
-  "stack",
-]
+[misc]
+disable = ["config_update", "containers", "git_repos", "stack", "stew"]
 no_retry = true
 set_title = true
