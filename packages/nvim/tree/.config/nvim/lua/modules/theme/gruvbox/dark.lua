@@ -35,6 +35,9 @@ plugins['sainnhe/gruvbox-material'] = {
 
         hilink.rustFuncCall = 'Green'
         hilink.rustFuncName = 'Green'
+
+        hilink['@function.call.cpp'] = 'Green'
+        hilink['@method.call.cpp'] = 'Green'
     end,
 }
 
