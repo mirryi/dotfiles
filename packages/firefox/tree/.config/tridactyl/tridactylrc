@@ -7,8 +7,8 @@ set newtab about:blank
 
 " Vim-like find
 set findcase sensitive
-bind / fillcmdline find
-bind ? fillcmdline find -?
+" bind / fillcmdline find
+" bind ? fillcmdline find -?
 bind n findnext 1
 bind N findnext --reverse
 
