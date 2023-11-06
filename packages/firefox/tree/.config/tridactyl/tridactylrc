@@ -6,11 +6,11 @@ set theme dark
 set newtab about:blank
 
 " Vim-like find
-set findcase sensitive
+" set findcase sensitive
 " bind / fillcmdline find
 " bind ? fillcmdline find -?
-bind n findnext 1
-bind N findnext --reverse
+" bind n findnext 1
+" bind N findnext --reverse
 
 " Smooth scrolling
 set smoothscroll true
@@ -115,7 +115,7 @@ setpref toolkit.telemetry.shutdownPingSender.enabled false
 setpref toolkit.telemetry.unified false
 setpref toolkit.telemetry.updatePing.enabled false
 
-setpref webgl.disabled true
+" setpref webgl.disabled true
 
 " Source other files
 source ~/.config/tridactyl/bookmarks
