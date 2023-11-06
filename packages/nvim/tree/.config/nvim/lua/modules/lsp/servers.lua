@@ -48,6 +48,9 @@ lspconfig.cmake.setup { on_attach = on_attach, capabilities = capabilities }
 -- css language server
 lspconfig.cssls.setup { on_attach = on_attach, capabilities = capabilities }
 
+-- dafny language server
+lspconfig.dafny.setup { on_attach = on_attach, capabilities = capabilities }
+
 -- dhall language server
 lspconfig.dhall_lsp_server.setup { on_attach = on_attach, capabilities = capabilities }
 

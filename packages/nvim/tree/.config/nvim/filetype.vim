@@ -7,6 +7,11 @@ aug FtdetectMd
   au! BufNewFile,BufFilePre,BufRead *.md set filetype=pandoc
 aug end
 
+" detect dafny
+aug FtdetectDafny
+  au! BufNewFile,BufFilePre,BufRead *.dfy set filetype=dafny
+aug end
+
 " detect handlebars files
 aug FtdetectHbs
   au! BufNewFile,BufFilePre,BufRead *.hbs set filetype=handlebars
