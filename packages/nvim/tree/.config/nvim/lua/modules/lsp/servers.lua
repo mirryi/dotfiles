@@ -38,10 +38,7 @@ lspconfig.bashls.setup { on_attach = on_attach, capabilities = capabilities }
 local clangd_capabilities = vim.deepcopy(capabilities)
 clangd_capabilities.offsetEncoding = { 'utf-16' }
 lspconfig.clangd.setup {
-    on_attach = function(client, bufnr)
-        client.server_capabilities.semanticTokensProvider = nil
-        on_attach(client, bufnr)
-    end,
+    on_attach = on_attach,
     capabilities = clangd_capabilities,
 }
 
