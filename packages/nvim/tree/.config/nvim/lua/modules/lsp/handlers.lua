@@ -124,6 +124,9 @@ M.on_attach = function(client, bufnr)
         local virtualtypes = require('virtualtypes')
         virtualtypes.on_attach(client, bufnr)
     end
+
+    -- Disable semantic highlighting
+    client.server_capabilities.semanticTokensProvider = nil
 end
 
 M.capabilities = vim.lsp.protocol.make_client_capabilities()
