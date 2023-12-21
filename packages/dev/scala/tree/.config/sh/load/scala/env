@@ -1,0 +1,4 @@
+#!/bin/sh
+if [ -d "${XDG_DATA_HOME}/coursier/bin" ]; then
+  export PATH="${XDG_DATA_HOME}/coursier/bin:${PATH}"
+fi
