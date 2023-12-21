@@ -21,7 +21,6 @@ local M = {}
 M.init = function()
     M.global()
     M.bindings()
-    M.project()
     M.plugins()
 end
 -- }}}
@@ -35,13 +34,6 @@ end
 -- {{{ M.bindings
 M.bindings = function()
     require('core.bindings')
-end
--- }}}
-
--- {{{ M.project
-M.project = function()
-    local project = require('core.project')
-    project.setup()
 end
 -- }}}
 
