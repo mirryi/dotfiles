@@ -129,7 +129,11 @@ lspconfig.lua_ls.setup {
     on_attach = on_attach,
     capabilities = capabilities,
     settings = {
-        Lua = { diagnostics = { enable = false }, workspace = { maxPreload = 9999, checkThirdParty = false } },
+        Lua = {
+            diagnostics = { enable = false },
+            format = { enable = false },
+            workspace = { maxPreload = 9999, checkThirdParty = false },
+        },
     },
 }
 

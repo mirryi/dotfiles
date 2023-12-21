@@ -187,7 +187,8 @@ plugins['mfussenegger/nvim-jdtls'] = {
 -- }}}
 -- {{{ nvim-metals : Enhanced scala language server and tools
 plugins['scalameta/nvim-metals'] = {
-    ft = { 'scala', 'sbt' },
+    requires = { { 'nvim-lua/plenary.nvim' } },
+    ft = { 'scala', 'sbt', 'java' },
     config = function()
         require('modules.lsp.servers.metals')
     end,
