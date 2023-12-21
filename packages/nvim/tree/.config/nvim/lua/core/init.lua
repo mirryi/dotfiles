@@ -1,6 +1,4 @@
 -- luacheck: globals vim use
-local cmd, fn = vim.cmd, vim.fn
-
 local modules = {
     'modules.fix',
     'modules.statusline',
@@ -39,32 +37,31 @@ end
 
 -- {{{ M.plugins
 M.plugins = function()
-    local install_path = fn.stdpath('data') .. '/site/pack/packer/opt/packer.nvim'
-    if fn.empty(fn.glob(install_path)) > 0 then
-        local execute = vim.api.nvim_command
-        execute('!git clone https://github.com/wbthomason/packer.nvim ' .. install_path)
-        execute('packadd packer.nvim')
+    -- Bootstrap lazy.nvim
+    local lazypath = vim.fn.stdpath('data') .. '/lazy/lazy.nvim'
+    if not vim.loop.fs_stat(lazypath) then
+        vim.fn.system {
+            'git',
+            'clone',
+            '--filter=blob:none',
+            'https://github.com/folke/lazy.nvim.git',
+            '--branch=stable', -- latest stable release
+            lazypath,
+        }
     end
-    cmd([[packadd packer.nvim]])
+    vim.opt.rtp:prepend(lazypath)
 
-    local packer = require('packer')
-    packer.startup(function()
-        use { 'wbthomason/packer.nvim', opt = true }
-        for _, module in ipairs(modules) do
-            for name, conf in pairs(require(module)) do
-                local spec = vim.tbl_extend('force', { name }, conf)
-                use(spec)
-            end
+    -- Gather plugin specs
+    local plugins = {}
+    for _, module in ipairs(modules) do
+        for name, spec in pairs(require(module)) do
+            plugins[#plugins + 1] = vim.tbl_extend('force', { name }, spec)
         end
-    end, {
-        config = {
-            display = {
-                open_fn = function()
-                    return require('packer.util').float { border = 'single' }
-                end,
-            },
-        },
-    })
+    end
+
+    -- Initialize lazy
+    local lazy = require('lazy')
+    lazy.setup(plugins)
 end
 -- }}}
 

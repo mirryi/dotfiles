@@ -1,18 +1,7 @@
 -- luacheck: globals vim
 local plugins = {}
 
--- {{ nvim-scrollbar: Scrollbar with indicators
--- plugins['petertriho/nvim-scrollbar'] = {
--- config = function()
--- require('scrollbar').setup({
--- handle = {
--- color = "black",
--- },
--- })
--- end,
--- }
--- }}
--- {{{ nvim-colorizer.lua : RGB, hex color highlighting
+-- rgb, hex color highlighting
 plugins['norcalli/nvim-colorizer.lua'] = {
     config = function()
         local colorizer = require('colorizer')
@@ -25,8 +14,8 @@ plugins['norcalli/nvim-colorizer.lua'] = {
         }
     end,
 }
--- }}}
--- {{{ indent-blankline.nvim : Indent guides
+
+-- indent guides
 plugins['lukas-reineke/indent-blankline.nvim'] = {
     config = function()
         local g = vim.g
@@ -39,8 +28,8 @@ plugins['lukas-reineke/indent-blankline.nvim'] = {
         g.indentLine_setConceal = 0
     end,
 }
--- }}}
--- {{{ glow.nvim : Markdown preview
+
+-- in-editor markdown preview
 plugins['npxbr/glow.nvim'] = {
     ft = { 'markdown', 'pandoc' },
     config = function()
@@ -48,24 +37,23 @@ plugins['npxbr/glow.nvim'] = {
         bind.nmap('<leader>p', '<cmd>Glow<CR>')
     end,
 }
--- }}}
--- {{{ markdown-preview.nvim : Web markdown preview
+
+-- web markdown preview
 plugins['iamcco/markdown-preview.nvim'] = {
-    run = 'cd app && yarn install',
+    build = 'cd app && yarn install',
     config = function()
         vim.g.mkdp_auto_start = false
         vim.g.mkdp_echo_preview_url = 1
         vim.g.mkdp_filetypes = { 'markdown', 'pandoc' }
     end,
 }
--- }}}
--- {{{ nvim-pqf : Prettier quickfix window
+
+-- a prettier quickfix window
 plugins['https://gitlab.com/yorickpeterse/nvim-pqf.git'] = {
     config = function()
         local pqf = require('pqf')
         pqf.setup()
     end,
 }
--- }}}
 
 return plugins

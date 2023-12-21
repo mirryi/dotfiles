@@ -1,6 +1,6 @@
 -- luacheck: globals vim
 local plugins = {}
--- {{{ ultisnips : Snippet engine
+
 plugins['SirVer/ultisnips'] = {
     config = function()
         -- Disable default UltiSnips mappings
@@ -10,18 +10,17 @@ plugins['SirVer/ultisnips'] = {
         vim.g.UltiSnipsJumpBackwardTrigger = '<C-h>'
     end,
 }
--- }}}
--- {{{ nvim-cmp : Completion engine
+
 plugins['hrsh7th/nvim-cmp'] = {
     -- {{{ requires
-    requires = {
-        { 'hrsh7th/cmp-nvim-lsp', after = 'nvim-cmp' },
-        { 'hrsh7th/cmp-nvim-lua', after = 'nvim-cmp' },
-        { 'quangnguyen30192/cmp-nvim-ultisnips', after = { 'nvim-cmp', 'ultisnips' } },
-        { 'hrsh7th/cmp-path', after = 'nvim-cmp' },
-        { 'f3fora/cmp-spell', after = 'nvim-cmp' },
-        { 'hrsh7th/cmp-buffer', after = 'nvim-cmp' },
-        { 'ray-x/lsp_signature.nvim' },
+    dependencies = {
+        'hrsh7th/cmp-nvim-lsp',
+        'hrsh7th/cmp-nvim-lua',
+        'quangnguyen30192/cmp-nvim-ultisnips',
+        'hrsh7th/cmp-path',
+        'f3fora/cmp-spell',
+        'hrsh7th/cmp-buffer',
+        'ray-x/lsp_signature.nvim' ,
     },
     -- }}}
     -- {{{ config
@@ -112,8 +111,7 @@ plugins['hrsh7th/nvim-cmp'] = {
     end,
     -- }}}
 }
--- }}}
--- {{{ nvim-autopairs: Auto-closing support
+
 plugins['windwp/nvim-autopairs'] = {
     after = 'nvim-cmp',
     config = function()
@@ -128,5 +126,5 @@ plugins['windwp/nvim-autopairs'] = {
         }
     end,
 }
--- }}}
+
 return plugins
