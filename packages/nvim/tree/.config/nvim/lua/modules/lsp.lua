@@ -1,7 +1,7 @@
 -- luacheck: globals vim
 local plugins = {}
 
--- {{{ nvim-lightbulb : Code action indicator
+-- code action indicator
 plugins['kosayoda/nvim-lightbulb'] = {
     config = function()
         local lightbulb = require('nvim-lightbulb')
@@ -17,8 +17,8 @@ plugins['kosayoda/nvim-lightbulb'] = {
         }
     end,
 }
--- }}}
--- {{{ vim-illuminate : Highlight same item instances
+
+-- highlight same item instances
 plugins['RRethy/vim-illuminate'] = {
     config = function()
         local bind = require('util.bind')
@@ -26,11 +26,11 @@ plugins['RRethy/vim-illuminate'] = {
         bind.nmap('<C-,>', [[ <cmd>lua require('illuminate').next_reference{reverse=true, wrap=true}<CR> ]])
     end,
 }
--- }}}
--- {{{ lsp-trouble.nvim : Pretty diagnostics view list
+
+-- pretty diagnostics view list
 plugins['folke/lsp-trouble.nvim'] = {
-    requires = {
-        { 'kyazdani42/nvim-web-devicons' },
+    dependencies = {
+        'kyazdani42/nvim-web-devicons',
     },
     config = function()
         local trouble = require('trouble')
@@ -41,20 +41,20 @@ plugins['folke/lsp-trouble.nvim'] = {
         bind.nmap('gwL', '<cmd>TroubleToggle workspace_diagnostics<CR>')
     end,
 }
--- }}}
--- {{{ fidget.nvim : LSP status indicator
+
+-- lsp status indicator
 plugins['j-hui/fidget.nvim'] = {
     config = function()
         require('fidget').setup()
     end,
 }
--- }}}
--- {{{ nvim-treesitter : Treesitter support
+
+-- treesitter support
 plugins['nvim-treesitter/nvim-treesitter'] = {
-    requires = {
+    dependencies = {
         'nvim-treesitter/playground',
         'nvim-treesitter/nvim-treesitter-refactor',
-        -- Auto close HTML/XML tags
+        -- auto close html/xml tags
         'windwp/nvim-ts-autotag',
         {
             'romgrk/nvim-treesitter-context',
@@ -63,7 +63,7 @@ plugins['nvim-treesitter/nvim-treesitter'] = {
             end,
         },
         'haringsrob/nvim_context_vt',
-        -- Spellcheck using treesitter
+        -- spellcheck using treesitter
         -- {
         --     'lewis6991/spellsitter.nvim',
         --     after = { 'nvim-treesitter' },
@@ -71,7 +71,7 @@ plugins['nvim-treesitter/nvim-treesitter'] = {
         --         require('spellsitter').setup()
         --     end,
         -- },
-        -- Rainbow parentheses
+        -- rainbow parentheses
         'p00f/nvim-ts-rainbow',
         {
             'luochen1990/rainbow',
@@ -80,14 +80,14 @@ plugins['nvim-treesitter/nvim-treesitter'] = {
                 vim.g.rainbow_active = 1
             end,
         },
-        -- Swapping of parameters, lists, arrays, etc.
+        -- swapping of parameters, lists, arrays, etc.
         {
             'mizlan/iswap.nvim',
             config = function()
                 require('iswap').setup {}
             end,
         },
-        -- Dimming of unused code.
+        -- dimming of unused code.
         -- {
         -- 'narutoxy/dim.lua',
         -- after = { 'nvim-treesitter', 'nvim-lspconfig' },
@@ -115,7 +115,7 @@ plugins['nvim-treesitter/nvim-treesitter'] = {
             'yaml',
         }
         treesitter.setup {
-            ensure_installed = 'all',
+            -- ensure_installed = 'all',
             highlight = {
                 enable = true,
                 disable = highlight_disabled,
@@ -138,28 +138,30 @@ plugins['nvim-treesitter/nvim-treesitter'] = {
         }
     end,
 }
--- }}}
--- {{{ nvim-lspconfig : Predefined language server configurations
+
+-- predefined language server configurations
 plugins['neovim/nvim-lspconfig'] = {
-    requires = {
-        -- Non-lsp linter integration
-        { 'jose-elias-alvarez/null-ls.nvim' },
-        -- Support for tsserver extensions
-        { 'jose-elias-alvarez/nvim-lsp-ts-utils' },
-        -- Rust inline type indications
-        { 'nvim-lua/lsp_extensions.nvim', ft = { 'rust' } },
-        -- Better UIs
-        { 'RishabhRD/nvim-lsputils', requires = { { 'RishabhRD/popfix' } } },
-        -- Better code actions menus
+    dependencies = {
+        -- non-lsp linter integration
+        'jose-elias-alvarez/null-ls.nvim',
+        -- support for tsserver extensions
+        'jose-elias-alvarez/nvim-lsp-ts-utils',
+        -- rust inline type indications
+        'nvim-lua/lsp_extensions.nvim',
+        -- better UIs
+        { 'RishabhRD/nvim-lsputils', dependencies = { { 'RishabhRD/popfix' } } },
+        -- better code actions menus
         -- { 'weilbith/nvim-code-action-menu' },
-        -- Virtual text for types
-        { 'jubnzv/virtual-types.nvim' },
-        -- Schema access for jsonls
-        { 'b0o/SchemaStore.nvim' },
+        -- virtual text for types
+        'jubnzv/virtual-types.nvim',
+        -- schema access for jsonls
+        'b0o/SchemaStore.nvim',
+        -- also use notify
+        'nvim-notify' 
     },
-    after = { 'nvim-notify' },
     config = function()
-        -- Show diagnostics on hover
+        -- show diagnostics on hover
+        -- TODO use lua api for autocmds
         vim.api.nvim_exec(
             [[ aug lsp_autocmds autocmd CursorHold * lua vim.diagnostic.open_float({focus = false}) aug END ]],
             true
@@ -168,46 +170,44 @@ plugins['neovim/nvim-lspconfig'] = {
         require('modules.lsp.servers')
     end,
 }
--- }}}
--- {{{ nvim-dap : Debugging support
+
+-- debugging support
 plugins['mfussenegger/nvim-dap'] = {
-    requires = { { 'rcarriga/nvim-dap-ui' }, { 'theHamsta/nvim-dap-virtual-text' } },
+    dependencies = { 'rcarriga/nvim-dap-ui', 'theHamsta/nvim-dap-virtual-text' },
     config = function()
         require('modules.lsp.dap')
     end,
 }
--- }}}
--- {{{ nvim-jdtls : Enhanced java language server
+
+-- enhanced java language server
 plugins['mfussenegger/nvim-jdtls'] = {
     ft = { 'java' },
     config = function()
         require('modules.lsp.servers.jdtls')
     end,
 }
--- }}}
--- {{{ nvim-metals : Enhanced scala language server and tools
+
+-- enhanced scala language server and tools
 plugins['scalameta/nvim-metals'] = {
-    requires = { { 'nvim-lua/plenary.nvim' } },
-    ft = { 'scala', 'sbt', 'java' },
+    dependencies = { 'nvim-lua/plenary.nvim' },
     config = function()
         require('modules.lsp.servers.metals')
     end,
 }
--- }}}
--- {{{ flutter-tools.nvim : Enhanced flutter language server and tools
+
+-- enhanced flutter language server and tools
 plugins['akinsho/flutter-tools.nvim'] = {
-    requires = { { 'nvim-lua/plenary.nvim' } },
+    dependencies = { 'nvim-lua/plenary.nvim' },
     config = function()
         require('modules.lsp.servers.flutter')
     end,
 }
--- }}}
--- {{{ rust-tools.nvim : Enahcned rust language server and tools
+
+-- enahcned rust language server and tools
 plugins['simrat39/rust-tools.nvim'] = {
-    requires = {
-        { 'nvim-lua/popup.nvim', 'nvim-lua/plenary.nvim', 'nvim-telescope/telescope.nvim' },
+    dependencies = {
+        'nvim-lua/popup.nvim', 'nvim-lua/plenary.nvim', 'nvim-telescope/telescope.nvim',
     },
-    after = { 'nvim-lspconfig' },
     config = function()
         local rust_tools = require('rust-tools')
 
@@ -241,10 +241,9 @@ plugins['simrat39/rust-tools.nvim'] = {
         }
     end,
 }
--- }}}
--- {{{ clangd_extensions.nvim: Enhanced clangd and tools
+
+-- enhanced clangd and tools
 plugins['p00f/clangd_extensions.nvim'] = {
-    after = { 'nvim-lspconfig' },
     config = function()
         local clangd_extensions = require('clangd_extensions')
         local inlay_hints = require('clangd_extensions.inlay_hints')
@@ -255,6 +254,5 @@ plugins['p00f/clangd_extensions.nvim'] = {
         inlay_hints.set_inlay_hints()
     end,
 }
--- }}}
 
 return plugins

@@ -1,19 +1,18 @@
 -- luacheck: globals vim
 local plugins = {}
 
--- {{{ startuptime.vim : Better startup profiling
+-- better startup profiling
 plugins['tweekmonster/startuptime.vim'] = {}
--- }}}
--- {{{ lazygit.nvim : Lazygit
+
+-- lazygit in-editor
 plugins['kdheepak/lazygit.nvim'] = {
     config = function()
         local bind = require('util.bind')
         bind.nmap('<leader>gl', '<cmd>LazyGit<CR>')
     end,
 }
--- }}}
--- {{{ vim-eunuch : Unix command use
+
+-- unix command use
 plugins['tpope/vim-eunuch'] = {}
--- }}}
 
 return plugins

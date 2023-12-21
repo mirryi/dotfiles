@@ -1,7 +1,7 @@
 -- luacheck: globals vim
 local plugins = {}
 
--- {{{ hop.vim : Jump locations
+-- jump locations
 plugins['phaazon/hop.nvim'] = {
     config = function()
         local hop = require('hop')
@@ -11,68 +11,67 @@ plugins['phaazon/hop.nvim'] = {
         bind.nmap('<leader>s', '<cmd>lua require("hop").hint_words()<CR>')
     end,
 }
--- }}}
--- {{{ telescope.nvim : Fuzzy picker
+
+-- fuzzy picker
 plugins['nvim-telescope/telescope.nvim'] = {
-    requires = {
-        { 'nvim-lua/popup.nvim' },
-        { 'nvim-lua/plenary.nvim' },
-        { 'nvim-telescope/telescope-fzy-native.nvim' },
-        { 'nvim-telescope/telescope-file-browser.nvim' },
-        { 'nvim-telescope/telescope-ui-select.nvim' },
+    dependencies = {
+        'nvim-lua/popup.nvim',
+        'nvim-lua/plenary.nvim',
+        'nvim-telescope/telescope-fzy-native.nvim',
+        'nvim-telescope/telescope-file-browser.nvim',
+        'nvim-telescope/telescope-ui-select.nvim',
     },
     config = function()
         local telescope = require('modules.navigation.telescope')
         telescope.setup()
     end,
 }
--- }}}
--- {{{ nvim-bqf : Better quickfix list
-plugins['kevinhwang91/nvim-bqf'] = {}
--- }}}
--- {{{ vim-smoothie : Smooth page-down and page-up
+
+-- better quickfix list
+-- plugins['kevinhwang91/nvim-bqf'] = {}
+
+-- smooth page-down and page-up
 plugins['psliwka/vim-smoothie'] = {}
--- }}}
--- {{{ SmoothCursor.nvim : Smooth cursor jumps
+
+-- smooth cursor jumps
 -- plugins['gen740/SmoothCursor.nvim'] = {
-    -- config = function()
-        -- require('smoothcursor').setup()
-    -- end,
+-- config = function()
+-- require('smoothcursor').setup()
+-- end,
 -- }
--- }}}
--- {{{ vim-tmux-focus-events : tmux event compatbility
+
+-- tmux event compatbility
 -- plugins['tmux-plugins/vim-tmux-focus-events'] = {}
--- }}}
--- {{{ alpha-nvim : Dashboard
+
+-- startup dashboard
 plugins['goolord/alpha-nvim'] = {
     config = function()
         require('alpha').setup(require('alpha.themes.dashboard').opts)
     end,
 }
--- }}}
--- {{{ vim-automkdir : Automatically make nonexistent directories
+
+-- automatically make nonexistent directories
 plugins['benizi/vim-automkdir'] = {}
--- }}}
--- {{{ restore_view.vim : Restore view
+
+-- restore view on restart
 plugins['vim-scripts/restore_view.vim'] = {
     config = function()
         vim.o.viewoptions = 'cursor,folds,slash,unix'
     end,
 }
--- }}}
--- {{{ project.nvim : Project root working directory
+
+-- project root working directory
 plugins['ahmedkhalf/project.nvim'] = {
     config = function()
         require('project_nvim').setup {}
     end,
 }
--- }}}
--- {{{ marks.nvim : Better marks
+
+-- better marks
 plugins['chentoast/marks.nvim'] = {
     config = function()
         require('marks').setup {}
     end,
 }
--- }}}
 
 return plugins

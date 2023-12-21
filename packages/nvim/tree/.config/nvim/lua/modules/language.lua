@@ -1,32 +1,11 @@
 -- luacheck: globals vim
 local plugins = {}
 
--- {{{ vim-agda : Agda support
--- plugins['msuperdock/vim-agda'] = {
--- requires = { { 'msuperdock/vim-foldout' } },
--- ft = { 'agda' },
--- config = function()
--- local bind = require('util.bind')
--- local bind_call = function(k, fun)
--- bind.nmap('<leader>a' .. k, '<CMD>call agda#' .. fun .. '()<CR>')
--- end
-
--- bind_call('l', 'load')
--- bind_call('a', 'abort')
--- bind_call('n', 'next')
--- bind_call('N', 'previous')
--- bind_call('i', 'infer')
--- bind_call('g', 'give')
--- bind_call('r', 'refine')
--- bind_call('c', 'context')
--- end,
--- }
--- }}}
--- {{{ cornelis : Agda support
+-- agda support
 plugins['isovector/cornelis'] = {
-    run = { 'stack build' },
-    requires = { { 'kana/vim-textobj-user' }, { 'neovimhaskell/nvim-hs.vim' }, { 'liuchengxu/vim-which-key' } },
-    setup = function()
+    build = { 'stack build' },
+    dependencies = { 'kana/vim-textobj-user', 'neovimhaskell/nvim-hs.vim', 'liuchengxu/vim-which-key' },
+    init = function()
         vim.g.cornelis_no_agda_input = 1
     end,
     config = function()
@@ -45,8 +24,8 @@ plugins['isovector/cornelis'] = {
         vim.cmd([[ au BufWritePost,BufReadPre *.lagda execute "normal! <cmd>CornelisLoad<CR>" ]])
     end,
 }
--- }}}
--- {{{ vim-asciidoctor : Asciidoctor support
+
+-- asciidoctor support
 plugins['habamax/vim-asciidoctor'] = {
     ft = { 'asciidoc' },
     config = function()
@@ -54,16 +33,16 @@ plugins['habamax/vim-asciidoctor'] = {
         vim.g.asciidoctor_syntax_conceal = 0
     end,
 }
--- }}}
--- {{{ coq-au-vim : Coq support
+
+-- Coq support
 plugins['https://framagit.org/manu/coq-au-vim'] = {
     requires = { 'jvoorhis/coq.vim' },
 }
--- }}}
--- {{{ rainbow_csv : csv utilities and highlighting
+
+-- csv utilities and highlighting
 plugins['mechatroner/rainbow_csv'] = { ft = { 'csv' } }
--- }}}
--- {{{ vim-crates : Cargo.toml crate version hints
+
+-- cargo crate version hints
 plugins['mhinz/vim-crates'] = {
     ft = { 'toml' },
     config = function()
@@ -74,65 +53,65 @@ plugins['mhinz/vim-crates'] = {
         vim.api.nvim_exec(aug, true)
     end,
 }
--- }}}
--- {{{ wmgraphviz.vim : Enhanced graphviz support
+
+-- enhanced graphviz support
 plugins['wannesm/wmgraphviz.vim'] = {}
--- }}}
--- {{{ ebnf-vim : EBNF syntax file
+
+-- ebnf syntax support
 plugins['a-vrma/ebnf-vim'] = {}
--- }}}
--- {{{ gentoo-syntax : ebuild support
+
+-- ebuild support
 plugins['gentoo/gentoo-syntax'] = {}
--- }}}
--- {{{ editorconfig-vim : editorconfig support
+
+-- editorconfig support
 plugins['editorconfig/editorconfig-vim'] = {}
--- }}}
--- {{{ elinks.vim : ELinks configuration syntax file
+
+-- elinks configuration syntax file
 plugins['vim-scripts/elinks.vim'] = {}
--- }}}
--- {{{ elvish.vim : elvish support
+
+-- elvish support
 plugins['dmix/elvish.vim'] = {}
--- }}}
--- {{{ i3config.vim : i3 configuration file syntax
+
+-- i3 configuration file syntax
 plugins['mboughaba/i3config.vim'] = {}
--- }}}
--- {{{ vim-llvm : LLVM IR support
+
+-- llvm ir support
 plugins['rhysd/vim-llvm'] = {}
--- }}}
--- {{{ BetterLua.vim : Better lua highlighting
+
+-- better lua highlighting
 plugins['euclidianAce/BetterLua.vim'] = { ft = { 'lua' } }
--- }}}
--- {{{ vim-mbsync : mbsyncrc highlighting
+
+-- mbsyncrc highlighting
 plugins['chunkhang/vim-mbsync'] = {}
--- }}}
--- {{{ neon-syntax.vim : NEON filetype support
+
+-- neon filetype support
 plugins['mirryi/neon-syntax.vim'] = {}
--- }}}
--- {{{ nginx.vim : Nginx configuration highlighting
+
+-- nginx configuration highlighting
 plugins['chr4/nginx.vim'] = {}
--- }}}
--- {{{ vim-pandoc : Pandoc support
+
+-- pandoc support
 plugins['vim-pandoc/vim-pandoc'] = {
-    requires = { { 'vim-pandoc/vim-pandoc-syntax' } },
+    dependencies = { 'vim-pandoc/vim-pandoc-syntax' },
     config = function()
         -- Disable certain pandoc modules
         -- vim.g['pandoc#modules#disabled'] = { 'folding', 'spell' }
     end,
 }
--- }}}
--- {{{ pgsql.vim : PostgreSQL support
+
+-- postgresql support
 plugins['lifepillar/pgsql.vim'] = { ft = { 'pgsql' } }
--- }}}
--- {{{ vim-rmarkdown : R Markdown support
+
+-- r markdown support
 plugins['vim-pandoc/vim-rmarkdown'] = {
     after = { 'vim-pandoc' },
     ft = { 'rmarkdown' },
 }
--- }}}
--- {{{ vim-reason : Reason support
+
+-- reasonml support
 plugins['arrowresearch/vim-reason'] = {}
--- }}}
--- {{{ vimtex : Good TeX support
+
+-- latex support
 plugins['lervag/vimtex'] = {
     config = function()
         local g = vim.g
@@ -155,17 +134,16 @@ plugins['lervag/vimtex'] = {
         g.vimtex_view_method = 'zathura'
     end,
 }
--- }}}
--- {{{ nabla.nvim : TeX math preview on hover
+
+-- tex math preview on hover
 plugins['jbyuki/nabla.nvim'] = {
     config = function()
         local bind = require('util.bind')
         bind.nmap('<leader>lf', '<cmd>lua require("nabla").popup()<CR>')
     end,
 }
--- }}}
--- {{{ vader.vim : Vader support
+
+-- vader support
 plugins['junegunn/vader.vim'] = {}
--- }}}
 
 return plugins

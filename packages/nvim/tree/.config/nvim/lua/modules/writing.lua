@@ -1,9 +1,9 @@
 -- luacheck: globals vim
 local plugins = {}
 
--- {{{ thesaurus_query.vim : Thesaurus utility
+-- thesaurus utility
 plugins['ron89/thesaurus_query.vim'] = {
-    setup = function()
+    init = function()
         local bind = require('util.bind')
         local g = vim.g
         -- Disable default keybinds
@@ -13,6 +13,5 @@ plugins['ron89/thesaurus_query.vim'] = {
         bind.nmap('<leader>t', '<cmd>ThesaurusQueryReplaceCurrentWord<CR>')
     end,
 }
--- }}}
 
 return plugins

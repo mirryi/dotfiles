@@ -2,10 +2,10 @@
 
 local plugins = {}
 
--- {{{ traces.vim : Preview search and replace
+-- preview search and replace
 plugins['markonm/traces.vim'] = {}
--- }}}
--- {{{ nerdcommenter : Comment and uncomment with keybindings
+
+-- comment and uncomment with keybindings
 plugins['scrooloose/nerdcommenter'] = {
     -- This plugin binds <leader>c<space>
     config = function()
@@ -13,13 +13,13 @@ plugins['scrooloose/nerdcommenter'] = {
         g.NERDSpaceDelims = 1
     end,
 }
--- }}}
--- {{{ tabular : Automated text table spacing
+
+-- automated text table spacing
 plugins['godlygeek/tabular'] = {
     ft = { 'asciidoc', 'markdown', 'pandoc', 'rmarkdown', 'text', 'tex' },
 }
--- }}}
--- {{{ vim-easy-align : Easy text alignment
+
+-- easy text alignment
 plugins['junegunn/vim-easy-align'] = {
     config = function()
         local bind = require('util.bind')
@@ -28,8 +28,8 @@ plugins['junegunn/vim-easy-align'] = {
         bind.vmap('gA', '<Plug>(EasyAlign)')
     end,
 }
--- }}}
--- {{{ splitjoin.vim : Toggle between short/long constructs
+
+-- toggle between short/long constructs
 plugins['AndrewRadev/splitjoin.vim'] = {
     config = function()
         local g = vim.g
@@ -44,19 +44,19 @@ plugins['AndrewRadev/splitjoin.vim'] = {
         bind.nmap('<leader>S', '<cmd>SplitjoinSplit<CR>')
     end,
 }
--- }}}
--- {{{ range-highlight.nvim : Highlight selected ranges
+
+-- highlight selected ranges
 plugins['winston0410/range-highlight.nvim'] = {
-    requires = { { 'winston0410/cmd-parser.nvim' } },
+    dependencies = { 'winston0410/cmd-parser.nvim' },
     config = function()
         require('range-highlight').setup {}
     end,
 }
--- }}}
--- {{{ vim-surround : More surround movements
+
+-- more surround movements
 plugins['tpope/vim-surround'] = {}
--- }}}
--- {{{ tabout.nvim : Tab out of parentheses
+
+-- tab-out of parentheses
 plugins['abecodes/tabout.nvim'] = {
     config = function()
         require('tabout').setup {
@@ -81,13 +81,13 @@ plugins['abecodes/tabout.nvim'] = {
     end,
     after = { 'nvim-treesitter' },
 }
--- }}}
--- {{{ jpformat.vim : Text formatting for Japanese
+
+-- text formatting for Japanese
 plugins['fuenor/JpFormat.vim'] = {}
--- }}}
--- {{{ nvim-ufo : Better folding
+
+-- better folding
 plugins['kevinhwang91/nvim-ufo'] = {
-    requires = 'kevinhwang91/promise-async',
+    dependencies = {'kevinhwang91/promise-async'},
     config = function()
         -- vim.wo.foldcolumn = '1'
         -- vim.wo.foldenable = true

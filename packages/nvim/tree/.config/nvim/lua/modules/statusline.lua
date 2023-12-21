@@ -1,19 +1,19 @@
 -- luacheck: globals vim
 local plugins = {}
 
--- {{{ lualine.nvim : Statusline
-plugins['hoob3rt/lualine.nvim'] = { requires = { { 'kyazdani42/nvim-web-devicons', 'arkav/lualine-lsp-progress' } } }
--- }}}
--- {{{ gitsigns.nvim : Git signs in the signcolumn
+-- statusline
+plugins['hoob3rt/lualine.nvim'] = { dependencies = { 'kyazdani42/nvim-web-devicons', 'arkav/lualine-lsp-progress' } }
+
+-- git signs in the signcolumn
 plugins['lewis6991/gitsigns.nvim'] = {
-    requires = { { 'nvim-lua/plenary.nvim' } },
+    dependencies = { 'nvim-lua/plenary.nvim' },
     config = function()
         local gitsigns = require('gitsigns')
         gitsigns.setup()
     end,
 }
--- }}}
--- {{{ barbar.nvim : Sane buffer tabline
+
+-- sane buffer tabline
 plugins['romgrk/barbar.nvim'] = {
     config = function()
         local bind = require('util.bind')
@@ -58,8 +58,8 @@ plugins['romgrk/barbar.nvim'] = {
         nmap('tc', ' <cmd>BufferClose<CR>', { silent = true })
     end,
 }
--- }}}
--- {{{ minimap.vim : Minimap
+
+-- minimap
 -- plugins['wfxr/minimap.vim'] = {
 -- config = function()
 -- local bind = require('util.bind')
@@ -67,8 +67,8 @@ plugins['romgrk/barbar.nvim'] = {
 -- bind.nmap('<leader>m', '<cmd>MinimapToggle<CR>', { silent = true })
 -- end,
 -- }
--- }}}
--- {{{ wilder.nvim : wildmenu enhancements
+
+-- wildmenu enhancements
 plugins['gelguy/wilder.nvim'] = {
     config = function()
         local cmd, fn = vim.cmd, vim.fn
@@ -90,8 +90,8 @@ plugins['gelguy/wilder.nvim'] = {
         )
     end,
 }
--- }}}
--- {{{ which-key.nvim : Popup with keybind suggestions
+
+-- popup with keybind suggestions
 plugins['folke/which-key.nvim'] = {
     config = function()
         local whichkey = require('which-key')
@@ -107,9 +107,8 @@ plugins['folke/which-key.nvim'] = {
         }
     end,
 }
--- }}}
--- {{{ nvim-notify: Fancy notifications
+
+-- fancy notifications
 plugins['rcarriga/nvim-notify'] = {}
--- }}}
 
 return plugins
