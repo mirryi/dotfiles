@@ -20,7 +20,6 @@ plugins['hrsh7th/nvim-cmp'] = {
         'hrsh7th/cmp-path',
         'f3fora/cmp-spell',
         'hrsh7th/cmp-buffer',
-        'ray-x/lsp_signature.nvim' ,
     },
     -- }}}
     -- {{{ config

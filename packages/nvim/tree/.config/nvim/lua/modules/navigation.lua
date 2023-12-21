@@ -27,6 +27,20 @@ plugins['nvim-telescope/telescope.nvim'] = {
     end,
 }
 
+-- ide-like breadcrumbs
+plugins['Bekaboo/dropbar.nvim'] = {
+    dependencies = {
+        'nvim-tree/nvim-web-devicons',
+        {
+            'nvim-telescope/telescope-fzf-native.nvim',
+            build = 'cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build',
+        },
+    },
+    config = function()
+        vim.keymap.set('n', '<leader>fm', '<cmd>lua require("dropbar.api").pick()<CR>')
+    end,
+}
+
 -- better quickfix list
 -- plugins['kevinhwang91/nvim-bqf'] = {}
 
