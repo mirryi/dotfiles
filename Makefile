@@ -5,7 +5,7 @@ VENDOR := vendor
 PROFILES := profiles
 LOADED := loaded.lua
 
-.PHONY : gruvbox-dark gruvbox-light nord iceberg
+.PHONY : gruvbox-dark gruvbox-light
 
 gruvbox-dark	:
 	ln -sf $(PROFILES)/gruvbox-dark.lua $(LOADED)
@@ -13,12 +13,4 @@ gruvbox-dark	:
 
 gruvbox-light	:
 	ln -sf $(PROFILES)/gruvbox-light.lua $(LOADED)
-	$(STEW) -vvv $(wildcard packages/*)
-
-nord :
-	ln -sf $(PROFILES)/nord.lua $(LOADED)
-	$(STEW) -vvv $(wildcard packages/*)
-
-iceberg :
-	ln -sf $(PROFILES)/iceberg.lua $(LOADED)
 	$(STEW) -vvv $(wildcard packages/*)
