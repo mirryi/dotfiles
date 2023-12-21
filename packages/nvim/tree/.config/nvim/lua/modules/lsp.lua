@@ -49,6 +49,30 @@ plugins['j-hui/fidget.nvim'] = {
     end,
 }
 
+-- symbols outline
+plugins['hedyhli/outline.nvim'] = {
+    config = function()
+        require('outline').setup()
+
+        vim.keymap.set('n', 'go', '<cmd>Outline<CR>')
+    end,
+}
+
+-- symbol usage text
+plugins['Wansmer/symbol-usage.nvim'] = {
+    event = 'LspAttach',
+    config = function()
+        require('symbol-usage').setup()
+    end,
+}
+
+-- hover hints
+plugins['soulis-1256/hoverhints.nvim'] = {
+    config = function()
+        require('hoverhints').setup()
+    end,
+}
+
 -- treesitter support
 plugins['nvim-treesitter/nvim-treesitter'] = {
     dependencies = {
@@ -143,21 +167,23 @@ plugins['nvim-treesitter/nvim-treesitter'] = {
 plugins['neovim/nvim-lspconfig'] = {
     dependencies = {
         -- non-lsp linter integration
-        'jose-elias-alvarez/null-ls.nvim',
+        'nvimtools/none-ls.nvim',
         -- support for tsserver extensions
         'jose-elias-alvarez/nvim-lsp-ts-utils',
         -- rust inline type indications
         'nvim-lua/lsp_extensions.nvim',
         -- better UIs
-        { 'RishabhRD/nvim-lsputils', dependencies = { { 'RishabhRD/popfix' } } },
+        { 'RishabhRD/nvim-lsputils', dependencies = { 'RishabhRD/popfix' } },
         -- better code actions menus
-        -- { 'weilbith/nvim-code-action-menu' },
+        { 'weilbith/nvim-code-action-menu' },
         -- virtual text for types
         'jubnzv/virtual-types.nvim',
         -- schema access for jsonls
         'b0o/SchemaStore.nvim',
+        -- signature help for completion
+        'ray-x/lsp_signature.nvim',
         -- also use notify
-        'nvim-notify' 
+        'nvim-notify',
     },
     config = function()
         -- show diagnostics on hover
@@ -206,7 +232,9 @@ plugins['akinsho/flutter-tools.nvim'] = {
 -- enahcned rust language server and tools
 plugins['simrat39/rust-tools.nvim'] = {
     dependencies = {
-        'nvim-lua/popup.nvim', 'nvim-lua/plenary.nvim', 'nvim-telescope/telescope.nvim',
+        'nvim-lua/popup.nvim',
+        'nvim-lua/plenary.nvim',
+        'nvim-telescope/telescope.nvim',
     },
     config = function()
         local rust_tools = require('rust-tools')
