@@ -9,18 +9,6 @@ configuration files. Some packages list other packages as prerequisites.
 
 Most of the package documentation is outdated.
 
--   [Installation](#installation)
--   [Profiles](#profiles)
--   [To-Do](#to-do)
-
-## Hosts
-
-[hosts/](./hosts) contains system configurations and files for specific machines.
-
--   `segv` - Gentoo system on Lenovo Flex 6 laptop
--   `origin` - Arch home PC
-
-
 ## Installation
 
 1.  Install `stew`:
