@@ -3,7 +3,7 @@ local lib = require('lib')
 pkg.name = 'gtk'
 pkg.dependencies:extend('../sh')
 
-local themes = { 'gruvbox-gtk', 'nordic' }
+local themes = { 'gruvbox-gtk' }
 local theme_files = functional.map(themes, function(v)
     return {
         src = 'themes/' .. v,
