@@ -45,7 +45,9 @@ plugins['folke/lsp-trouble.nvim'] = {
 -- lsp status indicator
 plugins['j-hui/fidget.nvim'] = {
     config = function()
-        require('fidget').setup()
+        local fidget = require('fidget')
+        fidget.setup()
+        vim.notify = fidget.notify
     end,
 }
 
@@ -62,7 +64,13 @@ plugins['hedyhli/outline.nvim'] = {
 plugins['Wansmer/symbol-usage.nvim'] = {
     event = 'LspAttach',
     config = function()
-        require('symbol-usage').setup()
+        require('symbol-usage').setup {
+            vt_position = 'end_of_line',
+            request_pending_text = false,
+            references = { enabled = true, include_declaration = true },
+            definition = { enabled = false },
+            implementation = { enabled = false },
+        }
     end,
 }
 
@@ -182,8 +190,6 @@ plugins['neovim/nvim-lspconfig'] = {
         'b0o/SchemaStore.nvim',
         -- signature help for completion
         'ray-x/lsp_signature.nvim',
-        -- also use notify
-        'nvim-notify',
     },
     config = function()
         -- show diagnostics on hover
@@ -215,9 +221,35 @@ plugins['mfussenegger/nvim-jdtls'] = {
 
 -- enhanced scala language server and tools
 plugins['scalameta/nvim-metals'] = {
+    ft = { 'scala', 'sbt', 'java' },
     dependencies = { 'nvim-lua/plenary.nvim' },
-    config = function()
-        require('modules.lsp.servers.metals')
+    opts = function()
+        local handlers = require('modules.lsp.handlers')
+        local metals_capabilities = vim.deepcopy(handlers.capabilities)
+        metals_capabilities.offsetEncoding = { 'utf-8' }
+
+        local metals_config = require('metals').bare_config()
+        metals_config.on_attach = handlers.on_attach
+        metals_config.capabilities = metals_capabilities
+        metals_config.settings = {
+            useGlobalExecutable = true,
+            showImplicitArguments = true,
+            showInferredType = true,
+            superMethodLensesEnabled = true,
+            showImplicitConversionsAndClasses = true,
+        }
+
+        return metals_config
+    end,
+    config = function(self, metals_config)
+        local nvim_metals_group = vim.api.nvim_create_augroup('nvim-metals', { clear = true })
+        vim.api.nvim_create_autocmd('FileType', {
+            pattern = self.ft,
+            callback = function()
+                require('metals').initialize_or_attach(metals_config)
+            end,
+            group = nvim_metals_group,
+        })
     end,
 }
 
