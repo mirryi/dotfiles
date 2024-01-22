@@ -6,12 +6,12 @@ pkg.dependencies:extend('../qt')
 
 pkg.files.trees:clear()
 pkg.files.templates:push {
-    src = 'config/alacritty.yml.hbs',
-    dest = '.config/alacritty/alacritty.yml',
+    src = 'config/alacritty.toml.hbs',
+    dest = '.config/alacritty/alacritty.toml',
     engine = 'handlebars',
     partials = {
-        common = 'config/common.yml',
-        profile = 'config/profile.yml.hbs',
+        common = 'config/common.toml',
+        profile = 'config/profile.toml.hbs',
     },
 }
 
