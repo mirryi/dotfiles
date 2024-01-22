@@ -224,6 +224,24 @@ plugins['scalameta/nvim-metals'] = {
     ft = { 'scala', 'sbt', 'java' },
     dependencies = { 'nvim-lua/plenary.nvim' },
     opts = function()
+        local function metals_status_handler(_, status, ctx)
+            local val = {}
+            if status.hide then
+                val = { kind = 'end' }
+            elseif status.show then
+                val = { kind = 'begin', message = status.text }
+            elseif status.text then
+                val = { kind = 'report', message = status.text }
+            else
+                return
+            end
+            local info = { client_id = ctx.client_id }
+            local msg = { token = 'metals', value = val }
+            vim.lsp.handlers['$/progress'](nil, msg, info)
+        end
+
+        vim.g['metals/status'] = metals_status_handler
+
         local handlers = require('modules.lsp.handlers')
         local metals_capabilities = vim.deepcopy(handlers.capabilities)
         metals_capabilities.offsetEncoding = { 'utf-8' }
@@ -231,12 +249,14 @@ plugins['scalameta/nvim-metals'] = {
         local metals_config = require('metals').bare_config()
         metals_config.on_attach = handlers.on_attach
         metals_config.capabilities = metals_capabilities
+        metals_config.init_options.statusBarProvider = true
         metals_config.settings = {
             useGlobalExecutable = true,
-            showImplicitArguments = true,
             showInferredType = true,
-            superMethodLensesEnabled = true,
+            showImplicitArguments = true,
             showImplicitConversionsAndClasses = true,
+            superMethodLensesEnabled = true,
+            enableSemanticHighlighting = false,
         }
 
         return metals_config
