@@ -40,6 +40,8 @@ plugins['sainnhe/gruvbox-material'] = {
         hilink['@method.call.cpp'] = 'Green'
 
         hilink['@function.call.lua'] = 'Green'
+
+        hilink['@function.call.scala'] = 'Green'
     end,
 }
 
