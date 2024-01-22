@@ -35,6 +35,9 @@ bind T fillcmdline tab
 bind O fillcmdline tabopen
 bind o fillcmdline open
 
+" Unbind dumb bindings
+unbind <C-a>
+
 " Set default search engine
 set searchengine duckduckgo
 
@@ -116,6 +119,3 @@ setpref toolkit.telemetry.unified false
 setpref toolkit.telemetry.updatePing.enabled false
 
 " setpref webgl.disabled true
-
-" Source other files
-source ~/.config/tridactyl/bookmarks
