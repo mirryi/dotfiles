@@ -8,9 +8,12 @@ plugins['markonm/traces.vim'] = {}
 -- comment and uncomment with keybindings
 plugins['scrooloose/nerdcommenter'] = {
     -- This plugin binds <leader>c<space>
-    config = function()
+    init = function()
         local g = vim.g
         g.NERDSpaceDelims = 1
+        g.NERDCustomDelimeters = {
+            dafny = { left = '//' },
+        }
     end,
 }
 
@@ -87,7 +90,7 @@ plugins['fuenor/JpFormat.vim'] = {}
 
 -- better folding
 plugins['kevinhwang91/nvim-ufo'] = {
-    dependencies = {'kevinhwang91/promise-async'},
+    dependencies = { 'kevinhwang91/promise-async' },
     config = function()
         -- vim.wo.foldcolumn = '1'
         -- vim.wo.foldenable = true

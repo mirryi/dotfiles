@@ -144,6 +144,9 @@ lspconfig.lua_ls.setup {
 -- capabilities = capabilities,
 -- }
 
+-- nickel language server
+lspconfig.nickel_ls.setup { on_attach = on_attach, capabilities = capabilities }
+
 -- ocaml/reason language server
 lspconfig.ocamllsp.setup { on_attach = on_attach, capabilities = capabilities }
 

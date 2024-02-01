@@ -90,6 +90,9 @@ plugins['mirryi/neon-syntax.vim'] = {}
 -- nginx configuration highlighting
 plugins['chr4/nginx.vim'] = {}
 
+-- nickel highlighting
+plugins['nickel-lang/vim-nickel'] = {}
+
 -- pandoc support
 plugins['vim-pandoc/vim-pandoc'] = {
     dependencies = { 'vim-pandoc/vim-pandoc-syntax' },
