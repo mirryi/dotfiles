@@ -1,21 +1,20 @@
 -- luacheck: globals vim
+local handlers = require('modules.lsp.handlers')
+
 local plugins = {}
 
 -- code action indicator
 plugins['kosayoda/nvim-lightbulb'] = {
-    config = function()
-        local lightbulb = require('nvim-lightbulb')
-        lightbulb.setup {
-            sign = {
-                enabled = false,
-            },
-            virtual_text = {
-                enabled = true,
-                text = '',
-            },
-            autocmd = { enabled = true },
-        }
-    end,
+    opts = {
+        sign = {
+            enabled = false,
+        },
+        virtual_text = {
+            enabled = true,
+            text = '',
+        },
+        autocmd = { enabled = true },
+    },
 }
 
 -- highlight same item instances
@@ -75,11 +74,7 @@ plugins['Wansmer/symbol-usage.nvim'] = {
 }
 
 -- hover hints
-plugins['soulis-1256/hoverhints.nvim'] = {
-    config = function()
-        require('hoverhints').setup()
-    end,
-}
+plugins['soulis-1256/eagle.nvim'] = {}
 
 -- treesitter support
 plugins['nvim-treesitter/nvim-treesitter'] = {
@@ -90,9 +85,7 @@ plugins['nvim-treesitter/nvim-treesitter'] = {
         'windwp/nvim-ts-autotag',
         {
             'romgrk/nvim-treesitter-context',
-            config = function()
-                require('treesitter-context').setup { enable = true, throttle = true }
-            end,
+            opts = { enable = true, throttle = true },
         },
         'haringsrob/nvim_context_vt',
         -- spellcheck using treesitter
@@ -113,12 +106,7 @@ plugins['nvim-treesitter/nvim-treesitter'] = {
             end,
         },
         -- swapping of parameters, lists, arrays, etc.
-        {
-            'mizlan/iswap.nvim',
-            config = function()
-                require('iswap').setup {}
-            end,
-        },
+        'mizlan/iswap.nvim',
         -- dimming of unused code.
         -- {
         -- 'narutoxy/dim.lua',
@@ -242,7 +230,6 @@ plugins['scalameta/nvim-metals'] = {
 
         vim.g['metals/status'] = metals_status_handler
 
-        local handlers = require('modules.lsp.handlers')
         local metals_capabilities = vim.deepcopy(handlers.capabilities)
         metals_capabilities.offsetEncoding = { 'utf-8' }
 
@@ -281,6 +268,23 @@ plugins['akinsho/flutter-tools.nvim'] = {
     end,
 }
 
+-- lean4 support
+plugins['Julian/lean.nvim'] = {
+    event = { 'BufReadPre *.lean', 'BufNewFile *.lean' },
+    dependencies = {
+        'neovim/nvim-lspconfig',
+        'nvim-lua/plenary.nvim',
+    },
+    -- see details below for full configuration options
+    opts = {
+        lsp = {
+            on_attach = handlers.on_attach,
+            capabilities = handlers.capabilities,
+        },
+        mappings = true,
+    },
+}
+
 -- enahcned rust language server and tools
 plugins['simrat39/rust-tools.nvim'] = {
     dependencies = {
@@ -288,38 +292,30 @@ plugins['simrat39/rust-tools.nvim'] = {
         'nvim-lua/plenary.nvim',
         'nvim-telescope/telescope.nvim',
     },
-    config = function()
-        local rust_tools = require('rust-tools')
-
-        local handlers = require('modules.lsp.handlers')
-        local on_attach = handlers.on_attach
-        local capabilities = handlers.capabilities
-
-        rust_tools.setup {
-            tools = {
-                autoSetHints = true,
-                runnables = { use_telescope = true },
-                inlay_hints = {
-                    only_current_line = false,
-                    show_parameter_hints = true,
-                    max_len_align = false,
-                },
-                crate_graph = { output = nil, full = true },
+    opts = {
+        tools = {
+            autoSetHints = true,
+            runnables = { use_telescope = true },
+            inlay_hints = {
+                only_current_line = false,
+                show_parameter_hints = true,
+                max_len_align = false,
             },
-            server = {
-                on_attach = on_attach,
-                capabilities = capabilities,
-                settings = {
-                    ['rust-analyzer'] = {
-                        assist = { importGranularity = 'module' },
-                        cargo = { loadOutDirsFromCheck = true },
-                        checkOnSave = { command = 'clippy' },
-                        procMacro = { enable = true },
-                    },
+            crate_graph = { output = nil, full = true },
+        },
+        server = {
+            on_attach = handlers.on_attach,
+            capabilities = handlers.capabilities,
+            settings = {
+                ['rust-analyzer'] = {
+                    assist = { importGranularity = 'module' },
+                    cargo = { loadOutDirsFromCheck = true },
+                    checkOnSave = { command = 'clippy' },
+                    procMacro = { enable = true },
                 },
             },
-        }
-    end,
+        },
+    },
 }
 
 -- enhanced clangd and tools
