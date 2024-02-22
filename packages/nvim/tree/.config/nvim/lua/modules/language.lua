@@ -93,6 +93,9 @@ plugins['chr4/nginx.vim'] = {}
 -- nickel highlighting
 plugins['nickel-lang/vim-nickel'] = {}
 
+-- nusmv syntax
+plugins['wannesm/wmnusmv.vim'] = {}
+
 -- pandoc support
 plugins['vim-pandoc/vim-pandoc'] = {
     dependencies = { 'vim-pandoc/vim-pandoc-syntax' },
