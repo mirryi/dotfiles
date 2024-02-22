@@ -37,6 +37,7 @@ bind o fillcmdline open
 
 " Unbind dumb bindings
 unbind <C-a>
+unbind <C-x>
 
 " Set default search engine
 set searchengine duckduckgo
