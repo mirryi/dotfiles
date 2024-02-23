@@ -11,7 +11,7 @@ M.colorscheme = function(dl, palette, bg)
     g.gruvbox_material_background = bg
 
     -- Enable bold function name
-    g.gruvbox_material_enable_bold = 1
+    -- g.gruvbox_material_enable_bold = 1
 
     -- Enable italics
     g.gruvbox_material_enable_italic = 1
