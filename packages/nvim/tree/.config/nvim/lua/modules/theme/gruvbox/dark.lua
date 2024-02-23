@@ -15,6 +15,7 @@ plugins['sainnhe/gruvbox-material'] = {
 
         -- Treesitter highlight modifications
         local hilink = U.hi.link
+
         hilink.TSField = 'Fg'
         -- hilink.TSKeyword = 'RedItalic'
         hilink.TSKeywordOperator = 'Orange'
@@ -26,22 +27,8 @@ plugins['sainnhe/gruvbox-material'] = {
         hilink.TSVariableBuiltin = 'BlueItalic'
         hilink.TSConstant = 'Purple'
 
-        hilink.TSFunction = 'Green'
         hilink.TSFuncMacro = 'Purple'
         hilink.TSFuncBuiltin = 'Purple'
-        hilink.TSMethod = 'Green'
-        hilink.TSConstructor = 'Green'
-        -- hilink.TSVariable = 'Green'
-
-        hilink.rustFuncCall = 'Green'
-        hilink.rustFuncName = 'Green'
-
-        hilink['@function.call.cpp'] = 'Green'
-        hilink['@method.call.cpp'] = 'Green'
-
-        hilink['@function.call.lua'] = 'Green'
-
-        hilink['@function.call.scala'] = 'Green'
     end,
 }
 
