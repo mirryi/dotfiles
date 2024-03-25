@@ -193,7 +193,7 @@ plugins['neovim/nvim-lspconfig'] = {
 
 -- debugging support
 plugins['mfussenegger/nvim-dap'] = {
-    dependencies = { 'rcarriga/nvim-dap-ui', 'theHamsta/nvim-dap-virtual-text' },
+    dependencies = { { 'rcarriga/nvim-dap-ui', dependencies = 'nvim-neotest/nvim-nio' }, 'theHamsta/nvim-dap-virtual-text' },
     config = function()
         require('modules.lsp.dap')
     end,
