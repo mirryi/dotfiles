@@ -302,17 +302,11 @@ nullls.setup {
         -- go
         builtins.formatting.goimports,
 
-        -- json
-        builtins.formatting.fixjson,
-
         -- javascript / typescript / etc.
         builtins.formatting.prettierd,
         builtins.formatting.rustywind,
         -- builtins.diagnostics.stylelint,
         -- builtins.formatting.stylelint,
-
-        -- haskell
-        builtins.formatting.fourmolu,
 
         -- latex
         -- builtins.diagnostics.chktex,
@@ -334,7 +328,6 @@ nullls.setup {
 
         -- php
         builtins.diagnostics.phpstan,
-        builtins.diagnostics.psalm,
         builtins.diagnostics.phpcs,
 
         -- python
@@ -343,7 +336,6 @@ nullls.setup {
         -- builtins.formatting.autopep8,
 
         -- shell
-        builtins.diagnostics.shellcheck,
         builtins.formatting.shfmt,
         builtins.formatting.shellharden,
 
