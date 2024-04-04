@@ -149,6 +149,17 @@ plugins['jbyuki/nabla.nvim'] = {
     end,
 }
 
+-- typst support
+plugins['kaarmu/typst.vim'] = {
+    ft = { 'typst' },
+    lazy = false,
+}
+
+-- typst preview
+plugins['chomosuke/typst-preview.nvim'] = {
+    ft = { 'typst' },
+}
+
 -- vader support
 plugins['junegunn/vader.vim'] = {}
 

@@ -238,6 +238,12 @@ lspconfig.tsserver.setup {
     capabilities = capabilities,
 }
 
+-- typst language server
+lspconfig.typst_lsp.setup {
+    on_attach = on_attach,
+    capabilities = capabilities,
+}
+
 -- vim language server
 lspconfig.vimls.setup { on_attach = on_attach, capabilities = capabilities }
 
