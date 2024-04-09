@@ -143,6 +143,7 @@ plugins['lervag/vimtex'] = {
 
 -- tex math preview on hover
 plugins['jbyuki/nabla.nvim'] = {
+    ft = { 'latex' },
     config = function()
         local bind = require('util.bind')
         bind.nmap('<leader>lf', '<cmd>lua require("nabla").popup()<CR>')
