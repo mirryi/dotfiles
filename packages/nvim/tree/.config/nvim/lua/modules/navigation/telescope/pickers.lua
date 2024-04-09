@@ -16,7 +16,7 @@ M.files = function(relative)
 end
 
 M.git_files = function()
-    builtin.git_files()
+    builtin.git_files { additional_args = { '--hidden' } }
 end
 
 M.oldfiles = function(relative)
@@ -28,7 +28,7 @@ M.filebrowser = function(relative)
 end
 
 M.ripgrep = function(relative)
-    builtin.live_grep { cwd = cwd_of(relative) }
+    builtin.live_grep { cwd = cwd_of(relative), additional_args = { '--hidden' } }
 end
 
 M.buffers = function()
