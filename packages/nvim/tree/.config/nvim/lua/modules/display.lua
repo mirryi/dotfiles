@@ -56,4 +56,6 @@ plugins['https://gitlab.com/yorickpeterse/nvim-pqf.git'] = {
     end,
 }
 
+plugins['Pocco81/true-zen.nvim'] = {}
+
 return plugins
