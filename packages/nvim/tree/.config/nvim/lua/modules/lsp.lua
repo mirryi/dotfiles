@@ -97,12 +97,10 @@ plugins['nvim-treesitter/nvim-treesitter'] = {
         --     end,
         -- },
         -- rainbow parentheses
-        'p00f/nvim-ts-rainbow',
         {
-            'luochen1990/rainbow',
-            ft = { 'latex', 'ocaml', 'reason', 'rust', 'tex' },
+            'hiphish/rainbow-delimiters.nvim',
             setup = function()
-                vim.g.rainbow_active = 1
+                require('rainbow-delimiters.setup').setup()
             end,
         },
         -- swapping of parameters, lists, arrays, etc.
@@ -193,7 +191,10 @@ plugins['neovim/nvim-lspconfig'] = {
 
 -- debugging support
 plugins['mfussenegger/nvim-dap'] = {
-    dependencies = { { 'rcarriga/nvim-dap-ui', dependencies = 'nvim-neotest/nvim-nio' }, 'theHamsta/nvim-dap-virtual-text' },
+    dependencies = {
+        { 'rcarriga/nvim-dap-ui', dependencies = 'nvim-neotest/nvim-nio' },
+        'theHamsta/nvim-dap-virtual-text',
+    },
     config = function()
         require('modules.lsp.dap')
     end,
