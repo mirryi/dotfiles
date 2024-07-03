@@ -35,9 +35,10 @@ plugins['habamax/vim-asciidoctor'] = {
 }
 
 -- Coq support
-plugins['https://framagit.org/manu/coq-au-vim'] = {
-    requires = { 'jvoorhis/coq.vim' },
-}
+plugins['whonore/Coqtail'] = {}
+-- plugins['https://framagit.org/manu/coq-au-vim'] = {
+-- requires = { 'jvoorhis/coq.vim' },
+-- }
 
 -- csv utilities and highlighting
 plugins['mechatroner/rainbow_csv'] = { ft = { 'csv' } }
