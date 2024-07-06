@@ -5,23 +5,29 @@ local plugins = {}
 plugins['isovector/cornelis'] = {
     build = { 'stack build' },
     dependencies = { 'kana/vim-textobj-user', 'neovimhaskell/nvim-hs.vim', 'liuchengxu/vim-which-key' },
-    init = function()
-        vim.g.cornelis_no_agda_input = 1
-    end,
     config = function()
         local bind = require('util.bind')
         bind.nmap('<leader>al', '<cmd>CornelisLoad<CR>')
-        bind.nmap('<leader>ar', '<cmd>CornelisRefine<CR>')
-        bind.nmap('<leader>ac', '<cmd>CornelisMakeCase<CR>')
-        bind.nmap('<leader>ae', '<cmd>CornelisTypeContext<CR>')
+        bind.nmap('<leader>aG', '<cmd>CornelisGoals<CR>')
+        bind.nmap('<leader>aR', '<cmd>CornelisRestart<CR>')
+        bind.nmap('<leader>aA', '<cmd>CornelisAbort<CR>')
         bind.nmap('<leader>as', '<cmd>CornelisSolve<CR>')
-        bind.nmap('<leader>aa', '<cmd>CornelisAuto<CR>')
-        bind.nmap('<leader>ag', '<cmd>CornelisGoToDefinition<CR>')
+        bind.nmap('<leader>ad', '<cmd>CornelisGoToDefinition<CR>')
         bind.nmap('<leader>aN', '<cmd>CornelisPrevGoal<CR>')
         bind.nmap('<leader>an', '<cmd>CornelisNextGoal<CR>')
+        bind.nmap('<leader>aM', '<cmd>CornelisQuestionToMeta<CR>')
+        bind.nmap('<leader>aC', '<cmd>CornelisCloseInfoWindows<CR>')
 
-        vim.cmd([[ au BufWritePost,BufReadPre *.agda execute "normal! <cmd>CornelisLoad<CR>" ]])
-        vim.cmd([[ au BufWritePost,BufReadPre *.lagda execute "normal! <cmd>CornelisLoad<CR>" ]])
+        bind.nmap('<leader>ag', '<cmd>CornelisGive<CR>')
+        bind.nmap('<leader>ar', '<cmd>CornelisRefine<CR>')
+        bind.nmap('<leader>aL', '<cmd>CornelisElaborate<CR>')
+        bind.nmap('<leader>aa', '<cmd>CornelisAuto<CR>')
+        bind.nmap('<leader>ac', '<cmd>CornelisMakeCase<CR>')
+        bind.nmap('<leader>ae', '<cmd>CornelisTypeContext<CR>')
+        bind.nmap('<leader>ai', '<cmd>CornelisTypeInfer<CR>')
+        bind.nmap('<leader>aE', '<cmd>CornelisTypeContxtInfer<CR>')
+        bind.nmap('<leader>aN', '<cmd>CornelisNormalize<CR>')
+        bind.nmap('<leader>aw', '<cmd>CornelisWhyInScope<CR>')
     end,
 }
 
