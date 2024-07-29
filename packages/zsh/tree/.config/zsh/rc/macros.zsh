@@ -1,3 +1,5 @@
+#!/bin/zsh
+
 # Traverse up the filesystem n times
 up() {
   LIMIT=$1

@@ -7,7 +7,7 @@ export XDG_DATA_HOME="${HOME}/.local/share"
 export XDG_STATE_HOME="${HOME}/.local/var/lib"
 export XDG_LIB_HOME="${HOME}/.local/lib"
 export XDG_LOG_HOME="${HOME}/.local/var/log"
-export LD_LIBRARY_PATH="${XDG_LIB_HOME}"
+export LD_LIBRARY_PATH="$XDG_LIB_HOME"
 export XDG_DATA_DIRS="${XDG_DATA_HOME}:/usr/local/share:/usr/share"
 
 # Local user binaries
@@ -15,12 +15,8 @@ if [ -d "$HOME/.local/bin" ]; then
 	export PATH="$HOME/.local/bin:$PATH"
 fi
 
-# Load utility functions
+# Load everything!!
 . "$XDG_CONFIG_HOME/sh/util"
-
-# Load sh package envs
 shloadenv "$XDG_CONFIG_HOME/sh"
 pathdedup
-
-# Unload utility functions
 unsetutil
