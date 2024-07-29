@@ -1,5 +1,5 @@
 #!/bin/sh
-alias g='g'
+alias g='git'
 alias gc='g commit'
 alias gcmsg='gc -m'
 alias gp='g push'
