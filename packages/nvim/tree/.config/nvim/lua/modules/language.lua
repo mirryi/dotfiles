@@ -5,6 +5,7 @@ local plugins = {}
 plugins['isovector/cornelis'] = {
     build = { 'stack build' },
     dependencies = { 'kana/vim-textobj-user', 'neovimhaskell/nvim-hs.vim', 'liuchengxu/vim-which-key' },
+    init = function() end,
     config = function()
         local bind = require('util.bind')
         bind.nmap('<leader>al', '<cmd>CornelisLoad<CR>')
@@ -25,7 +26,7 @@ plugins['isovector/cornelis'] = {
         bind.nmap('<leader>ac', '<cmd>CornelisMakeCase<CR>')
         bind.nmap('<leader>ae', '<cmd>CornelisTypeContext<CR>')
         bind.nmap('<leader>ai', '<cmd>CornelisTypeInfer<CR>')
-        bind.nmap('<leader>aE', '<cmd>CornelisTypeContxtInfer<CR>')
+        bind.nmap('<leader>aE', '<cmd>CornelisTypeContextInfer<CR>')
         bind.nmap('<leader>aN', '<cmd>CornelisNormalize<CR>')
         bind.nmap('<leader>aw', '<cmd>CornelisWhyInScope<CR>')
     end,

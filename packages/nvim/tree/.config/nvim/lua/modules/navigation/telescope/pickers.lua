@@ -24,7 +24,7 @@ M.oldfiles = function(relative)
 end
 
 M.filebrowser = function(relative)
-    extensions.file_browser.file_browser { cwd = cwd_of(relative) }
+    extensions.file_browser.file_browser { cwd = cwd_of(relative), hidden = true }
 end
 
 M.ripgrep = function(relative)
