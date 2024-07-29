@@ -1,11 +1,5 @@
 #!/bin/zsh
 
-# history-substring-search
-zinit for \
-  light-mode zsh-users/zsh-history-substring-search
-export HISTORY_SUBSTRING_SEARCH_HIGHLIGHT_FOUND="fg=white,bold,underline"
-export HISTORY_SUBSTRING_SEARCH_ENSURE_UNIQUE=true
-
 typeset -g -A key
 
 # terminfo key binds

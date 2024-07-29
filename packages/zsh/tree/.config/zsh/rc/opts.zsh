@@ -23,7 +23,7 @@ setopt AUTO_CONTINUE
 # match hidden files without specify dot
 setopt GLOBDOTS
 # share new history across active zsh sessions
-# setopt sharehistory
+setopt SHARE_HISTORY
 
 # enable colors
 autoload -Uz colors

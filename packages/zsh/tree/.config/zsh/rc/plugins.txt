@@ -1,0 +1,31 @@
+romkatv/powerlevel10k
+
+# prompt
+belak/zsh-utils path:prompt
+belak/zsh-utils path:history
+belak/zsh-utils path:utility
+# belak/zsh-utils path:completion
+zdharma-continuum/fast-syntax-highlighting kind:defer
+
+# completion
+hlissner/zsh-autopair
+zsh-users/zsh-autosuggestions
+zsh-users/zsh-completions
+zsh-users/zsh-history-substring-search
+marlonrichert/zsh-autocomplete
+
+# benchmark
+romkatv/zsh-bench kind:path
+romkatv/zsh-prompt-benchmark
+
+# navigation
+ajeetdsouza/zoxide
+
+# autosourcing
+MichaelAquilina/zsh-autoswitch-virtualenv
+darvid/zsh-poetry
+Tarrasch/zsh-autoenv
+
+# miscellaneous
+Tarrasch/zsh-command-not-found
+MichaelAquilina/zsh-auto-notify

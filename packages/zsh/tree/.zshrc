@@ -1,6 +1,8 @@
-#!/bin/zsh
+# GPG password prompt
+export GPG_TTY=$(tty)
 
-local HERE="$(dirname "${(%):-%N}")"
+# open tmux by default
+[[ $TERM != "tmux-256color" ]] && exec tmux
 
 # Load shared components
 source "$HOME/.config/sh/rc"
@@ -12,18 +14,17 @@ fi
 
 # Load antidote
 source "/usr/share/zsh-antidote/antidote.zsh"
-zstyle ':antidote:bundle' file "$HERE/rc/plugins.txt"
-zstyle ':antidote:static' file "$HERE/rc/plugins.zsh"
+zstyle ':antidote:bundle' file "$XDG_CONFIG_HOME/zsh/rc/plugins.txt"
+zstyle ':antidote:static' file "$XDG_CONFIG_HOME/zsh/rc/plugins.zsh"
 antidote load
 
 # Load p10k
-[[ ! -f "$HERE/rc/p10k.zsh" ]] || source "$HERE/rc/p10k.zsh"
+[[ ! -f "$XDG_CONFIG_HOME/zsh/rc/p10k.zsh" ]] || source "$XDG_CONFIG_HOME/zsh/rc/p10k.zsh"
 
 # Load core components
-. "$HERE/rc/opts.zsh"
-. "$HERE/rc/completion.zsh"
-. "$HERE/rc/keybindings.zsh"
-. "$HERE/rc/macros.zsh"
+. "$XDG_CONFIG_HOME/zsh/rc/opts.zsh"
+. "$XDG_CONFIG_HOME/zsh/rc/keybindings.zsh"
+. "$XDG_CONFIG_HOME/zsh/rc/macros.zsh"
 
 # zsh-users/zsh-history-substring-search
 export HISTORY_SUBSTRING_SEARCH_HIGHLIGHT_FOUND="fg=white,bold,underline"
@@ -36,11 +37,7 @@ export AUTOSWITCH_VIRTUAL_ENV_DIR="${XDG_DATA_HOME}/venvs"
 export AUTOENV_FILE_ENTER=".autoenv.zsh"
 export AUTOENV_FILE_LEAVE=".autoenv.exit.zsh"
 
-# Initialize zoxide
-eval "$(zoxide init zsh)"
-
 # Load manual plugins
 . "$XDG_CONFIG_HOME/sh/util"
-shload "env.zsh" "$XDG_CONFIG_HOME/zsh"
 shload "rc.zsh" "$XDG_CONFIG_HOME/zsh"
 unsetutil
