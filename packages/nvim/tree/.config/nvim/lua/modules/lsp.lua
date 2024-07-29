@@ -129,6 +129,7 @@ plugins['nvim-treesitter/nvim-treesitter'] = {
             'rust',
             'scss',
             'tex',
+            'tmux',
             'toml',
             'yaml',
         }
