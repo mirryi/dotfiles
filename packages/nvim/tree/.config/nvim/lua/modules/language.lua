@@ -80,6 +80,16 @@ plugins['vim-scripts/elinks.vim'] = {}
 -- elvish support
 plugins['dmix/elvish.vim'] = {}
 
+-- forester support
+plugins['kentookura/forester.nvim'] = {
+    dependencies = {
+        'nvim-telescope/telescope.nvim',
+        'nvim-treesitter/nvim-treesitter',
+        'nvim-lua/plenary.nvim',
+        'hrsh7th/nvim-cmp',
+    },
+}
+
 -- i3 configuration file syntax
 plugins['mboughaba/i3config.vim'] = {}
 

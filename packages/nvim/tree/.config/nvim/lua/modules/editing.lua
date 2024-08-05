@@ -107,6 +107,5 @@ plugins['kevinhwang91/nvim-ufo'] = {
         }
     end,
 }
--- }}}
 
 return plugins
