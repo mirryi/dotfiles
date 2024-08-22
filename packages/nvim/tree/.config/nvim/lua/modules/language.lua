@@ -87,7 +87,11 @@ plugins['kentookura/forester.nvim'] = {
         'nvim-treesitter/nvim-treesitter',
         'nvim-lua/plenary.nvim',
         'hrsh7th/nvim-cmp',
+        'rileyshahar/cmp-forester',
     },
+    config = function()
+        local _ = require('forester')
+    end,
 }
 
 -- i3 configuration file syntax
