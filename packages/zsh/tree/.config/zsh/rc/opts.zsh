@@ -3,7 +3,7 @@
 # save history in cache
 export HISTSIZE=290000
 export SAVEHIST=290000
-export HISTFILE="$ZSH_CACHE/history"
+export HISTFILE="$XDG_CACHE_HOME/zsh/history"
 
 # comments in interactive code
 setopt INTERACTIVE_COMMENTS
