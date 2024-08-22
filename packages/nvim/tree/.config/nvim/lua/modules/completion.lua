@@ -30,6 +30,7 @@ plugins['hrsh7th/nvim-cmp'] = {
                 { name = 'ultisnips' },
                 { name = 'path' },
                 -- { name = 'buffer' },
+                { name='forester'}
             }
 
             local ft = vim.o.ft

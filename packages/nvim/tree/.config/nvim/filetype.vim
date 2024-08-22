@@ -61,3 +61,8 @@ aug end
 aug FtdetectGrain
   au! BufNewFile,BufFilePre,BufRead *.gr set filetype=grain
 aug end
+
+" detect forester trees
+aug FtdetectForester
+  au! BufNewFile,BufFilePre,BufRead *.tree set filetype=forester
+aug end

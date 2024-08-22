@@ -51,13 +51,13 @@ plugins['j-hui/fidget.nvim'] = {
 }
 
 -- symbols outline
-plugins['hedyhli/outline.nvim'] = {
-    config = function()
-        require('outline').setup()
+-- plugins['hedyhli/outline.nvim'] = {
+    -- config = function()
+        -- require('outline').setup()
 
-        vim.keymap.set('n', 'go', '<cmd>Outline<CR>')
-    end,
-}
+        -- vim.keymap.set('n', 'go', '<cmd>Outline<CR>')
+    -- end,
+-- }
 
 -- symbol usage text
 plugins['Wansmer/symbol-usage.nvim'] = {
@@ -191,15 +191,15 @@ plugins['neovim/nvim-lspconfig'] = {
 }
 
 -- debugging support
-plugins['mfussenegger/nvim-dap'] = {
-    dependencies = {
-        { 'rcarriga/nvim-dap-ui', dependencies = 'nvim-neotest/nvim-nio' },
-        'theHamsta/nvim-dap-virtual-text',
-    },
-    config = function()
-        require('modules.lsp.dap')
-    end,
-}
+-- plugins['mfussenegger/nvim-dap'] = {
+-- dependencies = {
+-- { 'rcarriga/nvim-dap-ui', dependencies = 'nvim-neotest/nvim-nio' },
+-- 'theHamsta/nvim-dap-virtual-text',
+-- },
+-- config = function()
+-- require('modules.lsp.dap')
+-- end,
+-- }
 
 -- enhanced java language server
 plugins['mfussenegger/nvim-jdtls'] = {
@@ -289,6 +289,7 @@ plugins['Julian/lean.nvim'] = {
 
 -- enahcned rust language server and tools
 plugins['simrat39/rust-tools.nvim'] = {
+    ft = { 'rust' },
     dependencies = {
         'nvim-lua/popup.nvim',
         'nvim-lua/plenary.nvim',

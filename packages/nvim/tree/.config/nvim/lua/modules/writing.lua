@@ -14,4 +14,7 @@ plugins['ron89/thesaurus_query.vim'] = {
     end,
 }
 
+-- soft wrap
+plugins['manu-mannattil/vim-longlines'] = {}
+
 return plugins
