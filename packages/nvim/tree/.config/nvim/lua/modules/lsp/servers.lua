@@ -342,8 +342,8 @@ nullls.setup {
         -- builtins.formatting.autopep8,
 
         -- shell
-        builtins.formatting.shfmt,
-        builtins.formatting.shellharden,
+        -- builtins.formatting.shfmt,
+        -- builtins.formatting.shellharden,
 
         -- vimscript
         builtins.diagnostics.vint,
