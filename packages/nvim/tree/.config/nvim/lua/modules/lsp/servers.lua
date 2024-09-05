@@ -213,8 +213,8 @@ lspconfig.texlab.setup {
     settings = { texlab = { formatterLineLength = 100 } },
 }
 
--- tsserver
-lspconfig.tsserver.setup {
+-- typescript
+lspconfig.ts_ls.setup {
     on_attach = function(client, bufnr)
         -- Enable incremental sync
         if client.config.flags then
