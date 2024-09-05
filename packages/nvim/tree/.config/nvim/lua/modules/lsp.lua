@@ -163,7 +163,7 @@ plugins['neovim/nvim-lspconfig'] = {
     dependencies = {
         -- non-lsp linter integration
         'nvimtools/none-ls.nvim',
-        -- support for tsserver extensions
+        -- support for ts_ls extensions
         'jose-elias-alvarez/nvim-lsp-ts-utils',
         -- rust inline type indications
         'nvim-lua/lsp_extensions.nvim',
