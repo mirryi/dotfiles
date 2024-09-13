@@ -1,2 +1,0 @@
-#!/bin/bash
-scrot /tmp/$(date -u +"%Y%m%dT%H%M%S").png
