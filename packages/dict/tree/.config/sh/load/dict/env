@@ -1,2 +1,0 @@
-#!/bin/sh
-alias dict="dict -c \"$XDG_CONFIG_HOME/dict/dictrc\""
