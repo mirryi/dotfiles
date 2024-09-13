@@ -3,7 +3,7 @@ local lib = require('lib')
 local lfs = require('lfs')
 
 pkg.name = 'i3'
-pkg.dependencies:extend('../battery-notify', '../polybar', '../wallpaper')
+pkg.dependencies:extend('../polybar', '../wallpaper')
 
 local partials = {
     common = 'config/common.i3config',
