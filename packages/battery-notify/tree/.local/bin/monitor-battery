@@ -1,8 +1,0 @@
-#!/bin/bash
-notify_battery="$HOME/.local/bin/notify-battery"
-
-"$notify_battery" -f
-while true; do
-  "$notify_battery" -i
-  sleep 1
-done
