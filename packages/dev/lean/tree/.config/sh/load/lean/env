@@ -1,0 +1,2 @@
+#!/bin/sh
+export ELAN_HOME="${XDG_DATA_HOME}/elan"
