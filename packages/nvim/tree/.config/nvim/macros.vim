@@ -62,12 +62,12 @@ function! WordFrequency() range
   " List of word counts in ascending order
   let sortedWordCounts = Sorted(keys(countToWords))
 
-  call append('$', 'count \t words')
+  call append('$', 'count	words')
   call append('$', '--------------------------')
   " Show the most frequent words first -> Descending order
   for cnt in reverse(sortedWordCounts)
     let words = countToWords[cnt]
-    call append('$', cnt . '\t' . words)
+    call append('$', cnt . '	' . words)
   endfor
 endfunction
 
