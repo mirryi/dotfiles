@@ -17,4 +17,11 @@ plugins['ron89/thesaurus_query.vim'] = {
 -- soft wrap
 plugins['manu-mannattil/vim-longlines'] = {}
 
+-- minimize distraction
+plugins['Pocco81/true-zen.nvim'] = {
+    config = function()
+        require('true-zen').setup {}
+    end,
+}
+
 return plugins
