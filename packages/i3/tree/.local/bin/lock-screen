@@ -3,7 +3,7 @@ pkill -u "$USER" -USR1 dunst
 
 tmpbg="/tmp/screen.png"
 scrot "$tmpbg"
-convert "$tmpbg" -scale 10% -scale 1000% "$tmpbg"
+magick convert "$tmpbg" -scale 10% -scale 1000% "$tmpbg"
 i3lock -n -i "$tmpbg" \
 	--inside-color=37344500 --ring-color=ffffffff --line-uses-inside \
 	--keyhl-color=d23c3dff --bshl-color=d23c3dff --separator-color=00000000 \
