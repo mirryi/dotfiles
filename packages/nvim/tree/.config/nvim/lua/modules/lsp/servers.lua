@@ -186,7 +186,7 @@ lspconfig.intelephense.setup {
 lspconfig.pylsp.setup { on_attach = on_attach, capabilities = capabilities }
 
 -- pyright language server
--- lspconfig.pyright.setup({ on_attach = on_attach, capabilities = capabilities })
+lspconfig.pyright.setup({ on_attach = on_attach, capabilities = capabilities })
 
 -- r language server
 lspconfig.r_language_server.setup {
