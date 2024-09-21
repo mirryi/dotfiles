@@ -90,7 +90,8 @@ plugins['kentookura/forester.nvim'] = {
         'rileyshahar/cmp-forester',
     },
     config = function()
-        local _ = require('forester')
+        local forester = require('forester')
+        forester.setup {}
     end,
 }
 
