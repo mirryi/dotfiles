@@ -186,7 +186,7 @@ lspconfig.intelephense.setup {
 lspconfig.pylsp.setup { on_attach = on_attach, capabilities = capabilities }
 
 -- pyright language server
-lspconfig.pyright.setup({ on_attach = on_attach, capabilities = capabilities })
+lspconfig.pyright.setup { on_attach = on_attach, capabilities = capabilities }
 
 -- r language server
 lspconfig.r_language_server.setup {
@@ -337,7 +337,8 @@ nullls.setup {
         builtins.diagnostics.phpcs,
 
         -- python
-        builtins.formatting.isort,
+        -- builtins.formatting.isort,
+        -- builtins.formatting.yapf,
         -- builtins.diagnostics.flake8,
         -- builtins.formatting.autopep8,
 
