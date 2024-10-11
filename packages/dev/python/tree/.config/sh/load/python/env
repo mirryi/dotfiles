@@ -1,4 +1,10 @@
 #!/bin/sh
+export RYE_HOME="${XDG_DATA_HOME}/rye"
+echo $RYE_HOME
+if [ -f "${RYE_HOME}/env" ]; then
+  source "${RYE_HOME}/env"
+fi
+
 export PYTHON_EGG_CACHE="${XDG_CACHE_HOME}/python-eggs"
 export MYPY_CACHE_DIR="${XDG_CACHE_HOME}/mypy"
 export PYLINTHOME="${XDG_CACHE_HOME}/pylint"
