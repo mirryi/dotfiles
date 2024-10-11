@@ -82,6 +82,7 @@ plugins['dmix/elvish.vim'] = {}
 
 -- forester support
 plugins['kentookura/forester.nvim'] = {
+    ft = {'forester'},
     dependencies = {
         'nvim-telescope/telescope.nvim',
         'nvim-treesitter/nvim-treesitter',
