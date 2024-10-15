@@ -29,3 +29,8 @@ Tarrasch/zsh-autoenv
 # miscellaneous
 Tarrasch/zsh-command-not-found
 MichaelAquilina/zsh-auto-notify
+
+# omz
+getantidote/use-omz
+ohmyzsh/ohmyzsh path:lib
+ohmyzsh/ohmyzsh path:plugins/git
