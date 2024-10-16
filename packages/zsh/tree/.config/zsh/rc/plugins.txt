@@ -32,5 +32,4 @@ MichaelAquilina/zsh-auto-notify
 
 # omz
 getantidote/use-omz
-ohmyzsh/ohmyzsh path:lib
 ohmyzsh/ohmyzsh path:plugins/git
