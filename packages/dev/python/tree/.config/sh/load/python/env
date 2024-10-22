@@ -1,8 +1,7 @@
 #!/bin/sh
 export RYE_HOME="${XDG_DATA_HOME}/rye"
-echo $RYE_HOME
 if [ -f "${RYE_HOME}/env" ]; then
-  source "${RYE_HOME}/env"
+  . "${RYE_HOME}/env"
 fi
 
 export PYTHON_EGG_CACHE="${XDG_CACHE_HOME}/python-eggs"
