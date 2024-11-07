@@ -52,11 +52,11 @@ plugins['j-hui/fidget.nvim'] = {
 
 -- symbols outline
 -- plugins['hedyhli/outline.nvim'] = {
-    -- config = function()
-        -- require('outline').setup()
+-- config = function()
+-- require('outline').setup()
 
-        -- vim.keymap.set('n', 'go', '<cmd>Outline<CR>')
-    -- end,
+-- vim.keymap.set('n', 'go', '<cmd>Outline<CR>')
+-- end,
 -- }
 
 -- symbol usage text
@@ -315,6 +315,7 @@ plugins['simrat39/rust-tools.nvim'] = {
                     cargo = { loadOutDirsFromCheck = true },
                     checkOnSave = { command = 'clippy' },
                     procMacro = { enable = true },
+                    rustc = { source = 'discover' },
                 },
             },
         },

@@ -350,6 +350,6 @@ nullls.setup {
         builtins.diagnostics.vint,
 
         -- yaml
-        builtins.diagnostics.yamllint,
+        -- builtins.diagnostics.yamllint,
     },
 }
