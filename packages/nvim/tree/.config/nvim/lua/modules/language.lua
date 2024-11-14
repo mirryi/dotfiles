@@ -82,17 +82,20 @@ plugins['dmix/elvish.vim'] = {}
 
 -- forester support
 plugins['kentookura/forester.nvim'] = {
-    ft = {'forester'},
+    ft = { 'forester' },
     dependencies = {
         'nvim-telescope/telescope.nvim',
         'nvim-treesitter/nvim-treesitter',
         'nvim-lua/plenary.nvim',
-        'hrsh7th/nvim-cmp',
-        'rileyshahar/cmp-forester',
     },
+    -- after = { 'hrsh7th/nvim-cmp' },
     config = function()
         local forester = require('forester')
         forester.setup {}
+
+        -- local cmp_source = require('forester.completion')
+        -- require('cmp').register_source('forester', cmp_source)
+        -- require('cmp').setup.filetype('forester', { sources = { { name = 'forester', dup = 0 } } })
     end,
 }
 
