@@ -239,7 +239,11 @@ lspconfig.ts_ls.setup {
 }
 
 -- typst language server
-lspconfig.typst_lsp.setup {
+-- lspconfig.typst_lsp.setup {
+-- on_attach = on_attach,
+-- capabilities = capabilities,
+-- }
+lspconfig.tinymist.setup {
     on_attach = on_attach,
     capabilities = capabilities,
 }
