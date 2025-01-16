@@ -11,3 +11,5 @@ bo.expandtab = true
 
 -- no wrapping
 wo.wrap = false
+
+vim.cmd [[LongLines]]
