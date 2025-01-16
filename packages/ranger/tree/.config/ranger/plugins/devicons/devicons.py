@@ -314,6 +314,7 @@ file_node_exact_matches = {
     'gulpfile.js': '',
     'gulpfile.ls': '',
     'ini': '',
+    'Justfile': '',
     'known_hosts': '',
     'latexmkrc': '',
     'ledger': '',
