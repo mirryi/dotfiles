@@ -326,12 +326,7 @@ plugins['simrat39/rust-tools.nvim'] = {
 plugins['p00f/clangd_extensions.nvim'] = {
     config = function()
         local clangd_extensions = require('clangd_extensions')
-        local inlay_hints = require('clangd_extensions.inlay_hints')
-
         clangd_extensions.setup {}
-
-        inlay_hints.setup_autocmd()
-        inlay_hints.set_inlay_hints()
     end,
 }
 
