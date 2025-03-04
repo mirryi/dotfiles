@@ -183,7 +183,14 @@ lspconfig.intelephense.setup {
 -- lspconfig.psalm_lsp.setup {on_attach = on_attach, capabilities = capabilities}
 
 -- python language server
-lspconfig.pylsp.setup { on_attach = on_attach, capabilities = capabilities }
+lspconfig.pylsp.setup {
+    on_attach = on_attach,
+    capabilities = capabilities,
+    filetypes = {
+        'python',
+        'sage',
+    },
+}
 
 -- pyright language server
 lspconfig.pyright.setup { on_attach = on_attach, capabilities = capabilities }
