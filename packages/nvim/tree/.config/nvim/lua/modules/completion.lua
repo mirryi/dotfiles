@@ -12,7 +12,6 @@ plugins['SirVer/ultisnips'] = {
 }
 
 plugins['hrsh7th/nvim-cmp'] = {
-    -- {{{ requires
     dependencies = {
         'hrsh7th/cmp-nvim-lsp',
         'hrsh7th/cmp-nvim-lua',
@@ -21,8 +20,6 @@ plugins['hrsh7th/nvim-cmp'] = {
         'f3fora/cmp-spell',
         'hrsh7th/cmp-buffer',
     },
-    -- }}}
-    -- {{{ config
     config = function()
         local sources = function()
             local source_list = {
@@ -101,14 +98,13 @@ plugins['hrsh7th/nvim-cmp'] = {
             completion = {
                 autocomplete = { require('cmp.types').cmp.TriggerEvent.TextChanged },
                 completeopt = 'menu,menuone,noselect',
-                keyword_length = 3,
+                keyword_length = 2,
             },
             experimental = {
                 ghost_text = true,
             },
         }
     end,
-    -- }}}
 }
 
 plugins['windwp/nvim-autopairs'] = {

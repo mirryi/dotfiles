@@ -168,6 +168,9 @@ plugins['lervag/vimtex'] = {
     end,
 }
 
+-- sagemath
+plugins['petRUShka/vim-sage'] = {}
+
 -- tex math preview on hover
 plugins['jbyuki/nabla.nvim'] = {
     ft = { 'latex' },
