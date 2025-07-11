@@ -2,3 +2,8 @@
 export TEXMFHOME="$XDG_DATA_HOME/texmf"
 export TEXMFVAR="$XDG_CACHE_HOME/texlive/texmf-var"
 export TEXMFCONFIG="$XDG_CONFIG_HOME/texlive/texmf-config"
+
+TEXLIVE_BIN="/usr/local/share/texlive/2024/bin/x86_64-linux" 
+if [ -d "${TEXLIVE_BIN}" ]; then
+  export PATH="$PATH:$TEXLIVE_BIN"
+fi
