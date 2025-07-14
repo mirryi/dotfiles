@@ -96,10 +96,10 @@ M.on_attach = function(client, bufnr)
     end
 
     -- Attach signature help
-    if client.server_capabilities.signatureHelpProvider then
-        local signature = require('lsp_signature')
-        signature.on_attach()
-    end
+    -- if client.server_capabilities.signatureHelpProvider then
+    -- local signature = require('lsp_signature')
+    -- signature.on_attach()
+    -- end
 
     -- Attach virtual types indicator.
     if client.server_capabilities.codeLensProvider then
