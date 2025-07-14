@@ -69,27 +69,29 @@ plugins['romgrk/barbar.nvim'] = {
 -- }
 
 -- wildmenu enhancements
-plugins['gelguy/wilder.nvim'] = {
-    config = function()
-        local cmd, fn = vim.cmd, vim.fn
+if not vim.g.vscode then
+    plugins['gelguy/wilder.nvim'] = {
+        config = function()
+            local cmd, fn = vim.cmd, vim.fn
 
-        fn['wilder#enable_cmdline_enter']()
-        cmd([[set wildcharm=<Tab>]])
+            fn['wilder#enable_cmdline_enter']()
+            cmd([[set wildcharm=<Tab>]])
 
-        cmd([[cmap <expr> <Tab> wilder#in_context() ? wilder#next() : "\<Tab>"]])
-        cmd([[cmap <expr> <S-Tab> wilder#in_context() ? wilder#previous() : "\<S-Tab>"]])
+            cmd([[cmap <expr> <Tab> wilder#in_context() ? wilder#next() : "\<Tab>"]])
+            cmd([[cmap <expr> <S-Tab> wilder#in_context() ? wilder#previous() : "\<S-Tab>"]])
 
-        fn['wilder#set_option']('modes', { '/', '?', ':' })
+            fn['wilder#set_option']('modes', { '/', '?', ':' })
 
-        vim.api.nvim_exec(
-            [[
-                call wilder#set_option('renderer', wilder#popupmenu_renderer({'highlighter': wilder#basic_highlighter(), 'left': [wilder#popupmenu_devicons()]}))
-                call wilder#set_option('pipeline', [wilder#branch([ wilder#check({_, x -> empty(x)}), wilder#history(), ], wilder#cmdline_pipeline(), wilder#search_pipeline())])
-            ]],
-            false
-        )
-    end,
-}
+            vim.api.nvim_exec(
+                [[
+                    call wilder#set_option('renderer', wilder#popupmenu_renderer({'highlighter': wilder#basic_highlighter(), 'left': [wilder#popupmenu_devicons()]}))
+                    call wilder#set_option('pipeline', [wilder#branch([ wilder#check({_, x -> empty(x)}), wilder#history(), ], wilder#cmdline_pipeline(), wilder#search_pipeline())])
+                ]],
+                false
+            )
+        end,
+    }
+end
 
 -- popup with keybind suggestions
 plugins['folke/which-key.nvim'] = {
