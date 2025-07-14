@@ -176,7 +176,7 @@ plugins['neovim/nvim-lspconfig'] = {
         -- schema access for jsonls
         'b0o/SchemaStore.nvim',
         -- signature help for completion
-        'ray-x/lsp_signature.nvim',
+        -- 'ray-x/lsp_signature.nvim',
     },
     config = function()
         -- show diagnostics on hover

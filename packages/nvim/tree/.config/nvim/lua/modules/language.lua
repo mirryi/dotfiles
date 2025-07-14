@@ -144,7 +144,13 @@ plugins['vim-pandoc/vim-rmarkdown'] = {
 -- reasonml support
 plugins['arrowresearch/vim-reason'] = {}
 
--- latex support
+-- sagemath
+plugins['petRUShka/vim-sage'] = {}
+
+-- smtlib
+plugins['bohlender/vim-smt2'] = {}
+
+-- tex support
 plugins['lervag/vimtex'] = {
     config = function()
         local g = vim.g
@@ -167,9 +173,6 @@ plugins['lervag/vimtex'] = {
         g.vimtex_view_method = 'zathura'
     end,
 }
-
--- sagemath
-plugins['petRUShka/vim-sage'] = {}
 
 -- tex math preview on hover
 plugins['jbyuki/nabla.nvim'] = {
