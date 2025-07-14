@@ -12,6 +12,11 @@ aug FtdetectDafny
   au! BufNewFile,BufFilePre,BufRead *.dfy set filetype=dafny
 aug end
 
+" detect elpi
+aug FtdetectElpi
+  au! BufNewFile,BufFilePre,BufRead *.elpi set filetype=elpi
+aug end
+
 " detect handlebars files
 aug FtdetectHbs
   au! BufNewFile,BufFilePre,BufRead *.hbs set filetype=handlebars
