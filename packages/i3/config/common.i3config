@@ -65,6 +65,9 @@ bindsym $mod+b exec notify-battery -f
 # bindsym $mod+i exec maim -s /tmp/a.png
 bindsym $mod+i exec --no-startup-id flameshot gui -r | xclip -selection clipboard -t image/png
 
+# lock
+bindsym $mod+Shift+x exec lock-screen
+
 ######### MOVEMENT #########
 # change focus
 bindsym $mod+$left focus left
