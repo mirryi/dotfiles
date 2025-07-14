@@ -1,20 +1,6 @@
 -- luacheck: globals vim
 local plugins = {}
 
--- rgb, hex color highlighting
-plugins['norcalli/nvim-colorizer.lua'] = {
-    config = function()
-        local colorizer = require('colorizer')
-        colorizer.setup {
-            '*',
-            css = { rgb_fn = true },
-            html = { names = false },
-            pandoc = { names = false },
-            tex = { names = false },
-        }
-    end,
-}
-
 -- indent guides
 plugins['lukas-reineke/indent-blankline.nvim'] = {
     config = function()

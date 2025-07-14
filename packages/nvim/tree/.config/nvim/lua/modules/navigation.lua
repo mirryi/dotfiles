@@ -75,7 +75,7 @@ plugins['vim-scripts/restore_view.vim'] = {
 }
 
 -- project root working directory
-plugins['ahmedkhalf/project.nvim'] = {
+plugins['DrKJeff16/project.nvim'] = {
     config = function()
         require('project_nvim').setup {}
     end,
