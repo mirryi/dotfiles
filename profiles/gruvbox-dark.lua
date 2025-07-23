@@ -137,8 +137,8 @@ local M = {
             c15 = colors.bright.white,
         },
     },
-
     wallpaper = { name = 'gruvbox-dark' },
+    zathura = { theme = 'grvubox-light' },
 }
 
 return M

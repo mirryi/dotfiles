@@ -138,6 +138,7 @@ local M = {
         },
     },
     wallpaper = { name = 'gruvbox-light' },
+    zathura = { theme = 'gruvbox-light' },
 }
 
 return M

@@ -7,3 +7,6 @@
 [submodule "packages/gtk/themes/nordic"]
 	path = packages/gtk/themes/nordic
 	url = https://github.com/EliverLara/Nordic
+[submodule "packages/zathura/themes/gruvbox"]
+	path = packages/zathura/themes/gruvbox
+	url = https://github.com/eastack/zathura-gruvbox
