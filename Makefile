@@ -10,3 +10,7 @@ LOADED := loaded.lua
 gruvbox-dark:
 	ln -sf $(PROFILES)/$@.lua $(LOADED)
 	$(STEW) -vvv $(wildcard packages/*)
+
+gruvbox-light:
+	ln -sf $(PROFILES)/$@.lua $(LOADED)
+	$(STEW) -vvv $(wildcard packages/*)

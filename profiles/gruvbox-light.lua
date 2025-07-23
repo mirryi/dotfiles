@@ -1,36 +1,36 @@
 local font = 'JetBrains Mono Nerd Font'
 
 local colors = {
-    bright = {
-        black = '#928374',
-        blue = '#7daea3',
-        cyan = '#89b482',
-        green = '#a9b665',
-        magenta = '#d3869b',
-        red = '#ea6962',
-        white = '#dfdf8e',
-        yellow = '#e3a84e',
-    },
     normal = {
-        black = '#665c54',
-        blue = '#7daea3',
-        cyan = '#89b482',
-        green = '#a9b665',
-        magenta = '#d3869b',
-        red = '#ea6962',
-        white = '#dfdf8e',
-        yellow = '#e78a4e',
+        black = '#654735',
+        red = '#c14a4a',
+        green = '#6c782e',
+        yellow = '#b47109',
+        blue = '#45707a',
+        magenta = '#945e80',
+        cyan = '#4c7a5d',
+        white = '#eee0b7',
+    },
+    bright = {
+        black = '#654735',
+        red = '#c14a4a',
+        green = '#6c782e',
+        yellow = '#b47109',
+        blue = '#45707a',
+        magenta = '#945e80',
+        cyan = '#4c7a5d',
+        white = '#eee0b7',
     },
     primary = {
-        background = '#282828',
-        foreground = '#ebdbb2',
+        background = '#fbf1c7',
+        foreground = '#282828',
         alarm = '#ea6962',
     },
 }
 
 local M = {
     alacritty = { font = font, colors = colors, font_size = 10 },
-    bat = { theme = 'gruvbox-dark' },
+    bat = { theme = 'gruvbox-light' },
     dunst = {
         font = { family = font, size = 9 },
         colors = {
@@ -48,7 +48,7 @@ local M = {
             },
         },
     },
-    fzf = { name = 'gruvbox-dark' },
+    fzf = { name = 'gruvbox-light' },
     git = { delta = { theme = 'gruvbox' } },
     gtk = { theme = 'gruvbox-gtk' },
     i3 = {
@@ -92,7 +92,7 @@ local M = {
         },
         gaps = { inner = 5, outer = 0 },
     },
-    nvim = { theme = 'gruvbox/dark' },
+    nvim = { theme = 'gruvbox/light' },
     polybar = {
         font = font,
         colors = {
@@ -113,8 +113,8 @@ local M = {
             alert = colors.primary.alarm,
         },
     },
-    rofi = { font = font, theme = 'gruvbox-dark' },
-    tmux = { theme = 'gruvbox-dark' },
+    rofi = { font = font, theme = 'gruvbox-light-soft' },
+    tmux = { theme = 'gruvbox-light' },
     x11 = {
         colors = {
             background = colors.primary.background,
@@ -137,8 +137,7 @@ local M = {
             c15 = colors.bright.white,
         },
     },
-
-    wallpaper = { name = 'gruvbox-dark' },
+    wallpaper = { name = 'gruvbox-light' },
 }
 
 return M
