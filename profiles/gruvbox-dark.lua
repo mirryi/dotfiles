@@ -115,7 +115,6 @@ local M = {
             alert = colors.primary.alarm,
         },
     },
-    qutebrowser = { theme = 'gruvbox-dark-medium' },
     rofi = { font = font, theme = 'gruvbox-dark' },
     task = { theme = 'dark-256' },
     termite = {
