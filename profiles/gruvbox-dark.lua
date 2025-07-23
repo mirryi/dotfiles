@@ -92,6 +92,7 @@ local M = {
         },
         gaps = { inner = 5, outer = 0 },
     },
+    igrep = { theme = 'light' },
     nvim = { theme = 'gruvbox/dark' },
     polybar = {
         font = font,
