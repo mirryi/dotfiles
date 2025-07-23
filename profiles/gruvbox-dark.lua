@@ -116,7 +116,6 @@ local M = {
         },
     },
     rofi = { font = font, theme = 'gruvbox-dark' },
-    task = { theme = 'dark-256' },
     termite = {
         font = { family = font, size = 9 },
         colors = {
