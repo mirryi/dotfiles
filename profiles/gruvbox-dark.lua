@@ -92,7 +92,7 @@ local M = {
         },
         gaps = { inner = 5, outer = 0 },
     },
-    igrep = { theme = 'light' },
+    igrep = { theme = 'dark' },
     nvim = { theme = 'gruvbox/dark' },
     polybar = {
         font = font,
@@ -139,7 +139,7 @@ local M = {
         },
     },
     wallpaper = { name = 'gruvbox-dark' },
-    zathura = { theme = 'grvubox-light' },
+    zathura = { theme = 'gruvbox-dark' },
 }
 
 return M
