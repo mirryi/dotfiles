@@ -171,6 +171,13 @@ plugins['lervag/vimtex'] = {
 
         -- View options
         g.vimtex_view_method = 'zathura'
+
+        local au_group = vim.api.nvim_create_augroup('vimtex_events', {})
+        vim.api.nvim_create_autocmd('User', {
+            pattern = 'VimtexEventView',
+            group = au_group,
+            command = 'call b:vimtex.viewer.xdo_focus_vim()',
+        })
     end,
 }
 
