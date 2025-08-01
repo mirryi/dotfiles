@@ -1,5 +1,6 @@
 -- luacheck: globals vim use
 local modules = {
+    'modules.theme',
     'modules.fix',
     'modules.statusline',
     'modules.display',
@@ -10,7 +11,6 @@ local modules = {
     'modules.editing',
     'modules.writing',
     'modules.tools',
-    'modules.theme',
 }
 
 local M = {}
