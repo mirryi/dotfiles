@@ -78,6 +78,9 @@ plugins['soulis-1256/eagle.nvim'] = {}
 
 -- treesitter support
 plugins['nvim-treesitter/nvim-treesitter'] = {
+    lazy = false,
+    branch = 'master',
+    build = ':TSUpdate',
     dependencies = {
         'nvim-treesitter/playground',
         'nvim-treesitter/nvim-treesitter-refactor',
