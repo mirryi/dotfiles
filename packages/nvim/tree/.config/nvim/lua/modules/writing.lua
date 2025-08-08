@@ -17,11 +17,21 @@ plugins['ron89/thesaurus_query.vim'] = {
 -- soft wrap
 plugins['manu-mannattil/vim-longlines'] = {}
 
--- minimize distraction
-plugins['Pocco81/true-zen.nvim'] = {
-    config = function()
-        require('true-zen').setup {}
-    end,
+-- writing focus
+plugins['folke/zen-mode.nvim'] = {
+    opts = {
+        window = {
+            backdrop = 1,
+            height = 0.95,
+            options = {
+                number = false,
+                relativenumber = false,
+            },
+        },
+        plugins = {
+            gitsigns = { enabled = true },
+        },
+    },
 }
 
 return plugins
