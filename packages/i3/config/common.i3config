@@ -13,7 +13,7 @@ default_floating_border pixel 1
 hide_edge_borders smart
 
 # workaround for https://github.com/i3/i3/issues/5149
-for_window [all] border pixel 1
+for_window [all] border pixel 4
 
 focus_follows_mouse no
 mouse_warping none
