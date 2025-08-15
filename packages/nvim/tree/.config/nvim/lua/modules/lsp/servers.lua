@@ -34,6 +34,9 @@ lspconfig.ansiblels.setup { on_attach = on_attach, capabilities = capabilities }
 -- bash language server
 lspconfig.bashls.setup { on_attach = on_attach, capabilities = capabilities }
 
+-- biome language server
+lspconfig.biome.setup { on_attach = on_attach, capabilities = capabilities }
+
 -- clangd
 local clangd_capabilities = vim.deepcopy(capabilities)
 clangd_capabilities.offsetEncoding = { 'utf-16' }
@@ -150,6 +153,9 @@ lspconfig.nickel_ls.setup { on_attach = on_attach, capabilities = capabilities }
 -- ocaml/reason language server
 lspconfig.ocamllsp.setup { on_attach = on_attach, capabilities = capabilities }
 
+-- oxc language server
+lspconfig.oxlint.setup { on_attach = on_attach, capabilities = capabilities }
+
 -- perl language server
 lspconfig.perlls.setup { on_attach = on_attach, capabilities = capabilities }
 
@@ -229,7 +235,7 @@ lspconfig.ts_ls.setup {
         end
 
         -- Disable built-in formatting
-        client.resolved_capabilities.document_formatting = false
+        -- client.resolved_capabilities.document_formatting = false
 
         local ts_utils = require('nvim-lsp-ts-utils')
         vim.lsp.handlers['textDocument/codeAction'] = ts_utils.code_action_handler
@@ -320,8 +326,8 @@ nullls.setup {
         builtins.formatting.goimports,
 
         -- javascript / typescript / etc.
-        builtins.formatting.prettierd,
-        builtins.formatting.rustywind,
+        -- builtins.formatting.prettierd,
+        -- builtins.formatting.rustywind,
         -- builtins.diagnostics.stylelint,
         -- builtins.formatting.stylelint,
 
