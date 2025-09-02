@@ -1,8 +1,6 @@
 " vim: filetype=vim
 sanitize tridactyllocal tridactylsync
 
-set theme dark
-
 set newtab about:blank
 
 " Vim-like find
