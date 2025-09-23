@@ -1,6 +1,5 @@
 -- luacheck: globals vim
 local lspconfig = require('lspconfig')
-local configs = require('lspconfig.configs')
 local schemastore = require('schemastore')
 
 -- override handlers
@@ -8,95 +7,56 @@ local handlers = require('modules.lsp.handlers')
 local on_attach = handlers.on_attach
 local capabilities = handlers.capabilities
 
--- ada language server
--- lspconfig.als.setup { on_attach = on_attach, capabilities = capabilities }
-
--- agda language server
--- if not configs.agda_ls then
--- configs.agda_ls = {
--- default_config = {
--- cmd = { 'als' },
--- filetypes = { 'agda' },
--- root_dir = function(fname)
--- -- return lspconfig.util.find_git_ancestor(fname)
--- return lspconfig.util.root_pattern('*.agda-lib', '.git')(fname)
--- or lspconfig.util.find_git_ancestor(fname)
--- end,
--- settings = {},
--- },
--- }
--- end
--- lspconfig.agda_ls.setup { on_attach = on_attach, capabilities = capabilities }
+local servers = {}
 
 -- ansible language server
-lspconfig.ansiblels.setup { on_attach = on_attach, capabilities = capabilities }
+servers['ansiblels'] = { on_attach = on_attach, capabilities = capabilities }
 
 -- bash language server
-lspconfig.bashls.setup { on_attach = on_attach, capabilities = capabilities }
+servers['bashls'] = { on_attach = on_attach, capabilities = capabilities }
 
 -- biome language server
-lspconfig.biome.setup { on_attach = on_attach, capabilities = capabilities }
+servers['biome'] = { on_attach = on_attach, capabilities = capabilities }
 
 -- clangd
 local clangd_capabilities = vim.deepcopy(capabilities)
 clangd_capabilities.offsetEncoding = { 'utf-16' }
-lspconfig.clangd.setup {
-    on_attach = on_attach,
-    capabilities = clangd_capabilities,
-}
+servers['clangd'] = { on_attach = on_attach, capabilities = clangd_capabilities }
 
 -- cmake language server
-lspconfig.cmake.setup { on_attach = on_attach, capabilities = capabilities }
+servers['cmake'] = { on_attach = on_attach, capabilities = capabilities }
 
 -- css language server
-lspconfig.cssls.setup { on_attach = on_attach, capabilities = capabilities }
+servers['cssls'] = { on_attach = on_attach, capabilities = capabilities }
 
 -- dafny language server
-lspconfig.dafny.setup { on_attach = on_attach, capabilities = capabilities }
+servers['dafny'] = { on_attach = on_attach, capabilities = capabilities }
 
 -- dhall language server
-lspconfig.dhall_lsp_server.setup { on_attach = on_attach, capabilities = capabilities }
+servers['dhall_lsp_server'] = { on_attach = on_attach, capabilities = capabilities }
 
 -- dockerfile language server
-lspconfig.dockerls.setup { on_attach = on_attach, capabilities = capabilities }
+servers['dockerls'] = { on_attach = on_attach, capabilities = capabilities }
 
 -- dot language server
-lspconfig.dotls.setup { on_attach = on_attach, capabilities = capabilities }
+servers['dotls'] = { on_attach = on_attach, capabilities = capabilities }
 
 -- eslint language server
-lspconfig.eslint.setup { on_attach = on_attach, capabilities = capabilities }
+servers['eslint'] = { on_attach = on_attach, capabilities = capabilities }
 
 -- go language server
-lspconfig.gopls.setup { on_attach = on_attach, capabilities = capabilities }
-
--- grain language server
-if not configs.grainls then
-    configs.grainls = {
-        default_config = {
-            cmd = { 'grain', 'lsp' },
-            filetypes = { 'grain' },
-            settings = {},
-        },
-    }
-end
-lspconfig.grainls.setup { on_attach = on_attach, capabilities = capabilities }
+servers['gopls'] = { on_attach = on_attach, capabilities = capabilities }
 
 -- haskell language server
-lspconfig.hls.setup { on_attach = on_attach, capabilities = capabilities }
+servers['hls'] = { on_attach = on_attach, capabilities = capabilities }
 
 -- html language server
-lspconfig.html.setup { on_attach = on_attach, capabilities = capabilities }
-
--- jedi language server
--- lspconfig.jedi_language_server.setup {
--- on_attach = on_attach,
--- capabilities = capabilities
--- }
+servers['html'] = { on_attach = on_attach, capabilities = capabilities }
 
 -- json language server
 local jsonls_capabilities = vim.deepcopy(capabilities)
 jsonls_capabilities.textDocument.completion.completionItem.snippetSupport = true
-lspconfig.jsonls.setup {
+servers['jsonls'] = {
     on_attach = on_attach,
     capabilities = jsonls_capabilities,
     settings = {
@@ -105,29 +65,13 @@ lspconfig.jsonls.setup {
 }
 
 -- julia language server
-lspconfig.julials.setup {
-    on_attach = on_attach,
-    capabilities = capabilities,
-}
+servers['julials'] = { on_attach = on_attach, capabilities = capabilities }
 
 -- kotlin language server
-lspconfig.kotlin_language_server.setup {
-    on_attach = on_attach,
-    capabilities = capabilities,
-}
-
--- ltex language server
--- lspconfig.ltex.setup {
--- filetypes = { 'asciidoc', 'tex', 'markdown', 'org', 'pandoc', 'text' },
--- on_attach = on_attach,
--- capabilities = capabilities,
--- settings = {
--- ltex = { disabledRules = { ['en-US'] = { 'COMMA_PARENTHESIS_WHITESPACE', 'WHITESPACE_RULE' } } },
--- },
--- }
+servers['kotlin_language_server'] = { on_attach = on_attach, capabilities = capabilities }
 
 -- lua language server
-lspconfig.lua_ls.setup {
+servers['lua_ls'] = {
     cmd = { 'lua-language-server' },
     on_attach = on_attach,
     capabilities = capabilities,
@@ -140,27 +84,20 @@ lspconfig.lua_ls.setup {
     },
 }
 
--- markdown language server
--- lspconfig.marksman.setup {
--- filetypes = { 'markdown', 'pandoc' },
--- on_attach = on_attach,
--- capabilities = capabilities,
--- }
-
 -- nickel language server
-lspconfig.nickel_ls.setup { on_attach = on_attach, capabilities = capabilities }
+servers['nickel_ls'] = { on_attach = on_attach, capabilities = capabilities }
 
 -- ocaml/reason language server
-lspconfig.ocamllsp.setup { on_attach = on_attach, capabilities = capabilities }
+servers['ocamllsp'] = { on_attach = on_attach, capabilities = capabilities }
 
 -- oxc language server
-lspconfig.oxlint.setup { on_attach = on_attach, capabilities = capabilities }
+servers['oxlint'] = { on_attach = on_attach, capabilities = capabilities }
 
 -- perl language server
-lspconfig.perlls.setup { on_attach = on_attach, capabilities = capabilities }
+servers['perlls'] = { on_attach = on_attach, capabilities = capabilities }
 
 -- php language server
-lspconfig.intelephense.setup {
+servers['intelephense'] = {
     on_attach = function(client, bufnr)
         client.resolved_capabilities.document_formatting = false
         on_attach(client, bufnr)
@@ -169,65 +106,38 @@ lspconfig.intelephense.setup {
 }
 
 -- php language server
--- lspconfig.phpactor.setup {on_attach = on_attach, capabilities = capabilities}
-
--- php psalm language server
--- if not configs.psalm_lsp then
--- configs.psalm_lsp = {
--- default_config = {
--- cmd = {'vendor/bin/psalm-language-server'},
--- filetypes = {'php'},
--- root_dir = function(fname)
--- -- return lspconfig.util.find_git_ancestor(fname)
--- return lspconfig.util.root_pattern('composer.json', '.git')(
--- fname) or lspconfig.util.find_git_ancestor(fname)
--- end,
--- settings = {}
--- }
--- }
--- end
--- lspconfig.psalm_lsp.setup {on_attach = on_attach, capabilities = capabilities}
+-- servers['phpactor'] = {on_attach = on_attach, capabilities = capabilities}
 
 -- python language server
-lspconfig.pylsp.setup {
+servers['pylsp'] = {
     on_attach = on_attach,
     capabilities = capabilities,
-    filetypes = {
-        'python',
-        'sage',
-    },
+    filetypes = { 'python', 'sage' },
 }
 
 -- pyright language server
-lspconfig.pyright.setup { on_attach = on_attach, capabilities = capabilities }
+servers['pyright'] = { on_attach = on_attach, capabilities = capabilities }
 
 -- r language server
-lspconfig.r_language_server.setup {
-    on_attach = on_attach,
-    capabilities = capabilities,
-}
+servers['r_language_server'] = { on_attach = on_attach, capabilities = capabilities }
 
 -- solargraph (ruby)
-lspconfig.solargraph.setup { on_attach = on_attach, capabilities = capabilities }
+servers['solargraph'] = { on_attach = on_attach, capabilities = capabilities }
 
 -- taplo (toml)
-lspconfig.taplo.setup { on_attach = on_attach, capabilities = capabilities }
+servers['taplo'] = { on_attach = on_attach, capabilities = capabilities }
 
 -- tailwindcss
--- lspconfig.tailwindcss.setup({ on_attach = on_attach, capabilities = capabilities })
+-- servers['tailwindcss'] = { on_attach = on_attach, capabilities = capabilities }
 
 -- terraform
-lspconfig.terraformls.setup { on_attach = on_attach, capabilities = capabilities }
+servers['terraformls'] = { on_attach = on_attach, capabilities = capabilities }
 
 -- texlab
-lspconfig.texlab.setup {
-    on_attach = on_attach,
-    capabilities = capabilities,
-    settings = { texlab = { formatterLineLength = 100 } },
-}
+servers['texlab'] = { on_attach = on_attach, capabilities = capabilities }
 
 -- typescript
-lspconfig.ts_ls.setup {
+servers['ts_ls'] = {
     on_attach = function(client, bufnr)
         -- Enable incremental sync
         if client.config.flags then
@@ -252,46 +162,10 @@ lspconfig.ts_ls.setup {
 }
 
 -- typst language server
--- lspconfig.typst_lsp.setup {
--- on_attach = on_attach,
--- capabilities = capabilities,
--- }
-lspconfig.tinymist.setup {
-    on_attach = on_attach,
-    capabilities = capabilities,
-}
+servers['tinymist'] = { on_attach = on_attach, capabilities = capabilities }
 
 -- vim language server
-lspconfig.vimls.setup { on_attach = on_attach, capabilities = capabilities }
-
--- yaml language server
--- lspconfig.yamlls.setup {on_attach = on_attach, capabilities = capabilities}
-
--- efm-langserver
-local pandoc = require('modules.lsp.efm.pandoc')
-local tidy = require('modules.lsp.efm.tidy')
-
-lspconfig.efm.setup {
-    on_attach = on_attach,
-    capabilities = capabilities,
-    init_options = { documentformatting = true },
-    filetypes = {
-        'pandoc',
-        'xml',
-    },
-    settings = {
-        cmd = { 'efm-langserver' },
-        rootmarkers = { '.git/' },
-        languages = {
-            pandoc = {
-                pandoc,
-            },
-            xml = {
-                tidy,
-            },
-        },
-    },
-}
+servers['vimls'] = { on_attach = on_attach, capabilities = capabilities }
 
 -- Non-lsp linter/formatter integration
 local nullls = require('null-ls')
@@ -370,3 +244,5 @@ nullls.setup {
         -- builtins.diagnostics.yamllint,
     },
 }
+
+return servers
