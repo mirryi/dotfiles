@@ -188,7 +188,11 @@ plugins['neovim/nvim-lspconfig'] = {
             true
         )
 
-        require('modules.lsp.servers')
+        local servers = require('modules.lsp.servers')
+        for name, config in pairs(servers) do
+            vim.lsp.config(name, config)
+            vim.lsp.enable(name)
+        end
     end,
 }
 

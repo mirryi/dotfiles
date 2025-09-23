@@ -76,6 +76,10 @@ plugins['vim-scripts/restore_view.vim'] = {
 
 -- project root working directory
 plugins['DrKJeff16/project.nvim'] = {
+    dependencies = {
+        'ibhagwan/fzf-lua',
+        'nvim-telescope/telescope.nvim',
+    },
     config = function()
         require('project').setup {}
     end,
