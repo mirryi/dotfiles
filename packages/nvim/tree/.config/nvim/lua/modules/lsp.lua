@@ -294,26 +294,19 @@ plugins['Julian/lean.nvim'] = {
 }
 
 -- enahcned rust language server and tools
-plugins['simrat39/rust-tools.nvim'] = {
+plugins['mrcjkb/rustaceanvim'] = {
     ft = { 'rust' },
-    dependencies = {
-        'nvim-lua/popup.nvim',
-        'nvim-lua/plenary.nvim',
-        'nvim-telescope/telescope.nvim',
-    },
-    opts = {
-        tools = {
-            autoSetHints = true,
-            runnables = { use_telescope = true },
-            inlay_hints = {
-                only_current_line = false,
-                show_parameter_hints = true,
-                max_len_align = false,
-            },
-            crate_graph = { output = nil, full = true },
-        },
-        server = {
-            on_attach = handlers.on_attach,
+    version = '^6',
+    lazy = false,
+    config = function()
+        vim.lsp.config('rust-analyzer', {
+            on_attach = function(client, bufnr)
+                handlers.on_attach(client, bufnr)
+
+                local bind = require('util.bind')
+                bind.nmap('gc', '<cmd>RustLsp codeAction<CR>')
+                bind.nmap('ge', '<cmd>RustLsp renderDiagnostic<CR>')
+            end,
             capabilities = handlers.capabilities,
             settings = {
                 ['rust-analyzer'] = {
@@ -324,8 +317,8 @@ plugins['simrat39/rust-tools.nvim'] = {
                     rustc = { source = 'discover' },
                 },
             },
-        },
-    },
+        })
+    end,
 }
 
 -- enhanced clangd and tools
