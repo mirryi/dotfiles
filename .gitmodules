@@ -1,9 +1,6 @@
 [submodule "packages/tmux/tree/.local/share/tmux/plugins/tpm"]
 	path = packages/tmux/tree/.local/share/tmux/plugins/tpm
 	url = https://github.com/tmux-plugins/tpm
-[submodule "packages/gtk/themes/gruvbox-gtk"]
-	path = packages/gtk/themes/gruvbox-gtk
-	url = https://github.com/3ximus/gruvbox-gtk
 [submodule "packages/zathura/themes/gruvbox"]
 	path = packages/zathura/themes/gruvbox
 	url = https://github.com/eastack/zathura-gruvbox

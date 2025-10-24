@@ -50,7 +50,7 @@ local M = {
     },
     fzf = { name = 'gruvbox-dark' },
     git = { delta = { theme = 'gruvbox' } },
-    gtk = { theme = 'gruvbox-gtk' },
+    gtk = { theme = 'Gruvbox-Dark' },
     i3 = {
         font = { family = font, size = 10 },
         colors = {
