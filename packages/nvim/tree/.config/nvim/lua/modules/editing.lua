@@ -57,7 +57,24 @@ plugins['winston0410/range-highlight.nvim'] = {
 }
 
 -- more surround movements
-plugins['tpope/vim-surround'] = {}
+plugins['tpope/vim-surround'] = {
+    config = function()
+        vim.g.surround_97 = '⟨\r⟩'
+    end,
+}
+
+-- custom text objects
+plugins['kana/vim-textobj-user'] = {
+    config = function()
+        vim.fn['textobj#user#plugin']('braces', {
+            angle = {
+                pattern = { '⟨', '⟩' },
+                ['select-a'] = 'aa',
+                ['select-i'] = 'ia',
+            },
+        })
+    end,
+}
 
 -- tab-out of parentheses
 plugins['abecodes/tabout.nvim'] = {

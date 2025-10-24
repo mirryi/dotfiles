@@ -36,7 +36,7 @@ plugins['folke/lsp-trouble.nvim'] = {
         trouble.setup {}
 
         local bind = require('util.bind')
-        bind.nmap('gL', '<cmd>Trouble diagnostics<CR>')
+        bind.nmap('gL', '<cmd>Trouble diagnostics toggle<CR>')
     end,
 }
 
