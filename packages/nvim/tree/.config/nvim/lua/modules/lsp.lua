@@ -20,9 +20,8 @@ plugins['kosayoda/nvim-lightbulb'] = {
 -- highlight same item instances
 plugins['RRethy/vim-illuminate'] = {
     config = function()
-        local bind = require('util.bind')
-        bind.nmap('<C-.>', [[ <cmd>lua require('illuminate').next_reference{wrap=true}<CR> ]])
-        bind.nmap('<C-,>', [[ <cmd>lua require('illuminate').next_reference{reverse=true, wrap=true}<CR> ]])
+        vim.keymap.set('n', '<C-.>', [[ <cmd>lua require('illuminate').next_reference{wrap=true}<CR> ]])
+        vim.keymap.set('n', '<C-,>', [[ <cmd>lua require('illuminate').next_reference{reverse=true, wrap=true}<CR> ]])
     end,
 }
 
@@ -35,8 +34,7 @@ plugins['folke/lsp-trouble.nvim'] = {
         local trouble = require('trouble')
         trouble.setup {}
 
-        local bind = require('util.bind')
-        bind.nmap('gL', '<cmd>Trouble diagnostics toggle<CR>')
+        vim.keymap.set('n', 'gL', '<cmd>Trouble diagnostics toggle<CR>')
     end,
 }
 
@@ -196,17 +194,6 @@ plugins['neovim/nvim-lspconfig'] = {
     end,
 }
 
--- debugging support
--- plugins['mfussenegger/nvim-dap'] = {
--- dependencies = {
--- { 'rcarriga/nvim-dap-ui', dependencies = 'nvim-neotest/nvim-nio' },
--- 'theHamsta/nvim-dap-virtual-text',
--- },
--- config = function()
--- require('modules.lsp.dap')
--- end,
--- }
-
 -- enhanced java language server
 plugins['mfussenegger/nvim-jdtls'] = {
     ft = { 'java' },
@@ -299,25 +286,33 @@ plugins['mrcjkb/rustaceanvim'] = {
     version = '^6',
     lazy = false,
     config = function()
-        vim.lsp.config('rust-analyzer', {
-            on_attach = function(client, bufnr)
-                handlers.on_attach(client, bufnr)
-
-                local bind = require('util.bind')
-                bind.nmap('gc', '<cmd>RustLsp codeAction<CR>')
-                bind.nmap('ge', '<cmd>RustLsp renderDiagnostic<CR>')
-            end,
-            capabilities = handlers.capabilities,
-            settings = {
-                ['rust-analyzer'] = {
-                    assist = { importGranularity = 'module' },
-                    cargo = { loadOutDirsFromCheck = true },
-                    checkOnSave = { command = 'clippy' },
-                    procMacro = { enable = true },
-                    rustc = { source = 'discover' },
+        vim.g.rustaceanvim = {
+            tools = {
+                float_win_config = {
+                    auto_focus = true,
                 },
             },
-        })
+            server = {
+                on_attach = function(client, bufnr)
+                    handlers.on_attach(client, bufnr)
+
+                    vim.keymap.set('n', 'gC', '<cmd>RustLsp codeAction<CR>', {}, true)
+                    vim.keymap.set('n', 'gE', '<cmd>RustLsp renderDiagnostic<CR>', {}, true)
+                    vim.keymap.set('n', 'ga', '<cmd>RustLsp hover actions<CR>', {}, true)
+                    vim.keymap.set('n', 'gj', '<cmd>RustLsp joinLines<CR>', {}, true)
+                end,
+                capabilities = handlers.capabilities,
+                default_settings = {
+                    ['rust-analyzer'] = {
+                        assist = { importGranularity = 'module' },
+                        cargo = { loadOutDirsFromCheck = true },
+                        checkOnSave = { command = 'clippy' },
+                        procMacro = { enable = true },
+                        rustc = { source = 'discover' },
+                    },
+                },
+            },
+        }
     end,
 }
 

@@ -19,8 +19,7 @@ plugins['lukas-reineke/indent-blankline.nvim'] = {
 plugins['npxbr/glow.nvim'] = {
     ft = { 'markdown', 'pandoc' },
     config = function()
-        local bind = require('util.bind')
-        bind.nmap('<leader>p', '<cmd>Glow<CR>')
+        vim.keymap.set('n', '<leader>p', '<cmd>Glow<CR>')
     end,
 }
 

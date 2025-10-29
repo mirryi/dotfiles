@@ -25,26 +25,21 @@ plugins['godlygeek/tabular'] = {
 -- easy text alignment
 plugins['junegunn/vim-easy-align'] = {
     config = function()
-        local bind = require('util.bind')
-
-        bind.nmap('gA', '<Plug>(EasyAlign)')
-        bind.vmap('gA', '<Plug>(EasyAlign)')
+        vim.keymap.set('n', 'gA', '<Plug>(EasyAlign)')
+        vim.keymap.set('v', 'gA', '<Plug>(EasyAlign)')
     end,
 }
 
 -- toggle between short/long constructs
 plugins['AndrewRadev/splitjoin.vim'] = {
     config = function()
-        local g = vim.g
-        local bind = require('util.bind')
-
         -- Disable default mappings
-        g.splitjoin_split_mapping = ''
-        g.splitjoin_join_mapping = ''
+        vim.g.splitjoin_split_mapping = ''
+        vim.g.splitjoin_join_mapping = ''
 
         -- Use custom mappings
-        bind.nmap('<leader>j', '<cmd>SplitjoinJoin<CR>')
-        bind.nmap('<leader>S', '<cmd>SplitjoinSplit<CR>')
+        vim.keymap.set('n', '<leader>j', '<cmd>SplitjoinJoin<CR>')
+        vim.keymap.set('n', '<leader>S', '<cmd>SplitjoinSplit<CR>')
     end,
 }
 

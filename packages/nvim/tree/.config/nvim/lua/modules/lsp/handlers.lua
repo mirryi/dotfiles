@@ -1,6 +1,4 @@
 -- luacheck: globals vim
-local bind = require('util.bind')
-
 local M = {}
 
 -- Diagnostics handler
@@ -11,77 +9,79 @@ vim.lsp.handlers['textDocument/publishDiagnostics'] = vim.lsp.with(vim.lsp.diagn
     update_in_insert = true,
 })
 
--- Use lsputil handlers
--- vim.lsp.handlers['textDocument/codeAction'] = require('lsputil.locations').code_action_handler
--- vim.lsp.handlers['textDocument/references'] = require('lsputil.locations').references_handler
--- vim.lsp.handlers['textDocument/definition'] = require('lsputil.locations').definition_handler
--- vim.lsp.handlers['textDocument/declaration'] = require('lsputil.locations').declaration_handler
--- vim.lsp.handlers['textDocument/typeDefinition'] = require('lsputil.locations').typeDefinition_handler
--- vim.lsp.handlers['textDocument/implementation'] = require('lsputil.locations').implementation_handler
--- vim.lsp.handlers['textDocument/documentSymbol'] = require('lsputil.symbols').document_handler
--- vim.lsp.handlers['workspace/symbol'] = require('lsputil.symbols').workspace_handler
-
 -- Grouped on_attach
 M.on_attach = function(client, bufnr)
-    -- Bind lsp functionality for this buffer
-    local bufmap = function(mode, lhs, rhs, desc)
-        bind.buf.map(bufnr, mode, lhs, rhs, { noremap = false, desc = desc })
-    end
-
     -- Jump to diagnostics
-    bufmap('n', 'gN', '<cmd>lua vim.diagnostic.goto_prev()<CR>')
-    bufmap('n', 'gn', '<cmd>lua vim.diagnostic.goto_next()<CR>')
+    vim.keymap.set('n', 'gN', function()
+        vim.diagnostic.goto_prev()
+    end, { desc = 'Jump to previous diagnostic' }, true)
+    vim.keymap.set('n', 'gn', function()
+        vim.diagnostic.goto_next()
+    end, { desc = 'Jump to next diagnostic' }, true)
 
     -- Goto definition
     if client.server_capabilities.definitionProvider then
-        bufmap('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>')
-        -- bufmap('n', 'gd', '<cmd>LspGotoDefinition<CR>')
-        bufmap('n', 'gH', '<cmd>lua require("modules.lsp.helpers").peek_definition()<CR>')
+        vim.keymap.set('n', 'gd', function()
+            vim.lsp.buf.definition()
+        end, { desc = 'Jump to definition' }, true)
+        vim.keymap.set('n', 'gH', function()
+            require('modules.lsp.helpers').peek_definition()
+        end, { desc = 'Peek definition' }, true)
     end
     -- Goto declaration
     if client.server_capabilities.declarationProvider then
-        bufmap('n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<CR>')
+        vim.keymap.set('n', 'gD', function()
+            vim.lsp.buf.declaration()
+        end, { desc = 'Jump to declaration' }, true)
     end
     -- Goto implementation
     if client.server_capabilities.implementationProvider then
-        bufmap('n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<CR>')
+        vim.keymap.set('n', 'gi', function()
+            vim.lsp.buf.implementation()
+        end, { desc = 'Jump to implementation' }, true)
     end
     -- Goto type definition
     if client.server_capabilities.typeDefinitionProvider then
-        bufmap('n', 'gy', '<cmd>lua vim.lsp.buf.type_definition()<CR>')
+        vim.keymap.set('n', 'gy', function()
+            vim.lsp.buf.type_definition()
+        end, { desc = 'Jump to type definition' }, true)
     end
     -- Show hover information
     if client.server_capabilities.hoverProvider then
-        bufmap('n', 'gh', '<cmd>lua vim.lsp.buf.hover()<CR>')
+        vim.keymap.set('n', 'gh', function()
+            vim.lsp.buf.hover()
+        end, { desc = 'Show hover information' }, true)
     end
     -- Show signature help
     if client.server_capabilities.signatureHelpProvider then
-        bufmap('n', 'gs', '<cmd>lua vim.lsp.buf.signature_help()<CR>')
+        vim.keymap.set('n', 'gs', function()
+            vim.lsp.buf.signature_help()
+        end, { desc = 'Show signature help' }, true)
     end
     -- List references
     if client.server_capabilities.referencesProvider then
-        bufmap('n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>')
-        -- bufmap('n', 'gr', '<cmd>LSPReferences<CR>')
+        vim.keymap.set('n', 'gr', function()
+            vim.lsp.buf.references()
+        end, { desc = 'List references to symbol' }, true)
+        -- vim.keymap.set('n', 'gr', '<cmd>LSPReferences<CR>')
     end
     -- Rename the hovered symbol
     if client.server_capabilities.renameProvider then
-        bufmap('n', 'gR', '<cmd>lua vim.lsp.buf.rename()<CR>')
+        vim.keymap.set('n', 'gR', function()
+            vim.lsp.buf.rename()
+        end, { desc = 'Rename symbol' }, true)
     end
     -- Select a code action
     if client.server_capabilities.codeActionProvider then
-        bufmap('n', 'gc', '<cmd>lua vim.lsp.buf.code_action()<CR>')
+        vim.keymap.set('n', 'gC', function()
+            vim.lsp.buf.code_action()
+        end, { desc = 'Code action' }, true)
     end
 
     -- Show diagnostics for the current line
-    bufmap('n', 'ge', '<cmd>lua vim.diagnostic.open_float({focus = false})<CR>')
-
-    -- Show document diagnostics list
-    bufmap('n', 'gQ', '<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>')
-
-    -- Workspace functionality
-    -- bufmap('n', 'gwa', '<cmd>lua vim.lsp.buf.add_workspace_folder()<CR>')
-    -- bufmap('n', 'gwr', '<cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>')
-    -- bufmap('n', 'gwl', '<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>')
+    vim.keymap.set('n', 'gE', function()
+        vim.diagnostic.open_float { focus = false }
+    end, { desc = 'Open diagnostic' }, true)
 
     -- If server supports formatting, format on save.
     if client.server_capabilities.documentFormattingProvider then
@@ -92,14 +92,10 @@ M.on_attach = function(client, bufnr)
 
     -- If range formatting is supported, add a keybind
     if client.server_capabilities.documentRangeFormattingProvider then
-        bufmap('v', '<leader>f', '<cmd>lua vim.lsp.buf.range_formatting()<CR>')
+        vim.keymap.set('v', '<leader>f', function()
+            vim.lsp.buf.range_formatting()
+        end, { desc = 'Format range' }, true)
     end
-
-    -- Attach signature help
-    -- if client.server_capabilities.signatureHelpProvider then
-    -- local signature = require('lsp_signature')
-    -- signature.on_attach()
-    -- end
 
     -- Attach virtual types indicator.
     if client.server_capabilities.codeLensProvider then

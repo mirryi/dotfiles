@@ -36,22 +36,21 @@ endtry
     )
 
     -- Treesitter highlight modifications
-    local U = require('util')
-    local hilink = U.hi.link
+    local hi = require('util.hi')
 
-    hilink.TSField = 'Fg'
-    -- hilink.TSKeyword = 'RedItalic'
-    hilink.TSKeywordOperator = 'Orange'
-    hilink.TSNamespace = 'Orange'
-    hilink.TSProperty = 'Fg'
-    hilink.TSString = 'GreenItalic'
-    hilink.TSType = 'Fg'
-    hilink.TSTypeBuiltin = 'Yellow'
-    hilink.TSVariableBuiltin = 'BlueItalic'
-    hilink.TSConstant = 'Purple'
+    -- hi.link.TSField = 'Fg'
+    -- hi.link.TSKeyword = 'RedItalic'
+    hi.link.TSKeywordOperator = 'Orange'
+    hi.link.TSNamespace = 'Orange'
+    hi.link.TSProperty = 'Fg'
+    hi.link.TSString = 'GreenItalic'
+    hi.link.TSType = 'Fg'
+    hi.link.TSTypeBuiltin = 'Yellow'
+    hi.link.TSVariableBuiltin = 'BlueItalic'
+    hi.link.TSConstant = 'Purple'
 
-    hilink.TSFuncMacro = 'Purple'
-    hilink.TSFuncBuiltin = 'Purple'
+    hi.link.TSFuncMacro = 'Purple'
+    hi.link.TSFuncBuiltin = 'Purple'
 end
 
 return M

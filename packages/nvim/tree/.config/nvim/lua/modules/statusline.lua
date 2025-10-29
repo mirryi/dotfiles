@@ -16,9 +16,6 @@ plugins['lewis6991/gitsigns.nvim'] = {
 -- sane buffer tabline
 plugins['romgrk/barbar.nvim'] = {
     config = function()
-        local bind = require('util.bind')
-        local nmap = bind.nmap
-
         require('barbar').setup {
             -- Enable animations
             animation = true,
@@ -37,36 +34,28 @@ plugins['romgrk/barbar.nvim'] = {
         }
 
         -- Select tab
-        nmap('<C-s>', '<cmd>BufferPick<CR>', { silent = true })
+        vim.keymap.set('n', 'ts', '<cmd>BufferPick<CR>')
         -- Move to previous/next tab
-        nmap('t,', '<cmd>BufferPrevious<CR>', { silent = true })
-        nmap('t.', '<cmd>BufferNext<CR>', { silent = true })
+        vim.keymap.set('n', 't,', '<cmd>BufferPrevious<CR>')
+        vim.keymap.set('n', 't.', '<cmd>BufferNext<CR>')
         -- Re-order to previous/next
-        nmap('t<', '<cmd>BufferMovePrevious<CR>', { silent = true })
-        nmap('t>', '<cmd>BufferMoveNext<CR>', { silent = true })
+        vim.keymap.set('n', 't<', '<cmd>BufferMovePrevious<CR>')
+        vim.keymap.set('n', 't>', '<cmd>BufferMoveNext<CR>')
         -- Goto buffer in position
-        nmap('t1', '<cmd>BufferGoto 1<CR>', { silent = true })
-        nmap('t2', '<cmd>BufferGoto 2<CR>', { silent = true })
-        nmap('t3', '<cmd>BufferGoto 3<CR>', { silent = true })
-        nmap('t4', '<cmd>BufferGoto 4<CR>', { silent = true })
-        nmap('t5', '<cmd>BufferGoto 5<CR>', { silent = true })
-        nmap('t6', '<cmd>BufferGoto 6<CR>', { silent = true })
-        nmap('t7', '<cmd>BufferGoto 7<CR>', { silent = true })
-        nmap('t8', '<cmd>BufferGoto 8<CR>', { silent = true })
-        nmap('t9', '<cmd>BufferLast<CR>', { silent = true })
+        vim.keymap.set('n', 't1', '<cmd>BufferGoto 1<CR>')
+        vim.keymap.set('n', 't2', '<cmd>BufferGoto 2<CR>')
+        vim.keymap.set('n', 't3', '<cmd>BufferGoto 3<CR>')
+        vim.keymap.set('n', 't4', '<cmd>BufferGoto 4<CR>')
+        vim.keymap.set('n', 't5', '<cmd>BufferGoto 5<CR>')
+        vim.keymap.set('n', 't6', '<cmd>BufferGoto 6<CR>')
+        vim.keymap.set('n', 't7', '<cmd>BufferGoto 7<CR>')
+        vim.keymap.set('n', 't8', '<cmd>BufferGoto 8<CR>')
+        vim.keymap.set('n', 't9', '<cmd>BufferLast<CR>')
         -- Close buffer
-        nmap('tc', ' <cmd>BufferClose<CR>', { silent = true })
+        vim.keymap.set('n', 'tc', ' <cmd>BufferClose<CR>')
+        vim.keymap.set('n', 'tC', ' <cmd>BufferCloseAllButCurrent<CR>')
     end,
 }
-
--- minimap
--- plugins['wfxr/minimap.vim'] = {
--- config = function()
--- local bind = require('util.bind')
--- -- Toggle minimap
--- bind.nmap('<leader>m', '<cmd>MinimapToggle<CR>', { silent = true })
--- end,
--- }
 
 -- wildmenu enhancements
 if not vim.g.vscode then
