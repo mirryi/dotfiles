@@ -7,28 +7,27 @@ plugins['isovector/cornelis'] = {
     dependencies = { 'kana/vim-textobj-user', 'neovimhaskell/nvim-hs.vim', 'liuchengxu/vim-which-key' },
     init = function() end,
     config = function()
-        local bind = require('util.bind')
-        bind.nmap('<leader>al', '<cmd>CornelisLoad<CR>')
-        bind.nmap('<leader>aG', '<cmd>CornelisGoals<CR>')
-        bind.nmap('<leader>aR', '<cmd>CornelisRestart<CR>')
-        bind.nmap('<leader>aA', '<cmd>CornelisAbort<CR>')
-        bind.nmap('<leader>as', '<cmd>CornelisSolve<CR>')
-        bind.nmap('<leader>ad', '<cmd>CornelisGoToDefinition<CR>')
-        bind.nmap('<leader>aN', '<cmd>CornelisPrevGoal<CR>')
-        bind.nmap('<leader>an', '<cmd>CornelisNextGoal<CR>')
-        bind.nmap('<leader>aM', '<cmd>CornelisQuestionToMeta<CR>')
-        bind.nmap('<leader>aC', '<cmd>CornelisCloseInfoWindows<CR>')
+        vim.keymap.set('n', '<leader>al', '<cmd>CornelisLoad<CR>')
+        vim.keymap.set('n', '<leader>aG', '<cmd>CornelisGoals<CR>')
+        vim.keymap.set('n', '<leader>aR', '<cmd>CornelisRestart<CR>')
+        vim.keymap.set('n', '<leader>aA', '<cmd>CornelisAbort<CR>')
+        vim.keymap.set('n', '<leader>as', '<cmd>CornelisSolve<CR>')
+        vim.keymap.set('n', '<leader>ad', '<cmd>CornelisGoToDefinition<CR>')
+        vim.keymap.set('n', '<leader>aN', '<cmd>CornelisPrevGoal<CR>')
+        vim.keymap.set('n', '<leader>an', '<cmd>CornelisNextGoal<CR>')
+        vim.keymap.set('n', '<leader>aM', '<cmd>CornelisQuestionToMeta<CR>')
+        vim.keymap.set('n', '<leader>aC', '<cmd>CornelisCloseInfoWindows<CR>')
 
-        bind.nmap('<leader>ag', '<cmd>CornelisGive<CR>')
-        bind.nmap('<leader>ar', '<cmd>CornelisRefine<CR>')
-        bind.nmap('<leader>aL', '<cmd>CornelisElaborate<CR>')
-        bind.nmap('<leader>aa', '<cmd>CornelisAuto<CR>')
-        bind.nmap('<leader>ac', '<cmd>CornelisMakeCase<CR>')
-        bind.nmap('<leader>ae', '<cmd>CornelisTypeContext<CR>')
-        bind.nmap('<leader>ai', '<cmd>CornelisTypeInfer<CR>')
-        bind.nmap('<leader>aE', '<cmd>CornelisTypeContextInfer<CR>')
-        bind.nmap('<leader>aN', '<cmd>CornelisNormalize<CR>')
-        bind.nmap('<leader>aw', '<cmd>CornelisWhyInScope<CR>')
+        vim.keymap.set('n', '<leader>ag', '<cmd>CornelisGive<CR>')
+        vim.keymap.set('n', '<leader>ar', '<cmd>CornelisRefine<CR>')
+        vim.keymap.set('n', '<leader>aL', '<cmd>CornelisElaborate<CR>')
+        vim.keymap.set('n', '<leader>aa', '<cmd>CornelisAuto<CR>')
+        vim.keymap.set('n', '<leader>ac', '<cmd>CornelisMakeCase<CR>')
+        vim.keymap.set('n', '<leader>ae', '<cmd>CornelisTypeContext<CR>')
+        vim.keymap.set('n', '<leader>ai', '<cmd>CornelisTypeInfer<CR>')
+        vim.keymap.set('n', '<leader>aE', '<cmd>CornelisTypeContextInfer<CR>')
+        vim.keymap.set('n', '<leader>aN', '<cmd>CornelisNormalize<CR>')
+        vim.keymap.set('n', '<leader>aw', '<cmd>CornelisWhyInScope<CR>')
     end,
 }
 
@@ -185,8 +184,9 @@ plugins['lervag/vimtex'] = {
 plugins['jbyuki/nabla.nvim'] = {
     ft = { 'latex' },
     config = function()
-        local bind = require('util.bind')
-        bind.nmap('<leader>lf', '<cmd>lua require("nabla").popup()<CR>')
+        vim.keymap.set('n', '<leader>lf', function()
+            require('nabla').popup()
+        end)
     end,
 }
 

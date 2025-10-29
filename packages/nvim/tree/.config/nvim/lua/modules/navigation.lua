@@ -4,11 +4,10 @@ local plugins = {}
 -- jump locations
 plugins['phaazon/hop.nvim'] = {
     config = function()
-        local hop = require('hop')
-        local bind = require('util.bind')
-
-        hop.setup {}
-        bind.nmap('<leader>s', '<cmd>lua require("hop").hint_words()<CR>')
+        require('hop').setup {}
+        vim.keymap.set('n', '<leader>s', function()
+            require('hop').hint_words()
+        end)
     end,
 }
 
@@ -37,7 +36,9 @@ plugins['Bekaboo/dropbar.nvim'] = {
         },
     },
     config = function()
-        vim.keymap.set('n', '<leader>fm', '<cmd>lua require("dropbar.api").pick()<CR>')
+        vim.keymap.set('n', '<leader>fm', function()
+            require('dropbar.api').pick()
+        end)
     end,
 }
 

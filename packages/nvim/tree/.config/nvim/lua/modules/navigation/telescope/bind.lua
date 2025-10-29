@@ -1,53 +1,52 @@
 local pickers = require('modules.navigation.telescope.pickers')
 
 local with_non = function(opts)
-    local f = opts[4]
-    opts[4] = function(_)
-        f()
-    end
-    return opts
-end
-local with_rel = function(opts)
-    local f = opts[4]
-    opts[4] = function(o)
-        f(o.fargs[1] ~= 'absolute')
-    end
-
-    opts[5] = {
-        nargs = '?',
-        complete = function(_, _, _)
-            return { 'absolute' }
+    return {
+        opts[1],
+        { desc = opts[2] },
+        function(_)
+            opts[3]()
         end,
     }
-    return opts
+end
+local with_rel = function(opts)
+    return {
+        opts[1],
+        {
+            desc = opts[2],
+            nargs = '?',
+            complete = function(_, _, _)
+                return { 'absolute' }
+            end,
+        },
+        function(o)
+            opts[3](o.fargs[1] ~= 'absolute')
+        end,
+    }
 end
 
 local defs = {
     commands = {
-        with_rel { 'Files', 'Open file picker', false, pickers.files },
-        with_rel { 'FileBrowser', 'Open file browser', false, pickers.filebrowser },
-        with_rel { 'Ripgrep', 'Open recent file picker', false, pickers.ripgrep },
+        with_rel { 'Files', 'Open file picker', pickers.files },
+        with_rel { 'FileBrowser', 'Open file browser', pickers.filebrowser },
+        with_rel { 'Ripgrep', 'Open recent file picker', pickers.ripgrep },
 
-        with_non { 'GitFiles', 'Open git file picker', false, pickers.git_files },
-        with_non { 'RecentFiles', 'Open recent file picker', false, pickers.oldfiles },
+        with_non { 'GitFiles', 'Open git file picker', pickers.git_files },
+        with_non { 'RecentFiles', 'Open recent file picker', pickers.oldfiles },
 
-        with_non { 'Buffers', 'Open buffer picker', false, pickers.buffers },
-        with_non { 'Registers', 'Open register picker', false, pickers.registers },
+        with_non { 'Buffers', 'Open buffer picker', pickers.buffers },
+        with_non { 'Registers', 'Open register picker', pickers.registers },
 
-        with_non { 'Commands', 'Open command picker', false, pickers.commands },
-        with_non { 'CommandHistory', 'Open command history picker', false, pickers.command_history },
+        with_non { 'Commands', 'Open command picker', pickers.commands },
+        with_non { 'CommandHistory', 'Open command history picker', pickers.command_history },
 
-        with_non { 'HelpTags', 'Open help tag picker', false, pickers.help },
-        with_non { 'ManPages', 'Open man page picker', false, pickers.man_pages },
+        with_non { 'Help', 'Open help tag picker', pickers.help },
+        with_non { 'ManPages', 'Open man page picker', pickers.man_pages },
 
-        -- with_non { 'Marks', 'Open mark picker', false, pickers.marks },
-        -- with_non { 'Ctags', 'Open ctag picker', false, pickers.ctags },
-        -- with_non { 'Quickfixes', 'Open quickfix picker', false, pickers.quickfix },
-
-        with_non { 'LspDefinitions', 'Open LSP definitions picker', false, pickers.lsp.definitions },
-        with_non { 'LspReferences', 'Open LSP references picker', false, pickers.lsp.references },
-        with_non { 'LspDocSymbols', 'Open LSP document symbols picker', false, pickers.lsp.symbols },
-        with_non { 'LspWsSymbols', 'Open LSP workspace symbols picker', false, pickers.lsp.workspace_symbols },
+        with_non { 'LspDefinitions', 'Open LSP definitions picker', pickers.lsp.definitions },
+        with_non { 'LspReferences', 'Open LSP references picker', pickers.lsp.references },
+        with_non { 'LspDocSymbols', 'Open LSP document symbols picker', pickers.lsp.symbols },
+        with_non { 'LspWsSymbols', 'Open LSP workspace symbols picker', pickers.lsp.workspace_symbols },
     },
     binds = {
         { '<C-p>', 'Files' },
@@ -66,13 +65,13 @@ local defs = {
     },
 }
 
-local command = require('util.command')
-local bind = require('util.bind')
-
 for _, opts in ipairs(defs.commands) do
-    command.new_cmd(opts[1], opts[2], opts[3], opts[4], opts[5])
+    local name = opts[1]
+    local opt = opts[2]
+    local f = opts[3]
+    vim.api.nvim_create_user_command(name, f, opt)
 end
 
 for _, opts in ipairs(defs.binds) do
-    bind.nmap(opts[1], '<cmd>' .. opts[2] .. '<CR>')
+    vim.keymap.set('n', opts[1], '<cmd>' .. opts[2] .. '<CR>')
 end
