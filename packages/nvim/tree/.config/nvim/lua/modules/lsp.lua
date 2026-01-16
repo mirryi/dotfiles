@@ -88,31 +88,10 @@ plugins['nvim-treesitter/nvim-treesitter'] = {
             opts = { enable = true, throttle = true },
         },
         'haringsrob/nvim_context_vt',
-        -- spellcheck using treesitter
-        -- {
-        --     'lewis6991/spellsitter.nvim',
-        --     after = { 'nvim-treesitter' },
-        --     config = function()
-        --         require('spellsitter').setup()
-        --     end,
-        -- },
         -- rainbow parentheses
-        {
-            'hiphish/rainbow-delimiters.nvim',
-            setup = function()
-                require('rainbow-delimiters.setup').setup()
-            end,
-        },
+        'hiphish/rainbow-delimiters.nvim',
         -- swapping of parameters, lists, arrays, etc.
         'mizlan/iswap.nvim',
-        -- dimming of unused code.
-        -- {
-        -- 'narutoxy/dim.lua',
-        -- after = { 'nvim-treesitter', 'nvim-lspconfig' },
-        -- config = function()
-        -- require('dim').setup()
-        -- end,
-        -- },
     },
     config = function()
         local treesitter = require('nvim-treesitter.configs')
