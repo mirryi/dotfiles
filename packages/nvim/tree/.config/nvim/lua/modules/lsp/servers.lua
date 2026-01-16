@@ -27,7 +27,7 @@ servers['clangd'] = { on_attach = on_attach, capabilities = clangd_capabilities 
 servers['cmake'] = { on_attach = on_attach, capabilities = capabilities }
 
 -- css language server
-servers['cssls'] = { on_attach = on_attach, capabilities = capabilities }
+-- servers['cssls'] = { on_attach = on_attach, capabilities = capabilities }
 
 -- dafny language server
 servers['dafny'] = { on_attach = on_attach, capabilities = capabilities }
@@ -143,9 +143,6 @@ servers['ts_ls'] = {
         if client.config.flags then
             client.config.flags.allow_incremental_sync = true
         end
-
-        -- Disable built-in formatting
-        -- client.resolved_capabilities.document_formatting = false
 
         local ts_utils = require('nvim-lsp-ts-utils')
         vim.lsp.handlers['textDocument/codeAction'] = ts_utils.code_action_handler
