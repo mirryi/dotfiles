@@ -1,21 +1,26 @@
 #!/bin/sh
 
-# NPM config
+# npm config
 export NPM_CONFIG_USERCONFIG="$XDG_CONFIG_HOME/npm/npmrc"
 
-# NVM data
-if [ -e "/usr/share/nvm/init-nvm.sh" ]; then
+# nvm data
+if [ -f "/usr/share/nvm/init-nvm.sh" ]; then
   source "/usr/share/nvm/init-nvm.sh"
 fi
 export NVM_DIR="$XDG_DATA_HOME/nvm"
 
-# REPL history
+# volta
+if [ -d "${HOME}/.volta/bin" ]; then
+  export PATH="${HOME}/.volta/bin:${PATH}"
+fi
+
+# repl history
 export NODE_REPL_HISTORY="$XDG_DATA_HOME/node_repl_history"
 
-# Yarn config
+# yarn config
 # alias yarn="yarn --use-yarnrc $XDG_CONFIG_HOME/yarn/config"
 
-# Installed binaries
+# npm binaries
 if [ -d "$XDG_DATA_HOME/npm/bin" ]; then
   export PATH="$XDG_DATA_HOME/npm/bin:$PATH"
 fi
