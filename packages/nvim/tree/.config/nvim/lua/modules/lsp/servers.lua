@@ -87,6 +87,12 @@ servers['lua_ls'] = {
 -- nickel language server
 servers['nickel_ls'] = { on_attach = on_attach, capabilities = capabilities }
 
+-- nix language server
+servers['nil_ls'] = { on_attach = on_attach, capabilities = capabilities }
+
+-- nushell language server
+servers['nushell'] = { on_attach = on_attach, capabilities = capabilities }
+
 -- ocaml/reason language server
 servers['ocamllsp'] = { on_attach = on_attach, capabilities = capabilities }
 
