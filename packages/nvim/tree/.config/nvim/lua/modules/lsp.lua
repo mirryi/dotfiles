@@ -76,66 +76,77 @@ plugins['soulis-1256/eagle.nvim'] = {}
 -- treesitter support
 plugins['nvim-treesitter/nvim-treesitter'] = {
     lazy = false,
-    branch = 'master',
     build = ':TSUpdate',
     dependencies = {
-        'nvim-treesitter/playground',
-        'nvim-treesitter/nvim-treesitter-refactor',
-        -- auto close html/xml tags
         'windwp/nvim-ts-autotag',
-        {
-            'romgrk/nvim-treesitter-context',
-            opts = { enable = true, throttle = true },
-        },
+        'romgrk/nvim-treesitter-context',
         'haringsrob/nvim_context_vt',
-        -- rainbow parentheses
         'hiphish/rainbow-delimiters.nvim',
-        -- swapping of parameters, lists, arrays, etc.
-        'mizlan/iswap.nvim',
-    },
-    config = function()
-        local treesitter = require('nvim-treesitter.configs')
-        local highlight_disabled = {
-            'agda',
-            'cmake',
-            'help',
-            'latex',
-            'make',
-            'markdown',
-            'pandoc',
-            'r',
-            'ruby',
-            'rust',
-            'scss',
-            'tex',
-            'tmux',
-            'toml',
-            'yaml',
-        }
-        treesitter.setup {
-            -- ensure_installed = 'all',
-            highlight = {
-                enable = true,
-                disable = highlight_disabled,
-            },
-            indent = { enable = true },
-            refactor = {
-                enable = true,
-                highlight_definitions = { enable = true },
-                highlight_current_scope = { enable = false },
-                keymaps = { goto_definition = 'gd' },
-            },
-            -- External modules
-            autotag = { enable = true },
-            context_commentstring = { enable = true },
-            rainbow = {
-                enable = true,
-                disable = highlight_disabled,
-                extended_mode = true,
-            },
-        }
-    end,
+        -- 'mizlan/iswap.nvim',
+    }
 }
+-- plugins['nvim-treesitter/nvim-treesitter'] = {
+-- lazy = false,
+-- branch = 'master',
+-- build = ':TSUpdate',
+-- dependencies = {
+-- 'nvim-treesitter/playground',
+-- 'nvim-treesitter/nvim-treesitter-refactor',
+-- -- auto close html/xml tags
+-- 'windwp/nvim-ts-autotag',
+-- {
+-- 'romgrk/nvim-treesitter-context',
+-- opts = { enable = true, throttle = true },
+-- },
+-- 'haringsrob/nvim_context_vt',
+-- -- rainbow parentheses
+-- 'hiphish/rainbow-delimiters.nvim',
+-- -- swapping of parameters, lists, arrays, etc.
+-- 'mizlan/iswap.nvim',
+-- },
+-- config = function()
+-- local treesitter = require('nvim-treesitter.configs')
+-- local highlight_disabled = {
+-- 'agda',
+-- 'cmake',
+-- 'help',
+-- 'latex',
+-- 'make',
+-- 'markdown',
+-- 'pandoc',
+-- 'r',
+-- 'ruby',
+-- 'rust',
+-- 'scss',
+-- 'tex',
+-- 'tmux',
+-- 'toml',
+-- 'yaml',
+-- }
+-- treesitter.setup {
+-- -- ensure_installed = 'all',
+-- highlight = {
+-- enable = true,
+-- disable = highlight_disabled,
+-- },
+-- indent = { enable = true },
+-- refactor = {
+-- enable = true,
+-- highlight_definitions = { enable = true },
+-- highlight_current_scope = { enable = false },
+-- keymaps = { goto_definition = 'gd' },
+-- },
+-- -- External modules
+-- autotag = { enable = true },
+-- context_commentstring = { enable = true },
+-- rainbow = {
+-- enable = true,
+-- disable = highlight_disabled,
+-- extended_mode = true,
+-- },
+-- }
+-- end,
+-- }
 
 -- predefined language server configurations
 plugins['neovim/nvim-lspconfig'] = {
