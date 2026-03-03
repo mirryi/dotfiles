@@ -32,4 +32,6 @@ plugins['folke/zen-mode.nvim'] = {
     },
 }
 
+plugins['preservim/vim-textobj-quote'] = {}
+
 return plugins
