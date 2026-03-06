@@ -90,7 +90,7 @@ handle_extension() {
 		## Preview as text conversion
 		odt2txt "${FILE_PATH}" && exit 5
 		## Preview as markdown conversion
-		pandoc -s -t markdown -- "${FILE_PATH}" && exit 5
+		pandoc -s -t markdown --wrap=auto -- "${FILE_PATH}" && exit 5
 		exit 1
 		;;
 
@@ -110,6 +110,12 @@ handle_extension() {
 		elinks -dump "${FILE_PATH}" && exit 5
 		pandoc -s -t markdown -- "${FILE_PATH}" && exit 5
 		;;
+
+  ## Markdown
+  md)
+    pandoc -s -t markdown --wrap=auto --columns="${PV_WIDTH}" -- "${FILE_PATH}" \
+      | env COLORTERM=8bit bat --color=always --style="plain" -l md && exit 5
+    ;;
 
 	## JSON
 	json | ipynb)
@@ -288,7 +294,7 @@ handle_mime() {
 	## uncommented other methods to preview those formats
 	*wordprocessingml.document | */epub+zip | */x-fictionbook+xml)
 		## Preview as markdown conversion
-		pandoc -s -t markdown -- "${FILE_PATH}" && exit 5
+		pandoc -s -t markdown --wrap=auto -- "${FILE_PATH}" && exit 5
 		exit 1
 		;;
 
