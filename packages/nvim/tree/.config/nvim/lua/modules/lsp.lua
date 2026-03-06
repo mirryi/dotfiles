@@ -126,7 +126,12 @@ plugins['neovim/nvim-lspconfig'] = {
 plugins['mfussenegger/nvim-jdtls'] = {
     ft = { 'java' },
     config = function()
-        require('modules.lsp.servers.jdtls')
+        local jdtls = require('jdtls')
+        jdtls.start_or_attach {
+            cmd = { vim.fn.stdpath('config') .. '/lua/modules/lsp/servers/jdtls.sh' },
+            on_attach = handlers.on_attach,
+            capabilities = handlers.capabilities,
+        }
     end,
 }
 
@@ -187,7 +192,13 @@ plugins['scalameta/nvim-metals'] = {
 plugins['akinsho/flutter-tools.nvim'] = {
     dependencies = { 'nvim-lua/plenary.nvim' },
     config = function()
-        require('modules.lsp.servers.flutter')
+        local flutter_tools = require('flutter-tools')
+        flutter_tools.setup {
+            lsp = {
+                on_attach = handlers.on_attach,
+                capabilities = handlers.capabilities,
+            },
+        }
     end,
 }
 
