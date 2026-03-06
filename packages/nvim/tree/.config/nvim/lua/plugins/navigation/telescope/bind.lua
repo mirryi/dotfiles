@@ -1,4 +1,4 @@
-local pickers = require('modules.navigation.telescope.pickers')
+local pickers = require('plugins.navigation.telescope.pickers')
 
 local with_non = function(opts)
     return {
