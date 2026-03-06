@@ -13,7 +13,16 @@ plugins['ron89/thesaurus_query.vim'] = {
 }
 
 -- soft wrap
-plugins['manu-mannattil/vim-longlines'] = {}
+plugins['manu-mannattil/vim-longlines'] = {
+    config = function()
+        vim.api.nvim_create_autocmd('FileType', {
+            pattern = 'pandoc',
+            callback = function()
+                vim.cmd('LongLines')
+            end,
+        })
+    end,
+}
 
 -- writing focus
 plugins['folke/zen-mode.nvim'] = {
