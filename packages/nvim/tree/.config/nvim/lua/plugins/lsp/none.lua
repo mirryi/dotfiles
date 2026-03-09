@@ -29,9 +29,6 @@ return {
     builtins.formatting.stylua,
     builtins.diagnostics.selene,
 
-    -- make
-    builtins.diagnostics.checkmake,
-
     -- nix
     builtins.diagnostics.deadnix,
 
