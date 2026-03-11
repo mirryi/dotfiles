@@ -1,14 +1,5 @@
 return {
     {
-        -- pretty diagnostics view list
-        'folke/trouble.nvim',
-        dependencies = { 'nvim-tree/nvim-web-devicons' },
-        opts = {},
-        keys = {
-            { 'gL', '<cmd>Trouble diagnostics toggle<CR>' },
-        },
-    },
-    {
         -- code action indicator
         'kosayoda/nvim-lightbulb',
         opts = {

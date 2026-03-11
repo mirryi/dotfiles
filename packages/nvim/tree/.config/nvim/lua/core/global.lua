@@ -1,50 +1,41 @@
--- luacheck: globals vim
-local g, o, wo, bo = vim.g, vim.o, vim.wo, vim.bo
+local g, o, wo = vim.g, vim.o, vim.wo
 
---
--- Editor Defaults
---
-
--- Enable syntax and indent
-vim.cmd([[syntax on]])
-vim.cmd([[filetype plugin indent on]])
-
--- Map leader
+-- map leader
 g.mapleader = '\\'
 
--- Keep buffers around
+-- keep buffers around
 o.hidden = true
--- Avoid hit-enter messages
+-- avoid hit-enter messages
 o.shortmess = o.shortmess .. 'c'
--- Updatetime for CursorHold
+-- updatetime for CursorHold
 o.updatetime = 100
--- Always 10 lines below cursor
+-- always 10 lines below cursor
 o.scrolloff = 10
 
--- Transparent popupmenu
+-- transparent popupmenu
 o.pumblend = 15
 
--- Ignore case in search
+-- ignore case in search
 o.ignorecase = true
--- Unless search with uppercase
+-- unless search with uppercase
 o.smartcase = true
 
--- Show signcolumns
+-- show signcolumns
 wo.signcolumn = 'yes'
--- Show line numbers
+-- show line numbers
 wo.number = true
 wo.relativenumber = true
--- Show cursorline
+-- show cursorline
 wo.cursorline = true
--- No softwrap
+-- no softwrap
 wo.wrap = false
 
--- Folds
+-- folds
 wo.foldcolumn = '1'
 wo.foldenable = true
 wo.foldlevel = 99
 
--- Tabs (space tabs)
+-- indentation
 o.smarttab = true
 o.expandtab = true
 o.autoindent = true
@@ -53,24 +44,19 @@ o.tabstop = 2
 o.shiftwidth = 2
 o.softtabstop = 2
 
--- Completion
+-- completion
 o.completeopt = 'menuone,noinsert,noselect'
 
--- Undo
-bo.undofile = true
-vim.cmd([[let &undodir=stdpath('cache') . '/undo']], true)
+-- undo
+o.undofile = true
+o.undodir = vim.fn.stdpath('cache') .. '/undo'
 
--- No local .vimrc files
+-- no local .vimrc files
 o.exrc = false
 o.secure = true
 
--- Enable termguicolors
--- Sequences for RGB colors
-o.termguicolors = true
-vim.cmd([[
-  let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
-  let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
-]])
-
--- Disable netrw
+-- disable netrw
 g.loaded_netrwPlugin = 1
+
+-- colors
+o.termguicolors = true
