@@ -113,7 +113,7 @@ handle_extension() {
 
   ## Markdown
   md)
-    pandoc -s -t markdown --wrap=auto --columns="${PV_WIDTH}" -- "${FILE_PATH}" \
+    pandoc -s -t markdown_strict --wrap=auto --columns="${PV_WIDTH}" -- "${FILE_PATH}" \
       | env COLORTERM=8bit bat --color=always --style="plain" -l md && exit 5
     ;;
 
