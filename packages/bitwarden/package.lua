@@ -1,4 +1,3 @@
--- luacheck: globals pkg
 local lib = require('lib')
 
 pkg.name = 'bitwarden'

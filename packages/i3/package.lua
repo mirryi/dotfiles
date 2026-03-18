@@ -1,4 +1,3 @@
--- luacheck: globals pkg
 local lib = require('lib')
 local lfs = require('lfs')
 

@@ -7,7 +7,6 @@ end
 require_relative('batteries'):export()
 
 -- Merge and overwrite tables.
--- luacheck: globals table
 function table.overwrite(m, n)
     for k, v in pairs(n) do
         m[k] = v
