@@ -19,14 +19,12 @@ vim.api.nvim_create_autocmd('LspAttach', {
         local client = vim.lsp.get_client_by_id(ev.data.client_id)
 
         -- goto diagnostics
-        if client:supports_method('textDocument/diagnostic') then
-            vim.keymap.set('n', 'gn', function()
-                vim.diagnostic.goto_next()
-            end, { desc = 'Jump to next diagnostic' })
-            vim.keymap.set('n', 'gN', function()
-                vim.diagnostic.goto_prev()
-            end, { desc = 'Jump to previous diagnostic' })
-        end
+        vim.keymap.set('n', 'gn', function()
+            vim.diagnostic.goto_next()
+        end, { desc = 'Jump to next diagnostic' })
+        vim.keymap.set('n', 'gN', function()
+            vim.diagnostic.goto_prev()
+        end, { desc = 'Jump to previous diagnostic' })
 
         -- goto definition
         if client:supports_method('textDocument/definition') then
