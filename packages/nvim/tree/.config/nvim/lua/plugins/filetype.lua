@@ -47,7 +47,7 @@ return {
         ft = { 'forester' },
         dependencies = {
             'nvim-telescope/telescope.nvim',
-            'nvim-treesitter/nvim-treesitter',
+            -- 'nvim-treesitter/nvim-treesitter',
             'nvim-lua/plenary.nvim',
         },
         opts = {},
