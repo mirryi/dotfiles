@@ -1,7 +1,6 @@
 local lib = require('lib')
 
 pkg.name = 'alacritty'
-pkg.dependencies:extend('../qt')
 
 pkg.files.trees:clear()
 pkg.files.templates:push {
