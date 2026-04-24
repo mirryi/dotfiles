@@ -47,7 +47,6 @@ return {
         ft = { 'forester' },
         dependencies = {
             'nvim-telescope/telescope.nvim',
-            -- 'nvim-treesitter/nvim-treesitter',
             'nvim-lua/plenary.nvim',
         },
         opts = {},
@@ -66,7 +65,7 @@ return {
     },
     {
         'vim-pandoc/vim-rmarkdown',
-        after = { 'vim-pandoc' },
+        dependencies = { 'vim-pandoc/vim-pandoc' },
         ft = { 'rmarkdown' },
     },
 
