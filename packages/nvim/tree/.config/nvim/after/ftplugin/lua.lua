@@ -1,4 +1,3 @@
--- luacheck: globals vim
 local bo = vim.bo
 
 bo.autoindent = true

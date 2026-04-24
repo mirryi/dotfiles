@@ -85,7 +85,6 @@ return {
                 exclude = {},
             }
         end,
-        -- after = { 'nvim-treesitter' },
     },
     {
         -- better folding

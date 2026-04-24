@@ -21,8 +21,8 @@ return {
     {
         -- telescope
         'nvim-telescope/telescope.nvim',
-        after = { 'folke/trouble.nvim' },
         dependencies = {
+            'folke/trouble.nvim',
             'nvim-lua/plenary.nvim',
             'nvim-telescope/telescope-file-browser.nvim',
             'nvim-telescope/telescope-ui-select.nvim',
@@ -117,7 +117,7 @@ return {
         'Bekaboo/dropbar.nvim',
         dependencies = { 'nvim-tree/nvim-web-devicons' },
         config = function()
-            vim.keymap.set('n', '<leader>fm', function()
+            vim.keymap.set('n', '<leader>fd', function()
                 require('dropbar.api').pick()
             end)
         end,

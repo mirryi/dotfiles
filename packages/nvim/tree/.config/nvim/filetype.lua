@@ -9,7 +9,6 @@ vim.filetype.add {
     filename = {
         ['latexmkrc'] = 'perl',
         ['.latexmkrc'] = 'perl',
-        ['.luacheckrc'] = 'lua',
         ['rust-toolchain'] = 'toml',
     },
     pattern = {

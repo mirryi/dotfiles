@@ -24,17 +24,17 @@ return function(dl, palette, bg)
                 -- highlight modifications
                 local hi = require('util.hi')
 
-                hi.link.TSKeywordOperator = 'Orange'
-                hi.link.TSNamespace = 'Orange'
-                hi.link.TSProperty = 'Fg'
-                hi.link.TSString = 'GreenItalic'
-                hi.link.TSType = 'Fg'
-                hi.link.TSTypeBuiltin = 'Yellow'
-                hi.link.TSVariableBuiltin = 'BlueItalic'
-                hi.link.TSConstant = 'Purple'
+                hi.link['@keyword.operator'] = 'Orange'
+                hi.link['@module'] = 'Orange'
+                hi.link['@property'] = 'Fg'
+                hi.link['@string'] = 'GreenItalic'
+                hi.link['@type'] = 'Fg'
+                hi.link['@type.builtin'] = 'Yellow'
+                hi.link['@variable.builtin'] = 'BlueItalic'
+                hi.link['@constant'] = 'Purple'
 
-                hi.link.TSFuncMacro = 'Purple'
-                hi.link.TSFuncBuiltin = 'Purple'
+                hi.link['@function.macro'] = 'Purple'
+                hi.link['@function.builtin'] = 'Purple'
             end,
         },
     }
