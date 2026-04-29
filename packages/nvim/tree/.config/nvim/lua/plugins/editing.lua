@@ -13,8 +13,10 @@ return {
     },
     {
         -- comment and uncomment with keybindings
-        'numToStr/Comment.nvim',
-        opts = {},
+        'preservim/nerdcommenter',
+        config = function()
+            vim.g.NERDSpaceDelims = 1
+        end,
     },
     {
         -- easy text alignment
