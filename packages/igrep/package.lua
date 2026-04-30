@@ -10,8 +10,7 @@ pkg.files.templates:push {
     engine = 'handlebars',
 }
 
-local profile = require('profile').igrep
-pkg.variables:overwrite(profile)
+lib.use_profile('igrep')
 
 -- Load local file if exists
 lib.require_opt('local')

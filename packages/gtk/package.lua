@@ -10,8 +10,7 @@ pkg.files.templates:push {
     engine = 'handlebars',
 }
 
-local profile = require('profile').gtk
-pkg.variables:overwrite(profile)
+lib.use_profile('gtk')
 
 -- Load local file if exists
 lib.require_opt('local')

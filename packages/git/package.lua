@@ -12,8 +12,7 @@ pkg.files.templates:push {
     engine = 'handlebars',
 }
 
-local profile = require('profile').git
-pkg.variables:overwrite(profile)
+lib.use_profile('git')
 
 -- Load local file if exists
 lib.require_opt('local')

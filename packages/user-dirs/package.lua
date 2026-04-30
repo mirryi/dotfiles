@@ -9,8 +9,7 @@ pkg.files.templates:extend {
     engine = 'handlebars',
 }
 
-local lcl = require('variables')
-pkg.variables:overwrite(lcl)
+lib.use_variables()
 
 -- Load local file if it exists
 lib.require_opt('local')

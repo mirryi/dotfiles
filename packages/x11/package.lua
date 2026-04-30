@@ -8,8 +8,7 @@ pkg.files.extra:extend {
     dest = '.config/X11/xinitrc.local',
 }
 
-local profile = require('profile').x11
-pkg.variables:overwrite(profile)
+lib.use_profile('x11')
 
 local xresources_theme = 'xresources.theme'
 pkg.files.trees:front().ignore:extend('**/*.hbs')

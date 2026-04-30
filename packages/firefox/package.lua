@@ -1,9 +1,8 @@
 local lib = require('lib')
-local lfs = require('lfs')
 
 pkg.name = 'firefox'
 
-if lfs.attributes('local/bookmarks') then
+if lib.file_exists('local/bookmarks') then
     pkg.files.extra:extend {
         src = 'local/bookmarks',
         dest = '.config/tridactyl/bookmarks',

@@ -11,8 +11,7 @@ pkg.files.templates:push {
 
 pkg.hooks.post:push { name = 'Restart dunst', command = 'hooks/dunst-restart.sh' }
 
-local profile = require('profile').dunst
-pkg.variables:overwrite(profile)
+lib.use_profile('dunst')
 
 -- Load local config if exists
 lib.require_opt('local')

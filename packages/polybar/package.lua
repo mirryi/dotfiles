@@ -20,8 +20,7 @@ pkg.hooks.post:extend {
     command = home .. '/.local/bin/launch-polybar',
 }
 
-local profile = require('profile').polybar
-pkg.variables:overwrite(profile)
+lib.use_profile('polybar')
 
 local lcl = require('variables')
 

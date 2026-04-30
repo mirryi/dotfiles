@@ -9,8 +9,7 @@ pkg.files.templates:extend {
     engine = 'handlebars',
 }
 
-local profile = require('profile').rofi
-pkg.variables:overwrite(profile)
+lib.use_profile('rofi')
 
 -- Load local file if it exists
 lib.require_opt('local')

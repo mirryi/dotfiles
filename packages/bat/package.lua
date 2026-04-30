@@ -9,8 +9,7 @@ pkg.files.templates:push {
     engine = 'handlebars',
 }
 
-local profile = require('profile').bat
-pkg.variables:overwrite(profile)
+lib.use_profile('bat')
 
 -- Load local file if it exists
 lib.require_opt('local')

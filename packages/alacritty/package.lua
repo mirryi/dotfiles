@@ -13,8 +13,7 @@ pkg.files.templates:push {
     },
 }
 
-local profile = require('profile').alacritty
-pkg.variables:overwrite(profile)
+lib.use_profile('alacritty')
 
 -- Load local file if it exists
 lib.require_opt('local')
