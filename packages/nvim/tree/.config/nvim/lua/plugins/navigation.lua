@@ -112,16 +112,16 @@ return {
             }
         end,
     },
-    {
-        -- ide-like breadcrumbs
-        'Bekaboo/dropbar.nvim',
-        dependencies = { 'nvim-tree/nvim-web-devicons' },
-        config = function()
-            vim.keymap.set('n', '<leader>fd', function()
-                require('dropbar.api').pick()
-            end)
-        end,
-    },
+    -- {
+    -- -- ide-like breadcrumbs
+    -- 'Bekaboo/dropbar.nvim',
+    -- dependencies = { 'nvim-tree/nvim-web-devicons' },
+    -- config = function()
+    -- vim.keymap.set('n', '<leader>fd', function()
+    -- require('dropbar.api').pick()
+    -- end)
+    -- end,
+    -- },
     {
         -- smooth page-down and page-up
         'psliwka/vim-smoothie',
