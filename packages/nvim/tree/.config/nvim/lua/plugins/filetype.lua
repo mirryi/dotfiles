@@ -135,6 +135,10 @@ return {
                 group = au_group,
                 command = 'call b:vimtex.viewer.xdo_focus_vim()',
             })
+
+            -- Quickfix list
+            g.vimtex_quickfix_mode = 0
+            g.vimtex_quickfix_open_on_warning = 0
         end,
     },
 
