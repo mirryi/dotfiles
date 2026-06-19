@@ -12,9 +12,6 @@ default_border pixel 1
 default_floating_border pixel 1
 hide_edge_borders smart
 
-# workaround for https://github.com/i3/i3/issues/5149
-for_window [all] border pixel 4
-
 focus_follows_mouse no
 mouse_warping none
 
@@ -44,11 +41,11 @@ bindsym $mod+Shift+t exec floatw alacritty
 
 ##  control audio
 #   mute
-bindsym $mod+Shift+m exec pactl set-sink-mute $(pactl info | grep "Default Sink" | cut -d: -f2) toggle
+bindsym $mod+Shift+m exec pactl set-sink-mute @DEFAULT_SINK@ toggle
 #   decrease volume
-bindsym $mod+Shift+v exec pactl set-sink-volume $(pactl info | grep "Default Sink" | cut -d: -f2) -2%
+bindsym $mod+Shift+v exec pactl set-sink-volume @DEFAULT_SINK@ -2%
 #   increase volume
-bindsym $mod+v exec pactl set-sink-volume $(pactl info | grep "Default Sink" | cut -d: -f2) +2%
+bindsym $mod+v exec pactl set-sink-volume @DEFAULT_SINK@ +2%
 #   next track
 bindsym $mod+n exec mpc next
 #   previous track
@@ -64,6 +61,12 @@ bindsym $mod+b exec notify-battery -f
 # screenshot
 # bindsym $mod+i exec maim -s /tmp/a.png
 bindsym $mod+i exec --no-startup-id flameshot gui -r | xclip -selection clipboard -t image/png
+
+##  notifications (dunst)
+bindsym $mod+backslash exec --no-startup-id dunstctl close
+bindsym $mod+Ctrl+backslash exec --no-startup-id dunstctl close-all
+bindsym $mod+Shift+backslash exec --no-startup-id dunstctl history-pop
+bindsym $mod+Ctrl+Shift+backslash exec --no-startup-id dunstctl context
 
 ######### MOVEMENT #########
 # change focus
