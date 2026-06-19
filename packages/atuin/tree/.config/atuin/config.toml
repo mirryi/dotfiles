@@ -1,0 +1,11 @@
+auto_sync = false
+update_check = false
+
+# Compact inline search instead of a full-screen UI.
+style = "compact"
+inline_height = 20
+
+# Put the selection in the prompt buffer instead of running it immediately.
+enter_accept = false
+
+keymap_mode = "auto"
