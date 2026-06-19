@@ -1,0 +1,12 @@
+#!/bin/sh
+alias yz="yazi"
+
+# Change the shell's directory to yazi's last location on exit.
+y() {
+	tmp="$(mktemp -t "yazi-cwd.XXXXXXXXXX")"
+	yazi --cwd-file="$tmp" "$@"
+	if cwd="$(cat -- "$tmp")" && [ -n "$cwd" ] && [ "$cwd" != "$PWD" ]; then
+		cd -- "$cwd"
+	fi
+	rm -f -- "$tmp"
+}

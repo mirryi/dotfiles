@@ -1,0 +1,22 @@
+[mgr]
+show_hidden    = true
+sort_by        = "natural"
+sort_dir_first = true
+sort_sensitive = false
+
+[plugin]
+# git.yazi: show git status in the listing.
+prepend_fetchers = [
+    { url = "*", run = "git", group = "git" },
+    { url = "*/", run = "git", group = "git" },
+]
+
+# mediainfo.yazi: rich audio/video/image previews.
+prepend_preloaders = [
+    { mime = "{audio,video,image}/*", run = "mediainfo" },
+    { mime = "application/subrip", run = "mediainfo" },
+]
+prepend_previewers = [
+    { mime = "{audio,video,image}/*", run = "mediainfo" },
+    { mime = "application/subrip", run = "mediainfo" },
+]

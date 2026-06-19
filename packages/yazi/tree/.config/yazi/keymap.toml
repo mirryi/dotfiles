@@ -1,0 +1,69 @@
+[[mgr.prepend_keymap]]
+on   = "z"
+run  = "plugin zoxide"
+desc = "Jump to a directory via zoxide"
+
+[[mgr.prepend_keymap]]
+on   = "Z"
+run  = "plugin fzf"
+desc = "Jump to a directory or file via fzf"
+
+[[mgr.prepend_keymap]]
+on   = "l"
+run  = "plugin smart-enter"
+desc = "Enter the child directory, or open the file"
+
+[[mgr.prepend_keymap]]
+on   = "f"
+run  = "plugin jump-to-char"
+desc = "Jump to a file by char"
+
+[[mgr.prepend_keymap]]
+on   = [ "g", "i" ]
+run  = "plugin lazygit"
+desc = "Open lazygit"
+
+[[mgr.prepend_keymap]]
+on   = [ "c", "a", "a" ]
+run  = "plugin compress"
+desc = "Compress selected files"
+
+[[mgr.prepend_keymap]]
+on   = [ "u", "a" ]
+run  = "plugin yamb -- save"
+desc = "Save bookmark"
+
+[[mgr.prepend_keymap]]
+on   = [ "u", "g" ]
+run  = "plugin yamb -- jump_by_key"
+desc = "Jump to bookmark by key"
+
+[[mgr.prepend_keymap]]
+on   = [ "u", "G" ]
+run  = "plugin yamb -- jump_by_fzf"
+desc = "Jump to bookmark by fzf"
+
+[[mgr.prepend_keymap]]
+on   = [ "u", "d" ]
+run  = "plugin yamb -- delete_by_key"
+desc = "Delete bookmark by key"
+
+[[mgr.prepend_keymap]]
+on   = [ "u", "D" ]
+run  = "plugin yamb -- delete_by_fzf"
+desc = "Delete bookmark by fzf"
+
+[[mgr.prepend_keymap]]
+on   = [ "u", "A" ]
+run  = "plugin yamb -- delete_all"
+desc = "Delete all bookmarks"
+
+[[mgr.prepend_keymap]]
+on   = [ "u", "r" ]
+run  = "plugin yamb -- rename_by_key"
+desc = "Rename bookmark by key"
+
+[[mgr.prepend_keymap]]
+on   = [ "u", "R" ]
+run  = "plugin yamb -- rename_by_fzf"
+desc = "Rename bookmark by fzf"

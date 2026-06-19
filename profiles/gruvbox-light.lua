@@ -139,6 +139,7 @@ local M = {
         },
     },
     wallpaper = { name = 'gruvbox-light' },
+    yazi = { colors = colors },
     zathura = { theme = 'gruvbox-light' },
 }
 
