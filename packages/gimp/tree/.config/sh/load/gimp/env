@@ -1,2 +1,2 @@
 #!/bin/sh
-export GIMP2_DIRECTORY="${XDG_STATE_HOME}/gimp"
+export GIMP3_DIRECTORY="${XDG_STATE_HOME}/gimp"
