@@ -1,3 +1,2 @@
 #!/bin/sh
 export GNUPGHOME="${XDG_DATA_HOME}/gnupg"
-export PGPPATH="${GNUPGHOME}"
