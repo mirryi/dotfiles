@@ -4,11 +4,14 @@
 [global]
   monitor = 0
   follow = keyboard
-  geometry = "350x5-10+34"
+  width = 350
+  height = 300
+  origin = top-right
+  offset = (10, 34)
+  notification_limit = 5
   indicate_hidden = yes
   shrink = yes
   transparency = 0
-  notification_height = 0
   separator_height = 0
   padding = 8
   horizontal_padding = 15
@@ -60,17 +63,10 @@
 
   title = Dunst
   class = Dunst
-  startup_notification = false
   force_xinerama = false
 
 [experimental]
   per_monitor_dpi = false
-
-[shortcuts]
-  close = mod1+backslash
-  close_all = mod1+ctrl+backslash
-  history = mod1+shift+backslash
-  context = mod1+ctrl+shift+backslash
 
 [urgency_low]
   background = "{{ colors.low.background }}"
