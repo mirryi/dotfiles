@@ -37,6 +37,9 @@ export AUTOSWITCH_VIRTUAL_ENV_DIR="${XDG_DATA_HOME}/venvs"
 export AUTOENV_FILE_ENTER=".autoenv.zsh"
 export AUTOENV_FILE_LEAVE=".autoenv.exit.zsh"
 
+# Initialize atuin (Ctrl-R only; up-arrow stays with history-substring-search)
+eval "$(atuin init zsh --disable-up-arrow)"
+
 # Load manual plugins
 . "$XDG_CONFIG_HOME/sh/util"
 shload "rc.zsh" "$XDG_CONFIG_HOME/zsh"
