@@ -1,7 +1,7 @@
 local lib = require('lib')
 
 pkg.name = 'i3'
-pkg.dependencies:extend('../polybar', '../wallpaper')
+pkg.dependencies:extend('../eww', '../wallpaper')
 
 local partials = {
     common = 'config/common.i3config',
