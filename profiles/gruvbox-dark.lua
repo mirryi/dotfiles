@@ -110,6 +110,19 @@ local M = {
     igrep = { theme = 'dark' },
     nvim = { theme = 'gruvbox/dark' },
     rofi = { font = font, theme = 'gruvbox-dark' },
+    zellij = {
+        theme = 'gruvbox-dark',
+        bg = colors.primary.background,
+        bg1 = '#3c3836',
+        fg = colors.primary.foreground,
+        fg4 = '#a89984',
+        red = colors.normal.red,
+        green = colors.normal.green,
+        yellow = colors.normal.yellow,
+        blue = colors.normal.blue,
+        magenta = colors.normal.magenta,
+        cyan = colors.normal.cyan,
+    },
     tmux = { theme = 'gruvbox-dark' },
     x11 = {
         colors = {

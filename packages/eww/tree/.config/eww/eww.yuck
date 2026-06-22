@@ -39,7 +39,7 @@
       (box :class "mod audio" :space-evenly false
         (label :class "icn ${volume != 'muted' && volume < 10 ? 'icn-sm' : ''}"
                :text "${volume == 'muted' ? '󰝟' : volume < 10 ? '󰕿' : volume < 40 ? '󰖀' : '󰕾'}")
-        (revealer :transition "slideright" :duration "200ms" :reveal {hov_audio || aud_show}
+        (revealer :transition "slideright" :duration "200ms" :reveal {(hov_audio || aud_show) && volume != 'muted'}
           (label :class "rev" :text "${volume}"))))))
 
 (defwidget brightness []

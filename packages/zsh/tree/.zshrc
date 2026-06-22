@@ -1,8 +1,8 @@
 # GPG password prompt
 export GPG_TTY=$(tty)
 
-# open tmux by default
-[[ $TERM != "tmux-256color" ]] && exec tmux
+# open zellij by default
+[[ -z $ZELLIJ ]] && exec zellij
 
 # Load shared components
 source "$HOME/.config/sh/rc"
