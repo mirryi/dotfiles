@@ -1,7 +1,6 @@
 #!/usr/bin/env bash
-# Input-method layout indicator. Empty output (the widget self-hides) for
-# English/US; あ for Japanese; the uppercased layout code for anything else
-# (e.g. keyboard-de -> DE), so other layouts show without needing a custom case.
+# Input-method layout: empty (hidden) for English/US, あ for Japanese, the
+# uppercased layout code otherwise (e.g. keyboard-de -> DE).
 name=""
 if command -v fcitx5-remote >/dev/null; then
 	name=$(fcitx5-remote -n 2>/dev/null)

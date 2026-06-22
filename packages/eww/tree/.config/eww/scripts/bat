@@ -1,11 +1,11 @@
 #!/usr/bin/env bash
-# Battery as JSON: { present, icon, low, cls, pct, time }. The icon reflects
-# the charge level (bolt while charging); `low` is true below 30% or under an
-# hour left (drives the colour + auto-reveal); `cls` is the colour class; `pct`
-# is the bare number and `time` is "(H:MM)" (empty when unknown). The number,
-# percent sign and time are spaced with CSS, not text.
+# Battery as JSON: { present, icon, low, cls, pct, time }. `low` (below 30% or
+# under an hour left) drives the colour + auto-reveal; `time` is "(H:MM)".
+# Absent battery still emits every field so the yuck widget never reads a
+# missing key while :visible is false.
+absent='{"present":false,"icon":"","low":false,"cls":"green","pct":"","time":""}'
 b=$(ls /sys/class/power_supply/ 2>/dev/null | grep -m1 '^BAT')
-[ -z "$b" ] && { printf '{"present":false}'; exit; }
+[ -z "$b" ] && { printf '%s' "$absent"; exit; }
 d="/sys/class/power_supply/$b"
 
 cap=$(cat "$d/capacity")
@@ -34,7 +34,6 @@ low=false
 [ "$cap" -lt 30 ] && low=true
 [ "$status" = Discharging ] && [ "$secs" -gt 0 ] && [ "$secs" -lt 3600 ] && low=true
 
-# Colour: blue while charging, otherwise a discharge ramp by level.
 if [ "$status" = Charging ]; then cls=chg
 elif [ "$cap" -le 15 ]; then cls=red
 elif [ "$cap" -le 30 ]; then cls=orange

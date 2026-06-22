@@ -3,14 +3,13 @@
 
 $bg: {{ colors.background }};
 $fg: {{ colors.foreground }};
-$alert: {{ colors.alert }};
 $muted: {{ colors.black }};
 $accent: {{ colors.blue }};
 $urgent: {{ colors.red }};
 $yellow: {{ colors.yellow }};
 $orange: {{ colors.darkyellow }};
-$green: #689d6a;
-$widget: #f2e5bc;
+$green: {{ colors.green }};
+$widget: {{ colors.widget }};
 
 * {
   all: unset;
@@ -18,45 +17,36 @@ $widget: #f2e5bc;
   font-size: 12px;
 }
 
-// Single bar on the normal background colour.
 window {
   background-color: $bg;
 }
 .bar {
-  padding: 2px 8px;
+  padding: 3px 8px;
 }
 
-// Each widget is set apart by a slightly darker fill, not a border. One
-// uniform padding for every widget — no per-widget overrides, no icon cell.
 .mod {
   background-color: $widget;
   color: $fg;
   border: 1px solid darken($widget, 9%);
   border-radius: 4px;
-  padding: 3px 13px;
+  padding: 0px 13px;
 }
 
-// Icons use the Mono Nerd Font variant: it fits each glyph in one centred
-// cell at normal weight, instead of the oversized, left-shifted glyphs the
-// regular variant produces.
+// Mono Nerd Font variant: one centred cell per glyph at normal weight.
 .icn {
   font-family: "JetBrainsMono Nerd Font Mono";
   font-size: 15px;
 }
-// Battery and bluetooth glyphs are intrinsically larger; nudge them down so
-// every icon reads the same visual size.
 .icn-sm {
   font-size: 13px;
 }
 
-// Gap between an icon and its revealed text — CSS, not textual spaces.
 .rev {
   padding-left: 10px;
 }
 .rev-date {
   padding-right: 7px;
 }
-// Microspace before the percent sign; normal gap before the time.
 .pctsign {
   padding-left: 2px;
 }
@@ -64,7 +54,6 @@ window {
   padding-left: 6px;
 }
 
-// Battery colour: blue charging, then a discharge ramp by level.
 .battery.chg {
   color: $accent;
 }
@@ -81,7 +70,6 @@ window {
   color: $urgent;
 }
 
-// Mullvad colour by connection state.
 .mullvad.on {
   color: $green;
 }

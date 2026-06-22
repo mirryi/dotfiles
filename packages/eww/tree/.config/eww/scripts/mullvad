@@ -1,9 +1,7 @@
 #!/usr/bin/env bash
 # Mullvad state as JSON: { icon, cls }. cls drives the colour (on/mid/off).
-# "Disconnected" contains "Connected", so match it before *Connected*.
 case "$(mullvad status 2>/dev/null)" in
 *Connecting*)   printf '{"icon":"󰔟","cls":"mid"}' ;;
-*Disconnected*) printf '{"icon":"󰦞","cls":"off"}' ;;
 *Connected*)    printf '{"icon":"󰦝","cls":"on"}' ;;
 *)              printf '{"icon":"󰦞","cls":"off"}' ;;
 esac

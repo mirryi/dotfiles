@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
-# Wifi as JSON: { icon, ssid }. The icon is a signal-strength ramp from
-# /proc/net/wireless link quality; SSID comes from iwd (iwctl), no extra deps.
+# Wifi as JSON: { icon, ssid }. Icon is a signal ramp from /proc/net/wireless;
+# SSID comes from iwd (iwctl).
 dev=$(iwctl device list | sed 's/\x1b\[[0-9;]*m//g' | awk '/station/ {print $1; exit}')
 ssid=""
 [ -n "$dev" ] && ssid=$(iwctl station "$dev" show |
@@ -13,12 +13,11 @@ if [ -z "$ssid" ]; then
 fi
 
 qual=$(awk 'NR==3 {print int($3)}' /proc/net/wireless 2>/dev/null)
-sig=$((qual * 100 / 70))
+sig=$(((${qual:-0} * 100) / 70))
 [ "$sig" -gt 100 ] && sig=100
 if [ "$sig" -ge 80 ]; then icon="󰤨"
 elif [ "$sig" -ge 60 ]; then icon="󰤥"
 elif [ "$sig" -ge 40 ]; then icon="󰤢"
-elif [ "$sig" -ge 20 ]; then icon="󰤟"
 else icon="󰤟"; fi
 
 ssid=$(printf '%s' "$ssid" | sed 's/\\/\\\\/g; s/"/\\"/g')
