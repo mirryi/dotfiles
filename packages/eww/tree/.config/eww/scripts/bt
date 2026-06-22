@@ -1,0 +1,20 @@
+#!/usr/bin/env bash
+# Bluetooth as JSON: { on, names }. `on` is true only when at least one device
+# is connected (the widget hides otherwise); `names` is the comma-joined list
+# of connected device names, shown on hover.
+command -v bluetoothctl >/dev/null || { printf '{"on":false}'; exit; }
+
+names=""
+for mac in $(bluetoothctl devices 2>/dev/null | awk '/^Device/ {print $2}'); do
+	info=$(bluetoothctl info "$mac" 2>/dev/null)
+	echo "$info" | grep -q 'Connected: yes' || continue
+	n=$(printf '%s' "$info" | sed -n 's/^[[:space:]]*Name: //p' | head -1)
+	names="${names:+$names, }$n"
+done
+
+if [ -z "$names" ]; then
+	printf '{"on":false}'
+else
+	names=$(printf '%s' "$names" | sed 's/\\/\\\\/g; s/"/\\"/g')
+	printf '{"on":true,"names":"%s"}' "$names"
+fi

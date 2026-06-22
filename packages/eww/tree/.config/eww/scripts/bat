@@ -1,0 +1,45 @@
+#!/usr/bin/env bash
+# Battery as JSON: { present, icon, low, cls, pct, time }. The icon reflects
+# the charge level (bolt while charging); `low` is true below 30% or under an
+# hour left (drives the colour + auto-reveal); `cls` is the colour class; `pct`
+# is the bare number and `time` is "(H:MM)" (empty when unknown). The number,
+# percent sign and time are spaced with CSS, not text.
+b=$(ls /sys/class/power_supply/ 2>/dev/null | grep -m1 '^BAT')
+[ -z "$b" ] && { printf '{"present":false}'; exit; }
+d="/sys/class/power_supply/$b"
+
+cap=$(cat "$d/capacity")
+status=$(cat "$d/status")
+now=$(cat "$d/energy_now" 2>/dev/null || cat "$d/charge_now" 2>/dev/null)
+rate=$(cat "$d/power_now" 2>/dev/null || cat "$d/current_now" 2>/dev/null)
+full=$(cat "$d/energy_full" 2>/dev/null || cat "$d/charge_full" 2>/dev/null)
+
+icons=("󰂎" "󰁺" "󰁻" "󰁼" "󰁽" "󰁾" "󰁿" "󰂀" "󰂁" "󰂂" "󰁹")
+idx=$((cap / 10))
+[ "$idx" -gt 10 ] && idx=10
+icon=${icons[$idx]}
+[ "$status" = Charging ] && icon="󰂄"
+
+secs=0
+t=""
+if [ -n "$rate" ] && [ "$rate" -gt 0 ]; then
+	case "$status" in
+	Discharging) secs=$((now * 3600 / rate)) ;;
+	Charging) secs=$(((full - now) * 3600 / rate)) ;;
+	esac
+	[ "$secs" -gt 0 ] && t=$(printf '(%d:%02d)' $((secs / 3600)) $(((secs % 3600) / 60)))
+fi
+
+low=false
+[ "$cap" -lt 30 ] && low=true
+[ "$status" = Discharging ] && [ "$secs" -gt 0 ] && [ "$secs" -lt 3600 ] && low=true
+
+# Colour: blue while charging, otherwise a discharge ramp by level.
+if [ "$status" = Charging ]; then cls=chg
+elif [ "$cap" -le 15 ]; then cls=red
+elif [ "$cap" -le 30 ]; then cls=orange
+elif [ "$cap" -le 50 ]; then cls=yellow
+else cls=green
+fi
+
+printf '{"present":true,"icon":"%s","low":%s,"cls":"%s","pct":"%s","time":"%s"}' "$icon" "$low" "$cls" "$cap" "$t"

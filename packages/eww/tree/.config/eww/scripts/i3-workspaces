@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+# Stream i3 workspace state as a JSON array, one line per change, for deflisten.
+# --unbuffered is load-bearing; without it eww sees a frozen bar.
+emit() {
+	i3-msg -t get_workspaces |
+		jq -cM --unbuffered 'map({num: .num, focused: .focused, urgent: .urgent})'
+}
+
+emit
+i3-msg -t subscribe -m '["workspace"]' | while read -r _; do emit; done

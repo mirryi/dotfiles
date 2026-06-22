@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+# Restart the eww daemon and open one bar per connected monitor.
+eww kill >/dev/null 2>&1
+eww daemon >/dev/null 2>&1
+
+if command -v xrandr >/dev/null; then
+	i=0
+	for _ in $(xrandr --query | grep " connected" | cut -d' ' -f1); do
+		eww open bar --id "bar-$i" --screen "$i"
+		i=$((i + 1))
+	done
+else
+	eww open bar
+fi

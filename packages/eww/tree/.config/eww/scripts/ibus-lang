@@ -1,0 +1,22 @@
+#!/usr/bin/env bash
+# Input-method layout indicator. Empty output (the widget self-hides) for
+# English/US; あ for Japanese; the uppercased layout code for anything else
+# (e.g. keyboard-de -> DE), so other layouts show without needing a custom case.
+name=""
+if command -v fcitx5-remote >/dev/null; then
+	name=$(fcitx5-remote -n 2>/dev/null)
+elif command -v ibus >/dev/null; then
+	name=$(ibus engine 2>/dev/null)
+fi
+
+case "$name" in
+"" | keyboard-us | keyboard-us-* | keyboard-en* | xkb:us::eng) ;;
+mozc* | anthy | *jp* | *japan*) echo "あ" ;;
+rime | *rime*) echo "中" ;;
+keyboard-*)
+	code=${name#keyboard-}
+	code=${code%%-*}
+	printf '%s' "$code" | tr '[:lower:]' '[:upper:]'
+	;;
+*) printf '%s' "$name" ;;
+esac

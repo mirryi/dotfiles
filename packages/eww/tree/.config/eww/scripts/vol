@@ -1,0 +1,31 @@
+#!/usr/bin/env bash
+# pulseaudio volume, capped 0-100. Scroll events accumulate and only apply 1%
+# every 3rd notch, so scrolling is 3x less sensitive; opposite directions
+# cancel. The new value is pushed to eww immediately.
+sink=@DEFAULT_SINK@
+cur() { pactl get-sink-volume "$sink" | awk 'NR==1 {print $5 + 0}'; }
+case "$1" in
+up | down)
+	f="${XDG_RUNTIME_DIR:-/tmp}/eww-vol-scroll"
+	acc=$(cat "$f" 2>/dev/null || echo 0)
+	[ "$1" = up ] && acc=$((acc + 1)) || acc=$((acc - 1))
+	if [ "$acc" -ge 3 ]; then dir=up
+	elif [ "$acc" -le -3 ]; then dir=down
+	else echo "$acc" >"$f"; exit 0; fi
+	echo 0 >"$f"
+
+	v=$(cur)
+	[ "$dir" = up ] && v=$((v + 1)) || v=$((v - 1))
+	[ "$v" -gt 100 ] && v=100
+	[ "$v" -lt 0 ] && v=0
+	pactl set-sink-volume "$sink" "${v}%"
+	# Reveal the number while scrolling; hide 1.2s after the last notch.
+	eww update volume="$v" aud_show=true
+	pidf="${XDG_RUNTIME_DIR:-/tmp}/eww-aud-timer"
+	[ -f "$pidf" ] && kill "$(cat "$pidf")" 2>/dev/null
+	(sleep 1.2 && eww update aud_show=false) >/dev/null 2>&1 &
+	echo $! >"$pidf"
+	;;
+mute) pactl set-sink-mute "$sink" toggle ;;
+get) if pactl get-sink-mute "$sink" | grep -q yes; then echo muted; else cur; fi ;;
+esac

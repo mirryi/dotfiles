@@ -1,0 +1,103 @@
+;; ---------- data ----------
+(deflisten workspaces :initial "[]" "~/.config/eww/scripts/i3-workspaces")
+(defpoll  volume     :interval "1s"  "~/.config/eww/scripts/vol get")
+(defpoll  brightness :interval "5s"  "~/.config/eww/scripts/bri get")
+(defpoll  battery    :interval "30s" :initial "{\"present\":false}"     "~/.config/eww/scripts/bat")
+(defpoll  network    :interval "5s"  :initial "{\"icon\":\"󰤭\",\"ssid\":\"\"}" "~/.config/eww/scripts/net")
+(defpoll  bluetooth  :interval "5s"  :initial "{\"on\":false}"          "~/.config/eww/scripts/bt")
+(defpoll  mullvad    :interval "2s"  :initial "{\"icon\":\"󰦞\",\"cls\":\"off\"}" "~/.config/eww/scripts/mullvad")
+(defpoll  kbd        :interval "1s"  "~/.config/eww/scripts/ibus-lang")
+
+;; Hover / transient-reveal state (toggled by eventbox hover and scroll timers).
+(defvar hov_audio false)
+(defvar hov_bri false)
+(defvar hov_bat false)
+(defvar hov_net false)
+(defvar hov_bt false)
+(defvar hov_clock false)
+(defvar aud_show false)
+(defvar bri_show false)
+
+;; ---------- widgets ----------
+;; The pill (.mod: background + padding) is always a `box`, so every widget
+;; pads identically. eventboxes only wrap it to catch hover/scroll/click.
+(defwidget i3 []
+  (box :class "mod i3" :halign "center" :space-evenly false :spacing 2
+    (for ws in workspaces
+      (button :class "ws ${ws.focused ? 'focused' : ws.urgent ? 'urgent' : 'normal'}"
+              :onclick "i3-msg workspace number ${ws.num}"
+              "${ws.num}"))))
+
+(defwidget audio []
+  (eventbox :onscroll "~/.config/eww/scripts/vol {}"
+            :onhover "eww update hov_audio=true" :onhoverlost "eww update hov_audio=false"
+    (button :onclick "~/.config/eww/scripts/vol mute" :onrightclick "pavucontrol"
+      (box :class "mod audio" :space-evenly false
+        (label :class "icn ${volume != 'muted' && volume < 34 ? 'icn-sm' : ''}"
+               :text "${volume == 'muted' ? '󰝟' : volume < 34 ? '󰕿' : volume < 67 ? '󰖀' : '󰕾'}")
+        (revealer :transition "slideright" :duration "200ms" :reveal {hov_audio || aud_show}
+          (label :class "rev" :text "${volume}"))))))
+
+(defwidget brightness []
+  (eventbox :visible {brightness >= 0} :onscroll "~/.config/eww/scripts/bri {}"
+            :onhover "eww update hov_bri=true" :onhoverlost "eww update hov_bri=false"
+    (box :class "mod brightness" :space-evenly false
+      (label :class "icn" :text "${brightness < 34 ? '󰃞' : brightness < 67 ? '󰃟' : '󰃠'}")
+      (revealer :transition "slideright" :duration "200ms" :reveal {hov_bri || bri_show}
+        (label :class "rev" :text "${brightness}")))))
+
+(defwidget battery []
+  (eventbox :visible {battery.present}
+            :onhover "eww update hov_bat=true" :onhoverlost "eww update hov_bat=false"
+    (box :class "mod battery ${battery.cls}" :space-evenly false
+      (label :class "icn icn-sm" :text {battery.icon})
+      (revealer :transition "slideright" :duration "200ms" :reveal {hov_bat || battery.low}
+        (box :class "rev" :space-evenly false
+          (label :text {battery.pct})
+          (label :class "pctsign" :text "%")
+          (label :class "btime" :visible {battery.time != ''} :text {battery.time}))))))
+
+(defwidget net []
+  (eventbox :onhover "eww update hov_net=true" :onhoverlost "eww update hov_net=false"
+    (box :class "mod net" :space-evenly false
+      (label :class "icn" :text {network.icon})
+      (revealer :transition "slideright" :duration "200ms" :reveal hov_net
+        (label :class "rev" :limit-width 18 :text "${network.ssid}")))))
+
+(defwidget bt []
+  (eventbox :visible {bluetooth.on}
+            :onhover "eww update hov_bt=true" :onhoverlost "eww update hov_bt=false"
+    (box :class "mod bt" :space-evenly false
+      (label :class "icn icn-sm" :text "󰂯")
+      (revealer :transition "slideright" :duration "200ms" :reveal hov_bt
+        (label :class "rev" :limit-width 24 :text "${bluetooth.names}")))))
+
+(defwidget mullvad []
+  (box :class "mod mullvad ${mullvad.cls}"
+    (label :class "icn" :text {mullvad.icon})))
+
+(defwidget kbd []
+  (box :class "mod kbd" :visible {kbd != ""}
+    (label :text kbd)))
+
+(defwidget clock []
+  (eventbox :onhover "eww update hov_clock=true" :onhoverlost "eww update hov_clock=false"
+    (box :class "mod date" :space-evenly false
+      (revealer :transition "slideright" :duration "200ms" :reveal hov_clock
+        (label :class "rev-date" :text "${formattime(EWW_TIME, '%Y-%m-%d')}"))
+      (label :text "${formattime(EWW_TIME, '%H:%M')}"))))
+
+;; ---------- windows ----------
+(defwidget bar []
+  (centerbox :class "bar"
+    (box :halign "start" :space-evenly false :spacing 8 (audio) (brightness) (battery) (kbd))
+    (i3)
+    (box :halign "end" :space-evenly false :spacing 8 (mullvad) (net) (bt) (clock))))
+
+(defwindow bar
+  :monitor 0
+  :stacking "fg"
+  :exclusive true
+  :windowtype "dock"
+  :geometry (geometry :x "0%" :y "0%" :width "100%" :height "26px" :anchor "top center")
+  (bar))
