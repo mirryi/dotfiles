@@ -60,6 +60,7 @@ local M = {
             darkyellow = colors.normal.yellow,
             green = colors.normal.green,
             widget = '#f2e5bc',
+            hover = '#ebd696',
         },
     },
     fzf = { name = 'gruvbox-dark' },

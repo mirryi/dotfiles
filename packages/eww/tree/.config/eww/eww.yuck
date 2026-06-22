@@ -82,8 +82,10 @@
   (eventbox :onhover "eww update hov_mv=true" :onhoverlost "eww update hov_mv=false"
     (box :class "mod mullvad ${mullvad.state == 'connected' ? 'on' : mullvad.state == 'connecting' ? 'mid' : 'off'}" :space-evenly false
       (revealer :transition "slideright" :duration "200ms" :reveal {hov_mv && mullvad.relay != ''}
-        (label :class "rev-left" :text "${mullvad.relay}"))
-      (label :class "icn" :text {mullvad.state == 'connected' ? '󰦝' : mullvad.state == 'connecting' ? '󰔟' : '󰦞'}))))
+        (button :class "mv-relay" :onclick "mullvad reconnect"
+          (label :class "rev-left" :text "${mullvad.relay}")))
+      (button :class "mv-icn" :onclick "~/.config/eww/scripts/mullvad toggle"
+        (label :class "icn" :text {mullvad.state == 'connected' ? '󰦝' : mullvad.state == 'connecting' ? '󰔟' : '󰦞'})))))
 
 (defwidget kbd []
   (box :class "mod kbd" :visible {kbd != ""}

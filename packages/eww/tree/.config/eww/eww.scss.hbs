@@ -10,6 +10,7 @@ $yellow: {{ colors.yellow }};
 $orange: {{ colors.darkyellow }};
 $green: {{ colors.green }};
 $widget: {{ colors.widget }};
+$hover: {{ colors.hover }};
 
 * {
   all: unset;
@@ -82,6 +83,26 @@ window {
 .mullvad.off {
   color: $urgent;
 }
+// Inner button padding (2px margin + 6px pad = 8px) replaces .mod's 13px,
+// so shrink the widget's own padding to keep the bar visually even.
+.mullvad {
+  padding: 0px 5px;
+}
+.mv-icn,
+.mv-relay {
+  border-radius: 3px;
+  margin: 2px;
+}
+.mv-icn {
+  padding: 0px 6px;
+}
+.mv-relay {
+  padding-left: 6px;
+}
+.mv-icn:hover,
+.mv-relay:hover {
+  background-color: $hover;
+}
 
 .i3 {
   padding: 1px;
@@ -103,4 +124,7 @@ window {
 }
 .ws:hover {
   color: $fg;
+}
+.ws:not(.focused):hover {
+  background-color: $hover;
 }

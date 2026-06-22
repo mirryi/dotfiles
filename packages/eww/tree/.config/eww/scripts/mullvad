@@ -2,6 +2,26 @@
 # Mullvad as JSON: { state, relay }. state is connecting | connected |
 # disconnected; relay is the relay id (empty unless connected). The yuck layer
 # maps state -> glyph + colour class and reveals relay on hover.
+
+# `toggle` flips connection + lockdown-mode together, guarded by a double-click.
+# ponytail: timestamp-file double-click — eww 0.5.0 has no native ondoubleclick.
+if [ "$1" = toggle ]; then
+  ts=/tmp/eww-mullvad-toggle
+  now=$(date +%s%3N)
+  last=$(cat "$ts" 2>/dev/null || echo 0)
+  if [ $((now - last)) -ge 400 ]; then
+    printf '%s' "$now" >"$ts"   # arm: first click
+    exit 0
+  fi
+  rm -f "$ts"
+  if mullvad status 2>/dev/null | grep -q Connected; then
+    mullvad disconnect && mullvad lockdown-mode set off
+  else
+    mullvad connect && mullvad lockdown-mode set on
+  fi
+  exit 0
+fi
+
 out=$(mullvad status 2>/dev/null)
 case "$out" in
 *Connecting*) state=connecting ;;
