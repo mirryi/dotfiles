@@ -65,18 +65,18 @@
 (defwidget net []
   (eventbox :onhover "eww update hov_net=true" :onhoverlost "eww update hov_net=false"
     (box :class "mod net" :space-evenly false
-      (label :class "icn"
-             :text {network.sig < 0 ? '󰤮' : network.sig >= 80 ? '󰤨' : network.sig >= 60 ? '󰤥' : network.sig >= 40 ? '󰤢' : '󰤟'})
       (revealer :transition "slideright" :duration "200ms" :reveal hov_net
-        (label :class "rev" :limit-width 18 :text "${network.ssid}")))))
+        (label :class "rev-left" :limit-width 18 :text "${network.ssid}"))
+      (label :class "icn"
+             :text {network.sig < 0 ? '󰤮' : network.sig >= 80 ? '󰤨' : network.sig >= 60 ? '󰤥' : network.sig >= 40 ? '󰤢' : '󰤟'}))))
 
 (defwidget bluetooth []
   (eventbox :visible {bluetooth.on}
             :onhover "eww update hov_bt=true" :onhoverlost "eww update hov_bt=false"
     (box :class "mod bt" :space-evenly false
-      (label :class "icn icn-sm" :text "󰂯")
       (revealer :transition "slideright" :duration "200ms" :reveal hov_bt
-        (label :class "rev" :limit-width 24 :text "${bluetooth.names}")))))
+        (label :class "rev-left" :limit-width 24 :text "${bluetooth.names}"))
+      (label :class "icn icn-sm" :text "󰂯"))))
 
 (defwidget mullvad []
   (eventbox :onhover "eww update hov_mv=true" :onhoverlost "eww update hov_mv=false"
