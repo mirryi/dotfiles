@@ -6,7 +6,8 @@ export BUNDLE_USER_PLUGIN="${XDG_DATA_HOME}/bundle"
 export GEM_HOME="${XDG_DATA_HOME}/gem"
 export GEM_SPEC_CACHE="${XDG_CACHE_HOME}/cache"
 
-# Ruby gems installed binaries
-if [ -d "$GEM_HOME/ruby/3.0.0/bin" ]; then
-  export PATH="$GEM_HOME/ruby/3.0.0/bin:$PATH"
-fi
+# Ruby gems installed binaries (version-agnostic)
+for _gembin in "$GEM_HOME"/ruby/*/bin; do
+  [ -d "$_gembin" ] && export PATH="$_gembin:$PATH"
+done
+unset _gembin
