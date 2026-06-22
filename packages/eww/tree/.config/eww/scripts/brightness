@@ -1,0 +1,21 @@
+#!/usr/bin/env bash
+# Backlight via sysfs (intel_backlight); `get` prints -1 to self-hide when
+# absent. Writing brightness needs the `video` group or a udev rule.
+source "$(dirname "$0")/lib"
+bl=/sys/class/backlight/intel_backlight
+[ -d "$bl" ] || { [ "$1" = get ] && echo -1; exit 0; }
+max=$(cat "$bl/max_brightness")
+pct() { awk -v c="$(cat "$bl/brightness")" -v m="$max" 'BEGIN {printf "%d", c * 100 / m}'; }
+case "$1" in
+get) pct ;;
+up | down)
+	dir=$(scroll_dir bri "$1"); [ -z "$dir" ] && exit 0
+	v=$(pct)
+	[ "$dir" = up ] && v=$((v + 1)) || v=$((v - 1))
+	[ "$v" -gt 100 ] && v=100
+	[ "$v" -lt 1 ] && v=1
+	echo $((v * max / 100)) >"$bl/brightness" 2>/dev/null
+	eww update brightness="$v"
+	osd_reveal bri_show bri
+	;;
+esac

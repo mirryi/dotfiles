@@ -1,0 +1,21 @@
+# Shared helpers for the scroll-OSD modules (vol, bri). Sourced, not run.
+
+# Debounce scroll: apply 1% every 3rd notch; opposite directions cancel.
+# Echoes "up"/"down" once ±3 is reached (and resets), else nothing.
+scroll_dir() { # $1=name $2=up|down
+	local f="${XDG_RUNTIME_DIR:-/tmp}/eww-$1-scroll" acc
+	acc=$(cat "$f" 2>/dev/null || echo 0)
+	[ "$2" = up ] && acc=$((acc + 1)) || acc=$((acc - 1))
+	if [ "$acc" -ge 3 ]; then echo up; echo 0 >"$f"
+	elif [ "$acc" -le -3 ]; then echo down; echo 0 >"$f"
+	else echo "$acc" >"$f"; fi
+}
+
+# Reveal a module while scrolling; hide 1.2s after the last notch.
+osd_reveal() { # $1=show-var $2=name
+	eww update "$1=true"
+	local pidf="${XDG_RUNTIME_DIR:-/tmp}/eww-$2-timer"
+	[ -f "$pidf" ] && kill "$(cat "$pidf")" 2>/dev/null
+	(sleep 1.2 && eww update "$1=false") >/dev/null 2>&1 &
+	echo $! >"$pidf"
+}

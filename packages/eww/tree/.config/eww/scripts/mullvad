@@ -1,7 +1,8 @@
 #!/usr/bin/env bash
-# Mullvad state as JSON: { icon, cls }. cls drives the colour (on/mid/off).
+# Mullvad connection state: connecting | connected | disconnected. The yuck
+# layer maps state -> glyph + colour class.
 case "$(mullvad status 2>/dev/null)" in
-*Connecting*)   printf '{"icon":"󰔟","cls":"mid"}' ;;
-*Connected*)    printf '{"icon":"󰦝","cls":"on"}' ;;
-*)              printf '{"icon":"󰦞","cls":"off"}' ;;
+*Connecting*) echo connecting ;;
+*Connected*)  echo connected ;;
+*)            echo disconnected ;;
 esac

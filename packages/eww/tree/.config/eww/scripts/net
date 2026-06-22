@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
-# Wifi as JSON: { icon, ssid }. Icon is a signal ramp from /proc/net/wireless;
-# SSID comes from iwd (iwctl).
+# Wifi as JSON: { ssid, sig }. sig is signal 0-100 from /proc/net/wireless, or
+# -1 when disconnected; SSID comes from iwd (iwctl). The yuck layer maps sig ->
+# glyph.
 dev=$(iwctl device list | sed 's/\x1b\[[0-9;]*m//g' | awk '/station/ {print $1; exit}')
 ssid=""
 [ -n "$dev" ] && ssid=$(iwctl station "$dev" show |
@@ -8,17 +9,13 @@ ssid=""
 	sed -n 's/.*Connected network[[:space:]]*//p' | sed 's/[[:space:]]*$//')
 
 if [ -z "$ssid" ]; then
-	printf '{"icon":"󰤮","ssid":"disconnected"}'
+	printf '{"ssid":"disconnected","sig":-1}'
 	exit
 fi
 
 qual=$(awk 'NR==3 {print int($3)}' /proc/net/wireless 2>/dev/null)
 sig=$(((${qual:-0} * 100) / 70))
 [ "$sig" -gt 100 ] && sig=100
-if [ "$sig" -ge 80 ]; then icon="󰤨"
-elif [ "$sig" -ge 60 ]; then icon="󰤥"
-elif [ "$sig" -ge 40 ]; then icon="󰤢"
-else icon="󰤟"; fi
 
 ssid=$(printf '%s' "$ssid" | sed 's/\\/\\\\/g; s/"/\\"/g')
-printf '{"icon":"%s","ssid":"%s"}' "$icon" "$ssid"
+printf '{"ssid":"%s","sig":%s}' "$ssid" "$sig"

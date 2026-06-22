@@ -1,0 +1,19 @@
+#!/usr/bin/env bash
+# pulseaudio volume (0-100).
+source "$(dirname "$0")/lib"
+sink=@DEFAULT_SINK@
+cur() { pactl get-sink-volume "$sink" | awk 'NR==1 {print $5 + 0}'; }
+case "$1" in
+up | down)
+	dir=$(scroll_dir vol "$1"); [ -z "$dir" ] && exit 0
+	v=$(cur); v=${v:-0}
+	[ "$dir" = up ] && v=$((v + 1)) || v=$((v - 1))
+	[ "$v" -gt 100 ] && v=100
+	[ "$v" -lt 0 ] && v=0
+	pactl set-sink-volume "$sink" "${v}%"
+	eww update volume="$v"
+	osd_reveal aud_show aud
+	;;
+mute) pactl set-sink-mute "$sink" toggle ;;
+get) if pactl get-sink-mute "$sink" | grep -q yes; then echo muted; else cur; fi ;;
+esac

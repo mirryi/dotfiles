@@ -1,9 +1,10 @@
 #!/usr/bin/env bash
-# Battery as JSON: { present, icon, low, cls, pct, time }. `low` (below 30% or
-# under an hour left) drives the colour + auto-reveal; `time` is "(H:MM)".
-# Absent battery still emits every field so the yuck widget never reads a
-# missing key while :visible is false.
-absent='{"present":false,"icon":"","low":false,"cls":"green","pct":"","time":""}'
+# Battery as JSON: { present, status, low, pct, time }. `low` (below 30% or
+# under an hour left) drives the auto-reveal; `time` is "(H:MM)". The yuck
+# layer maps pct/status -> glyph + colour class. Absent battery still emits
+# every key the widget reads so it never hits a missing key while :visible is
+# false.
+absent='{"present":false,"status":"","low":false,"pct":0,"time":""}'
 b=$(ls /sys/class/power_supply/ 2>/dev/null | grep -m1 '^BAT')
 [ -z "$b" ] && { printf '%s' "$absent"; exit; }
 d="/sys/class/power_supply/$b"
@@ -13,12 +14,6 @@ status=$(cat "$d/status")
 now=$(cat "$d/energy_now" 2>/dev/null || cat "$d/charge_now" 2>/dev/null)
 rate=$(cat "$d/power_now" 2>/dev/null || cat "$d/current_now" 2>/dev/null)
 full=$(cat "$d/energy_full" 2>/dev/null || cat "$d/charge_full" 2>/dev/null)
-
-icons=("󰂎" "󰁺" "󰁻" "󰁼" "󰁽" "󰁾" "󰁿" "󰂀" "󰂁" "󰂂" "󰁹")
-idx=$((cap / 10))
-[ "$idx" -gt 10 ] && idx=10
-icon=${icons[$idx]}
-[ "$status" = Charging ] && icon="󰂄"
 
 secs=0
 t=""
@@ -34,11 +29,4 @@ low=false
 [ "$cap" -lt 30 ] && low=true
 [ "$status" = Discharging ] && [ "$secs" -gt 0 ] && [ "$secs" -lt 3600 ] && low=true
 
-if [ "$status" = Charging ]; then cls=chg
-elif [ "$cap" -le 15 ]; then cls=red
-elif [ "$cap" -le 30 ]; then cls=orange
-elif [ "$cap" -le 50 ]; then cls=yellow
-else cls=green
-fi
-
-printf '{"present":true,"icon":"%s","low":%s,"cls":"%s","pct":"%s","time":"%s"}' "$icon" "$low" "$cls" "$cap" "$t"
+printf '{"present":true,"status":"%s","low":%s,"pct":%s,"time":"%s"}' "$status" "$low" "$cap" "$t"

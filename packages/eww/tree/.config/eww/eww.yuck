@@ -1,12 +1,13 @@
 ;; ---------- data ----------
-(deflisten workspaces :initial "[]" "~/.config/eww/scripts/i3-workspaces")
-(defpoll  volume     :interval "1s"  "~/.config/eww/scripts/vol get")
-(defpoll  brightness :interval "5s"  "~/.config/eww/scripts/bri get")
-(defpoll  battery    :interval "30s" :initial "{\"present\":false,\"icon\":\"\",\"low\":false,\"cls\":\"green\",\"pct\":\"\",\"time\":\"\"}" "~/.config/eww/scripts/bat")
-(defpoll  network    :interval "5s"  :initial "{\"icon\":\"󰤮\",\"ssid\":\"\"}" "~/.config/eww/scripts/net")
-(defpoll  bluetooth  :interval "5s"  :initial "{\"on\":false,\"names\":\"\"}" "~/.config/eww/scripts/bt")
-(defpoll  mullvad    :interval "2s"  :initial "{\"icon\":\"󰦞\",\"cls\":\"off\"}" "~/.config/eww/scripts/mullvad")
-(defpoll  kbd        :interval "1s"  "~/.config/eww/scripts/ibus-lang")
+;; Scripts emit data only; glyphs are chosen below, colours in eww.scss.
+(deflisten workspaces :initial "[]" "~/.config/eww/scripts/i3")
+(defpoll  volume     :interval "1s"  :initial "0"  "~/.config/eww/scripts/volume get")
+(defpoll  brightness :interval "5s"  :initial "-1" "~/.config/eww/scripts/brightness get")
+(defpoll  battery    :interval "30s" :initial "{\"present\":false,\"status\":\"\",\"low\":false,\"pct\":0,\"time\":\"\"}" "~/.config/eww/scripts/battery")
+(defpoll  network    :interval "5s"  :initial "{\"ssid\":\"\",\"sig\":-1}" "~/.config/eww/scripts/net")
+(defpoll  bluetooth  :interval "5s"  :initial "{\"on\":false,\"names\":\"\"}" "~/.config/eww/scripts/bluetooth")
+(defpoll  mullvad    :interval "2s"  :initial "disconnected" "~/.config/eww/scripts/mullvad")
+(defpoll  kbd        :interval "1s"  "~/.config/eww/scripts/kbd")
 
 ;; Hover / scroll-reveal state.
 (defvar hov_audio false)
@@ -18,6 +19,10 @@
 (defvar aud_show false)
 (defvar bri_show false)
 
+;; ---------- glyphs ----------
+;; Battery charge ramp, indexed by pct/10 (charging overrides to a bolt).
+(defvar bat_icons "[\"󰂎\",\"󰁺\",\"󰁻\",\"󰁼\",\"󰁽\",\"󰁾\",\"󰁿\",\"󰂀\",\"󰂁\",\"󰂂\",\"󰁹\"]")
+
 ;; ---------- widgets ----------
 (defwidget i3 []
   (box :class "mod i3" :halign "center" :space-evenly false :spacing 2
@@ -27,9 +32,9 @@
               "${ws.num}"))))
 
 (defwidget audio []
-  (eventbox :onscroll "~/.config/eww/scripts/vol {}"
+  (eventbox :onscroll "~/.config/eww/scripts/volume {}"
             :onhover "eww update hov_audio=true" :onhoverlost "eww update hov_audio=false"
-    (button :onclick "~/.config/eww/scripts/vol mute" :onrightclick "pavucontrol"
+    (button :onclick "~/.config/eww/scripts/volume mute" :onrightclick "pavucontrol"
       (box :class "mod audio" :space-evenly false
         (label :class "icn ${volume != 'muted' && volume < 34 ? 'icn-sm' : ''}"
                :text "${volume == 'muted' ? '󰝟' : volume < 34 ? '󰕿' : volume < 67 ? '󰖀' : '󰕾'}")
@@ -37,7 +42,7 @@
           (label :class "rev" :text "${volume}"))))))
 
 (defwidget brightness []
-  (eventbox :visible {brightness >= 0} :onscroll "~/.config/eww/scripts/bri {}"
+  (eventbox :visible {brightness >= 0} :onscroll "~/.config/eww/scripts/brightness {}"
             :onhover "eww update hov_bri=true" :onhoverlost "eww update hov_bri=false"
     (box :class "mod brightness" :space-evenly false
       (label :class "icn" :text "${brightness < 34 ? '󰃞' : brightness < 67 ? '󰃟' : '󰃠'}")
@@ -47,8 +52,9 @@
 (defwidget battery []
   (eventbox :visible {battery.present}
             :onhover "eww update hov_bat=true" :onhoverlost "eww update hov_bat=false"
-    (box :class "mod battery ${battery.cls}" :space-evenly false
-      (label :class "icn icn-sm" :text {battery.icon})
+    (box :class "mod battery ${battery.status == 'Charging' ? 'chg' : battery.pct <= 15 ? 'red' : battery.pct <= 30 ? 'orange' : battery.pct <= 50 ? 'yellow' : 'green'}" :space-evenly false
+      (label :class "icn icn-sm"
+             :text {battery.status == 'Charging' ? '󰂄' : bat_icons[min(floor(battery.pct / 10), 10)]})
       (revealer :transition "slideright" :duration "200ms" :reveal {hov_bat || battery.low}
         (box :class "rev" :space-evenly false
           (label :text {battery.pct})
@@ -58,11 +64,12 @@
 (defwidget net []
   (eventbox :onhover "eww update hov_net=true" :onhoverlost "eww update hov_net=false"
     (box :class "mod net" :space-evenly false
-      (label :class "icn" :text {network.icon})
+      (label :class "icn"
+             :text {network.sig < 0 ? '󰤮' : network.sig >= 80 ? '󰤨' : network.sig >= 60 ? '󰤥' : network.sig >= 40 ? '󰤢' : '󰤟'})
       (revealer :transition "slideright" :duration "200ms" :reveal hov_net
         (label :class "rev" :limit-width 18 :text "${network.ssid}")))))
 
-(defwidget bt []
+(defwidget bluetooth []
   (eventbox :visible {bluetooth.on}
             :onhover "eww update hov_bt=true" :onhoverlost "eww update hov_bt=false"
     (box :class "mod bt" :space-evenly false
@@ -71,8 +78,8 @@
         (label :class "rev" :limit-width 24 :text "${bluetooth.names}")))))
 
 (defwidget mullvad []
-  (box :class "mod mullvad ${mullvad.cls}"
-    (label :class "icn" :text {mullvad.icon})))
+  (box :class "mod mullvad ${mullvad == 'connected' ? 'on' : mullvad == 'connecting' ? 'mid' : 'off'}"
+    (label :class "icn" :text {mullvad == 'connected' ? '󰦝' : mullvad == 'connecting' ? '󰔟' : '󰦞'})))
 
 (defwidget kbd []
   (box :class "mod kbd" :visible {kbd != ""}
@@ -90,7 +97,7 @@
   (centerbox :class "bar"
     (box :halign "start" :space-evenly false :spacing 8 (audio) (brightness) (battery) (kbd))
     (i3)
-    (box :halign "end" :space-evenly false :spacing 8 (mullvad) (net) (bt) (clock))))
+    (box :halign "end" :space-evenly false :spacing 8 (mullvad) (net) (bluetooth) (clock))))
 
 (defwindow bar
   :monitor 0
