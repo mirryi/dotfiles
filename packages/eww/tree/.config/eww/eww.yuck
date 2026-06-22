@@ -36,8 +36,8 @@
             :onhover "eww update hov_audio=true" :onhoverlost "eww update hov_audio=false"
     (button :onclick "~/.config/eww/scripts/volume mute" :onrightclick "pavucontrol"
       (box :class "mod audio" :space-evenly false
-        (label :class "icn ${volume != 'muted' && volume < 34 ? 'icn-sm' : ''}"
-               :text "${volume == 'muted' ? '󰝟' : volume < 34 ? '󰕿' : volume < 67 ? '󰖀' : '󰕾'}")
+        (label :class "icn ${volume != 'muted' && volume < 10 ? 'icn-sm' : ''}"
+               :text "${volume == 'muted' ? '󰝟' : volume < 10 ? '󰕿' : volume < 40 ? '󰖀' : '󰕾'}")
         (revealer :transition "slideright" :duration "200ms" :reveal {hov_audio || aud_show}
           (label :class "rev" :text "${volume}"))))))
 
