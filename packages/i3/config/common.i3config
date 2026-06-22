@@ -52,14 +52,6 @@ bindsym XF86AudioMute exec pactl set-sink-mute @DEFAULT_SINK@ toggle
 bindsym XF86AudioLowerVolume exec pactl set-sink-volume @DEFAULT_SINK@ -2%
 #   increase volume (keyboard key)
 bindsym XF86AudioRaiseVolume exec pactl set-sink-volume @DEFAULT_SINK@ +2%
-#   next track
-bindsym $mod+n exec mpc next
-#   previous track
-bindsym $mod+Shift+n exec mpc prev
-#   play/pause mpd
-bindsym $mod+p exec mpc toggle
-#   notify mpd status
-bindsym $mod+m exec mpdnd --now
 
 ##  control brightness
 #   decrease brightness
@@ -76,6 +68,7 @@ bindsym XF86MonBrightnessUp exec xbacklight -inc 5
 bindsym $mod+i exec --no-startup-id flameshot gui -r | xclip -selection clipboard -t image/png
 
 ##  notifications (dunst)
+bindsym $mod+n exec --no-startup-id eww open --toggle notifications
 bindsym $mod+backslash exec --no-startup-id dunstctl close
 bindsym $mod+Ctrl+backslash exec --no-startup-id dunstctl close-all
 bindsym $mod+Shift+backslash exec --no-startup-id dunstctl history-pop
