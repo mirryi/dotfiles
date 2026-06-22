@@ -25,7 +25,6 @@ ajeetdsouza/zoxide
 MichaelAquilina/zsh-autoswitch-virtualenv
 darvid/zsh-poetry
 Tarrasch/zsh-autoenv
-ptavares/zsh-direnv
 
 # miscellaneous
 Tarrasch/zsh-command-not-found

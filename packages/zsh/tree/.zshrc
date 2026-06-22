@@ -40,6 +40,9 @@ export AUTOENV_FILE_LEAVE=".autoenv.exit.zsh"
 # Initialize atuin (Ctrl-R only; up-arrow stays with history-substring-search)
 eval "$(atuin init zsh --disable-up-arrow)"
 
+# Hook direnv
+eval "$(direnv hook zsh)"
+
 # Load manual plugins
 . "$XDG_CONFIG_HOME/sh/util"
 shload "rc.zsh" "$XDG_CONFIG_HOME/zsh"
