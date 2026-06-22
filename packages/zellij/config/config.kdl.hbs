@@ -11,6 +11,16 @@ session_serialization false
 styled_underlines true
 pane_frames true
 
+// tmux-style thin separators: square corners, no per-pane session name.
+// zellij has no shared single-line borders like tmux; framed panes are the
+// only separation mechanism, so this is as close as it gets.
+ui {
+    pane_frames {
+        rounded_corners false
+        hide_session_name true
+    }
+}
+
 keybinds clear-defaults=true {
     normal {
         bind "Ctrl a" { SwitchToMode "Tmux"; }
