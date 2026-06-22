@@ -1,6 +1,6 @@
 local lib = require('lib')
 
-pkg.name = 'mozb'
+pkg.name = 'mozc'
 pkg.dependencies:extend('../sh')
 
 -- Load local file if exists
