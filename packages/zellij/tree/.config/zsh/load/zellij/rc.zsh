@@ -10,4 +10,9 @@ if [[ -n $ZELLIJ ]]; then
         (( n == 1 )) && zellij kill-session "$ZELLIJ_SESSION_NAME" 2>/dev/null
         true
     }
+
+    _zellij_preexec() { zellij action rename-tab "${1%% *}" 2>/dev/null }
+    _zellij_precmd() { zellij action rename-tab "${PWD##*/}" 2>/dev/null }
+    preexec_functions+=(_zellij_preexec)
+    precmd_functions+=(_zellij_precmd)
 fi
