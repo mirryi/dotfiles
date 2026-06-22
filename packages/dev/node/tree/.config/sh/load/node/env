@@ -3,12 +3,6 @@
 # npm config
 export NPM_CONFIG_USERCONFIG="$XDG_CONFIG_HOME/npm/npmrc"
 
-# nvm data
-if [ -f "/usr/share/nvm/init-nvm.sh" ]; then
-  source "/usr/share/nvm/init-nvm.sh"
-fi
-export NVM_DIR="$XDG_DATA_HOME/nvm"
-
 # volta
 if [ -d "${HOME}/.volta/bin" ]; then
   export PATH="${HOME}/.volta/bin:${PATH}"
