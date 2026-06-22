@@ -46,6 +46,12 @@ bindsym $mod+Shift+m exec pactl set-sink-mute @DEFAULT_SINK@ toggle
 bindsym $mod+Shift+v exec pactl set-sink-volume @DEFAULT_SINK@ -2%
 #   increase volume
 bindsym $mod+v exec pactl set-sink-volume @DEFAULT_SINK@ +2%
+#   mute (keyboard key)
+bindsym XF86AudioMute exec pactl set-sink-mute @DEFAULT_SINK@ toggle
+#   decrease volume (keyboard key)
+bindsym XF86AudioLowerVolume exec pactl set-sink-volume @DEFAULT_SINK@ -2%
+#   increase volume (keyboard key)
+bindsym XF86AudioRaiseVolume exec pactl set-sink-volume @DEFAULT_SINK@ +2%
 #   next track
 bindsym $mod+n exec mpc next
 #   previous track
@@ -55,8 +61,15 @@ bindsym $mod+p exec mpc toggle
 #   notify mpd status
 bindsym $mod+m exec mpdnd --now
 
-# battery
-bindsym $mod+b exec notify-battery -f
+##  control brightness
+#   decrease brightness
+bindsym $mod+Shift+b exec xbacklight -dec 5
+#   increase brightness
+bindsym $mod+b exec xbacklight -inc 5
+#   decrease brightness (keyboard key)
+bindsym XF86MonBrightnessDown exec xbacklight -dec 5
+#   increase brightness (keyboard key)
+bindsym XF86MonBrightnessUp exec xbacklight -inc 5
 
 # screenshot
 # bindsym $mod+i exec maim -s /tmp/a.png
