@@ -1,2 +1,2 @@
 #!/bin/sh
-export LESSHISTFILE="${XDG_CACHE_HOME}/less/history"
+export LESSHISTFILE="${XDG_STATE_HOME}/less/history"
