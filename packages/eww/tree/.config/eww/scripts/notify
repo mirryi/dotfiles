@@ -1,0 +1,35 @@
+#!/usr/bin/env bash
+# Notification center backend, driven by dunstctl. Subcommands:
+#   state  -> {"count":N,"paused":bool}  (for the bar bell)
+#   list   -> normalized JSON array of history items (for the panel)
+#   rm ID  -> drop one history item
+#   clear  -> drop all history
+#   dnd    -> toggle do-not-disturb (paused)
+#
+# ponytail: count = items in dunst history (dismissed/expired), not "unread".
+# dunst has no read-state; track a seen-marker only if true unread is wanted.
+case "$1" in
+state)
+	count=$(dunstctl count history 2>/dev/null || echo 0)
+	paused=$(dunstctl is-paused 2>/dev/null || echo false)
+	printf '{"count":%s,"paused":%s}' "${count:-0}" "${paused:-false}"
+	;;
+list)
+	dunstctl history 2>/dev/null | jq -c '[.data[0][] | {
+		id: .id.data,
+		summary: .summary.data,
+		body: .body.data,
+		app: .appname.data,
+		icon: .icon_path.data
+	}]' 2>/dev/null || echo '[]'
+	;;
+rm)
+	dunstctl history-rm "$2"
+	;;
+clear)
+	dunstctl history-clear
+	;;
+dnd)
+	dunstctl set-paused toggle
+	;;
+esac
