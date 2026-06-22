@@ -9,3 +9,7 @@ inline_height = 20
 enter_accept = false
 
 keymap_mode = "auto"
+
+# keep logs out of ~/.atuin (XDG state dir)
+[logs]
+dir = "~/.local/var/lib/atuin/logs"
