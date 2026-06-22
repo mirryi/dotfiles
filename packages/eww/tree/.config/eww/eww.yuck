@@ -54,7 +54,7 @@
             :onhover "eww update hov_bat=true" :onhoverlost "eww update hov_bat=false"
     (box :class "mod battery ${battery.status == 'Charging' ? 'chg' : battery.pct <= 15 ? 'red' : battery.pct <= 30 ? 'orange' : battery.pct <= 50 ? 'yellow' : 'green'}" :space-evenly false
       (label :class "icn icn-sm"
-             :text {battery.status == 'Charging' ? '󰂄' : bat_icons[min(floor(battery.pct / 10), 10)]})
+             :text {battery.status == 'Charging' ? '󰂄' : bat_icons[jq(battery.pct, '. / 10 | floor')]})
       (revealer :transition "slideright" :duration "200ms" :reveal {hov_bat || battery.low}
         (box :class "rev" :space-evenly false
           (label :text {battery.pct})
