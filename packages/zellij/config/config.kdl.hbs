@@ -9,17 +9,9 @@ scroll_buffer_size 10000
 copy_clipboard "system"
 session_serialization false
 styled_underlines true
-pane_frames true
-
-// tmux-style thin separators: square corners, no per-pane session name.
-// zellij has no shared single-line borders like tmux; framed panes are the
-// only separation mechanism, so this is as close as it gets.
-ui {
-    pane_frames {
-        rounded_corners false
-        hide_session_name true
-    }
-}
+// tmux-style: thin separator line between panes, no box around a single pane.
+// Tradeoff: the focused pane is less obviously highlighted (zellij issue #2180).
+pane_frames false
 
 keybinds clear-defaults=true {
     normal {
