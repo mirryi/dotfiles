@@ -13,7 +13,11 @@ layout {
                 format_space  "#[bg={{ bg1 }}]"
 
                 border_enabled  "false"
-                hide_frame_for_single_pane "true"
+                // ponytail: was "true", but on zellij 0.44.3 zjstatus's frame
+                // auto-hide issues a toggle action that fails to route and spins
+                // into an infinite loop (logs the client out -> terminal relaunches
+                // -> new shell, repeat). Keep frames always-on instead.
+                hide_frame_for_single_pane "false"
 
                 mode_normal        "#[bg={{ blue }},fg={{ bg }},bold] NORMAL #[bg={{ bg1 }},fg={{ bg1 }}]"
                 mode_tmux          "#[bg={{ yellow }},fg={{ bg }},bold] TMUX #[bg={{ bg1 }},fg={{ bg1 }}]"
