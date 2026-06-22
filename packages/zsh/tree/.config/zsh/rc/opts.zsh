@@ -1,9 +1,9 @@
 #!/bin/zsh
 
-# save history in cache
+# save history in state dir
 export HISTSIZE=290000
 export SAVEHIST=290000
-export HISTFILE="$XDG_CACHE_HOME/zsh/history"
+export HISTFILE="$XDG_STATE_HOME/zsh/history"
 
 # comments in interactive code
 setopt INTERACTIVE_COMMENTS
