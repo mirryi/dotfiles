@@ -1,8 +1,8 @@
 ;; ---------- data ----------
 ;; Scripts emit data only; glyphs are chosen below, colours in eww.scss.
 (deflisten workspaces :initial "[]" "~/.config/eww/scripts/i3")
-(defpoll  volume     :interval "1s"  :initial "0"  "~/.config/eww/scripts/volume get")
-(defpoll  brightness :interval "5s"  :initial "-1" "~/.config/eww/scripts/brightness get")
+(deflisten volume    :initial "0"  "~/.config/eww/scripts/volume listen")
+(deflisten brightness :initial "-1" "~/.config/eww/scripts/brightness listen")
 (defpoll  battery    :interval "30s" :initial "{\"present\":false,\"status\":\"\",\"low\":false,\"pct\":0,\"time\":\"\"}" "~/.config/eww/scripts/battery")
 (defpoll  network    :interval "5s"  :initial "{\"ssid\":\"\",\"sig\":-1}" "~/.config/eww/scripts/net")
 (defpoll  bluetooth  :interval "5s"  :initial "{\"on\":false,\"names\":\"\"}" "~/.config/eww/scripts/bluetooth")

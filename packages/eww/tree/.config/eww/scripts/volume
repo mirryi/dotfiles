@@ -16,4 +16,13 @@ up | down)
 	;;
 mute) pactl set-sink-mute "$sink" toggle ;;
 get) if pactl get-sink-mute "$sink" | grep -q yes; then echo muted; else cur; fi ;;
+listen)
+	# Stream volume and flash the OSD on any change, from any source.
+	state() { if pactl get-sink-mute "$sink" | grep -q yes; then echo muted; else cur; fi; }
+	last=$(state); echo "$last"
+	pactl subscribe 2>/dev/null | grep --line-buffered -E "on sink #" | while read -r _; do
+		v=$(state); [ "$v" = "$last" ] && continue
+		last=$v; echo "$v"; osd_reveal aud_show aud
+	done
+	;;
 esac

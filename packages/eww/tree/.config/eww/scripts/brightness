@@ -3,7 +3,7 @@
 # absent. Writing brightness needs the `video` group or a udev rule.
 source "$(dirname "$0")/lib"
 bl=/sys/class/backlight/intel_backlight
-[ -d "$bl" ] || { [ "$1" = get ] && echo -1; exit 0; }
+[ -d "$bl" ] || { case "$1" in get | listen) echo -1 ;; esac; exit 0; }
 max=$(cat "$bl/max_brightness")
 pct() { awk -v c="$(cat "$bl/brightness")" -v m="$max" 'BEGIN {printf "%d", c * 100 / m}'; }
 case "$1" in
@@ -17,5 +17,14 @@ up | down)
 	echo $((v * max / 100)) >"$bl/brightness" 2>/dev/null
 	eww update brightness="$v"
 	osd_reveal bri_show bri
+	;;
+listen)
+	# No inotifywait here, so poll the sysfs file and flash the OSD on change.
+	last=$(pct); echo "$last"
+	while :; do
+		sleep 0.5
+		v=$(pct); [ "$v" = "$last" ] && continue
+		last=$v; echo "$v"; osd_reveal bri_show bri
+	done
 	;;
 esac
