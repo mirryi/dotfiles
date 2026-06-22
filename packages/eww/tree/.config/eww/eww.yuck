@@ -6,7 +6,7 @@
 (defpoll  battery    :interval "30s" :initial "{\"present\":false,\"status\":\"\",\"low\":false,\"pct\":0,\"time\":\"\"}" "~/.config/eww/scripts/battery")
 (defpoll  network    :interval "5s"  :initial "{\"ssid\":\"\",\"sig\":-1}" "~/.config/eww/scripts/net")
 (defpoll  bluetooth  :interval "5s"  :initial "{\"on\":false,\"names\":\"\"}" "~/.config/eww/scripts/bluetooth")
-(defpoll  mullvad    :interval "2s"  :initial "disconnected" "~/.config/eww/scripts/mullvad")
+(defpoll  mullvad    :interval "2s"  :initial "{\"state\":\"disconnected\",\"relay\":\"\"}" "~/.config/eww/scripts/mullvad")
 (defpoll  kbd        :interval "1s"  "~/.config/eww/scripts/kbd")
 
 ;; Hover / scroll-reveal state.
@@ -15,6 +15,7 @@
 (defvar hov_bat false)
 (defvar hov_net false)
 (defvar hov_bt false)
+(defvar hov_mv false)
 (defvar hov_clock false)
 (defvar aud_show false)
 (defvar bri_show false)
@@ -78,8 +79,11 @@
         (label :class "rev" :limit-width 24 :text "${bluetooth.names}")))))
 
 (defwidget mullvad []
-  (box :class "mod mullvad ${mullvad == 'connected' ? 'on' : mullvad == 'connecting' ? 'mid' : 'off'}"
-    (label :class "icn" :text {mullvad == 'connected' ? '󰦝' : mullvad == 'connecting' ? '󰔟' : '󰦞'})))
+  (eventbox :onhover "eww update hov_mv=true" :onhoverlost "eww update hov_mv=false"
+    (box :class "mod mullvad ${mullvad.state == 'connected' ? 'on' : mullvad.state == 'connecting' ? 'mid' : 'off'}" :space-evenly false
+      (revealer :transition "slideright" :duration "200ms" :reveal {hov_mv && mullvad.relay != ''}
+        (label :class "rev-left" :text "${mullvad.relay}"))
+      (label :class "icn" :text {mullvad.state == 'connected' ? '󰦝' : mullvad.state == 'connecting' ? '󰔟' : '󰦞'}))))
 
 (defwidget kbd []
   (box :class "mod kbd" :visible {kbd != ""}

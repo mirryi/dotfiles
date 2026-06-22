@@ -1,8 +1,12 @@
 #!/usr/bin/env bash
-# Mullvad connection state: connecting | connected | disconnected. The yuck
-# layer maps state -> glyph + colour class.
-case "$(mullvad status 2>/dev/null)" in
-*Connecting*) echo connecting ;;
-*Connected*)  echo connected ;;
-*)            echo disconnected ;;
+# Mullvad as JSON: { state, relay }. state is connecting | connected |
+# disconnected; relay is the relay id (empty unless connected). The yuck layer
+# maps state -> glyph + colour class and reveals relay on hover.
+out=$(mullvad status 2>/dev/null)
+case "$out" in
+*Connecting*) state=connecting ;;
+*Connected*)  state=connected ;;
+*)            state=disconnected ;;
 esac
+relay=$(printf '%s' "$out" | sed -n 's/.*Relay:[[:space:]]*//p' | head -1 | sed 's/[[:space:]]*$//')
+printf '{"state":"%s","relay":"%s"}' "$state" "$relay"
