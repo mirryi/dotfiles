@@ -4,8 +4,9 @@
 export NPM_CONFIG_USERCONFIG="$XDG_CONFIG_HOME/npm/npmrc"
 
 # volta
-if [ -d "${HOME}/.volta/bin" ]; then
-  export PATH="${HOME}/.volta/bin:${PATH}"
+export VOLTA_HOME="${XDG_DATA_HOME}/volta"
+if [ -d "${VOLTA_HOME}/bin" ]; then
+  export PATH="${VOLTA_HOME}/bin:${PATH}"
 fi
 
 # repl history
