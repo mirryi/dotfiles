@@ -68,7 +68,6 @@ bindsym XF86MonBrightnessUp exec xbacklight -inc 5
 bindsym $mod+i exec --no-startup-id flameshot gui -r | xclip -selection clipboard -t image/png
 
 ##  notifications (dunst)
-bindsym $mod+n exec --no-startup-id eww open --toggle notifications
 bindsym $mod+backslash exec --no-startup-id dunstctl close
 bindsym $mod+Ctrl+backslash exec --no-startup-id dunstctl close-all
 bindsym $mod+Shift+backslash exec --no-startup-id dunstctl history-pop
