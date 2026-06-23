@@ -69,6 +69,12 @@ run     = { fg = "{{ colors.normal.cyan }}" }
 hovered = { reversed = true, bold = true }
 footer  = { fg = "{{ colors.primary.foreground }}", bg = "{{ colors.primary.background }}" }
 
+[icon]
+prepend_conds = [
+  { if = "dir & hovered", text = "", fg = "{{ colors.normal.blue }}" },
+  { if = "dir",           text = "",  fg = "{{ colors.normal.blue }}" },
+]
+
 [git]
 modified  = { fg = "{{ colors.normal.yellow }}" }
 added     = { fg = "{{ colors.normal.green }}" }
