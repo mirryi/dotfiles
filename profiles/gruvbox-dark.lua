@@ -26,6 +26,8 @@ local colors = {
         foreground = '#ebdbb2',
         alarm = '#ea6962',
     },
+    overlay = '#f2e5bc',
+    border = '#ebd696',
 }
 
 local M = {
@@ -34,6 +36,7 @@ local M = {
     dunst = {
         font = { family = font, size = 9 },
         colors = {
+            frame = colors.border,
             low = {
                 foreground = colors.primary.foreground,
                 background = colors.primary.background,
@@ -59,8 +62,8 @@ local M = {
             yellow = colors.bright.yellow,
             darkyellow = colors.normal.yellow,
             green = colors.normal.green,
-            widget = '#f2e5bc',
-            hover = '#ebd696',
+            widget = colors.overlay,
+            hover = colors.border,
         },
     },
     fzf = { name = 'gruvbox-dark' },
