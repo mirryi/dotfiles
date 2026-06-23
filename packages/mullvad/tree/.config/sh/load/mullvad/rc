@@ -6,4 +6,3 @@ alias mullst="mullvad status"
 alias mullre="mullvad reconnect"
 
 alias getip="curl -s https://am.i.mullvad.net/ip"
-alias mullinfo="curl -s https://am.i.mullvad.net/json | jq"
