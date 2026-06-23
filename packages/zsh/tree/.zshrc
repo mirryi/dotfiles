@@ -1,8 +1,8 @@
 # GPG password prompt
 export GPG_TTY=$(tty)
 
-# open zellij by default
-[[ -z $ZELLIJ ]] && exec zellij
+# open tmux by default
+[[ -z $TMUX ]] && exec tmux
 
 # Load shared components
 source "$HOME/.config/sh/rc"
