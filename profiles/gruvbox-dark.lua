@@ -26,8 +26,13 @@ local colors = {
         foreground = '#ebdbb2',
         alarm = '#ea6962',
     },
-    overlay = '#f2e5bc',
-    border = '#ebd696',
+    shades = {
+        bg1 = '#3c3836',
+        bg2 = '#504945',
+        bg3 = '#ebd696',
+        bg4 = '#f2e5bc',
+        fg4 = '#a89984',
+    },
 }
 
 local M = {
@@ -36,7 +41,7 @@ local M = {
     dunst = {
         font = { family = font, size = 9 },
         colors = {
-            frame = colors.border,
+            frame = colors.shades.bg3,
             low = {
                 foreground = colors.primary.foreground,
                 background = colors.primary.background,
@@ -62,8 +67,8 @@ local M = {
             yellow = colors.bright.yellow,
             darkyellow = colors.normal.yellow,
             green = colors.normal.green,
-            widget = colors.overlay,
-            hover = colors.border,
+            widget = colors.shades.bg4,
+            hover = colors.shades.bg3,
         },
     },
     fzf = { name = 'gruvbox-dark' },
@@ -116,9 +121,9 @@ local M = {
     zellij = {
         theme = 'gruvbox-dark',
         bg = colors.primary.background,
-        bg1 = '#3c3836',
+        bg1 = colors.shades.bg1,
         fg = colors.primary.foreground,
-        fg4 = '#a89984',
+        fg4 = colors.shades.fg4,
         red = colors.normal.red,
         green = colors.normal.green,
         yellow = colors.normal.yellow,
