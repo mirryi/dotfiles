@@ -59,3 +59,8 @@
 }
 
 @import "gruvbox-common.rasi"
+
+window {
+    border:       1;
+    border-color: #e2ca8e;
+}
