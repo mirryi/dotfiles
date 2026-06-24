@@ -1,7 +1,8 @@
 ;; ---------- data ----------
 ;; Scripts emit data only; glyphs are chosen below, colours in eww.scss.
 (deflisten workspaces :initial "[]" "~/.config/eww/scripts/i3")
-(deflisten volume    :initial "0"  "~/.config/eww/scripts/volume listen")
+(deflisten volume    :initial "{\"vol\":0,\"muted\":false}" "~/.config/eww/scripts/volume listen")
+(deflisten aud_playing :initial "false" "~/.config/eww/scripts/volume active")
 (deflisten brightness :initial "-1" "~/.config/eww/scripts/brightness listen")
 (defpoll  battery    :interval "30s" :initial "{\"present\":false,\"status\":\"\",\"low\":false,\"pct\":0,\"time\":\"\"}" "~/.config/eww/scripts/battery")
 (defpoll  network    :interval "5s"  :initial "{\"ssid\":\"\",\"sig\":-1}" "~/.config/eww/scripts/net")
@@ -37,10 +38,10 @@
             :onhover "eww update hov_audio=true" :onhoverlost "eww update hov_audio=false"
     (button :onclick "~/.config/eww/scripts/volume mute" :onrightclick "pavucontrol"
       (box :class "mod audio" :space-evenly false
-        (label :class "icn ${volume != 'muted' && volume < 10 ? 'icn-sm' : ''}"
-               :text "${volume == 'muted' ? '󰝟' : volume < 10 ? '󰕿' : volume < 40 ? '󰖀' : '󰕾'}")
-        (revealer :transition "slideright" :duration "200ms" :reveal {(hov_audio || aud_show) && volume != 'muted'}
-          (label :class "rev" :text "${volume}"))))))
+        (label :class "icn ${!volume.muted && volume.vol < 10 ? 'icn-sm' : ''} ${aud_playing == 'true' ? 'aud-on' : ''}"
+               :text "${volume.muted ? '󰝟' : volume.vol < 10 ? '󰕿' : volume.vol < 40 ? '󰖀' : '󰕾'}")
+        (revealer :transition "slideright" :duration "200ms" :reveal {hov_audio || aud_show}
+          (label :class "rev ${aud_playing == 'true' ? 'aud-on' : ''}" :text "${volume.vol}"))))))
 
 (defwidget brightness []
   (eventbox :visible {brightness >= 0} :onscroll "~/.config/eww/scripts/brightness {}"

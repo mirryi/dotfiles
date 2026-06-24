@@ -11,18 +11,33 @@ up | down)
 	[ "$v" -gt 100 ] && v=100
 	[ "$v" -lt 0 ] && v=0
 	pactl set-sink-volume "$sink" "${v}%"
-	eww update volume="$v"
+	m=false; pactl get-sink-mute "$sink" | grep -q yes && m=true
+	eww update volume="{\"vol\":$v,\"muted\":$m}"
 	osd_reveal aud_show aud
 	;;
 mute) pactl set-sink-mute "$sink" toggle ;;
 get) if pactl get-sink-mute "$sink" | grep -q yes; then echo muted; else cur; fi ;;
 listen)
-	# Stream volume and flash the OSD on any change, from any source.
-	state() { if pactl get-sink-mute "$sink" | grep -q yes; then echo muted; else cur; fi; }
+	# Stream {vol,muted} and flash the OSD on any change, from any source.
+	state() {
+		local m=false v
+		pactl get-sink-mute "$sink" | grep -q yes && m=true
+		v=$(cur); v=${v:-0}
+		echo "{\"vol\":$v,\"muted\":$m}"
+	}
 	last=$(state); echo "$last"
 	pactl subscribe 2>/dev/null | grep --line-buffered -E "on sink #" | while read -r _; do
 		v=$(state); [ "$v" = "$last" ] && continue
 		last=$v; echo "$v"; osd_reveal aud_show aud
+	done
+	;;
+active)
+	# Stream whether any output stream is playing (non-corked sink-input).
+	playing() { pactl list sink-inputs 2>/dev/null | grep -q "Corked: no" && echo true || echo false; }
+	last=$(playing); echo "$last"
+	pactl subscribe 2>/dev/null | grep --line-buffered -E "on sink-input #" | while read -r _; do
+		v=$(playing); [ "$v" = "$last" ] && continue
+		last=$v; echo "$v"
 	done
 	;;
 esac
