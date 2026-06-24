@@ -24,14 +24,12 @@ bindsym $mod+Shift+w exec xkill
 ##  rofi menu
 #   application runner
 bindsym $mod+d exec rofi -show run
-#   file opener
-bindsym $mod+f exec rofi -show filebrowser
+#   desktop application runner
+bindsym $mod+Shift+d exec rofi -show drun
 #   window switcher
-bindsym $mod+Shift+d exec rofi -show window
+bindsym $mod+g exec rofi -show window
 #   ssh menu
-bindsym $mod+g exec rofi -show ssh
-#   network manager dmenu
-bindsym $mod+Shift+g exec networkmanager_dmenu
+bindsym $mod+Shift+g exec rofi -show ssh
 
 ##  terminal
 #   open alacritty
@@ -66,12 +64,6 @@ bindsym XF86MonBrightnessUp exec xbacklight -inc 5
 # screenshot
 # bindsym $mod+i exec maim -s /tmp/a.png
 bindsym $mod+i exec --no-startup-id flameshot gui -r | xclip -selection clipboard -t image/png
-
-##  notifications (dunst)
-bindsym $mod+backslash exec --no-startup-id dunstctl close
-bindsym $mod+Ctrl+backslash exec --no-startup-id dunstctl close-all
-bindsym $mod+Shift+backslash exec --no-startup-id dunstctl history-pop
-bindsym $mod+Ctrl+Shift+backslash exec --no-startup-id dunstctl context
 
 ######### MOVEMENT #########
 # change focus
@@ -171,8 +163,6 @@ bindsym $mod+Shift+0 move container to workspace 10
 
 # reload the configuration file
 bindsym $mod+Ctrl+c reload
-# restart i3 in-place
-bindsym $mod+Shift+r restart
 # exit i3 (logs you out of your X session)
 bindsym $mod+Shift+e exit
 
