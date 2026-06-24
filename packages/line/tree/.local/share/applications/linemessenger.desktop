@@ -1,0 +1,7 @@
+[Desktop Entry]
+Type=Application
+Name=LINE
+Exec=linemessenger
+Icon=/home/mirryi/.local/share/icons/line.png
+Terminal=false
+Categories=Network;InstantMessaging;
