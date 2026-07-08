@@ -1,6 +1,7 @@
 return {
     {
         'SirVer/ultisnips',
+        event = 'InsertEnter',
         init = function()
             vim.g.UltiSnipsExpandTrigger = '<C-j>'
             vim.g.UltiSnipsListSnippets = '<NUL>'

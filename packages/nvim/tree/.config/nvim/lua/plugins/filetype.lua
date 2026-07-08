@@ -92,6 +92,7 @@ return {
     -- rocq
     {
         'whonore/Coqtail',
+        ft = { 'coq' },
     },
 
     -- rust
