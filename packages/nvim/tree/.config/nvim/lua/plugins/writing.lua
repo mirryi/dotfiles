@@ -18,7 +18,7 @@ return {
     },
     {
         -- soft wrap long lines
-        'manu-mannattil/vim-longlines',
+        'mirryi/vim-longlines',
         config = function()
             vim.api.nvim_create_autocmd('FileType', {
                 pattern = 'pandoc',
