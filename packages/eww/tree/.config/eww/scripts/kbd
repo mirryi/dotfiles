@@ -11,6 +11,7 @@ fi
 case "$name" in
 "" | keyboard-us | keyboard-us-* | keyboard-en* | xkb:us::eng) ;;
 mozc* | anthy | *jp* | *japan*) echo "あ" ;;
+hangul | *hangul* | *korean* | keyboard-ko | keyboard-ko-*) echo "한" ;;
 rime | *rime*) echo "中" ;;
 keyboard-*)
 	code=${name#keyboard-}
