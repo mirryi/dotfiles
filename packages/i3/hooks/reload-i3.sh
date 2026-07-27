@@ -1,3 +1,3 @@
 #!/bin/bash
-# reload i3
+pgrep -x i3 >/dev/null || exit 0
 i3-msg restart >/dev/null
