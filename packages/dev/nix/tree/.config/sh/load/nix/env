@@ -1,0 +1,4 @@
+#!/bin/sh
+if [ -d "${XDG_STATE_HOME}/nix/profiles/profile/bin" ]; then
+  export PATH="${XDG_STATE_HOME}/nix/profiles/profile/bin:${PATH}"
+fi
