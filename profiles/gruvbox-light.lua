@@ -74,6 +74,7 @@ local M = {
     fzf = { name = 'gruvbox-light' },
     git = { delta = { theme = 'gruvbox-light' } },
     gtk = { theme = 'Gruvbox-Light' },
+    glow = { style = 'light' },
     i3 = {
         font = { family = font, size = 10 },
         colors = {
