@@ -10,6 +10,14 @@ return {
         end,
     },
     {
+        'urtzienriquez/citeref.nvim',
+        config = function()
+            require('citeref').setup {
+                backend = 'cmp',
+            }
+        end,
+    },
+    {
         'hrsh7th/nvim-cmp',
         dependencies = {
             'hrsh7th/cmp-nvim-lsp',
@@ -19,6 +27,9 @@ return {
             'f3fora/cmp-spell',
             'hrsh7th/cmp-buffer',
         },
+        after = {
+            'urtzienriquez/citeref.nvim',
+        },
         config = function()
             local cmp = require('cmp')
 
@@ -27,6 +38,7 @@ return {
                 return col == 0 or vim.fn.getline('.'):sub(col, col):match('%s')
             end
 
+            require('citeref.backends.cmp').register()
             cmp.setup {
                 snippet = {
                     expand = function(args)
@@ -62,9 +74,9 @@ return {
                     end, { 'i', 's' }),
                 },
                 sources = {
-                    { name = 'nvim_lsp' },
                     { name = 'ultisnips' },
                     { name = 'path' },
+                    { name = 'citeref' },
                 },
                 preselect = cmp.PreselectMode.None,
                 completion = {
@@ -79,7 +91,6 @@ return {
             -- per-filetype sources
             cmp.setup.filetype('lua', {
                 sources = {
-                    { name = 'nvim_lsp' },
                     { name = 'nvim_lua' },
                     { name = 'ultisnips' },
                     { name = 'path' },
@@ -89,10 +100,10 @@ return {
             for _, ft in ipairs { 'markdown', 'pandoc', 'tex' } do
                 cmp.setup.filetype(ft, {
                     sources = {
-                        { name = 'nvim_lsp' },
                         { name = 'ultisnips' },
                         { name = 'path' },
                         { name = 'spell' },
+                        { name = 'citeref' },
                     },
                 })
             end

@@ -1,5 +1,16 @@
 return {
     {
+        'zk-org/zk-nvim',
+        name = 'zk',
+        opts = {
+            lsp = {
+                config = {
+                    filetypes = { 'markdown', 'pandoc' },
+                },
+            },
+        },
+    },
+    {
         -- writing focus
         'folke/zen-mode.nvim',
         opts = {
