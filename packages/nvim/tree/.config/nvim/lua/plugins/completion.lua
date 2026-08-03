@@ -39,6 +39,7 @@ return {
             end
 
             require('citeref.backends.cmp').register()
+            require('cmp_nvim_lsp').setup()
             cmp.setup {
                 snippet = {
                     expand = function(args)
@@ -74,6 +75,7 @@ return {
                     end, { 'i', 's' }),
                 },
                 sources = {
+                    { name = 'nvim_lsp' },
                     { name = 'ultisnips' },
                     { name = 'path' },
                     { name = 'citeref' },
@@ -91,6 +93,7 @@ return {
             -- per-filetype sources
             cmp.setup.filetype('lua', {
                 sources = {
+                    { name = 'nvim_lsp' },
                     { name = 'nvim_lua' },
                     { name = 'ultisnips' },
                     { name = 'path' },
@@ -100,6 +103,7 @@ return {
             for _, ft in ipairs { 'markdown', 'pandoc', 'tex' } do
                 cmp.setup.filetype(ft, {
                     sources = {
+                        { name = 'nvim_lsp' },
                         { name = 'ultisnips' },
                         { name = 'path' },
                         { name = 'spell' },
