@@ -146,7 +146,7 @@ return {
     {
         -- math preview on hover
         'jbyuki/nabla.nvim',
-        ft = { 'latex' },
+        ft = { 'latex', 'pandoc' },
         config = function()
             vim.keymap.set('n', '<leader>lf', function()
                 require('nabla').popup()
