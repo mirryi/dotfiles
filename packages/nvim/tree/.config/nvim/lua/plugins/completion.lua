@@ -24,8 +24,8 @@ return {
             'hrsh7th/cmp-nvim-lua',
             'quangnguyen30192/cmp-nvim-ultisnips',
             'hrsh7th/cmp-path',
-            'f3fora/cmp-spell',
-            'hrsh7th/cmp-buffer',
+            -- 'f3fora/cmp-spell',
+            -- 'hrsh7th/cmp-buffer',
         },
         after = {
             'urtzienriquez/citeref.nvim',
@@ -106,7 +106,6 @@ return {
                         { name = 'nvim_lsp' },
                         { name = 'ultisnips' },
                         { name = 'path' },
-                        { name = 'spell' },
                         { name = 'citeref' },
                     },
                 })
