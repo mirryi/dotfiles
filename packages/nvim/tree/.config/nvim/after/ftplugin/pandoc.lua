@@ -1,15 +1,9 @@
-local bo, wo = vim.bo, vim.wo
-
--- textwidth
-bo.textwidth = 100
+local bo = vim.bo
 
 -- tab size
 bo.tabstop = 4
 bo.shiftwidth = 4
 bo.expandtab = true
-
--- no wrapping
-wo.wrap = false
 
 -- zk mappings
 if require('zk.util').notebook_root(vim.fn.expand('%:p')) ~= nil then

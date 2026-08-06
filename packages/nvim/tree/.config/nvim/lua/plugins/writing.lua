@@ -64,9 +64,12 @@ return {
         'mirryi/vim-longlines',
         config = function()
             vim.api.nvim_create_autocmd('FileType', {
-                pattern = 'pandoc',
+                pattern = { 'pandoc', 'markdown', 'tex', 'forester' },
                 callback = function()
-                    vim.cmd('LongLines')
+                    -- FileType may fire more than once per buffer; LongLines toggles
+                    if not vim.b.longlines then
+                        vim.cmd('LongLines')
+                    end
                 end,
             })
         end,
