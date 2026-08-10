@@ -1,0 +1,105 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+usage() {
+  cat >&2 <<'EOF'
+usage: attic-claude [options] PATH... [attic options] [-- claude args...]
+
+Run claude under attic, seeing only PATH... Later options go to attic.
+
+Options:
+  --ro-config   bind the config directory read-only
+  --no-config   leave the config directory out
+  -h, --help    show this help and exit
+EOF
+}
+
+config=bind
+targets=()
+passthrough=()
+while [ $# -gt 0 ] && [ "$1" != "--" ]; do
+  case "$1" in
+    --ro-config)
+      config=ro-bind
+      ;;
+    --no-config)
+      config=none
+      ;;
+    -h | --help)
+      usage
+      exit 0
+      ;;
+    -*)
+      # operand counts are unknowable, so an unknown flag takes the rest
+      while [ $# -gt 0 ] && [ "$1" != "--" ]; do
+        passthrough+=("$1")
+        shift
+      done
+      break
+      ;;
+    *)
+      targets+=("$1")
+      ;;
+  esac
+  shift
+done
+if [ $# -gt 0 ]; then
+  shift
+fi
+
+if [ ${#targets[@]} -eq 0 ]; then
+  usage
+  exit 1
+fi
+
+if ! command -v attic >/dev/null; then
+  echo "attic-claude: attic is not on PATH" >&2
+  exit 1
+fi
+
+# attic mounts nothing of its own
+sandbox=(--ro-bind /usr /usr --tmpfs /tmp --proc /proc --dev /dev)
+for link in /bin /sbin /lib /lib64; do
+  if [ -L "$link" ]; then
+    sandbox+=(--symlink "$(readlink "$link")" "$link")
+  fi
+done
+for path in /etc/ssl /etc/ca-certificates /etc/resolv.conf /etc/hosts \
+  /etc/nsswitch.conf /etc/passwd /etc/group /etc/localtime; do
+  if [ -e "$path" ]; then
+    sandbox+=(--ro-bind "$path" "$path")
+  fi
+done
+if [ -d /opt/claude-code ]; then
+  sandbox+=(--ro-bind /opt/claude-code /opt/claude-code)
+fi
+
+if [ "$config" != none ]; then
+  dir="${CLAUDE_CONFIG_DIR:-$HOME/.claude}"
+  if [ ! -d "$dir" ]; then
+    echo "attic-claude: no config dir at $dir, set CLAUDE_CONFIG_DIR" >&2
+    exit 1
+  fi
+  sandbox+=("--$config" "$dir" "$dir")
+  # without CLAUDE_CONFIG_DIR claude keeps this beside the config dir
+  if [ -z "${CLAUDE_CONFIG_DIR:-}" ] && [ -f "$HOME/.claude.json" ]; then
+    sandbox+=("--$config" "$HOME/.claude.json" "$HOME/.claude.json")
+  fi
+fi
+
+views=()
+for target in "${targets[@]}"; do
+  path=$(realpath "$target")
+  views+=(--view "$path" "$path")
+done
+
+workdir=$(realpath "${targets[0]}")
+if [ ! -d "$workdir" ]; then
+  workdir=$(dirname "$workdir")
+fi
+
+exec attic "${sandbox[@]}" "${passthrough[@]}" "${views[@]}" \
+  --chdir "$workdir" \
+  --unshare-pid --unshare-ipc --unshare-uts --unshare-cgroup-try \
+  --die-with-parent \
+  claude "$@"
