@@ -99,7 +99,6 @@ return {
                         ['rust-analyzer'] = {
                             assist = { importGranularity = 'module' },
                             cargo = { loadOutDirsFromCheck = true },
-                            checkOnSave = { command = 'clippy' },
                             procMacro = { enable = true },
                             rustc = { source = 'discover' },
                         },
