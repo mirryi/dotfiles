@@ -9,6 +9,8 @@ mkdir -p "${HISTFILE:h}"
 # do not write duplicates to history
 setopt HIST_SAVE_NO_DUPS
 setopt HIST_FIND_NO_DUPS
+# do not write space-prefixed commands to history
+setopt HIST_IGNORE_SPACE
 # save each command's beginning timestamp and the duration to the history file
 setopt EXTENDED_HISTORY
 # share new history across active zsh sessions
