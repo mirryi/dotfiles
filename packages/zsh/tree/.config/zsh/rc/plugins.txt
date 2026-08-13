@@ -14,10 +14,6 @@ zsh-users/zsh-completions
 zsh-users/zsh-history-substring-search
 marlonrichert/zsh-autocomplete
 
-# benchmark
-romkatv/zsh-bench kind:path
-romkatv/zsh-prompt-benchmark
-
 # autosourcing
 MichaelAquilina/zsh-autoswitch-virtualenv
 
