@@ -4,6 +4,7 @@
 export HISTSIZE=290000
 export SAVEHIST=290000
 export HISTFILE="$XDG_STATE_HOME/zsh/history"
+mkdir -p "${HISTFILE:h}"
 
 # do not write duplicates to history
 setopt HIST_SAVE_NO_DUPS
