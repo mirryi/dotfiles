@@ -22,3 +22,11 @@ export HISTORY_SUBSTRING_SEARCH_ENSURE_UNIQUE=true
 
 # Initialize atuin (Ctrl-R only; up-arrow stays with history-substring-search)
 eval "$(atuin init zsh --disable-up-arrow)"
+
+# ${key} comes from keybindings.zsh
+[[ -n "${key[Up]}"   ]] && bindkey -- "${key[Up]}"   history-substring-search-up
+[[ -n "${key[Down]}" ]] && bindkey -- "${key[Down]}" history-substring-search-down
+bindkey -M vicmd 'k' history-substring-search-up
+bindkey -M vicmd 'j' history-substring-search-down
+bindkey -M vicmd '?' history-incremental-search-backward
+bindkey -M vicmd '/' history-incremental-search-forward
