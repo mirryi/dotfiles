@@ -20,11 +20,8 @@ romkatv/zsh-prompt-benchmark
 
 # autosourcing
 MichaelAquilina/zsh-autoswitch-virtualenv
-darvid/zsh-poetry
-Tarrasch/zsh-autoenv
 
 # miscellaneous
-Tarrasch/zsh-command-not-found
 MichaelAquilina/zsh-auto-notify
 
 # git
