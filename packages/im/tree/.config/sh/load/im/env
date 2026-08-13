@@ -1,0 +1,14 @@
+#!/bin/sh
+# fcitx5 on some machines, ibus on others
+if command -v fcitx5 >/dev/null 2>&1; then
+	_im=fcitx
+elif command -v ibus-daemon >/dev/null 2>&1; then
+	_im=ibus
+fi
+
+if [ -n "$_im" ]; then
+	export GTK_IM_MODULE="$_im"
+	export QT_IM_MODULE="$_im"
+	export XMODIFIERS="@im=$_im"
+fi
+unset _im
