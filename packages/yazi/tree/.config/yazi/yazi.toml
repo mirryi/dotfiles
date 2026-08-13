@@ -19,4 +19,5 @@ prepend_preloaders = [
 prepend_previewers = [
     { mime = "{audio,video,image}/*", run = "mediainfo" },
     { mime = "application/subrip", run = "mediainfo" },
+    { url = "*.{md,markdown}", run = 'piper -- pandoc -s -f markdown+wikilinks_title_after_pipe -t markdown+wikilinks_title_after_pipe --columns=$w "$1" | bat -pf -l md --terminal-width=$w' },
 ]
