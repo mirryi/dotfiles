@@ -2,6 +2,8 @@ require('git'):setup {
     order = 1500,
 }
 
+require('lastdir'):setup()
+
 require('yamb'):setup {
     jump_notify = true,
     cli = 'fzf',
