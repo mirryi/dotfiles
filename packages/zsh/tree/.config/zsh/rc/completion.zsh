@@ -3,10 +3,15 @@
 # Preview command line arguments when completing `kill`
 zstyle ':completion:*:*:*:*:processes' command "ps -u $USER -o pid,user,comm,cmd -w -w"
 
-# fzf-tab draws the menu itself
-zstyle ':completion:*' menu no
+# colour the completion list like ls
+zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
 
-# compinit's dump sources ~30ms faster compiled; refresh it when it goes stale
-_zcompdump="${XDG_CACHE_HOME}/zsh/compdump"
-[[ -s $_zcompdump && ! $_zcompdump.zwc -nt $_zcompdump ]] && zcompile -R -- "$_zcompdump"
-unset _zcompdump
+# Limit number of completion results
+zstyle -e ':autocomplete:*:*' list-lines 'reply=( $(( LINES / 3 )) )'
+
+# Require minimum input
+zstyle ':autocomplete:*' min-input 3
+
+# builtin widgets; zsh-autocomplete's same-named wrappers re-insert match 1 every press
+[[ -n "${key[Shift-Tab]}" ]] && bindkey -- "${key[Shift-Tab]}" .reverse-menu-complete
+bindkey -- '^I' .menu-complete
