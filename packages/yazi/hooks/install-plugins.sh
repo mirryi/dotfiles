@@ -11,6 +11,7 @@ declare -A plugins=(
 	[mediainfo.yazi]="boydaihungst/mediainfo"
 	[compress.yazi]="KKV9/compress"
 	[yamb.yazi]="h-hg/yamb"
+	[piper.yazi]="yazi-rs/plugins:piper"
 )
 
 for dir in "${!plugins[@]}"; do
