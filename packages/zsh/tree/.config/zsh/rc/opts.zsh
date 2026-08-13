@@ -23,6 +23,3 @@ zle -N self-insert url-quote-magic
 
 # enable version control info
 autoload -Uz vcs_info
-
-# faster visual mode switching
-export KEYTIMEOUT=1
