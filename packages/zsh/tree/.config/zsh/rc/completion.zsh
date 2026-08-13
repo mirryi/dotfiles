@@ -1,3 +1,5 @@
+#!/bin/zsh
+
 # Preview command line arguments when completing `kill`
 zstyle ':completion:*:*:*:*:processes' command "ps -u $USER -o pid,user,comm,cmd -w -w"
 
@@ -6,3 +8,7 @@ zstyle -e ':autocomplete:*:*' list-lines 'reply=( $(( LINES / 3 )) )'
 
 # Require minimum input
 zstyle ':autocomplete:*' min-input 3
+
+# builtin widgets; zsh-autocomplete's same-named wrappers re-insert match 1 every press
+[[ -n "${key[Shift-Tab]}" ]] && bindkey -- "${key[Shift-Tab]}" .reverse-menu-complete
+bindkey -- '^I' .menu-complete
