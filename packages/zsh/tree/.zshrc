@@ -43,6 +43,17 @@ eval "$(atuin init zsh --disable-up-arrow)"
 # Hook direnv
 eval "$(direnv hook zsh)"
 
+# Initialize zoxide
+eval "$(zoxide init zsh)"
+
+# Complete from the zoxide database; zoxide's own compdef only offers local dirs
+_z_complete() {
+  local -a matches
+  matches=(${(f)"$(zoxide query --list --exclude "$PWD" -- ${words[2,CURRENT]} 2>/dev/null)"})
+  compadd -U -a matches || _files -/
+}
+compdef _z_complete z
+
 # Load manual plugins
 . "$XDG_CONFIG_HOME/sh/util"
 shload "rc.zsh" "$XDG_CONFIG_HOME/zsh"

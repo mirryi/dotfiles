@@ -18,9 +18,6 @@ marlonrichert/zsh-autocomplete
 romkatv/zsh-bench kind:path
 romkatv/zsh-prompt-benchmark
 
-# navigation
-ajeetdsouza/zoxide
-
 # autosourcing
 MichaelAquilina/zsh-autoswitch-virtualenv
 darvid/zsh-poetry
