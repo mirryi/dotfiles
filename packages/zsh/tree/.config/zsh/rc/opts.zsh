@@ -1,29 +1,17 @@
 #!/bin/zsh
 
-# save history in state dir
-export HISTSIZE=290000
-export SAVEHIST=290000
-export HISTFILE="$XDG_STATE_HOME/zsh/history"
-
 # comments in interactive code
 setopt INTERACTIVE_COMMENTS
 # expand parameters, commands, etc.
 setopt PROMPT_SUBST
 # no c-s/c-q output freezing
 setopt NO_FLOW_CONTROL
-# do not write duplicates to history
-setopt HIST_SAVE_NO_DUPS
-setopt HIST_FIND_NO_DUPS
-# save each command's beginning timestamp and the duration to the history file
-setopt EXTENDED_HISTORY
 # completion within words
 setopt COMPLETE_IN_WORD
 # autocontinue suspended process on disown
 setopt AUTO_CONTINUE
 # match hidden files without specify dot
 setopt GLOBDOTS
-# share new history across active zsh sessions
-setopt SHARE_HISTORY
 
 # enable colors
 autoload -Uz colors

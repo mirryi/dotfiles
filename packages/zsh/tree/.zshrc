@@ -12,47 +12,15 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
-# Load antidote
-source "/usr/share/zsh-antidote/antidote.zsh"
-zstyle ':antidote:bundle' file "$XDG_CONFIG_HOME/zsh/rc/plugins.txt"
-zstyle ':antidote:static' file "$XDG_CONFIG_HOME/zsh/rc/plugins.zsh"
-antidote load
-
-# Load p10k
-[[ ! -f "$XDG_CONFIG_HOME/zsh/rc/p10k.zsh" ]] || source "$XDG_CONFIG_HOME/zsh/rc/p10k.zsh"
-
-# Load core components
+# Load core components; antidote runs compinit, so it goes first
+. "$XDG_CONFIG_HOME/zsh/rc/antidote.zsh"
+. "$XDG_CONFIG_HOME/zsh/rc/p10k.zsh"
 . "$XDG_CONFIG_HOME/zsh/rc/opts.zsh"
+. "$XDG_CONFIG_HOME/zsh/rc/history.zsh"
 . "$XDG_CONFIG_HOME/zsh/rc/keybindings.zsh"
-. "$XDG_CONFIG_HOME/zsh/rc/macros.zsh"
-
-# zsh-users/zsh-history-substring-search
-export HISTORY_SUBSTRING_SEARCH_HIGHLIGHT_FOUND="fg=white,bold,underline"
-export HISTORY_SUBSTRING_SEARCH_ENSURE_UNIQUE=true
-
-# MichaelAquilina/zsh-autoswitch-virtualenv
-export AUTOSWITCH_VIRTUAL_ENV_DIR="${XDG_DATA_HOME}/venvs"
-
-# Tarrasch/zsh-autoenv
-export AUTOENV_FILE_ENTER=".autoenv.zsh"
-export AUTOENV_FILE_LEAVE=".autoenv.exit.zsh"
-
-# Initialize atuin (Ctrl-R only; up-arrow stays with history-substring-search)
-eval "$(atuin init zsh --disable-up-arrow)"
-
-# Hook direnv
-eval "$(direnv hook zsh)"
-
-# Initialize zoxide
-eval "$(zoxide init zsh)"
-
-# Complete from the zoxide database; zoxide's own compdef only offers local dirs
-_z_complete() {
-  local -a matches
-  matches=(${(f)"$(zoxide query --list --exclude "$PWD" -- ${words[2,CURRENT]} 2>/dev/null)"})
-  compadd -U -a matches || _files -/
-}
-compdef _z_complete z
+. "$XDG_CONFIG_HOME/zsh/rc/completion.zsh"
+. "$XDG_CONFIG_HOME/zsh/rc/navigation.zsh"
+. "$XDG_CONFIG_HOME/zsh/rc/autosourcing.zsh"
 
 # Load manual plugins
 . "$XDG_CONFIG_HOME/sh/util"
