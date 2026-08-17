@@ -4,6 +4,8 @@ require('git'):setup {
 
 require('lastdir'):setup()
 
+require('mimestatus'):setup()
+
 require('yamb'):setup {
     jump_notify = true,
     cli = 'fzf',
