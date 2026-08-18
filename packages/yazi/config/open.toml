@@ -1,0 +1,129 @@
+[opener]
+
+# yazi's default [open] rules still reference these.
+edit = [
+    { run = '${EDITOR:-vi} -- %s', desc = "$EDITOR", block = true },
+]
+open = [
+    { run = 'xdg-open %s1', desc = "xdg-open" },
+]
+reveal = [
+    { run = 'xdg-open %d1', desc = "Reveal" },
+    { run = "exiftool %s1; echo 'Press enter to exit'; read _", desc = "Show EXIF", block = true },
+]
+extract = [
+    { run = 'ya pub extract --list %s', desc = "Extract here" },
+]
+download = [
+    { run = 'ya emit download --open %S', desc = "Download and open" },
+    { run = 'ya emit download %S', desc = "Download" },
+]
+
+pager = [
+    { run = '${PAGER:-less} -- %s', desc = "$PAGER", block = true },
+]
+
+html = [
+    { run = 'qutebrowser -- %s',     desc = "qutebrowser",      orphan = true },
+    { run = 'elinks %s',             desc = "elinks",           block = true },
+    { run = 'w3m %s',                desc = "w3m",              block = true },
+    { run = 'firefox -- %s',         desc = "firefox",          orphan = true },
+    { run = 'firefox-nightly -- %s', desc = "firefox-nightly",  orphan = true },
+    { run = 'chromium -- %s',        desc = "chromium",         orphan = true },
+]
+
+man = [
+    { run = 'man -l %s1', desc = "man", block = true },
+]
+
+play = [
+    { run = 'mpv -- %s',      desc = "mpv",              orphan = true },
+    { run = 'mpv --fs -- %s', desc = "mpv (fullscreen)", orphan = true },
+    { run = "mediainfo %s1; echo 'Press enter to exit'; read _", desc = "Show media info", block = true },
+]
+audio = [
+    { run = 'mpv -- %s', desc = "mpv", block = true },
+]
+
+kdenlive = [
+    { run = 'kdenlive -- %s', desc = "kdenlive", orphan = true },
+]
+
+doc = [
+    { run = 'zathura -- %s', desc = "zathura", orphan = true },
+]
+ebook = [
+    { run = 'ebook-viewer -- %s', desc = "ebook-viewer", orphan = true },
+    { run = 'zathura -- %s',      desc = "zathura",      orphan = true },
+]
+xournal = [
+    { run = 'xournalpp -- %s', desc = "xournalpp", orphan = true },
+]
+
+office = [
+    { run = 'libreoffice %s',                 desc = "libreoffice", orphan = true },
+    { run = 'catdoc -- %s | ${PAGER:-less}',  desc = "catdoc",      block = true },
+]
+
+image = [
+    { run = 'nsxiv -a -- %s', desc = "nsxiv",    orphan = true },
+    { run = 'sxiv -a -- %s',  desc = "sxiv",     orphan = true },
+    { run = 'feh -- %s',      desc = "feh",      orphan = true },
+    { run = 'gimp %s',        desc = "gimp",     orphan = true },
+    { run = 'inkscape -- %s', desc = "inkscape", orphan = true },
+]
+
+svg = [
+    { run = 'inkscape -- %s', desc = "inkscape", orphan = true },
+    { run = 'display %s',     desc = "display",  orphan = true },
+]
+
+wallpaper = [
+    { run = 'feh --no-fehbg --bg-scale %s1',  desc = "wallpaper (scale)",  orphan = true },
+    { run = 'feh --no-fehbg --bg-tile %s1',   desc = "wallpaper (tile)",   orphan = true },
+    { run = 'feh --no-fehbg --bg-center %s1', desc = "wallpaper (center)", orphan = true },
+    { run = 'feh --no-fehbg --bg-fill %s1',   desc = "wallpaper (fill)",   orphan = true },
+]
+
+list = [
+    { run = 'als -- %s | ${PAGER:-less}',    desc = "als",     block = true },
+    { run = '7z l %s1 | ${PAGER:-less}',     desc = "7z l",    block = true },
+    { run = 'tar vvtf %s1 | ${PAGER:-less}', desc = "tar vvt", block = true },
+]
+unpack = [
+    { run = 'aunpack -- %s', desc = "aunpack", block = true },
+]
+
+exec = [
+    { run = '%s1', desc = "execute", block = true },
+]
+
+[open]
+# First match wins: svg before image/*, code extensions before text/*.
+prepend_rules = [
+    { url = "*.{html,htm,xhtml}", use = [ "html", "edit", "open" ] },
+
+    { url = "*.[1-8]", use = [ "man", "edit", "pager" ] },
+
+    { url = "*.{xml,json,csv,tex,py,pl,rb,js,rs,sh,ts,php}", use = [ "edit", "pager", "reveal" ] },
+
+    { mime = "video/*",  use = [ "play", "reveal" ] },
+    { mime = "audio/*",  use = [ "audio", "play", "reveal" ] },
+    { url = "*.kdenlive", use = [ "kdenlive", "edit" ] },
+
+    { mime = "application/pdf", use = [ "doc", "open", "reveal" ] },
+    { mime = "image/vnd.djvu",  use = [ "doc", "open", "reveal" ] },
+    { url = "*.epub",           use = [ "ebook", "open", "reveal" ] },
+    { url = "*.xopp",           use = [ "xournal", "open" ] },
+
+    { url = "*.{doc,docx,ppt,pptx,xls,xlsx,xlt,xlw,sxc,gnm,gnumeric,odd,odf,odg,odp,ods,odt}", use = [ "office", "open" ] },
+
+    { mime = "image/svg+xml", use = [ "svg", "image", "edit", "open" ] },
+    { mime = "image/*",       use = [ "image", "wallpaper", "open", "reveal" ] },
+
+    { mime = "application/{zip,rar,7z*,tar,gzip,xz,zstd,bzip*,lzma,compress,archive,cpio,arj,xar,ms-cab*}", use = [ "extract", "unpack", "list", "reveal" ] },
+
+    { mime = "application/x-executable", use = [ "exec", "open" ] },
+
+    { mime = "text/*", use = [ "edit", "pager", "reveal" ] },
+]
