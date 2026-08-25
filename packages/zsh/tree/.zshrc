@@ -21,6 +21,7 @@ fi
 . "$XDG_CONFIG_HOME/zsh/rc/completion.zsh"
 . "$XDG_CONFIG_HOME/zsh/rc/navigation.zsh"
 . "$XDG_CONFIG_HOME/zsh/rc/autosourcing.zsh"
+. "$XDG_CONFIG_HOME/zsh/rc/bell.zsh"
 
 # Load manual plugins
 . "$XDG_CONFIG_HOME/sh/util"
