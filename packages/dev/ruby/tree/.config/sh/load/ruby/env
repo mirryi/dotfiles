@@ -7,7 +7,7 @@ export GEM_HOME="${XDG_DATA_HOME}/gem"
 export GEM_SPEC_CACHE="${XDG_CACHE_HOME}/gem"
 
 # Ruby gems installed binaries (version-agnostic)
-for _gembin in "$GEM_HOME"/ruby/*/bin; do
-  [ -d "$_gembin" ] && export PATH="$_gembin:$PATH"
+for _gembin in $(find "$GEM_HOME/ruby" -mindepth 1 -maxdepth 1 -type d 2>/dev/null); do
+  [ -d "$_gembin/bin" ] && export PATH="$_gembin/bin:$PATH"
 done
 unset _gembin
