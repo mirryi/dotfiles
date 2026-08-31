@@ -1,20 +1,20 @@
 #!/bin/bash
-# Gruvbox-themed status line for Claude Code.
+# Status line for Claude Code, colored from the active dotfiles profile.
 
 input=$(cat)
 
-# Gruvbox palette.
-c_green=$'\033[38;5;106m'
-c_cyan=$'\033[38;5;109m'
-c_magenta=$'\033[38;5;175m'
-c_gray=$'\033[38;5;243m'
+# Palette, from profile.
+c_green=$'\033[38;5;{{ c_green }}m'
+c_cyan=$'\033[38;5;{{ c_cyan }}m'
+c_magenta=$'\033[38;5;{{ c_magenta }}m'
+c_gray=$'\033[38;5;{{ c_gray }}m'
 c_dim=$'\033[2m'
 c_reset=$'\033[0m'
-# Gruvbox "faded" tones for usage percentages, by threshold.
-c_faded_green=$'\033[38;5;100m'
-c_faded_yellow=$'\033[38;5;136m'
-c_faded_orange=$'\033[38;5;130m'
-c_faded_red=$'\033[38;5;88m'
+# "Faded" tones for usage percentages, by threshold.
+c_faded_green=$'\033[38;5;{{ c_faded_green }}m'
+c_faded_yellow=$'\033[38;5;{{ c_faded_yellow }}m'
+c_faded_orange=$'\033[38;5;{{ c_faded_orange }}m'
+c_faded_red=$'\033[38;5;{{ c_faded_red }}m'
 
 sep="${c_dim}${c_gray} | ${c_reset}"
 

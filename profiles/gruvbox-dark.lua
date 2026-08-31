@@ -38,6 +38,16 @@ local colors = {
 local M = {
     alacritty = { font = font, colors = colors, font_size = 10 },
     bat = { theme = 'gruvbox-dark' },
+    claude = {
+        c_green = 106,
+        c_cyan = 109,
+        c_magenta = 175,
+        c_gray = 243,
+        c_faded_green = 100,
+        c_faded_yellow = 136,
+        c_faded_orange = 130,
+        c_faded_red = 88,
+    },
     dunst = {
         font = { family = font, size = 9 },
         colors = {
