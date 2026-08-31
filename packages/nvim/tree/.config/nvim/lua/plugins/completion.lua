@@ -14,6 +14,9 @@ return {
         config = function()
             require('citeref').setup {
                 backend = 'cmp',
+                bib_files = function()
+                    return vim.fn.globpath(vim.fn.getcwd(), 'bib/*.bib', false, true)
+                end,
             }
         end,
     },
