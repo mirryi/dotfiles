@@ -1,6 +1,26 @@
 scriptencoding utf-8
 
-syn keyword rustKeyword relation
+" `relation` is only a keyword inside a `zenith!(...)` invocation (any of
+" `()`/`{}`/`[]`, arbitrary whitespace, and an optional `path::` prefix).
+" NB: `contains=TOP,{group}` *excludes* {group} from TOP (see :syn-priority),
+" so TOP must be extended via a cluster rather than listed alongside groups
+" directly in `contains=`.
+syn keyword rustZenithKeyword relation contained
+
+syn region rustZenithNestParens start="(" end=")" transparent contained contains=@rustZenithBody
+syn region rustZenithNestBrack  start="\[" end="\]" transparent contained contains=@rustZenithBody
+syn region rustZenithNestCurly  start="{" end="}" transparent contained contains=@rustZenithBody
+
+syn cluster rustZenithBody contains=TOP
+syn cluster rustZenithBody add=rustZenithKeyword,rustZenithNestParens,rustZenithNestBrack,rustZenithNestCurly
+
+let s:zenithStart = '\%(\w\+::\)*\<zenith!\_s*'
+exe 'syn region rustZenithMacroCall matchgroup=rustMacro start="' . s:zenithStart . '("  end=")"  contains=@rustZenithBody'
+exe 'syn region rustZenithMacroCall matchgroup=rustMacro start="' . s:zenithStart . '{"  end="}"  contains=@rustZenithBody'
+exe 'syn region rustZenithMacroCall matchgroup=rustMacro start="' . s:zenithStart . '\["  end="\]"  contains=@rustZenithBody'
+unlet s:zenithStart
+
+hi def link rustZenithKeyword rustKeyword
 
 if !get(g:, 'rust_conceal', 0) || !has('conceal') || &encoding !=# 'utf-8'
     finish
