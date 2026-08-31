@@ -1,5 +1,7 @@
 scriptencoding utf-8
 
+syn keyword rustKeyword relation
+
 if !get(g:, 'rust_conceal', 0) || !has('conceal') || &encoding !=# 'utf-8'
     finish
 endif
