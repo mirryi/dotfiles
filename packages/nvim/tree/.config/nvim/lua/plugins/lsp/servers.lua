@@ -88,6 +88,9 @@ M['bashls'] = {}
 -- toml
 M['taplo'] = {}
 
+-- terraform
+M['terraformls'] = {}
+
 -- texlab
 M['texlab'] = {}
 
