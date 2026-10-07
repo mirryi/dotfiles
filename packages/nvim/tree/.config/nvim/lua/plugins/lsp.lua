@@ -78,9 +78,9 @@ return {
             'nvim-lua/plenary.nvim',
             'nvim-telescope/telescope.nvim',
         },
-        opts = {
-            mappings = true,
-        },
+        init = function()
+            vim.g.lean_config = { mappings = true }
+        end,
     },
     {
         -- rust extensions
