@@ -92,12 +92,9 @@ return {
     },
     {
         -- web markdown preview
-        'iamcco/markdown-preview.nvim',
-        build = 'cd app && yarn install',
-        config = function()
-            vim.g.mkdp_auto_start = false
-            vim.g.mkdp_echo_preview_url = 1
-            vim.g.mkdp_filetypes = { 'markdown', 'pandoc' }
-        end,
+        'selimacerbas/mdkite.nvim',
+        dependencies = { 'selimacerbas/kitehost.nvim' },
+        ft = { 'markdown', 'pandoc' },
+        opts = { filetypes = { 'pandoc' } },
     },
 }
