@@ -48,6 +48,8 @@ return {
             -- Close buffer
             vim.keymap.set('n', 'tc', ' <cmd>BufferClose<CR>')
             vim.keymap.set('n', 'tC', ' <cmd>BufferCloseAllButCurrent<CR>')
+            vim.keymap.set('n', 'tCR', ' <cmd>BufferCloseBuffersRight<CR>')
+            vim.keymap.set('n', 'tCL', ' <cmd>BufferCloseBuffersLeft<CR>')
         end,
     },
     {
